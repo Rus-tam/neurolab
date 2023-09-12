@@ -4,7 +4,7 @@
   "description": "virtual laboratory",
   "main": "index.js",
   "scripts": {
-    "start:client": "cd client-ts && npm run start",
+    "start:client": "cd client && npm run dev",
     "start:server": "cd server && npm run start:dev",
     "start": "concurrently \"npm run start:client\" \"npm run start:server\""
   },
