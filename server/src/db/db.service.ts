@@ -4,7 +4,7 @@ import { UserEntity } from "@db/entities/user.entity";
 import { Repository } from "typeorm";
 import { TokenEntity } from "@db/entities/token.entity";
 import { UserDTO } from "@db/dto";
-import { DbErrors } from "../errors";
+import { DbErrors } from "@errors";
 import * as bcrypt from "bcrypt";
 import { Roles } from "@types";
 
@@ -55,6 +55,10 @@ export class DbService {
     await this.userRepository.save(newUser);
 
     return newUser;
+  }
+
+  async findUserById(id: string): Promise<UserEntity> {
+    return this.userRepository.findOne({ where: { id } });
   }
 
   private async hashPassword(password: string) {

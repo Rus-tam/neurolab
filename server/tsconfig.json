@@ -29,6 +29,24 @@
       ],
       "@db/*": [
         "src/db/*"
+      ],
+      "@auth": [
+        "src/auth"
+      ],
+      "@auth/*": [
+        "src/auth/*"
+      ],
+      "@errors": [
+        "src/errors"
+      ],
+      "@errors/*": [
+        "src/errors/*"
+      ],
+      "@responses": [
+        "src/responses"
+      ],
+      "@responses/*": [
+        "src/responses/*"
       ]
     }
   }
