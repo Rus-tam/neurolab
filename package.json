@@ -1,0 +1,20 @@
+{
+  "name": "virtual_lab",
+  "version": "1.0.0",
+  "description": "virtual laboratory",
+  "main": "index.js",
+  "scripts": {
+    "start:client": "cd client-ts && npm run start",
+    "start:server": "cd server && npm run start:dev",
+    "start": "concurrently \"npm run start:client\" \"npm run start:server\""
+  },
+  "author": "Akhmetov Rustam",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "prettier": "3.0.0"
+  },
+  "dependencies": {
+
+  }
+}
