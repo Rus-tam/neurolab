@@ -1,12 +1,14 @@
-import { ConflictException, Injectable, Logger } from "@nestjs/common";
+import { ConflictException, Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { UserEntity } from "@db/entities/user.entity";
-import { Repository } from "typeorm";
+import { DeleteResult, Repository } from "typeorm";
 import { TokenEntity } from "@db/entities/token.entity";
 import { UserDTO } from "@db/dto";
 import { DbErrors } from "@errors";
 import * as bcrypt from "bcrypt";
 import { Roles } from "@types";
+import { v4 } from "uuid";
+import { add } from "date-fns";
 
 @Injectable()
 export class DbService {
@@ -58,12 +60,46 @@ export class DbService {
   }
 
   async findUserById(id: string): Promise<UserEntity> {
-    return this.userRepository.findOne({ where: { id } });
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      this.logger.error("Пользователь не найден");
+      throw new NotFoundException(DbErrors.NotFound);
+    }
+    return user;
+  }
+
+  async findUserByEmail(email: string) {
+    const user = await this.userRepository.findOne({ where: { email } });
+    if (!user) {
+      this.logger.error("Пользователь не найден");
+      throw new NotFoundException(DbErrors.NotFound);
+    }
+    return user;
   }
 
   private async hashPassword(password: string) {
     const salt = await bcrypt.genSalt(10);
     const hash = bcrypt.hashSync(password, salt);
     return hash;
+  }
+
+  async createRefreshToken(user: UserEntity) {
+    const existingTokens = await this.tokenRepository.findBy({ user });
+    if (existingTokens.length !== 0) {
+      await this.deleteToken(existingTokens[0].id);
+    }
+    return this.tokenRepository.save({
+      token: v4(),
+      exp: add(new Date(), { months: 1 }),
+      user,
+    });
+  }
+
+  async getToken(token: string): Promise<TokenEntity> {
+    return this.tokenRepository.findOne({ where: { token } });
+  }
+
+  async deleteToken(id: string): Promise<DeleteResult> {
+    return this.tokenRepository.delete({ id });
   }
 }
