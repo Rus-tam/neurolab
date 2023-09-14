@@ -1,0 +1,86 @@
+.simple_isomerization {
+    position: relative;
+    height: 100vh; /* Высота контейнера по высоте окна просмотра */
+}
+
+.reactor {
+    width: 25rem;
+    height: 25rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45%, -51%);
+}
+
+.blades {
+    width: 5rem;
+    height: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation: rotateY-anim 2s linear infinite;
+}
+
+.bubbles_container {
+    position: relative;
+    width: 10rem;
+    height: 11rem;
+    z-index: -1;
+    overflow: hidden;
+    left: 50%;
+    top: 50%;
+    transform: translate(-23.5%, -85%);
+}
+
+.bubbles {
+    --i: 0;
+    position: relative;
+    display: flex;
+}
+
+.bubbles span {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    background: #eceef6;
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px #394bb0, 0 0 15px #001DBC, 0 0 20px #001DBC;
+    animation: animate 15s linear infinite;
+    animation-duration: calc(50s / var(--i));
+}
+
+.input-table {
+    position: absolute;
+    width: 30%;
+    top: 45%;
+    left: 3%
+}
+
+.result-table {
+    position: absolute;
+    width: 30%;
+    top: 20%;
+    right: 5%
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(90vh) scale(0);
+    }
+
+    100% {
+        transform: translateY(8vh) scale(0.9);
+    }
+}
+
+
+@keyframes rotateY-anim {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(360deg);
+    }
+}
