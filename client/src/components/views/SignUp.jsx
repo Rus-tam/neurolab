@@ -1,6 +1,7 @@
 import { useState } from "react";
+import "../styles/signUp.css";
 
-const SignIn = () => {
+const SignUp = () => {
   // const navigate = useNavigate();
   const [group, setGroup] = useState("");
   const [email, setEmail] = useState("");
@@ -10,6 +11,8 @@ const SignIn = () => {
   const [professor, setProfessor] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+
+  const handleRegister = () => {};
 
   return (
     <>
@@ -112,4 +115,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

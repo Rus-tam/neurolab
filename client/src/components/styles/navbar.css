@@ -1,0 +1,56 @@
+.navbar {
+    background-color: transparent;
+    padding: 10px 20px 0 20px;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-logo {
+    color: #001DBC;
+    font-family: 'Indie Flower', cursive;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-item {
+    margin-right: 20px;
+}
+
+.navbar-link {
+    font-family: 'Indie Flower', cursive;
+    color: #001DBC;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-registration {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-registration .navbar-link {
+    margin-left: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+    }
+
+    .navbar-item {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
