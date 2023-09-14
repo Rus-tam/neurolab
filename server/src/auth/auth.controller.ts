@@ -8,6 +8,7 @@ import {
   Logger,
   UnauthorizedException,
   HttpStatus,
+  Get,
 } from "@nestjs/common";
 import { DbService } from "@db/db.service";
 import { UserDTO } from "@db/dto";
@@ -19,6 +20,7 @@ import { AuthErrors } from "@errors";
 import { ConfigService } from "@nestjs/config";
 import { IBriefUserInfo, ITokens } from "@types";
 import { UserEntity } from "@db/entities/user.entity";
+import { Cookie } from "@decorators";
 
 const REFRESH_TOKEN = "refreshtoken";
 
@@ -78,5 +80,21 @@ export class AuthController {
     });
 
     res.status(HttpStatus.CREATED).json({ accessToken: tokens.accessToken, user });
+  }
+
+  @Get("/refresh")
+  async refreshToken(
+    @Cookie(REFRESH_TOKEN) refreshToken: string,
+    user: IBriefUserInfo,
+    @Res() res: Response,
+  ) {
+    if (!refreshToken) {
+      throw new UnauthorizedException(AuthErrors.NotAuthorized);
+    }
+    const tokens = await this.authService.refreshTokens(refreshToken);
+    if (!tokens) {
+      throw new UnauthorizedException(AuthErrors.NotAuthorized);
+    }
+    this.setRefreshTokenToCookies(tokens, res, user);
   }
 }

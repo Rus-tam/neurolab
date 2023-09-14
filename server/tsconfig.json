@@ -47,6 +47,12 @@
       ],
       "@responses/*": [
         "src/responses/*"
+      ],
+      "@decorators": [
+        "src/decorators"
+      ],
+      "@decorators/*": [
+        "src/decorators/*"
       ]
     }
   }

@@ -35,8 +35,8 @@ export class AuthService {
       throw new UnauthorizedException(AuthErrors.Unauthorized);
     }
 
-    const group = await this.dbService.findUserById(token.user.id);
-    return this.generateTokens(group);
+    const user = await this.dbService.findUserById(token.user.id);
+    return this.generateTokens(user);
   }
 
   async login(dto: LoginDto) {
