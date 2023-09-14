@@ -5,6 +5,7 @@ import NavBar from "./components/layout/NavBar.jsx";
 import Footer from "./components/layout/Footer.jsx";
 import SignUp from "./components/views/SignUp.jsx";
 import SignIn from "./components/views/SignIn.jsx";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
