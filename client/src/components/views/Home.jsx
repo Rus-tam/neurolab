@@ -5,8 +5,8 @@ const Home = () => {
   return (
     <div>
       <h1>Home page</h1>
-      <button onClick={() => navigate("/simple-isomerization")}>
-        Простая изомеризация
+      <button onClick={() => navigate("/labs")}>
+        Перейти к списку лабораторных работ
       </button>
     </div>
   );

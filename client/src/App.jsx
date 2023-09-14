@@ -7,6 +7,7 @@ import SignUp from "./components/views/SignUp.jsx";
 import SignIn from "./components/views/SignIn.jsx";
 import "react-toastify/dist/ReactToastify.css";
 import SimpleIsomerization from "./components/labs/SimpleIsomerization.jsx";
+import LabsList from "./components/labs/Labs.jsx";
 
 function App() {
   return (
@@ -18,7 +19,11 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/signin" element={<SignIn />}></Route>
-          <Route path="/simple-isomerization" element={<SimpleIsomerization />}></Route>
+          <Route path="/labs" element={<LabsList />}></Route>
+          <Route
+            path="/labs/simple-isomerization"
+            element={<SimpleIsomerization />}
+          ></Route>
         </Routes>
       </div>
       <ToastContainer
