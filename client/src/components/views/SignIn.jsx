@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styles/signIn.css";
 import { useLoginMutation } from "../../store/apis/authApiSlice.js";
-import { setCredentials } from "../../store/slices/authSlice.js";
+import { selectCurrentUser, setCredentials } from "../../store/slices/authSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const userInfoFromState = useSelector((state) => state.auth.user);
+  const userInfoFromState = useSelector(selectCurrentUser);
 
   const [login, results] = useLoginMutation();
 

@@ -8,6 +8,7 @@ import SignIn from "./components/views/SignIn.jsx";
 import "react-toastify/dist/ReactToastify.css";
 import SimpleIsomerization from "./components/labs/SimpleIsomerization.jsx";
 import LabsList from "./components/labs/Labs.jsx";
+import RequireAuth from "./store/RequireAuth.jsx";
 
 function App() {
   return (
@@ -16,14 +17,19 @@ function App() {
 
       <div>
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<Home />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/signin" element={<SignIn />}></Route>
-          <Route path="/labs" element={<LabsList />}></Route>
-          <Route
-            path="/labs/simple-isomerization"
-            element={<SimpleIsomerization />}
-          ></Route>
+
+          {/* Protected Routes */}
+          <Route element={<RequireAuth />}>
+            <Route path="/labs" element={<LabsList />}></Route>
+            <Route
+              path="/labs/simple-isomerization"
+              element={<SimpleIsomerization />}
+            ></Route>
+          </Route>
         </Routes>
       </div>
       <ToastContainer
