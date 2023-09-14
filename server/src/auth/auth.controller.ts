@@ -17,7 +17,8 @@ import { Response } from "express";
 import { AuthService } from "@auth/auth.service";
 import { AuthErrors } from "@errors";
 import { ConfigService } from "@nestjs/config";
-import { ITokens } from "@types";
+import { IBriefUserInfo, ITokens } from "@types";
+import { UserEntity } from "@db/entities/user.entity";
 
 const REFRESH_TOKEN = "refreshtoken";
 
@@ -34,6 +35,7 @@ export class AuthController {
   @Post("/register")
   async createUser(@Body() dto: UserDTO) {
     const user = await this.dbService.createUser(dto);
+    console.log(user);
     return new UserResponse(user);
   }
 
@@ -41,19 +43,27 @@ export class AuthController {
   async login(@Body() dto: LoginDto, @Res() res: Response) {
     const tokens = await this.authService.login(dto);
     const user = await this.dbService.findUserByEmail(dto.email);
+    const briefUserInfo: IBriefUserInfo = {
+      id: user.id,
+      email: user.email,
+      student1: user.student1,
+      student2: user.student2,
+      student3: user.student3,
+      role: user.role,
+    };
 
     if (!tokens || !user) {
       this.logger.error(`Не удается войти с данными ${JSON.stringify(dto)}`);
     }
 
-    this.setRefreshTokenToCookies(tokens, res);
+    this.setRefreshTokenToCookies(tokens, res, briefUserInfo);
 
     return {
       accessToken: tokens.accessToken,
     };
   }
 
-  private setRefreshTokenToCookies(tokens: ITokens, res: Response) {
+  private setRefreshTokenToCookies(tokens: ITokens, res: Response, user: IBriefUserInfo) {
     if (!tokens) {
       this.logger.error("Не удается авторизоваться");
       throw new UnauthorizedException(AuthErrors.Unauthorized);
@@ -67,6 +77,6 @@ export class AuthController {
       path: "/",
     });
 
-    res.status(HttpStatus.CREATED).json({ accessToken: tokens.accessToken });
+    res.status(HttpStatus.CREATED).json({ accessToken: tokens.accessToken, user });
   }
 }
