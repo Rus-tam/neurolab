@@ -5,8 +5,8 @@ const authSlice = createSlice({
   initialState: { user: null, token: null },
   reducers: {
     setCredentials: (state, action) => {
-      const { user, accessToken } = action.payload;
-      state.user = user;
+      const accessToken = action.payload;
+      state.user = JSON.parse(atob(accessToken.split(" ")[1].split(".")[1]));
       state.token = accessToken;
     },
     // eslint-disable-next-line no-unused-vars

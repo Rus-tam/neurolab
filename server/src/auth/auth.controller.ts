@@ -18,9 +18,8 @@ import { Response } from "express";
 import { AuthService } from "@auth/auth.service";
 import { AuthErrors } from "@errors";
 import { ConfigService } from "@nestjs/config";
-import { IBriefUserInfo, ITokens } from "@types";
-import { UserEntity } from "@db/entities/user.entity";
 import { Cookie } from "@decorators";
+import { ITokens } from "@types";
 
 const REFRESH_TOKEN = "refreshtoken";
 
@@ -45,27 +44,19 @@ export class AuthController {
   async login(@Body() dto: LoginDto, @Res() res: Response) {
     const tokens = await this.authService.login(dto);
     const user = await this.dbService.findUserByEmail(dto.email);
-    const briefUserInfo: IBriefUserInfo = {
-      id: user.id,
-      email: user.email,
-      student1: user.student1,
-      student2: user.student2,
-      student3: user.student3,
-      role: user.role,
-    };
 
     if (!tokens || !user) {
       this.logger.error(`Не удается войти с данными ${JSON.stringify(dto)}`);
     }
 
-    this.setRefreshTokenToCookies(tokens, res, briefUserInfo);
+    this.setRefreshTokenToCookies(tokens, res);
 
     return {
       accessToken: tokens.accessToken,
     };
   }
 
-  private setRefreshTokenToCookies(tokens: ITokens, res: Response, user: IBriefUserInfo) {
+  private setRefreshTokenToCookies(tokens: ITokens, res: Response) {
     if (!tokens) {
       this.logger.error("Не удается авторизоваться");
       throw new UnauthorizedException(AuthErrors.Unauthorized);
@@ -79,16 +70,11 @@ export class AuthController {
       path: "/",
     });
 
-    res.status(HttpStatus.CREATED).json({ accessToken: tokens.accessToken, user });
+    res.status(HttpStatus.CREATED).json({ accessToken: tokens.accessToken });
   }
 
   @Get("/refresh")
-  async refreshToken(
-    @Cookie(REFRESH_TOKEN) refreshToken: string,
-    user: IBriefUserInfo,
-    @Res() res: Response,
-  ) {
-    console.log("USER", user);
+  async refreshToken(@Cookie(REFRESH_TOKEN) refreshToken: string, @Res() res: Response) {
     if (!refreshToken) {
       throw new UnauthorizedException(AuthErrors.NotAuthorized);
     }
@@ -96,6 +82,6 @@ export class AuthController {
     if (!tokens) {
       throw new UnauthorizedException(AuthErrors.NotAuthorized);
     }
-    this.setRefreshTokenToCookies(tokens, res, user);
+    this.setRefreshTokenToCookies(tokens, res);
   }
 }
