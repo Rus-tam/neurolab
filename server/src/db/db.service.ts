@@ -77,6 +77,10 @@ export class DbService {
     return user;
   }
 
+  async getAllUsers(): Promise<UserEntity[]> {
+    return this.userRepository.find();
+  }
+
   private async hashPassword(password: string) {
     const salt = await bcrypt.genSalt(10);
     const hash = bcrypt.hashSync(password, salt);
@@ -90,7 +94,7 @@ export class DbService {
     }
     return this.tokenRepository.save({
       token: v4(),
-      exp: add(new Date(), { months: 1 }),
+      exp: add(new Date(), { seconds: 20 }),
       user,
     });
   }

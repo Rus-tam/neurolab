@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import SimpleIsomerization from "./components/labs/SimpleIsomerization.jsx";
 import LabsList from "./components/labs/Labs.jsx";
 import RequireAuth from "./store/RequireAuth.jsx";
+import UsersList from "./components/views/UsersList.jsx";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
               path="/labs/simple-isomerization"
               element={<SimpleIsomerization />}
             ></Route>
+
+            <Route path="/all-users" element={<UsersList />}></Route>
           </Route>
         </Routes>
       </div>

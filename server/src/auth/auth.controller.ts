@@ -88,6 +88,7 @@ export class AuthController {
     user: IBriefUserInfo,
     @Res() res: Response,
   ) {
+    console.log("USER", user);
     if (!refreshToken) {
       throw new UnauthorizedException(AuthErrors.NotAuthorized);
     }

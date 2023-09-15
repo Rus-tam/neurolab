@@ -10,6 +10,7 @@ const LabsList = () => {
       </button>
       <button>Аминовая очистка кислых газов</button>
       <button>Низкотемпературная ректификация</button>
+      <button onClick={() => navigate("/all-users")}>Список всех пользователей</button>
     </>
   );
 };
