@@ -25,9 +25,7 @@ const SignIn = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      console.log("RRRR", results);
       const accessToken = await login({ email, password }).unwrap();
-      console.log("TTTTTTTTTTTTT", accessToken.accessToken);
       dispatch(setCredentials(accessToken.accessToken));
 
       if (!results.isError) {

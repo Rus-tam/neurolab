@@ -88,13 +88,14 @@ export class DbService {
   }
 
   async createRefreshToken(user: UserEntity) {
-    const existingTokens = await this.tokenRepository.findBy({ user });
-    if (existingTokens.length !== 0) {
-      await this.deleteToken(existingTokens[0].id);
+    const existingTokens = await this.tokenRepository.findOneBy({ user });
+    console.log("EXISTING_TOKEN", existingTokens);
+    if (existingTokens) {
+      await this.deleteToken(existingTokens.id);
     }
     return this.tokenRepository.save({
       token: v4(),
-      exp: add(new Date(), { seconds: 20 }),
+      exp: add(new Date(), { minutes: 40 }),
       user,
     });
   }
