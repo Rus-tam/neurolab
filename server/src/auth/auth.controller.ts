@@ -18,7 +18,7 @@ import { Response } from "express";
 import { AuthService } from "@auth/auth.service";
 import { AuthErrors } from "@errors";
 import { ConfigService } from "@nestjs/config";
-import { Cookie } from "@decorators";
+import { GetHeader } from "@decorators";
 import { ITokens } from "@types";
 
 const REFRESH_TOKEN = "refreshtoken";
@@ -36,7 +36,6 @@ export class AuthController {
   @Post("/register")
   async createUser(@Body() dto: UserDTO) {
     const user = await this.dbService.createUser(dto);
-    console.log(user);
     return new UserResponse(user);
   }
 
@@ -74,7 +73,11 @@ export class AuthController {
   }
 
   @Get("/refresh")
-  async refreshToken(@Cookie(REFRESH_TOKEN) refreshtoken: string, @Res() res: Response) {
+  async refreshToken(
+    @GetHeader(REFRESH_TOKEN) refreshtoken: string,
+    @Res() res: Response,
+  ) {
+    console.log("REFRESH_TOKEN", refreshtoken);
     if (!refreshtoken) {
       throw new UnauthorizedException(AuthErrors.NotAuthorized);
     }
