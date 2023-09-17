@@ -5,6 +5,7 @@ import {
   PrimaryGeneratedColumn,
   JoinColumn,
   ManyToOne,
+  RelationId,
 } from "typeorm";
 import { UserEntity } from "@db/entities/user.entity";
 
@@ -24,4 +25,7 @@ export class TokenEntity {
     orphanedRowAction: "delete",
   })
   user: UserEntity;
+
+  @RelationId((token: TokenEntity) => token.user)
+  userId: string;
 }
