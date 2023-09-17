@@ -21,15 +21,12 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 
   if (result?.error?.status === 401) {
     console.log("Sending refresh token");
-
-    console.log("API", api);
-
     const refreshResult = await baseQuery("/auth/refresh", api, extraOptions);
     console.log("REFRESH_RESULT", refreshResult);
     if (refreshResult?.data) {
       const user = api.getState().auth.user;
       // store new token
-      api.dispatch(setCredentials({ ...refreshResult.data, user }));
+      api.dispatch(setCredentials(refreshResult.data.accessToken));
       // retry the original query with new access token
       result = await baseQuery(args, api, extraOptions);
     } else {

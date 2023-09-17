@@ -24,7 +24,6 @@ export class AuthService {
     refreshToken: string,
   ): Promise<{ accessToken: string; refreshToken: TokenEntity }> {
     const token: TokenEntity = await this.dbService.getToken(refreshToken);
-    console.log("TOKEN", token);
     if (!token) {
       this.logger.error("Токен не найден");
       throw new UnauthorizedException(AuthErrors.Unauthorized);
@@ -32,13 +31,11 @@ export class AuthService {
 
     await this.dbService.deleteToken(token.id);
     if (new Date(token.exp) < new Date()) {
-      console.log(new Date(token.exp));
-      console.log(new Date());
       this.logger.error("Срок годности токена вышел");
       throw new UnauthorizedException(AuthErrors.Unauthorized);
     }
 
-    const user = await this.dbService.findUserById(token.user.id);
+    const user = await this.dbService.findUserById(token.userId);
     return this.generateTokens(user);
   }
 

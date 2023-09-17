@@ -17,7 +17,7 @@ export class TokenEntity {
   @Column()
   token: string;
 
-  @Column({ type: "date" })
+  @Column({ type: "timestamptz" })
   exp: Date;
 
   @ManyToOne(() => UserEntity, (user: UserEntity) => user.token, {
@@ -26,6 +26,6 @@ export class TokenEntity {
   })
   user: UserEntity;
 
-  @RelationId((token: TokenEntity) => token.user)
+  @Column()
   userId: string;
 }
