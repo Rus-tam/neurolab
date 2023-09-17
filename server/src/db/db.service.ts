@@ -101,7 +101,7 @@ export class DbService {
   }
 
   async getToken(token: string): Promise<TokenEntity> {
-    return this.tokenRepository.findOne({ where: { token } });
+    return this.tokenRepository.findOne({ where: { token }, relations: ["user"] });
   }
 
   async deleteToken(id: string): Promise<DeleteResult> {
