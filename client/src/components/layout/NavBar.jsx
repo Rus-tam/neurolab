@@ -1,7 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/navbar.css";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut, selectCurrentUser } from "../../store/slices/authSlice.js";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logOut());
+    navigate("/signin");
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -21,12 +32,19 @@ const NavBar = () => {
           </li>
         </ul>
         <div className="navbar-registration">
-          <Link to="/signin" className="navbar-link">
-            Войти
-          </Link>
-          <Link to="/signup" className="navbar-link">
+          {currentUser ? (
+            <button className="navbar-button" onClick={handleLogout}>
+              Выйти
+            </button>
+          ) : (
+            <button className="navbar-button" onClick={() => navigate("/signin")}>
+              Войти
+            </button>
+          )}
+
+          <button className="navbar-button" onClick={() => navigate("/signup")}>
             Регистрация
-          </Link>
+          </button>
         </div>
       </div>
     </nav>
