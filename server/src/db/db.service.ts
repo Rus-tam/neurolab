@@ -94,7 +94,7 @@ export class DbService {
     }
     return this.tokenRepository.save({
       token: v4(),
-      exp: add(new Date(), { minutes: 40 }),
+      exp: add(new Date(), { minutes: 45 }),
       user,
       userId: user.id,
     });

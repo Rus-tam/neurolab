@@ -12,15 +12,15 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const userInfoFromState = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectCurrentUser);
 
   const [login, results] = useLoginMutation();
 
   useEffect(() => {
-    if (userInfoFromState) {
+    if (currentUser) {
       navigate("/");
     }
-  }, [userInfoFromState]);
+  }, [currentUser]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
