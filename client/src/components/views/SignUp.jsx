@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/signUp.css";
 import Spinner from "../layout/Spinner.jsx";
 import { useRegisterMutation } from "../../store/apis/authApiSlice.js";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/slices/authSlice.js";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -15,6 +17,14 @@ const SignUp = () => {
   const [professorName, setProfessorName] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+
+  const currentUser = useSelector(selectCurrentUser);
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
+    }
+  }, [currentUser]);
 
   const [register, results] = useRegisterMutation();
 
@@ -43,7 +53,6 @@ const SignUp = () => {
           password,
           role: "STUDENT",
         }).unwrap();
-        console.log("HHHHHHHHHHHHHHHhh", registerResult);
         if (registerResult) {
           navigate("/signin");
         }

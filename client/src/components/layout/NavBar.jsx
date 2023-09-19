@@ -37,14 +37,15 @@ const NavBar = () => {
               Выйти
             </button>
           ) : (
-            <button className="navbar-button" onClick={() => navigate("/signin")}>
-              Войти
-            </button>
+            <>
+              <button className="navbar-button" onClick={() => navigate("/signin")}>
+                Войти
+              </button>
+              <button className="navbar-button" onClick={() => navigate("/signup")}>
+                Регистрация
+              </button>
+            </>
           )}
-
-          <button className="navbar-button" onClick={() => navigate("/signup")}>
-            Регистрация
-          </button>
         </div>
       </div>
     </nav>
