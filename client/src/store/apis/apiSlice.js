@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setCredentials, logOut } from "../slices/authSlice.js";
+import { toast } from "react-toastify";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:8000",
@@ -18,6 +19,10 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
   console.log("RESULT", result);
+
+  if (result?.error?.status !== 401) {
+    toast.error(result?.error?.data?.message);
+  }
 
   if (result?.error?.status === 401) {
     console.log("Sending refresh token");
