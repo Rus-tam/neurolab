@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { ParentContext } from "../labs/SimpleIsomerization.jsx";
+import dataProcessor from "../../utils/dataProcessor.js";
 
 const InputTableComponent = ({ caption, initialValues }) => {
   const [initialTableData, setInitialTableData] = useState(initialValues);
@@ -11,12 +12,13 @@ const InputTableComponent = ({ caption, initialValues }) => {
     setInitialTableData(updatedData);
   };
 
-  const sendDataToAI = (event) => {
-    event.preventDefault();
+  const sendDataToAI = (e) => {
+    e.preventDefault();
 
-    console.log(parentComponentName);
+    const dataToAI = dataProcessor(initialTableData, parentComponentName);
 
-    console.log(initialTableData);
+    //
+    // console.log(initialTableData);
   };
 
   return (
