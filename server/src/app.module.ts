@@ -5,6 +5,7 @@ import { DbModule } from "./db/db.module";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AuthModule } from "./auth/auth.module";
+import { LabsModule } from "./labs/labs.module";
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { AuthModule } from "./auth/auth.module";
     }),
     DbModule,
     AuthModule,
+    LabsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

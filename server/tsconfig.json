@@ -53,6 +53,12 @@
       ],
       "@decorators/*": [
         "src/decorators/*"
+      ],
+      "@labs": [
+        "src/labs"
+      ],
+      "@labs/*": [
+        "src/labs/*"
       ]
     }
   }
