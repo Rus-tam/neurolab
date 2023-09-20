@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ParentContext } from "../labs/SimpleIsomerization.jsx";
 
 const InputTableComponent = ({ caption, initialValues }) => {
   const [initialTableData, setInitialTableData] = useState(initialValues);
+  const parentComponentName = useContext(ParentContext);
 
   const handleCellValueChange = (index, value) => {
     const updatedData = [...initialTableData];
@@ -11,6 +13,8 @@ const InputTableComponent = ({ caption, initialValues }) => {
 
   const sendDataToAI = (event) => {
     event.preventDefault();
+
+    console.log(parentComponentName);
 
     console.log(initialTableData);
   };

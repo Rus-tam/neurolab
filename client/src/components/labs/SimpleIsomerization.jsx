@@ -1,10 +1,11 @@
 import Reactor from "../../blueprints/simple-isomerization/reactor.svg";
 import Blades from "../../blueprints/simple-isomerization/blades.svg";
-// import Reactor from "../../schemas/simple_isomerization/reactor.svg";
-// import Blades from "../../schemas/simple_isomerization/blades.svg";
 import "../styles/simple-isomerization.css";
 import InputTableComponent from "../layout/InputTableComponent.jsx";
 import ResultTableComponent from "../layout/ResultTableComponent.jsx";
+import React from "react";
+
+export const ParentContext = React.createContext();
 
 const SimpleIsomerization = () => {
   const initialTableData = [
@@ -32,10 +33,12 @@ const SimpleIsomerization = () => {
       </div>
 
       <div className="input-table">
-        <InputTableComponent
-          caption={"Исходные данные"}
-          initialValues={initialTableData}
-        />
+        <ParentContext.Provider value="simple-isomerization">
+          <InputTableComponent
+            caption={"Исходные данные"}
+            initialValues={initialTableData}
+          />
+        </ParentContext.Provider>
       </div>
 
       <div className="result-table">
