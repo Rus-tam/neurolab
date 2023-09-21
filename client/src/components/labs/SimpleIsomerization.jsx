@@ -21,6 +21,14 @@ const SimpleIsomerization = () => {
       <img className="reactor" src={Reactor} alt="reactor" />
       <img className="blades" src={Blades} alt="blades" />
 
+      <span className="note">
+        <b>Примечание:</b> <br />
+        - Объем реактора может быть задан в пределах от 0.01 куб.м. до 5 куб.м.; <br />
+        - Температура сырья может быть задана в пределах от 10 град Цельсия до 50 град
+        Цельсия; <br />- Массовый расход сырьевого потока может быть задан в пределах от
+        200 кг/ч до 50000 кг/ч.
+      </span>
+
       <div className="bubbles_container">
         <div className="bubbles">
           <span style={{ "--i": 11 }}></span>

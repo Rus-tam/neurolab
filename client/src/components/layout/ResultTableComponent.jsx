@@ -10,7 +10,7 @@ const ResultTableComponent = ({ caption, results }) => {
     case "simple-isomerization":
       resultData = [
         {
-          name: "Концентрация цис-бутена в продукте, % масс.",
+          name: "Концентрация транс-бутена в продукте, % масс.",
           value: results.product_concentration,
         },
         {

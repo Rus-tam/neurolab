@@ -64,6 +64,14 @@
     right: 5%
 }
 
+.note {
+    position: absolute;
+    width: 35%;
+    width: 42%;
+    top: 10%;
+    left: 2%
+}
+
 @keyframes animate {
     0% {
         transform: translateY(90vh) scale(0);

@@ -19,7 +19,9 @@ export class LabsService {
 
     const result = await (model.predict(input.reshape([-1, 3])) as tf.Tensor).dataSync();
 
-    console.log(typeof result["0"].toFixed(2));
+    if (result["0"] > 1) {
+      result["0"] = 1;
+    }
 
     return {
       product_concentration: parseFloat(result["0"].toFixed(2)),
