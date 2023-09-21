@@ -1,10 +1,18 @@
 import { useContext, useState } from "react";
 import { ParentContext } from "../labs/SimpleIsomerization.jsx";
-import dataProcessor from "../../utils/dataProcessor.js";
+import { useDispatch } from "react-redux";
+import { setSimpleIsoRes } from "../../store/slices/simpleIsoSlice.js";
+import { useSimpleIsoMutation } from "../../store/apis/labsApiSlice.js";
 
 const InputTableComponent = ({ caption, initialValues }) => {
-  const [initialTableData, setInitialTableData] = useState(initialValues);
+  const dispatch = useDispatch();
   const parentComponentName = useContext(ParentContext);
+  const [initialTableData, setInitialTableData] = useState(initialValues);
+
+  const [getSimpleIsoRes, results] = useSimpleIsoMutation();
+
+  let dataToAI = {};
+  let res;
 
   const handleCellValueChange = (index, value) => {
     const updatedData = [...initialTableData];
@@ -12,17 +20,23 @@ const InputTableComponent = ({ caption, initialValues }) => {
     setInitialTableData(updatedData);
   };
 
-  const sendDataToAI = (e) => {
+  const setInitialData = async (e) => {
     e.preventDefault();
 
-    const dataToAI = dataProcessor(initialTableData, parentComponentName);
-
-    //
-    // console.log(initialTableData);
+    switch (parentComponentName) {
+      case "simple-isomerization":
+        dataToAI = {
+          vesselVolume: initialTableData[0].value,
+          feedMassFlow: initialTableData[1].value,
+          feedTemperature: initialTableData[2].value,
+        };
+        res = await getSimpleIsoRes(dataToAI);
+        dispatch(setSimpleIsoRes(res.data));
+    }
   };
 
   return (
-    <form onSubmit={sendDataToAI}>
+    <form onSubmit={setInitialData}>
       <table className="table">
         <caption>{caption}</caption>
         <tbody>

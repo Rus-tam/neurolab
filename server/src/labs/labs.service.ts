@@ -19,9 +19,11 @@ export class LabsService {
 
     const result = await (model.predict(input.reshape([-1, 3])) as tf.Tensor).dataSync();
 
+    console.log(typeof result["0"].toFixed(2));
+
     return {
-      product_concentration: result["0"],
-      product_temperature: result["1"],
+      product_concentration: parseFloat(result["0"].toFixed(2)),
+      product_temperature: parseFloat(result["1"].toFixed(2)),
     };
   }
 }

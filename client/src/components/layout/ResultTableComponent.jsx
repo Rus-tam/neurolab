@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import { useContext } from "react";
+import { ParentContext } from "../labs/SimpleIsomerization.jsx";
 
-const ResultTableComponent = ({ caption }) => {
-  const [resultData, setResultData] = useState([
-    { name: "Концентрация цис-бутена в продукте, % масс.", value: "95" },
-    { name: "Температура продукта, град. Цельсия", value: "45" },
-  ]);
+const ResultTableComponent = ({ caption, results }) => {
+  const parentComponentName = useContext(ParentContext);
+
+  let resultData;
+
+  switch (parentComponentName) {
+    case "simple-isomerization":
+      resultData = [
+        {
+          name: "Концентрация цис-бутена в продукте, % масс.",
+          value: results.product_concentration,
+        },
+        {
+          name: "Температура продукта, град. Цельсия",
+          value: results.product_temperature,
+        },
+      ];
+  }
+
   return (
     <div className="table-container">
       <table className="table">

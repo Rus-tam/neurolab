@@ -4,10 +4,12 @@ import "../styles/simple-isomerization.css";
 import InputTableComponent from "../layout/InputTableComponent.jsx";
 import ResultTableComponent from "../layout/ResultTableComponent.jsx";
 import React from "react";
+import { useSelector } from "react-redux";
 
 export const ParentContext = React.createContext();
 
 const SimpleIsomerization = () => {
+  const calculationResults = useSelector((state) => state.simpleIso);
   const initialTableData = [
     { name: "Объем реактора, куб. м.", value: "1" },
     { name: "Расход сырья, кг/ч", value: "200" },
@@ -42,7 +44,12 @@ const SimpleIsomerization = () => {
       </div>
 
       <div className="result-table">
-        <ResultTableComponent caption={"Результаты расчетов"} />
+        <ParentContext.Provider value="simple-isomerization">
+          <ResultTableComponent
+            caption={"Результаты расчетов"}
+            results={calculationResults}
+          />
+        </ParentContext.Provider>
       </div>
     </div>
   );
