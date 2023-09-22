@@ -21,8 +21,9 @@ export class LabsController {
     @Body() inputData: SimpleIsoDto,
     @CurrentUser() currentUser: UserEntity,
   ): Promise<ISimpleIsoResult> {
+    console.log(inputData);
     const results = await this.labService.getSimpleIsomerizationResults(inputData);
-    await this.dbService.createSimpleIsoRes(results, currentUser);
+    await this.dbService.createSimpleIsoNote(inputData, results, currentUser);
 
     return results;
   }

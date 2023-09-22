@@ -10,6 +10,7 @@ import { IJWTPayload, ISimpleIsoResult, Roles } from "@types";
 import { v4 } from "uuid";
 import { add } from "date-fns";
 import { SimpleIsoResultEntity } from "@db/entities/simple-iso-result.entity";
+import { SimpleIsoDto } from "@labs/dto";
 
 @Injectable()
 export class DbService {
@@ -125,11 +126,15 @@ export class DbService {
     return this.tokenRepository.delete({ id });
   }
 
-  async createSimpleIsoRes(
+  async createSimpleIsoNote(
+    inputData: SimpleIsoDto,
     result: ISimpleIsoResult,
     user: UserEntity,
   ): Promise<SimpleIsoResultEntity> {
     const newEntry = this.simpleIsoResRepository.create({
+      vessel_volume: parseFloat(inputData.vesselVolume),
+      feed_temperature: parseFloat(inputData.feedTemperature),
+      feed_mass_flow: parseFloat(inputData.feedMassFlow) / 3600,
       product_concentration: result.product_concentration,
       product_temperature: result.product_temperature,
       createdTime: new Date(),

@@ -22,6 +22,7 @@ export class LabsService {
     if (result["0"] > 1) {
       result["0"] = 1;
     }
+    console.log("Results", result);
 
     return {
       product_concentration: parseFloat(result["0"].toFixed(2)),
