@@ -6,9 +6,10 @@ import { TokenEntity } from "@db/entities/token.entity";
 import { UserDTO } from "@db/dto";
 import { DbErrors } from "@errors";
 import * as bcrypt from "bcrypt";
-import { Roles } from "@types";
+import { ISimpleIsoResult, Roles } from "@types";
 import { v4 } from "uuid";
 import { add } from "date-fns";
+import { SimpleIsoResultEntity } from "@db/entities/simple-iso-result.entity";
 
 @Injectable()
 export class DbService {
@@ -18,6 +19,8 @@ export class DbService {
     private readonly userRepository: Repository<UserEntity>,
     @InjectRepository(TokenEntity)
     private readonly tokenRepository: Repository<TokenEntity>,
+    @InjectRepository(SimpleIsoResultEntity)
+    private readonly simpleIsoResRepository: Repository<SimpleIsoResultEntity>,
   ) {}
 
   async createUser(dto: UserDTO) {
@@ -108,5 +111,21 @@ export class DbService {
 
   async deleteToken(id: string): Promise<DeleteResult> {
     return this.tokenRepository.delete({ id });
+  }
+
+  async createSimpleIsoRes(
+    result: ISimpleIsoResult,
+    user: UserEntity,
+  ): Promise<SimpleIsoResultEntity> {
+    const newEntry = this.simpleIsoResRepository.create({
+      product_concentration: result.product_concentration,
+      product_temperature: result.product_temperature,
+      createdTime: new Date(),
+      user,
+    });
+
+    await this.simpleIsoResRepository.save(newEntry);
+
+    return newEntry;
   }
 }

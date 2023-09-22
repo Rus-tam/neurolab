@@ -1,13 +1,7 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToMany,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Roles } from "@types";
 import { TokenEntity } from "@db/entities/token.entity";
+import { SimpleIsoResultEntity } from "@db/entities/simple-iso-result.entity";
 
 @Entity()
 export class UserEntity {
@@ -43,6 +37,16 @@ export class UserEntity {
   })
   @JoinColumn()
   token: TokenEntity;
+
+  @OneToMany(
+    () => SimpleIsoResultEntity,
+    (simpleIsoRes: SimpleIsoResultEntity) => simpleIsoRes.user,
+    {
+      cascade: ["remove"],
+    },
+  )
+  @JoinColumn()
+  simpleIsoRes: SimpleIsoResultEntity;
 
   @Column({ type: "date" })
   createdAt: Date;

@@ -2,6 +2,7 @@ import { Exclude } from "class-transformer";
 import { Roles } from "@types";
 import { TokenEntity } from "@db/entities/token.entity";
 import { UserEntity } from "@db/entities/user.entity";
+import { SimpleIsoResultEntity } from "@db/entities/simple-iso-result.entity";
 
 export class UserResponse implements UserEntity {
   id: string;
@@ -23,6 +24,9 @@ export class UserResponse implements UserEntity {
 
   @Exclude()
   token: TokenEntity;
+
+  @Exclude()
+  simpleIsoRes: SimpleIsoResultEntity;
 
   professorName: string;
 
