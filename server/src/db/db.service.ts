@@ -6,7 +6,7 @@ import { TokenEntity } from "@db/entities/token.entity";
 import { UserDTO } from "@db/dto";
 import { DbErrors } from "@errors";
 import * as bcrypt from "bcrypt";
-import { ISimpleIsoResult, Roles } from "@types";
+import { IJWTPayload, ISimpleIsoResult, Roles } from "@types";
 import { v4 } from "uuid";
 import { add } from "date-fns";
 import { SimpleIsoResultEntity } from "@db/entities/simple-iso-result.entity";
@@ -63,7 +63,19 @@ export class DbService {
   }
 
   async findUserById(id: string): Promise<UserEntity> {
-    const user = await this.userRepository.findOne({ where: { id } });
+    const user = await this.userRepository.findOne({
+      where: { id },
+      select: [
+        "id",
+        "group",
+        "email",
+        "role",
+        "student1",
+        "student2",
+        "student3",
+        "professorName",
+      ],
+    });
     if (!user) {
       this.logger.error("Пользователь не найден");
       throw new NotFoundException(DbErrors.NotFound);

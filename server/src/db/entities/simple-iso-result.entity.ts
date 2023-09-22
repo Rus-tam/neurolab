@@ -6,10 +6,10 @@ export class SimpleIsoResultEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({ type: "float" })
   product_concentration: number;
 
-  @Column()
+  @Column({ type: "float" })
   product_temperature: number;
 
   @Column({ type: "timestamptz" })
