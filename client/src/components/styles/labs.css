@@ -1,0 +1,19 @@
+.labs-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.labs-list .lab-frame {
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    border-bottom-right-radius: 225px 15px;
+    border-bottom-left-radius: 15px 255px;
+
+    margin: 0 5rem;
+    border: solid 3px #001dbc;
+    padding: 2rem;
+    width: 14rem;
+    height: 30rem;
+}
