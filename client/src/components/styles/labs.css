@@ -6,6 +6,11 @@
 }
 
 .labs-list .lab-frame {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
     border-top-left-radius: 255px 15px;
     border-top-right-radius: 15px 225px;
     border-bottom-right-radius: 225px 15px;
@@ -16,4 +21,8 @@
     padding: 2rem;
     width: 14rem;
     height: 30rem;
+}
+
+.labs-list img {
+    width: 10rem;
 }
