@@ -51,7 +51,7 @@ const InputTableComponent = ({ caption, initialValues }) => {
               <td>{row.name}</td>
               <td>
                 <input
-                  type="text"
+                  type="number"
                   maxLength={6}
                   value={row.value}
                   required
