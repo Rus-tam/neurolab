@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Isomer from "../../blueprints/labs-list/isomer.svg";
+import Amine from "../../blueprints/labs-list/amine.svg";
 import "../styles/labs.css";
 
 const LabsList = () => {
@@ -31,12 +32,20 @@ const LabsList = () => {
       </div>
 
       <div className="card">
-        {/*<div>*/}
-        {/*  <img className="amine" src={Amine} alt="amine" />*/}
-        {/*</div>*/}
+        <div className="card-picture">
+          <img className="amine" src={Amine} alt="isomer" />
+        </div>
 
         <div>
-          <p>Аминовая очистка</p>
+          <p>Аминовая очистка кислого газа</p>
+        </div>
+
+        <div className="card-details">
+          <ul>
+            <li>Модель аминовой очистки кислого газа</li>
+            <li>Самые сложные зависимости</li>
+            <li>Сложность: средняя</li>
+          </ul>
         </div>
 
         <button onClick={() => navigate("/labs/amine-treatment")}>

@@ -59,6 +59,7 @@
 .card-details ul {
     list-style: none;
     width: 90%;
+    padding-left: 0;
 }
 .card-details ul li {
     text-align: center;
