@@ -3,6 +3,7 @@ import { ParentContext } from "../labs/SimpleIsomerization.jsx";
 import { useDispatch } from "react-redux";
 import { setSimpleIsoRes } from "../../store/slices/simpleIsoSlice.js";
 import { useSimpleIsoMutation } from "../../store/apis/labsApiSlice.js";
+import { simpleIsoCheck } from "../../utils/simple-iso-check.js";
 
 const InputTableComponent = ({ caption, initialValues }) => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const InputTableComponent = ({ caption, initialValues }) => {
   const [getSimpleIsoRes, results] = useSimpleIsoMutation();
 
   let dataToAI = {};
-  let res;
+  let calculationRes;
 
   const handleCellValueChange = (index, value) => {
     const updatedData = [...initialTableData];
@@ -30,8 +31,13 @@ const InputTableComponent = ({ caption, initialValues }) => {
           feedMassFlow: initialTableData[1].value,
           feedTemperature: initialTableData[2].value,
         };
-        res = await getSimpleIsoRes(dataToAI);
-        dispatch(setSimpleIsoRes(res.data));
+
+        if (simpleIsoCheck(dataToAI) instanceof Error) {
+          return null;
+        } else {
+          calculationRes = await getSimpleIsoRes(dataToAI);
+          dispatch(setSimpleIsoRes(calculationRes.data));
+        }
     }
   };
 

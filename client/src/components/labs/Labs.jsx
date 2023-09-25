@@ -75,8 +75,6 @@ const LabsList = () => {
           Перейти к работе
         </button>
       </div>
-
-      {/*<button onClick={() => navigate("/all-users")}>Список всех пользователей</button>*/}
     </div>
   );
 };
