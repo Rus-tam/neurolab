@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Isomer from "../../blueprints/labs-list/isomer.svg";
 import Amine from "../../blueprints/labs-list/amine.svg";
+import Dethander from "../../blueprints/labs-list/dethander.svg";
 import "../styles/labs.css";
 
 const LabsList = () => {
@@ -54,7 +55,25 @@ const LabsList = () => {
       </div>
 
       <div className="card">
-        <button>Низкотемпературная ректификация</button>
+        <div className="card-picture">
+          <img className="dethander" src={Dethander} alt="dethander" />
+        </div>
+
+        <div>
+          <p>Низкотемпературная ректификация</p>
+        </div>
+
+        <div className="card-details">
+          <ul>
+            <li>Модель низкотемпературной ректификации</li>
+            <li>Самые сложные зависимости</li>
+            <li>Сложность: высокая</li>
+          </ul>
+        </div>
+
+        <button onClick={() => navigate("/labs/low-temperature-distillation")}>
+          Перейти к работе
+        </button>
       </div>
 
       {/*<button onClick={() => navigate("/all-users")}>Список всех пользователей</button>*/}
