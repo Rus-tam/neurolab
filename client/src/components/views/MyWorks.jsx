@@ -1,9 +1,15 @@
 import { useFetchSimpleIsoResQuery } from "../../store/apis/labsResultsApiSlice.js";
+import {prepareSimpleIsoRes} from "../../utils/prepare-simple-iso-res.js";
 
 const MyWorks = () => {
-  const { data, isError, isLoading } = useFetchSimpleIsoResQuery();
+  const { data: results, isError, isLoading } = useFetchSimpleIsoResQuery();
 
-  console.log(data);
+  if (results) {
+      const processedResults = prepareSimpleIsoRes(results)
+
+      console.log(processedResults)
+  }
+
 
   return (
     <div className="my-works">
