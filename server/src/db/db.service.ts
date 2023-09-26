@@ -126,6 +126,7 @@ export class DbService {
     return this.tokenRepository.delete({ id });
   }
 
+  // SIMPLE ISOMERIZATION
   async createSimpleIsoNote(
     inputData: SimpleIsoDto,
     result: ISimpleIsoResult,
@@ -144,5 +145,9 @@ export class DbService {
     await this.simpleIsoResRepository.save(newEntry);
 
     return newEntry;
+  }
+
+  async fetchSimpleIsoRes(userId: string): Promise<SimpleIsoResultEntity[]> {
+    return this.simpleIsoResRepository.find({ where: { user: { id: userId } } });
   }
 }

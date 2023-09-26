@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ParentContext } from "../labs/SimpleIsomerization.jsx";
 
-const ResultTableComponent = ({ caption, results }) => {
+const ResultTable = ({ caption, results }) => {
   const parentComponentName = useContext(ParentContext);
 
   let resultData;
@@ -37,4 +37,4 @@ const ResultTableComponent = ({ caption, results }) => {
   );
 };
 
-export default ResultTableComponent;
+export default ResultTable;

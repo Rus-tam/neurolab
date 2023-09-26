@@ -1,8 +1,8 @@
 import Reactor from "../../blueprints/simple-isomerization/reactor.svg";
 import Blades from "../../blueprints/simple-isomerization/blades.svg";
 import "../styles/simple-isomerization.css";
-import InputTableComponent from "../layout/InputTableComponent.jsx";
-import ResultTableComponent from "../layout/ResultTableComponent.jsx";
+import InputTable from "../layout/InputTable.jsx";
+import ResultTable from "../layout/ResultTable.jsx";
 import React from "react";
 import { useSelector } from "react-redux";
 
@@ -44,19 +44,13 @@ const SimpleIsomerization = () => {
 
       <div className="input-table">
         <ParentContext.Provider value="simple-isomerization">
-          <InputTableComponent
-            caption={"Исходные данные"}
-            initialValues={initialTableData}
-          />
+          <InputTable caption={"Исходные данные"} initialValues={initialTableData} />
         </ParentContext.Provider>
       </div>
 
       <div className="result-table">
         <ParentContext.Provider value="simple-isomerization">
-          <ResultTableComponent
-            caption={"Результаты расчетов"}
-            results={calculationResults}
-          />
+          <ResultTable caption={"Результаты расчетов"} results={calculationResults} />
         </ParentContext.Provider>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, Logger, Post, UseGuards } from "@nestjs/common";
 import { LabsService } from "@labs/labs.service";
 import { SimpleIsoDto } from "@labs/dto";
 import { IJWTPayload, ISimpleIsoResult } from "@types";
@@ -7,9 +7,11 @@ import { CurrentUser } from "@decorators";
 import { JwtAuthGuard } from "@auth/guards/jwt-auth.guard";
 import { AuthGuard } from "@nestjs/passport";
 import { UserEntity } from "@db/entities/user.entity";
+import { SimpleIsoResultEntity } from "@db/entities/simple-iso-result.entity";
 
 @Controller("labs")
 export class LabsController {
+  logger = new Logger();
   constructor(
     private readonly labService: LabsService,
     private readonly dbService: DbService,
@@ -17,7 +19,7 @@ export class LabsController {
 
   @UseGuards(AuthGuard("jwt"))
   @Post("/simple-isomerization")
-  async getSimpleIsoResult(
+  async calculateSimpleIso(
     @Body() inputData: SimpleIsoDto,
     @CurrentUser() currentUser: UserEntity,
   ): Promise<ISimpleIsoResult> {
@@ -26,5 +28,13 @@ export class LabsController {
     await this.dbService.createSimpleIsoNote(inputData, results, currentUser);
 
     return results;
+  }
+
+  @UseGuards(AuthGuard("jwt"))
+  @Get("/simple-isomerization")
+  async getSimpleIsoResult(
+    @CurrentUser() currentUser: UserEntity,
+  ): Promise<SimpleIsoResultEntity[]> {
+    return this.dbService.fetchSimpleIsoRes(currentUser.id);
   }
 }

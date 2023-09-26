@@ -2,7 +2,6 @@ import { createParamDecorator, ExecutionContext } from "@nestjs/common";
 
 export const GetHeader = createParamDecorator((key: string, ctx: ExecutionContext) => {
   let refreshtoken = "";
-  console.log("KKKEEEEYYYY", key);
   const request = ctx.switchToHttp().getRequest();
   for (const elem of request.headers.cookie.split(" ")) {
     if (elem.includes(key)) {

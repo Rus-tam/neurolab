@@ -5,7 +5,7 @@ import { setSimpleIsoRes } from "../../store/slices/simpleIsoSlice.js";
 import { useSimpleIsoMutation } from "../../store/apis/labsApiSlice.js";
 import { simpleIsoCheck } from "../../utils/simple-iso-check.js";
 
-const InputTableComponent = ({ caption, initialValues }) => {
+const InputTable = ({ caption, initialValues }) => {
   const dispatch = useDispatch();
   const parentComponentName = useContext(ParentContext);
   const [initialTableData, setInitialTableData] = useState(initialValues);
@@ -69,4 +69,4 @@ const InputTableComponent = ({ caption, initialValues }) => {
   );
 };
 
-export default InputTableComponent;
+export default InputTable;

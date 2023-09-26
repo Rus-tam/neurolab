@@ -10,6 +10,7 @@ import SimpleIsomerization from "./components/labs/SimpleIsomerization.jsx";
 import LabsList from "./components/labs/Labs.jsx";
 import RequireAuth from "./store/RequireAuth.jsx";
 import UsersList from "./components/views/UsersList.jsx";
+import MyWorks from "./components/views/MyWorks.jsx";
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
               path="/labs/simple-isomerization"
               element={<SimpleIsomerization />}
             ></Route>
+
+            <Route path="/labs/my-works" element={<MyWorks />}></Route>
 
             <Route path="/all-users" element={<UsersList />}></Route>
           </Route>
