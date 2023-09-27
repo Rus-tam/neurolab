@@ -1,19 +1,24 @@
 import { useFetchSimpleIsoResQuery } from "../../store/apis/labsResultsApiSlice.js";
-import {prepareSimpleIsoRes} from "../../utils/prepare-simple-iso-res.js";
+import { prepareSimpleIsoRes } from "../../utils/prepare-simple-iso-res.js";
+import Spinner from "../layout/Spinner.jsx";
+import OverallResultTable from "../layout/OverallResultTable.jsx";
 
 const MyWorks = () => {
   const { data: results, isError, isLoading } = useFetchSimpleIsoResQuery();
 
+  let processedResults = [];
+
   if (results) {
-      const processedResults = prepareSimpleIsoRes(results)
+    processedResults = [...prepareSimpleIsoRes(results)];
 
-      console.log(processedResults)
+    console.log(processedResults);
   }
-
 
   return (
     <div className="my-works">
-      <h2>Мои проекты</h2>
+      <h2>Мои работы</h2>
+
+      <OverallResultTable processedData={processedResults} />
 
       <div className="simple-iso-results"></div>
     </div>
