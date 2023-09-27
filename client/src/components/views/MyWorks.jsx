@@ -1,26 +1,22 @@
-import { useFetchSimpleIsoResQuery } from "../../store/apis/labsResultsApiSlice.js";
-import { prepareSimpleIsoRes } from "../../utils/prepare-simple-iso-res.js";
-import Spinner from "../layout/Spinner.jsx";
-import OverallResultTable from "../layout/OverallResultTable.jsx";
+import { ParentContext } from "../../utils/ParentContext.js";
+import LabCards from "./LabCards.jsx";
 
 const MyWorks = () => {
-  const { data: results, isError, isLoading } = useFetchSimpleIsoResQuery();
-
-  let processedResults = [];
-
-  if (results) {
-    processedResults = [...prepareSimpleIsoRes(results)];
-
-    console.log(processedResults);
-  }
+  // const { data: results, isError, isLoading } = useFetchSimpleIsoResQuery();
+  //
+  // let processedResults = [];
+  //
+  // if (results) {
+  //   processedResults = [...prepareSimpleIsoRes(results)];
+  //
+  //   console.log(processedResults);
+  // }
 
   return (
     <div className="my-works">
-      <h2>Мои работы</h2>
-
-      <OverallResultTable processedData={processedResults} />
-
-      <div className="simple-iso-results"></div>
+      <ParentContext.Provider value="my-works">
+        <LabCards />
+      </ParentContext.Provider>
     </div>
   );
 };

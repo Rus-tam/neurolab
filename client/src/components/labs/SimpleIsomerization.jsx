@@ -3,10 +3,8 @@ import Blades from "../../blueprints/simple-isomerization/blades.svg";
 import "../styles/simple-isomerization.css";
 import InputTable from "../layout/InputTable.jsx";
 import ResultTable from "../layout/ResultTable.jsx";
-import React from "react";
 import { useSelector } from "react-redux";
-
-export const ParentContext = React.createContext();
+import { ParentContext } from "../../utils/ParentContext.js";
 
 const SimpleIsomerization = () => {
   const calculationResults = useSelector((state) => state.simpleIso);
@@ -24,9 +22,8 @@ const SimpleIsomerization = () => {
       <span className="note">
         <b>Примечание:</b> <br />
         - Объем реактора может быть задан в пределах от 0.01 куб.м. до 5 куб.м.; <br />
-        - Температура сырья может быть задана в пределах от 10 град Цельсия до 50 град
-        Цельсия; <br />- Массовый расход сырьевого потока может быть задан в пределах от
-        200 кг/ч до 50000 кг/ч.
+        - Температура сырья может быть задана в пределах от 10 град Цельсия до 50 град Цельсия; <br />-
+        Массовый расход сырьевого потока может быть задан в пределах от 200 кг/ч до 50000 кг/ч.
       </span>
 
       <div className="bubbles_container">

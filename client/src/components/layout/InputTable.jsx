@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { ParentContext } from "../labs/SimpleIsomerization.jsx";
+import { ParentContext } from "../../utils/ParentContext.js";
 import { useDispatch } from "react-redux";
 import { setSimpleIsoRes } from "../../store/slices/simpleIsoSlice.js";
 import { useSimpleIsoMutation } from "../../store/apis/labsApiSlice.js";

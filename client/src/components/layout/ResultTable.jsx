@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ParentContext } from "../labs/SimpleIsomerization.jsx";
+import { ParentContext } from "../../utils/ParentContext.js";
 
 const ResultTable = ({ caption, results }) => {
   const parentComponentName = useContext(ParentContext);
