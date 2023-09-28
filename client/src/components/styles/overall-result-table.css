@@ -1,0 +1,17 @@
+.result-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.result-table td {
+    text-align: center;
+    border: solid 3px #001dbc;
+    padding: 8px;
+}
+
+.result-table th {
+    background-color: #c8daf5;
+    text-align: center;
+    border: solid 3px #001dbc;
+    padding: 10px;
+}

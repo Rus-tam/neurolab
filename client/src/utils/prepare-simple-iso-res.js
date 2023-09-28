@@ -1,10 +1,12 @@
+import { formatDateToCustomFormat } from "./formatDataToCustomFormat.js";
+
 export const prepareSimpleIsoRes = (results) => {
   const processedData = [];
 
   for (let result of results) {
     try {
       processedData.push({
-        "Время проведения расчета": result.createdTime,
+        "Время проведения расчета": formatDateToCustomFormat(result.createdTime),
         "Объем реактора, куб. м.": result.vessel_volume.toFixed(2),
         "Массовый расход сырья, кг/ч": result.feed_mass_flow.toFixed(2),
         "Температура сырья, град Цельсия": result.feed_temperature.toFixed(2),
