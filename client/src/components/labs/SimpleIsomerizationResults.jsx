@@ -11,9 +11,12 @@ const SimpleIsomerizationResults = () => {
   }
 
   return (
-    <div>
-      <OverallResultTable processedData={processedResults} />
-    </div>
+    <>
+      <h2>Простая изомеризация</h2>
+      <div className="table-container">
+        <OverallResultTable processedData={processedResults} />
+      </div>
+    </>
   );
 };
 

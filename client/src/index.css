@@ -75,9 +75,19 @@ table {
 }
 
 .table th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #c8daf5;
   text-align: center;
   border: solid 3px #001dbc;
-  padding: 8px;
+  padding: 10px;
+}
+
+.table-container {
+  max-height: 75vh;
+  width: 80%;
+  overflow: auto;
 }
 
 .calculate-button {
@@ -95,6 +105,11 @@ table {
 p {
   font-family: "Indie Flower", cursive;
   font-size: 14px;
+  color: #001dbc;
+}
+
+h2 {
+  font-family: "Indie Flower", cursive;
   color: #001dbc;
 }
 
