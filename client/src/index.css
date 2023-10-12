@@ -91,6 +91,7 @@ table {
   align-items: center;
   justify-content: center;
   height: 80vh;
+  z-index: 1;
 }
 
 p {

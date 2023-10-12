@@ -1,5 +1,3 @@
-import "../styles/overall-result-table.css";
-
 const OverallResultTable = ({ processedData }) => {
   if (!processedData || processedData.length === 0) {
     return <p>Нет данных для отображения</p>;
@@ -9,7 +7,7 @@ const OverallResultTable = ({ processedData }) => {
 
   return (
     <>
-      <table className="result-table">
+      <table className="table">
         <thead>
           <tr>
             {columns.map((column, index) => (
