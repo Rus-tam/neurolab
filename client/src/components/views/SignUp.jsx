@@ -64,52 +64,28 @@ const SignUp = () => {
     }
   };
 
-  return (
+  const component = (
     <>
-      <Spinner isLoading={results.isLoading} />
       <form className="signUp-form">
         <div>
           <label>Группа*:</label>
-          <input
-            type="text"
-            value={group}
-            onChange={(e) => setGroup(e.target.value)}
-            required
-          />
+          <input type="text" value={group} onChange={(e) => setGroup(e.target.value)} required />
         </div>
         <div>
           <label>Эл. почта*:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
         <div>
           <label>ФИО студента №1*:</label>
-          <input
-            type="text"
-            value={student1}
-            onChange={(e) => setStudent1(e.target.value)}
-            required
-          />
+          <input type="text" value={student1} onChange={(e) => setStudent1(e.target.value)} required />
         </div>
         <div>
           <label>ФИО студента №2:</label>
-          <input
-            type="text"
-            value={student2}
-            onChange={(e) => setStudent2(e.target.value)}
-          />
+          <input type="text" value={student2} onChange={(e) => setStudent2(e.target.value)} />
         </div>
         <div>
           <label>ФИО студента №3:</label>
-          <input
-            type="text"
-            value={student3}
-            onChange={(e) => setStudent3(e.target.value)}
-          />
+          <input type="text" value={student3} onChange={(e) => setStudent3(e.target.value)} />
         </div>
 
         <div>
@@ -124,12 +100,7 @@ const SignUp = () => {
 
         <div>
           <label>Пароль*:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </div>
 
         <div>
@@ -148,6 +119,8 @@ const SignUp = () => {
       </form>
     </>
   );
+
+  return <>{results.isLoading ? <Spinner isLoading={results.isLoading} /> : component}</>;
 };
 
 export default SignUp;

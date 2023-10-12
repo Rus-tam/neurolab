@@ -58,7 +58,7 @@ const SimpleIsomerizationResults = () => {
   return (
     <>
       <h2>Простая изомеризация</h2>
-      {isLoading ? <Spinner isLoading={isLoading} /> : component}
+      {isLoading ? <Spinner /> : component}
     </>
   );
 };
