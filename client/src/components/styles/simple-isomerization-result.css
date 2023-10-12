@@ -1,1 +1,18 @@
+.isomerization-result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.table-container {
+    width: 95%;
+}
+
+.navigation-buttons {
+    padding-top: 0.5rem;
+}
+
+.navigation-buttons button {
+    margin-right: 0.5rem;
+}

@@ -19,10 +19,12 @@ const SimpleIsomerizationResults = () => {
   const itemsPerPage = 8;
 
   const updateDataToDisplay = () => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const dataToDisplay = processedResults.slice(startIndex, endIndex);
-    setDataToTable(Object.values(dataToDisplay));
+    if (!isError && !isLoading) {
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const dataToDisplay = processedResults.slice(startIndex, endIndex);
+      setDataToTable(Object.values(dataToDisplay));
+    }
   };
 
   const handleNextClick = () => {
@@ -39,11 +41,13 @@ const SimpleIsomerizationResults = () => {
 
   useEffect(() => {
     updateDataToDisplay();
-  }, [currentPage]);
+  }, [currentPage, isLoading]);
 
   const component = (
     <>
-      <OverallResultTable processedData={dataToTable} />
+      <div className="table-container">
+        <OverallResultTable processedData={dataToTable} />
+      </div>
       <div className="navigation-buttons">
         <button onClick={handlePrevClick}>
           <FaArrowLeft />
@@ -56,10 +60,10 @@ const SimpleIsomerizationResults = () => {
   );
 
   return (
-    <>
+    <div className="isomerization-result">
       <h2>Простая изомеризация</h2>
       {isLoading ? <Spinner /> : component}
-    </>
+    </div>
   );
 };
 
