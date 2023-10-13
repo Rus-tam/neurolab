@@ -12,6 +12,7 @@ import RequireAuth from "./store/RequireAuth.jsx";
 import UsersList from "./components/views/UsersList.jsx";
 import MyWorks from "./components/views/MyWorks.jsx";
 import SimpleIsomerizationResults from "./components/labs/SimpleIsomerizationResults.jsx";
+import AmineTreatment from "./components/labs/AmineTreatment.jsx";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route element={<RequireAuth />}>
             <Route path="/labs" element={<LabsList />}></Route>
             <Route path="/labs/simple-isomerization" element={<SimpleIsomerization />}></Route>
+            <Route path="/labs/amine-treatment" element={<AmineTreatment />}></Route>
 
             <Route path="/labs/my-works" element={<MyWorks />}></Route>
             <Route path="/labs/simple-isomerization/results" element={<SimpleIsomerizationResults />}></Route>

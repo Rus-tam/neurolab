@@ -1,6 +1,6 @@
 .simple_isomerization {
     position: relative;
-    height: 100vh; /* Высота контейнера по высоте окна просмотра */
+    height: 90vh; /* Высота контейнера по высоте окна просмотра */
 }
 
 .reactor {
