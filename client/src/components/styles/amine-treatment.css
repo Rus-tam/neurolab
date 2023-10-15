@@ -18,7 +18,7 @@
     height: 15rem;
     overflow: hidden;
     left: 49%;
-    top: 62%;
+    top: 66%;
     transform: translate(-23.5%, -85%);
 }
 
@@ -52,7 +52,7 @@
     height: 7px;
     background: #eceef6;
     margin: 0 4px;
-    border-radius: 50%;
+    border-radius: 100% 5% 100% 100%;
     box-shadow: 0 0 0 3px #bde5bc;
     animation: liquid_animate 15s linear infinite;
     animation-duration: calc(30s / var(--i));
