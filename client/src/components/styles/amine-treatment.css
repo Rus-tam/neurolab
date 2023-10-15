@@ -20,7 +20,6 @@
     left: 49%;
     top: 62%;
     transform: translate(-23.5%, -85%);
-    background-color: #bbd9f5;
 }
 
 .vapour-container {
@@ -41,6 +40,24 @@
     animation-duration: calc(30s / var(--i));
 }
 
+.liquid-container {
+    --i: 0;
+    position: relative;
+    display: flex;
+}
+
+.liquid-container span {
+    position: relative;
+    width: 7px;
+    height: 7px;
+    background: #eceef6;
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px #bde5bc;
+    animation: liquid_animate 15s linear infinite;
+    animation-duration: calc(30s / var(--i));
+}
+
 
 @keyframes gas_animate {
     0% {
@@ -49,6 +66,17 @@
 
     100% {
         box-shadow: 0 0 0 3px #2e67f6;
+        transform: translateY(2vh);
+    }
+}
+
+@keyframes liquid_animate {
+    100% {
+        box-shadow: 0 0 0 3px #008a00;
+        transform: translateY(25vh);
+    }
+
+    0% {
         transform: translateY(2vh);
     }
 }
