@@ -1,48 +1,38 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ParentContext } from "../../utils/ParentContext.js";
-import { useDispatch } from "react-redux";
-import { setSimpleIsoRes, setSimpleIsoInitialData } from "../../store/slices/simpleIsoSlice.js";
+import { useDispatch, useSelector } from "react-redux";
+import { setSimpleIsoRes } from "../../store/slices/simpleIsoSlice.js";
 import { useSimpleIsoMutation } from "../../store/apis/labsApiSlice.js";
 import { simpleIsoCheck } from "../../utils/simple-iso-check.js";
+import SimpleIsoInitialDataTableFragment from "../fragments/SimpleIsoInitialDataTableFragment.jsx";
 
 const InputTable = ({ caption, initialValues }) => {
   const dispatch = useDispatch();
   const parentComponentName = useContext(ParentContext);
-  const [initialTableData, setInitialTableData] = useState(initialValues);
 
+  const simpleIsoData = useSelector((state) => state.simpleIso);
   const [getSimpleIsoRes, results] = useSimpleIsoMutation();
 
   let dataToAI = {};
-  let calculationRes;
+  let tableFragment = <></>;
 
-  const handleCellValueChange = (index, value) => {
-    const updatedData = [...initialTableData];
-    updatedData[index].value = value;
-    setInitialTableData(updatedData);
-
-    switch (parentComponentName) {
-      case "simple-isomerization":
-        dispatch(
-          setSimpleIsoInitialData({
-            vesselVolume: initialTableData[0].value,
-            feedMassFlow: initialTableData[1].value,
-            feedTemperature: initialTableData[2].value,
-          }),
-        );
-    }
-  };
+  switch (parentComponentName) {
+    case "simple-isomerization":
+      dataToAI = {
+        vesselVolume: simpleIsoData.vessel_volume,
+        feedMassFlow: simpleIsoData.feed_mass_flow,
+        feedTemperature: simpleIsoData.feed_temperature,
+      };
+      tableFragment = <SimpleIsoInitialDataTableFragment caption={caption} initialValues={initialValues} />;
+  }
 
   const handleCalculation = async (e) => {
     e.preventDefault();
 
+    let calculationRes;
+
     switch (parentComponentName) {
       case "simple-isomerization":
-        dataToAI = {
-          vesselVolume: initialTableData[0].value,
-          feedMassFlow: initialTableData[1].value,
-          feedTemperature: initialTableData[2].value,
-        };
-
         if (simpleIsoCheck(dataToAI) instanceof Error) {
           return null;
         } else {
@@ -54,25 +44,7 @@ const InputTable = ({ caption, initialValues }) => {
 
   return (
     <form onSubmit={handleCalculation}>
-      <table className="table">
-        <caption>{caption}</caption>
-        <tbody>
-          {initialTableData.map((row, index) => (
-            <tr key={index}>
-              <td>{row.name}</td>
-              <td>
-                <input
-                  type="number"
-                  maxLength={6}
-                  value={row.value}
-                  required
-                  onChange={(e) => handleCellValueChange(index, e.target.value)}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {tableFragment}
       <button className="calculate-button" type="submit">
         Рассчитать
       </button>

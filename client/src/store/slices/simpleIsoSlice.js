@@ -15,7 +15,6 @@ const simpleIsoSlice = createSlice({
       state.product_temperature = action.payload.product_temperature;
     },
     setSimpleIsoInitialData: (state, action) => {
-      console.log("UUUUUUUUUUUuu", action.payload);
       state.vessel_volume = action.payload.vesselVolume;
       state.feed_mass_flow = action.payload.feedMassFlow;
       state.feed_temperature = action.payload.feedTemperature;
