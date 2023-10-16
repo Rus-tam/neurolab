@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { ParentContext } from "../../utils/ParentContext.js";
 import { useDispatch } from "react-redux";
-import { setSimpleIsoRes } from "../../store/slices/simpleIsoSlice.js";
+import { setSimpleIsoRes, setSimpleIsoInitialData } from "../../store/slices/simpleIsoSlice.js";
 import { useSimpleIsoMutation } from "../../store/apis/labsApiSlice.js";
 import { simpleIsoCheck } from "../../utils/simple-iso-check.js";
 
@@ -19,9 +19,20 @@ const InputTable = ({ caption, initialValues }) => {
     const updatedData = [...initialTableData];
     updatedData[index].value = value;
     setInitialTableData(updatedData);
+
+    switch (parentComponentName) {
+      case "simple-isomerization":
+        dispatch(
+          setSimpleIsoInitialData({
+            vesselVolume: initialTableData[0].value,
+            feedMassFlow: initialTableData[1].value,
+            feedTemperature: initialTableData[2].value,
+          }),
+        );
+    }
   };
 
-  const setInitialData = async (e) => {
+  const handleCalculation = async (e) => {
     e.preventDefault();
 
     switch (parentComponentName) {
@@ -42,7 +53,7 @@ const InputTable = ({ caption, initialValues }) => {
   };
 
   return (
-    <form onSubmit={setInitialData}>
+    <form onSubmit={handleCalculation}>
       <table className="table">
         <caption>{caption}</caption>
         <tbody>

@@ -55,7 +55,7 @@
     border-radius: 100% 5% 100% 100%;
     box-shadow: 0 0 0 3px #bde5bc;
     animation: liquid_animate 15s linear infinite;
-    animation-duration: calc(30s / var(--i));
+    animation-duration: calc(35s / var(--i));
 }
 
 
