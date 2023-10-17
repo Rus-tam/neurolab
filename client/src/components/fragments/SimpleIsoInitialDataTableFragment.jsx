@@ -3,8 +3,9 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 const SimpleIsoInitialDataTableFragment = ({ caption, initialValues }) => {
-  const [initialTableData, setInitialTableData] = useState(initialValues);
   const dispatch = useDispatch();
+  const [initialTableData, setInitialTableData] = useState(initialValues);
+
   const handleCellValueChange = (index, value) => {
     const updatedData = [...initialTableData];
     updatedData[index].value = value;

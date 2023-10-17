@@ -4,28 +4,27 @@ import { ParentContext } from "../../utils/ParentContext.js";
 import InputTable from "../layout/InputTable.jsx";
 
 const AmineTreatment = () => {
-  const feedGasData = [
+  const feedGasAmineData = [
     { name: "Температура кислого газа, град. Цельсия", value: "20" },
     { name: "Массовый расход кислого газа, кг/ч", value: "10000" },
-    { name: "Мольная доля диоксида углерода", value: "0.1" },
-    { name: "Мольная доля метана", value: "0.1" },
-    { name: "Мольная доля этана", value: "0.1" },
-    { name: "Мольная доля пропана ", value: "0.1" },
-    { name: "Мольная доля и-бутана", value: "0.1 " },
-    { name: "Мольная доля н-бутана", value: "0.1" },
-    { name: "Мольная доля и-пентан", value: "0.1" },
-    { name: "Мольная доля н-пентан", value: "0.1" },
-    { name: "Мольная доля сероводорода", value: "0.1" },
-    { name: "Мольная доля воды", value: "0.1" },
-  ];
-  const amineData = [
+    { name: "Мольная доля диоксида углерода в газе", value: "0.1" },
+    { name: "Мольная доля метана в газе", value: "0.1" },
+    { name: "Мольная доля этана в газе", value: "0.1" },
+    { name: "Мольная доля пропана в газе", value: "0.1" },
+    { name: "Мольная доля и-бутана в газе", value: "0.1 " },
+    { name: "Мольная доля н-бутана в газе", value: "0.1" },
+    { name: "Мольная доля и-пентан в газе", value: "0.1" },
+    { name: "Мольная доля н-пентан в газе", value: "0.1" },
+    { name: "Мольная доля сероводорода в газе", value: "0.1" },
+    { name: "Мольная доля воды в газе", value: "0.1" },
     { name: "Температура амина, град. Цельсия", value: "20" },
     { name: "Массовый расход амина, кг/ч", value: "1000" },
-    { name: "Мольная доля диоксида углерода", value: "0.1" },
-    { name: "Мольная доля сероводорода", value: "0.1" },
-    { name: "Мольная доля воды", value: "0.1" },
-    { name: "Мольная доля МДЭА", value: "0.1" },
+    { name: "Мольная доля диоксида углерода в амине", value: "0.1" },
+    { name: "Мольная доля сероводорода в амине", value: "0.1" },
+    { name: "Мольная доля воды в амине", value: "0.1" },
+    { name: "Мольная доля МДЭА в амине", value: "0.1" },
   ];
+
   return (
     <div className="amine_treatment">
       <img className="amine_absorber" src={AmineAbsorber} alt="amine-absorber" />
@@ -55,8 +54,8 @@ const AmineTreatment = () => {
 
       <div className="input-table">
         <ParentContext.Provider value="simple-isomerization">
-          <InputTable caption={"Кислый газ"} initialValues={feedGasData} />
-          <InputTable caption={"Исходные данные"} initialValues={amineData} />
+          {/*<InputTable caption={"Кислый газ"} initialValues={feedGasData} />*/}
+          {/*<InputTable caption={"Исходные данные"} initialValues={amineData} />*/}
         </ParentContext.Provider>
       </div>
     </div>
