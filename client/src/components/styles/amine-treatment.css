@@ -1,86 +1,81 @@
 .amine_treatment {
-    position: relative;
-    height: 90vh; /* Высота контейнера по высоте окна просмотра */
+  position: relative;
+  height: 90vh; /* Высота контейнера по высоте окна просмотра */
 }
 
 .amine_absorber {
-    width: 35rem;
-    height: 35rem;
-    position: absolute;
-    top: 50%;
-    left: 48%;
-    transform: translate(-45%, -51%);
+  width: 35rem;
+  height: 35rem;
+  position: absolute;
+  top: 50%;
+  left: 48%;
+  transform: translate(-45%, -51%);
 }
 
 .container {
-    position: relative;
-    width: 8rem;
-    height: 15rem;
-    overflow: hidden;
-    left: 49%;
-    top: 66%;
-    transform: translate(-23.5%, -85%);
+  position: relative;
+  width: 8rem;
+  height: 15rem;
+  overflow: hidden;
+  left: 49%;
+  top: 66%;
+  transform: translate(-23.5%, -85%);
 }
 
 .vapour-container {
-    --i: 0;
-    position: relative;
-    display: flex;
+  --i: 0;
+  position: relative;
+  display: flex;
 }
 
 .vapour-container span {
-    position: relative;
-    width: 7px;
-    height: 7px;
-    background: #eceef6;
-    margin: 0 4px;
-    border-radius: 50%;
-    box-shadow: 0 0 0 3px #d9ba17;
-    animation: gas_animate 15s linear infinite;
-    animation-duration: calc(30s / var(--i));
+  position: relative;
+  width: 7px;
+  height: 7px;
+  background: #eceef6;
+  margin: 0 4px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #d9ba17;
+  animation: gas_animate 15s linear infinite;
+  animation-duration: calc(30s / var(--i));
 }
 
 .liquid-container {
-    --i: 0;
-    position: relative;
-    display: flex;
+  --i: 0;
+  position: relative;
+  display: flex;
 }
 
 .liquid-container span {
-    position: relative;
-    width: 7px;
-    height: 7px;
-    background: #eceef6;
-    margin: 0 4px;
-    border-radius: 100% 5% 100% 100%;
-    box-shadow: 0 0 0 3px #bde5bc;
-    animation: liquid_animate 15s linear infinite;
-    animation-duration: calc(35s / var(--i));
+  position: relative;
+  width: 7px;
+  height: 7px;
+  background: #eceef6;
+  margin: 0 4px;
+  border-radius: 100% 5% 100% 100%;
+  box-shadow: 0 0 0 3px #bde5bc;
+  animation: liquid_animate 15s linear infinite;
+  animation-duration: calc(35s / var(--i));
 }
 
-
 @keyframes gas_animate {
-    0% {
-        transform: translateY(25vh);
-    }
+  0% {
+    transform: translateY(25vh);
+  }
 
-    100% {
-        box-shadow: 0 0 0 3px #2e67f6;
-        transform: translateY(2vh);
-    }
+  100% {
+    box-shadow: 0 0 0 3px #2e67f6;
+    transform: translateY(2vh);
+  }
 }
 
 @keyframes liquid_animate {
-    100% {
-        box-shadow: 0 0 0 3px #008a00;
-        transform: translateY(25vh);
-    }
+  100% {
+    box-shadow: 0 0 0 3px #008a00;
+    transform: translateY(25vh);
+  }
 
-    0% {
-        transform: translateY(2vh);
-    }
+  0% {
+    transform: translateY(2vh);
+  }
 }
-
-
-
-

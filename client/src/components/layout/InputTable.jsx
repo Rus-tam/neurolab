@@ -15,7 +15,7 @@ const InputTable = ({ caption, initialValues }) => {
   const amineTreatmentData = useSelector((state) => state.amineTreatment);
   const [getSimpleIsoRes, results] = useSimpleIsoMutation();
 
-  console.log("TTTTTTTTTTT", initialValues);
+  console.log("RRRRRRRRRRRRr", amineTreatmentData);
 
   let dataToAI = {};
   let tableFragment = <></>;
@@ -28,6 +28,7 @@ const InputTable = ({ caption, initialValues }) => {
         feedTemperature: simpleIsoData.feed_temperature,
       };
       tableFragment = <SimpleIsoInitialDataTableFragment caption={caption} initialValues={initialValues} />;
+      break;
 
     case "amine-treatment":
       dataToAI = {
@@ -38,7 +39,7 @@ const InputTable = ({ caption, initialValues }) => {
         sourGas_ch4: amineTreatmentData.sour_gas_ch4,
         sourGas_c2h8: amineTreatmentData.sour_gas_c2h6,
         sourGas_c3h8: amineTreatmentData.sour_gas_c3h8,
-        sourGas_ic4h10: amineTreatmentData.sour_gas_ic4h10m,
+        sourGas_ic4h10: amineTreatmentData.sour_gas_ic4h10,
         sourGas_nc4h10: amineTreatmentData.sour_gas_nc4h10,
         sourGas_ic5h12: amineTreatmentData.sour_gas_ic5h12,
         sourGas_nc5h12: amineTreatmentData.sour_gas_nc5h12,
@@ -79,6 +80,9 @@ const InputTable = ({ caption, initialValues }) => {
           calculationRes = await getSimpleIsoRes(dataToAI);
           dispatch(setSimpleIsoRes(calculationRes.data));
         }
+
+      case "amine-treatment":
+        console.log("OOOOOOOOOOOOOOOOO", dataToAI);
     }
   };
 
