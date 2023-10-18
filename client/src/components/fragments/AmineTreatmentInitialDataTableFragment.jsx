@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setSourGasInitialData } from "../../store/slices/amineTreatmentSlice.js";
+import { setSourGasInitialData, setAmineInitialData } from "../../store/slices/amineTreatmentSlice.js";
 
 const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
   const dispatch = useDispatch();
@@ -25,6 +25,22 @@ const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
         sour_gas_nc5h12: sourGasTableData[9].value,
         sour_gas_h2s: sourGasTableData[10].value,
         sour_gas_h2o: sourGasTableData[11].value,
+      }),
+    );
+  };
+
+  const handleAmineCellValueChange = (index, value) => {
+    const updatedDataAmine = [...amineTableData];
+    updatedDataAmine[index].value = value;
+    setAmineTableData(updatedDataAmine);
+    dispatch(
+      setAmineInitialData({
+        amine_temperature: amineTableData[0].value,
+        amine_mass_flow: amineTableData[1].value,
+        amine_co2: amineTableData[2].value,
+        amine_h2s: amineTableData[3].value,
+        amine_h2o: amineTableData[4].value,
+        amine_MDEA: amineTableData[5].value,
       }),
     );
   };
@@ -66,7 +82,7 @@ const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
                     maxLength={6}
                     value={row.value}
                     required
-                    onChange={(e) => handleCellValueChange(index, e.target.value)}
+                    onChange={(e) => handleAmineCellValueChange(index, e.target.value)}
                   />
                 </td>
               </tr>

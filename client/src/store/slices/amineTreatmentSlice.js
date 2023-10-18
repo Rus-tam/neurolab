@@ -3,34 +3,34 @@ import { createSlice } from "@reduxjs/toolkit";
 const amineTreatmentSlice = createSlice({
   name: "amineTreatment",
   initialState: {
-    sour_gas_temperature: 20,
-    sour_gas_mass_flow: 10000,
-    sour_gas_pressure: 6701.325,
-    sour_gas_co2: 0.035,
-    sour_gas_ch4: 0.55,
-    sour_gas_c2h8: 0.05,
-    sour_gas_c3h8: 0.05,
-    sour_gas_ic4h10: 0.05,
-    sour_gas_nc4h10: 0.05,
-    sour_gas_ic5h12: 0.025,
-    sour_gas_nc5h12: 0.005,
-    sour_gas_h2s: 0.02,
-    sour_gas_h2o: 0.001,
-    sour_gas_MDEA: 0,
-    amine_temperature: 25,
-    amine_mass_flow: 10000,
-    amine_pressure: 6701.325,
-    amine_co2: 0.0025,
-    amine_ch4: 0,
-    amine_c2h8: 0,
-    amine_c3h8: 0,
-    amine_ic4h10: 0,
-    amine_nch4h10: 0,
-    amine_ic5h12: 0,
-    amine_nc5h12: 0,
-    amine_h2s: 0.0002,
-    amine_h2o: 0.85,
-    amine_MDEA: 0.25,
+    sour_gas_temperature: "20",
+    sour_gas_mass_flow: "10000",
+    sour_gas_pressure: "6701.325",
+    sour_gas_co2: "0.035",
+    sour_gas_ch4: "0.55",
+    sour_gas_c2h8: "0.05",
+    sour_gas_c3h8: "0.05",
+    sour_gas_ic4h10: "0.05",
+    sour_gas_nc4h10: "0.05",
+    sour_gas_ic5h12: "0.025",
+    sour_gas_nc5h12: "0.005",
+    sour_gas_h2s: "0.02",
+    sour_gas_h2o: "0.001",
+    sour_gas_MDEA: "0",
+    amine_temperature: "25",
+    amine_mass_flow: "10000",
+    amine_pressure: "6701.325",
+    amine_co2: "0.0025",
+    amine_ch4: "0",
+    amine_c2h8: "0",
+    amine_c3h8: "0",
+    amine_ic4h10: "0",
+    amine_nch4h10: "0",
+    amine_ic5h12: "0",
+    amine_nc5h12: "0",
+    amine_h2s: "0.0002",
+    amine_h2o: "0.85",
+    amine_MDEA: "0.25",
   },
   reducers: {
     setSourGasInitialData: (state, action) => {
@@ -48,8 +48,8 @@ const amineTreatmentSlice = createSlice({
       state.sour_gas_h2o = action.payload.sour_gas_h2o;
     },
     setAmineInitialData(state, action) {
-      state.amine_temperature = action.payload.amineTemperature;
-      state.amine_mass_flow = action.payload.amineMassFlow;
+      state.amine_temperature = action.payload.amine_temperature;
+      state.amine_mass_flow = action.payload.amine_mass_flow;
       state.amine_co2 = action.payload.amine_co2;
       state.amine_h2s = action.payload.amine_h2s;
       state.amine_h2o = action.payload.amine_h2o;
