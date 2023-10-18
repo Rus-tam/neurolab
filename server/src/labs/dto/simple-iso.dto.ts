@@ -2,11 +2,11 @@ import { IsString } from "class-validator";
 
 export class SimpleIsoDto {
   @IsString()
-  vesselVolume: string;
+  vessel_volume: string;
 
   @IsString()
-  feedTemperature: string;
+  feed_temperature: string;
 
   @IsString()
-  feedMassFlow: string;
+  feed_mass_flow: string;
 }

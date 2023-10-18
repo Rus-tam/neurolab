@@ -15,9 +15,9 @@ const simpleIsoSlice = createSlice({
       state.product_temperature = action.payload.product_temperature;
     },
     setSimpleIsoInitialData: (state, action) => {
-      state.vessel_volume = action.payload.vesselVolume;
-      state.feed_mass_flow = action.payload.feedMassFlow;
-      state.feed_temperature = action.payload.feedTemperature;
+      state.vessel_volume = action.payload.vessel_volume;
+      state.feed_mass_flow = action.payload.feed_mass_flow;
+      state.feed_temperature = action.payload.feed_temperature;
     },
   },
 });

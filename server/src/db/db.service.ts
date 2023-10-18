@@ -133,9 +133,9 @@ export class DbService {
     user: UserEntity,
   ): Promise<SimpleIsoResultEntity> {
     const newEntry = this.simpleIsoResRepository.create({
-      vessel_volume: parseFloat(inputData.vesselVolume),
-      feed_temperature: parseFloat(inputData.feedTemperature),
-      feed_mass_flow: parseFloat(inputData.feedMassFlow) / 3600,
+      vessel_volume: parseFloat(inputData.vessel_volume),
+      feed_temperature: parseFloat(inputData.feed_temperature),
+      feed_mass_flow: parseFloat(inputData.feed_mass_flow) / 3600,
       product_concentration: result.product_concentration,
       product_temperature: result.product_temperature,
       createdTime: new Date(),

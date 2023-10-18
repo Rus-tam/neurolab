@@ -12,9 +12,9 @@ export class LabsService {
     const model = this.tfService.simpleIsomerizationModel;
 
     const input = tf.tensor([
-      parseFloat(dto.vesselVolume),
-      parseFloat(dto.feedTemperature),
-      parseFloat(dto.feedMassFlow) / 3600,
+      parseFloat(dto.vessel_volume),
+      parseFloat(dto.feed_temperature),
+      parseFloat(dto.feed_mass_flow) / 3600,
     ]);
 
     const result = await (model.predict(input.reshape([-1, 3])) as tf.Tensor).dataSync();
@@ -22,7 +22,6 @@ export class LabsService {
     if (result["0"] > 1) {
       result["0"] = 1;
     }
-    console.log("Results", result);
 
     return {
       product_concentration: parseFloat(result["0"].toFixed(2)),

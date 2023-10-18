@@ -12,9 +12,9 @@ const SimpleIsoInitialDataTableFragment = ({ caption, initialValues }) => {
     setInitialTableData(updatedData);
     dispatch(
       setSimpleIsoInitialData({
-        vesselVolume: initialTableData[0].value,
-        feedMassFlow: initialTableData[1].value,
-        feedTemperature: initialTableData[2].value,
+        vessel_volume: initialTableData[0].value,
+        feed_mass_flow: initialTableData[1].value,
+        feed_temperature: initialTableData[2].value,
       }),
     );
   };

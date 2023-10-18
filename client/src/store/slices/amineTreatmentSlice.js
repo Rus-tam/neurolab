@@ -34,19 +34,18 @@ const amineTreatmentSlice = createSlice({
   },
   reducers: {
     setSourGasInitialData: (state, action) => {
-      console.log("YYYYYYYYYYYY", action.payload);
-      state.sour_gas_temperature = action.payload.sourGasTemperature;
-      state.sour_gas_mass_flow = action.payload.sourGasMassFlow;
-      state.sour_gas_co2 = action.payload.sourGas_co2;
-      state.sour_gas_ch4 = action.payload.sourGas_ch4;
-      state.sour_gas_c2h8 = action.payload.sourGas_c2h8;
-      state.sour_gas_c3h8 = action.payload.sourGas_c3h8;
-      state.sour_gas_ic4h10 = action.payload.sourGas_ic4h10;
-      state.sour_gas_nc4h10 = action.payload.sourGas_nc4h10;
-      state.sour_gas_ic5h12 = action.payload.sourGas_ic5h12;
-      state.sour_gas_nc5h12 = action.payload.sourGas_nc5h12;
-      state.sour_gas_h2s = action.payload.sourGas_h2s;
-      state.sour_gas_h2o = action.payload.sourGas_h2o;
+      state.sour_gas_temperature = action.payload.sour_gas_temperature;
+      state.sour_gas_mass_flow = action.payload.sour_gas_mass_flow;
+      state.sour_gas_co2 = action.payload.sour_gas_co2;
+      state.sour_gas_ch4 = action.payload.sour_gas_ch4;
+      state.sour_gas_c2h8 = action.payload.sour_gas_c2h8;
+      state.sour_gas_c3h8 = action.payload.sour_gas_c3h8;
+      state.sour_gas_ic4h10 = action.payload.sour_gas_ic4h10;
+      state.sour_gas_nc4h10 = action.payload.sour_gas_nc4h10;
+      state.sour_gas_ic5h12 = action.payload.sour_gas_ic5h12;
+      state.sour_gas_nc5h12 = action.payload.sour_gas_nc5h12;
+      state.sour_gas_h2s = action.payload.sour_gas_h2s;
+      state.sour_gas_h2o = action.payload.sour_gas_h2o;
     },
     setAmineInitialData(state, action) {
       state.amine_temperature = action.payload.amineTemperature;

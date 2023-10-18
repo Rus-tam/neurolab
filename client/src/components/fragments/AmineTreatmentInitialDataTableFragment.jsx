@@ -13,18 +13,18 @@ const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
     setSourGasTableData(updatedDataGas);
     dispatch(
       setSourGasInitialData({
-        sourGasTemperature: sourGasTableData[0].value,
-        sourGasMassFlow: sourGasTableData[1].value,
-        sourGas_co2: sourGasTableData[2].value,
-        sourGas_ch4: sourGasTableData[3].value,
-        sourGas_c2h8: sourGasTableData[4].value,
-        sourGas_c3h8: sourGasTableData[5].value,
-        sourGas_ic4h10: sourGasTableData[6].value,
-        sourGas_nc4h10: sourGasTableData[7].value,
-        sourGas_ic5h12: sourGasTableData[8].value,
-        sourGas_nc5h12: sourGasTableData[9].value,
-        sourGas_h2s: sourGasTableData[10].value,
-        sourGas_h2o: sourGasTableData[11].value,
+        sour_gas_temperature: sourGasTableData[0].value,
+        sour_gas_mass_flow: sourGasTableData[1].value,
+        sour_gas_co2: sourGasTableData[2].value,
+        sour_gas_ch4: sourGasTableData[3].value,
+        sour_gas_c2h8: sourGasTableData[4].value,
+        sour_gas_c3h8: sourGasTableData[5].value,
+        sour_gas_ic4h10: sourGasTableData[6].value,
+        sour_gas_nc4h10: sourGasTableData[7].value,
+        sour_gas_ic5h12: sourGasTableData[8].value,
+        sour_gas_nc5h12: sourGasTableData[9].value,
+        sour_gas_h2s: sourGasTableData[10].value,
+        sour_gas_h2o: sourGasTableData[11].value,
       }),
     );
   };
