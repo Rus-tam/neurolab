@@ -4,6 +4,8 @@ import { ParentContext } from "../../utils/ParentContext.js";
 import InputTable from "../layout/InputTable.jsx";
 
 const AmineTreatment = () => {
+  const handleChangeSGComp = () => {};
+
   const feedGasAmineData = [
     { name: "Температура кислого газа, град. Цельсия", value: "20" },
     { name: "Массовый расход кислого газа, кг/ч", value: "10000" },
@@ -56,6 +58,10 @@ const AmineTreatment = () => {
         <ParentContext.Provider value="amine-treatment">
           <InputTable caption={"Аминовая очистка"} initialValues={feedGasAmineData} />
         </ParentContext.Provider>
+
+        <button className="sour-gas-composition">Состав газа</button>
+
+        <button className="amine-composition">Состав амина</button>
       </div>
     </div>
   );

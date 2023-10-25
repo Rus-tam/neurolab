@@ -56,7 +56,8 @@ const InputTable = ({ caption, initialValues }) => {
 
   return (
     <form onSubmit={handleCalculation}>
-      {tableFragment}
+      <div className="table-fragment">{tableFragment}</div>
+
       <button className="calculate-button" type="submit">
         Рассчитать
       </button>

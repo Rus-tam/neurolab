@@ -58,6 +58,16 @@
   animation-duration: calc(35s / var(--i));
 }
 
+.input-table {
+  position: absolute;
+  width: 20rem;
+  top: 30%;
+}
+
+.regen-amine {
+  margin-bottom: 3rem;
+}
+
 @keyframes gas_animate {
   0% {
     transform: translateY(25vh);
