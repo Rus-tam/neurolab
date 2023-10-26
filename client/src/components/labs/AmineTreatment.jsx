@@ -1,10 +1,13 @@
 import AmineAbsorber from "../../blueprints/amine-treatment/amine-treatment.svg";
 import "../styles/amine-treatment.css";
+import "../styles/modal.css";
 import { ParentContext } from "../../utils/ParentContext.js";
 import InputTable from "../layout/InputTable.jsx";
+import { useState } from "react";
+import SourGasModal from "../fragments/SourGasModal.jsx";
 
 const AmineTreatment = () => {
-  const handleChangeSGComp = () => {};
+  const [isOpenSGComp, setIsOpenSGComp] = useState(false);
 
   const feedGasAmineData = [
     { name: "Температура кислого газа, град. Цельсия", value: "20" },
@@ -26,6 +29,14 @@ const AmineTreatment = () => {
     { name: "Мольная доля воды в растворе амина", value: "0.85" },
     { name: "Мольная доля МДЭА в растворе амина", value: "0.25" },
   ];
+
+  const handleOpenSGCompModal = () => {
+    setIsOpenSGComp(true);
+  };
+
+  const handleCloseSGCompModal = () => {
+    setIsOpenSGComp(false);
+  };
 
   return (
     <div className="amine_treatment">
@@ -59,10 +70,23 @@ const AmineTreatment = () => {
           <InputTable caption={"Аминовая очистка"} initialValues={feedGasAmineData} />
         </ParentContext.Provider>
 
-        <button className="sour-gas-composition">Состав газа</button>
+        <button className="sour-gas-composition" onClick={handleOpenSGCompModal}>
+          Состав газа
+        </button>
 
         <button className="amine-composition">Состав амина</button>
       </div>
+
+      {isOpenSGComp && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={handleCloseSGCompModal}>
+              &times;
+            </span>
+            <SourGasModal />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,0 +1,21 @@
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 48%;
+    transform: translate(-45%, -51%);
+
+    width: 50rem;
+    height: 40rem;
+    background-color: #c8daf5;
+
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    border-bottom-right-radius: 225px 15px;
+    border-bottom-left-radius: 15px 255px;
+    border: solid 3px #001dbc;
+
+    box-shadow: 10px 10px 4px -6px hsla(0, 0%, 0%, 0.3);
+
+    transition: transform 0.2s
+}
+
