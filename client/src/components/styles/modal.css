@@ -6,7 +6,6 @@
 
     width: 50rem;
     height: 40rem;
-    background-color: #c8daf5;
 
     border-top-left-radius: 255px 15px;
     border-top-right-radius: 15px 225px;
@@ -16,6 +15,35 @@
 
     box-shadow: 10px 10px 4px -6px hsla(0, 0%, 0%, 0.3);
 
+    /*background-color: #bbd9f5;*/
+    background-image: linear-gradient(#a3cef1 1.1px, transparent 1.1px),
+    linear-gradient(to right, rgba(85, 180, 248, 0.8) 1.1px, #fdfcfb 1.1px);
+    background-size: 22px 22px;
+
     transition: transform 0.2s
+}
+
+.sour-gas-comp-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sour-gas-comp-modal h2 {
+    align-items: flex-start;
+    margin-right: auto;
+    padding-left: 0.5rem;
+}
+
+.sour-gas-comp-modal .table {
+    font-size: 18px;
+    width: 30rem;
+    height: 5rem;
+    margin-bottom: 1rem;
+}
+
+.sour-gas-comp-modal .buttons button {
+    margin-right: 1rem;
 }
 
