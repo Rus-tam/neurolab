@@ -31,6 +31,7 @@ const amineTreatmentSlice = createSlice({
     amine_h2s: "0.0002",
     amine_h2o: "0.85",
     amine_MDEA: "0.25",
+    modalWindowStatus: false,
   },
   reducers: {
     setSourGasInitialData: (state, action) => {
@@ -55,9 +56,13 @@ const amineTreatmentSlice = createSlice({
       // state.amine_h2o = action.payload.amine_h2o;
       // state.amine_MDEA = action.payload.amine_MDEA;
     },
+    setModalWindowStatus(state, action) {
+      state.modalWindowStatus = action.payload.modalWindowStatus;
+    },
   },
 });
 
-export const { setSourGasInitialData, setAmineInitialData } = amineTreatmentSlice.actions;
+export const { setSourGasInitialData, setAmineInitialData, setModalWindowStatus } =
+  amineTreatmentSlice.actions;
 
 export const amineTreatmentReducer = amineTreatmentSlice.reducer;

@@ -3,11 +3,13 @@ import "../styles/amine-treatment.css";
 import "../styles/modal.css";
 import { ParentContext } from "../../utils/ParentContext.js";
 import InputTable from "../layout/InputTable.jsx";
-import { useState } from "react";
 import SourGasModal from "../fragments/SourGasModal.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { setModalWindowStatus } from "../../store/slices/amineTreatmentSlice.js";
 
 const AmineTreatment = () => {
-  const [isOpenSGComp, setIsOpenSGComp] = useState(false);
+  const dispatch = useDispatch();
+  const { modalWindowStatus } = useSelector((state) => state.amineTreatment);
 
   const feedGasAmineData = [
     { name: "Температура кислого газа, град. Цельсия", value: "20" },
@@ -17,11 +19,19 @@ const AmineTreatment = () => {
   ];
 
   const handleOpenSGCompModal = () => {
-    setIsOpenSGComp(true);
+    dispatch(
+      setModalWindowStatus({
+        modalWindowStatus: true,
+      }),
+    );
   };
 
   const handleCloseSGCompModal = () => {
-    setIsOpenSGComp(false);
+    dispatch(
+      setModalWindowStatus({
+        modalWindowStatus: false,
+      }),
+    );
   };
 
   return (
@@ -63,7 +73,7 @@ const AmineTreatment = () => {
         <button className="amine-composition">Состав амина</button>
       </div>
 
-      {isOpenSGComp && (
+      {modalWindowStatus && (
         <div className="modal">
           <div className="modal-content">
             <span className="close" onClick={handleCloseSGCompModal}>
