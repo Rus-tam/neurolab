@@ -1,6 +1,6 @@
 import "../styles/modal.css";
 import { useState } from "react";
-import { setModalWindowStatus } from "../../store/slices/amineTreatmentSlice.js";
+import { setModalWindowStatus, setSourGasInitialData } from "../../store/slices/amineTreatmentSlice.js";
 import { useDispatch } from "react-redux";
 
 const SourGasModal = () => {
@@ -25,13 +25,20 @@ const SourGasModal = () => {
     const updatedData = [...initialTableData];
     updatedData[index].value = value;
     setInitialTableData(updatedData);
-    // dispatch(
-    //   setSimpleIsoInitialData({
-    //     vessel_volume: initialTableData[0].value,
-    //     feed_mass_flow: initialTableData[1].value,
-    //     feed_temperature: initialTableData[2].value,
-    //   }),
-    // );
+    dispatch(
+      setSourGasInitialData({
+        sour_gas_co2: initialTableData[0].value,
+        sour_gas_ch4: initialTableData[1].value,
+        sour_gas_c2h8: initialTableData[2].value,
+        sour_gas_c3h8: initialTableData[3].value,
+        sour_gas_ic4h10: initialTableData[4].value,
+        sour_gas_nc4h10: initialTableData[5].value,
+        sour_gas_ic5h12: initialTableData[6].value,
+        sour_gas_nc5h12: initialTableData[7].value,
+        sour_gas_h2s: initialTableData[8].value,
+        sour_gas_h2o: initialTableData[9].value,
+      }),
+    );
   };
 
   const handleCloseSGCompModal = () => {

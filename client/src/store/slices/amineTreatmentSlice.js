@@ -37,16 +37,16 @@ const amineTreatmentSlice = createSlice({
     setSourGasInitialData: (state, action) => {
       state.sour_gas_temperature = action.payload.sour_gas_temperature;
       state.sour_gas_mass_flow = action.payload.sour_gas_mass_flow;
-      // state.sour_gas_co2 = action.payload.sour_gas_co2;
-      // state.sour_gas_ch4 = action.payload.sour_gas_ch4;
-      // state.sour_gas_c2h8 = action.payload.sour_gas_c2h8;
-      // state.sour_gas_c3h8 = action.payload.sour_gas_c3h8;
-      // state.sour_gas_ic4h10 = action.payload.sour_gas_ic4h10;
-      // state.sour_gas_nc4h10 = action.payload.sour_gas_nc4h10;
-      // state.sour_gas_ic5h12 = action.payload.sour_gas_ic5h12;
-      // state.sour_gas_nc5h12 = action.payload.sour_gas_nc5h12;
-      // state.sour_gas_h2s = action.payload.sour_gas_h2s;
-      // state.sour_gas_h2o = action.payload.sour_gas_h2o;
+      state.sour_gas_co2 = action.payload.sour_gas_co2;
+      state.sour_gas_ch4 = action.payload.sour_gas_ch4;
+      state.sour_gas_c2h8 = action.payload.sour_gas_c2h8;
+      state.sour_gas_c3h8 = action.payload.sour_gas_c3h8;
+      state.sour_gas_ic4h10 = action.payload.sour_gas_ic4h10;
+      state.sour_gas_nc4h10 = action.payload.sour_gas_nc4h10;
+      state.sour_gas_ic5h12 = action.payload.sour_gas_ic5h12;
+      state.sour_gas_nc5h12 = action.payload.sour_gas_nc5h12;
+      state.sour_gas_h2s = action.payload.sour_gas_h2s;
+      state.sour_gas_h2o = action.payload.sour_gas_h2o;
     },
     setAmineInitialData(state, action) {
       state.amine_temperature = action.payload.amine_temperature;
