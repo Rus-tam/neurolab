@@ -1,7 +1,11 @@
 import "../styles/modal.css";
 import { useState } from "react";
+import { setModalWindowStatus } from "../../store/slices/amineTreatmentSlice.js";
+import { useDispatch } from "react-redux";
 
 const SourGasModal = () => {
+  const dispatch = useDispatch();
+
   const sourGasComposition = [
     { name: "Мольная доля диоксида углерода в газе", value: "0.02" },
     { name: "Мольная доля метана в газе", value: "0.55" },
@@ -30,6 +34,14 @@ const SourGasModal = () => {
     // );
   };
 
+  const handleCloseSGCompModal = () => {
+    dispatch(
+      setModalWindowStatus({
+        modalWindowStatus: false,
+      }),
+    );
+  };
+
   return (
     <div className="sour-gas-comp-modal">
       <h2>Введите состав кислого газа</h2>
@@ -54,7 +66,7 @@ const SourGasModal = () => {
       </table>
       <div className="buttons">
         <button>Нормализовать</button>
-        <button>Закрыть</button>
+        <button onClick={handleCloseSGCompModal}>Закрыть</button>
       </div>
     </div>
   );

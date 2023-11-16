@@ -26,14 +26,6 @@ const AmineTreatment = () => {
     );
   };
 
-  const handleCloseSGCompModal = () => {
-    dispatch(
-      setModalWindowStatus({
-        modalWindowStatus: false,
-      }),
-    );
-  };
-
   return (
     <div className="amine_treatment">
       <img className="amine_absorber" src={AmineAbsorber} alt="amine-absorber" />
@@ -65,20 +57,17 @@ const AmineTreatment = () => {
         <ParentContext.Provider value="amine-treatment">
           <InputTable caption={"Аминовая очистка"} initialValues={feedGasAmineData} />
         </ParentContext.Provider>
-
-        <button className="sour-gas-composition" onClick={handleOpenSGCompModal}>
-          Состав газа
-        </button>
-
-        <button className="amine-composition">Состав амина</button>
       </div>
+
+      <button className="sour-gas-composition" onClick={handleOpenSGCompModal}>
+        Состав газа
+      </button>
+
+      <button className="amine-composition">Состав амина</button>
 
       {modalWindowStatus && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={handleCloseSGCompModal}>
-              &times;
-            </span>
             <SourGasModal />
           </div>
         </div>

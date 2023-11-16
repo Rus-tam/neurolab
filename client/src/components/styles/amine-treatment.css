@@ -72,16 +72,16 @@
   position: absolute;
   width: 7rem;
 
-  top: 75%;
-  left: 190%;
+  top: 73%;
+  left: 35%;
 }
 
 .amine-composition {
   position: absolute;
   width: 7rem;
 
-  top: 15%;
-  left: 190%;
+  top: 38%;
+  left: 35%;
 }
 
 @keyframes gas_animate {
