@@ -3,9 +3,14 @@ import { useState } from "react";
 import { setModalWindowStatus, setSourGasInitialData } from "../../store/slices/amineTreatmentSlice.js";
 import { useDispatch } from "react-redux";
 import { dataToState } from "../../utils/preparaDataToState.js";
+import { useSelector } from "react-redux";
 
 const SourGasModal = () => {
   const dispatch = useDispatch();
+
+  const storedData = useSelector((state) => state.amineTreatment);
+
+  console.log("STORED DATA", storedData);
 
   const [initialTableData, setInitialTableData] = useState([
     { name: "Мольная доля диоксида углерода в газе", value: "0.02" },
