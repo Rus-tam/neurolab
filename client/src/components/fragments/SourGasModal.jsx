@@ -2,15 +2,15 @@ import "../styles/modal.css";
 import { useState } from "react";
 import { setModalWindowStatus, setSourGasInitialData } from "../../store/slices/amineTreatmentSlice.js";
 import { useDispatch } from "react-redux";
-import { dataToState } from "../../utils/preparaDataToState.js";
+import { DataHandler } from "../../utils/preparaDataToState.js";
 import { useSelector } from "react-redux";
+import { Normalize } from "../../utils/normalize.js";
 
 const SourGasModal = () => {
+  const dataHandler = new DataHandler();
   const dispatch = useDispatch();
 
   const storedData = useSelector((state) => state.amineTreatment);
-
-  console.log("STORED DATA", storedData);
 
   const [initialTableData, setInitialTableData] = useState([
     { name: "Мольная доля диоксида углерода в газе", value: "0.02" },
@@ -29,8 +29,15 @@ const SourGasModal = () => {
     const updatedData = [...initialTableData];
     updatedData[index].value = value;
     setInitialTableData(updatedData);
-    const sourGasComp = dataToState("sour-gas", initialTableData);
+    const sourGasComp = dataHandler.dataToState("sour-gas", initialTableData);
     dispatch(setSourGasInitialData(sourGasComp));
+  };
+
+  const handleNormalize = () => {
+    const normalizer = new Normalize(dataHandler.sourGasComposition(storedData));
+    const normalizedComp = normalizer.normalizeData();
+
+    console.log("NORMILIZED DATA", normalizedComp);
   };
 
   const handleCloseSGCompModal = () => {
@@ -63,8 +70,11 @@ const SourGasModal = () => {
           ))}
         </tbody>
       </table>
+      <div>
+        <p>Сумма всех концентраций:</p>
+      </div>
       <div className="buttons">
-        <button>Нормализовать</button>
+        <button onClick={handleNormalize}>Нормализовать</button>
         <button onClick={handleCloseSGCompModal}>Закрыть</button>
       </div>
     </div>

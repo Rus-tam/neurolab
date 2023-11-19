@@ -1,92 +1,28 @@
-// export const normalize = (data) => {
-//   const { min, max } = findMinMaxValue(data);
-//   let summ = 0;
-
-//   for (let value of Object.values(data)) {
-//     summ += value;
-//   }
-
-//   if (summ > 1) {
-//     data[Object.keys(max)[0]] = max[Object.keys(max)[0]] - (summ - 1);
-//   } else {
-//     inequality = 1 - summ;
-//     data[Object.keys(max)[0]] = min[Object.keys(min)[0]] + (1 - summ);
-//   }
-
-//   return roundValues(data);
-// };
-
-// const findMinMaxValue = (data) => {
-//   let maxValue = 0;
-//   let maxKey = null;
-
-//   let minValue = 1;
-//   let minKey = null;
-
-//   let min = {};
-//   let max = {};
-
-//   for (const key in data) {
-//     if (data.hasOwnProperty(key)) {
-//       const currentValue = data[key];
-//       if (currentValue > maxValue) {
-//         maxValue = currentValue;
-//         maxKey = key;
-//       }
-
-//       if (currentValue < minValue) {
-//         minValue = currentValue;
-//         minKey = key;
-//       }
-//     }
-//   }
-
-//   max[maxKey] = maxValue;
-//   min[minKey] = minValue;
-
-//   return {
-//     min,
-//     max,
-//   };
-// };
-
-// const roundValues = (data) => {
-//   const roundedValues = {};
-
-//   for (const key in data) {
-//     if (data.hasOwnProperty(key)) {
-//       roundedValues[key] = Number(data[key].toFixed(2));
-//     }
-//   }
-
-//   return roundedValues;
-// };
-
 export class Normalize {
   data = {};
+  summ = 0;
   constructor(data) {
-    data = this.data;
+    this.data = data;
   }
 
   normalizeData() {
-    const { min, max } = this.#findMinMaxValue(this.data);
+    const { min, max } = this._findMinMaxValue(this.data);
     let summ = 0;
 
     for (let value of Object.values(this.data)) {
-      summ += value;
+      this.summ += value;
     }
 
     if (summ > 1) {
-      data[Object.keys(max)[0]] = max[Object.keys(max)[0]] - (summ - 1);
+      this.data[Object.keys(max)[0]] = max[Object.keys(max)[0]] - (summ - 1);
     } else {
-      inequality = 1 - summ;
-      data[Object.keys(max)[0]] = min[Object.keys(min)[0]] + (1 - summ);
+      this.data[Object.keys(max)[0]] = min[Object.keys(min)[0]] + (1 - summ);
     }
 
-    return this.#roundValues(this.data);
+    return this._roundValues(this.data);
   }
 
-  #findMinMaxValue() {
+  _findMinMaxValue() {
     let maxValue = 0;
     let maxKey = null;
 
@@ -96,9 +32,9 @@ export class Normalize {
     let min = {};
     let max = {};
 
-    for (const key in data) {
-      if (data.hasOwnProperty(key)) {
-        const currentValue = data[key];
+    for (const key in this.data) {
+      if (this.data.hasOwnProperty(key)) {
+        const currentValue = this.data[key];
         if (currentValue > maxValue) {
           maxValue = currentValue;
           maxKey = key;
@@ -120,13 +56,16 @@ export class Normalize {
     };
   }
 
-  #roundValues() {
+  _roundValues() {
     const roundedValues = {};
+
+    console.log("PPPPPPPPPPP", this.data);
 
     for (const key in this.data) {
       if (this.data.hasOwnProperty(key)) {
-        roundedValues[key] = Number(this.data[key].toFixed(2));
+        roundedValues[key] = Number(parseFloat(this.data[key]).toFixed(2));
       }
+      console.log(roundedValues);
     }
 
     return roundedValues;
