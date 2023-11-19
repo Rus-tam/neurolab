@@ -1,8 +1,19 @@
 export const normalize = (data) => {
-  const biggestValue = {};
+  const { min, max } = findMinMaxValue(data);
+  let summ = 0;
 
-  for (let item of Object.keys(data)) {
+  for (let value of Object.values(data)) {
+    summ += value;
   }
+
+  if (summ > 1) {
+    data[Object.keys(max)[0]] = max[Object.keys(max)[0]] - (summ - 1);
+  } else {
+    inequality = 1 - summ;
+    data[Object.keys(max)[0]] = min[Object.keys(min)[0]] + (1 - summ);
+  }
+
+  return roundValues(data);
 };
 
 const findMinMaxValue = (data) => {
@@ -37,4 +48,16 @@ const findMinMaxValue = (data) => {
     min,
     max,
   };
+};
+
+const roundValues = (data) => {
+  const roundedValues = {};
+
+  for (const key in data) {
+    if (data.hasOwnProperty(key)) {
+      roundedValues[key] = Number(data[key].toFixed(2));
+    }
+  }
+
+  return roundedValues;
 };
