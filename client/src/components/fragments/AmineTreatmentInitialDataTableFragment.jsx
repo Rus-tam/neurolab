@@ -8,8 +8,6 @@ const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
   const [sourGasTableData, setSourGasTableData] = useState(initialValues.slice(0, 2));
   const [amineTableData, setAmineTableData] = useState(initialValues.slice(2, 4));
 
-  console.log("FFFFFFFFFFFFFF", initialValues);
-
   const handleGasCellValueChange = (index, value) => {
     const updatedDataGas = [...sourGasTableData];
     updatedDataGas[index].value = value;

@@ -1,5 +1,5 @@
 import "../styles/modal.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { setModalWindowStatus, setSourGasInitialData } from "../../store/slices/amineTreatmentSlice.js";
 import { useDispatch } from "react-redux";
 import { DataHandler } from "../../utils/preparaDataToState.js";
@@ -13,16 +13,16 @@ const SourGasModal = () => {
   const storedData = useSelector((state) => state.amineTreatment);
 
   const [initialTableData, setInitialTableData] = useState([
-    { name: "Мольная доля диоксида углерода в газе", value: "0.02" },
-    { name: "Мольная доля метана в газе", value: "0.55" },
-    { name: "Мольная доля этана в газе", value: "0.1" },
-    { name: "Мольная доля пропана в газе", value: "0.05" },
-    { name: "Мольная доля и-бутана в газе", value: "0.05" },
-    { name: "Мольная доля н-бутана в газе", value: "0.05" },
-    { name: "Мольная доля и-пентан в газе", value: "0.025" },
-    { name: "Мольная доля н-пентан в газе", value: "0.005" },
-    { name: "Мольная доля сероводорода в газе", value: "0.02" },
-    { name: "Мольная доля воды в газе", value: "0.001" },
+    { name: "Мольная доля диоксида углерода в газе", value: storedData.sour_gas_co2 },
+    { name: "Мольная доля метана в газе", value: storedData.sour_gas_ch4 },
+    { name: "Мольная доля этана в газе", value: storedData.sour_gas_c2h8 },
+    { name: "Мольная доля пропана в газе", value: storedData.sour_gas_c3h8 },
+    { name: "Мольная доля и-бутана в газе", value: storedData.sour_gas_ic4h10 },
+    { name: "Мольная доля н-бутана в газе", value: storedData.sour_gas_nc4h10 },
+    { name: "Мольная доля и-пентан в газе", value: storedData.sour_gas_ic5h12 },
+    { name: "Мольная доля н-пентан в газе", value: storedData.sour_gas_nc5h12 },
+    { name: "Мольная доля сероводорода в газе", value: storedData.sour_gas_h2s },
+    { name: "Мольная доля воды в газе", value: storedData.sour_gas_h2o },
   ]);
 
   const handleCellValueChange = (index, value) => {
@@ -36,8 +36,8 @@ const SourGasModal = () => {
   const handleNormalize = () => {
     const normalizer = new Normalize(dataHandler.sourGasComposition(storedData));
     const normalizedComp = normalizer.normalizeData();
-
-    console.log("NORMILIZED DATA", normalizedComp);
+    dispatch(setSourGasInitialData(normalizedComp));
+    setInitialTableData();
   };
 
   const handleCloseSGCompModal = () => {
