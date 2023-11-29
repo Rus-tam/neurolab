@@ -1,5 +1,5 @@
 import "../styles/modal.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { setModalWindowStatus, setSourGasInitialData } from "../../store/slices/amineTreatmentSlice.js";
 import { useDispatch } from "react-redux";
 import { DataHandler } from "../../utils/preparaDataToState.js";
@@ -26,14 +26,18 @@ const SourGasModal = () => {
     { name: "Мольная доля воды в газе", value: storedData.sour_gas_h2o },
   ]);
 
-  const [compValueSumm, setComponentValueSumm] = useState(1);
-
   const handleCellValueChange = (index, value) => {
-    const updatedData = [...initialTableData];
-    updatedData[index].value = value;
-    setInitialTableData(updatedData);
-    const sourGasComp = dataHandler.dataToState("sour-gas", initialTableData);
-    dispatch(setSourGasInitialData(sourGasComp));
+    if (value > 1) {
+      toast.error("Мольная доля компонента не может быть больше 1");
+    } else if (value < 0) {
+      toast.error("Мольная доля компонента не может быть отрицательной");
+    } else {
+      const updatedData = [...initialTableData];
+      updatedData[index].value = value;
+      setInitialTableData(updatedData);
+      const sourGasComp = dataHandler.dataToState("sour-gas", initialTableData);
+      dispatch(setSourGasInitialData(sourGasComp));
+    }
   };
 
   const handleNormalize = () => {
