@@ -37,7 +37,15 @@ export class DataHandler {
           sour_gas_h2s: data[8].value,
           sour_gas_h2o: data[9].value,
         };
+        break;
 
+      case "amine-solution":
+        return {
+          amine_MDEA: data[0].value,
+          amine_h2o: data[1].value,
+          amine_co2: data[2].value,
+          amine_h2s: data[3].value,
+        };
         break;
 
       default:
@@ -57,6 +65,15 @@ export class DataHandler {
       sour_gas_nc5h12: data.sour_gas_nc5h12,
       sour_gas_h2s: data.sour_gas_h2s,
       sour_gas_h2o: data.sour_gas_h2o,
+    };
+  }
+
+  amineSolutionComposition(data) {
+    return {
+      amine_MDEA: data.amine_MDEA,
+      amine_h2o: data.amine_h2o,
+      amine_co2: data.amine_co2,
+      amine_h2s: data.amine_h2s,
     };
   }
 }

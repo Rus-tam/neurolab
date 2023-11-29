@@ -17,21 +17,22 @@ const amineTreatmentSlice = createSlice({
     sour_gas_h2s: 0.02,
     sour_gas_h2o: 0.0,
     sour_gas_MDEA: 0,
-    amine_temperature: "25",
-    amine_mass_flow: "10000",
-    amine_pressure: "6701.325",
-    amine_co2: "0.0025",
-    amine_ch4: "0",
-    amine_c2h8: "0",
-    amine_c3h8: "0",
-    amine_ic4h10: "0",
-    amine_nch4h10: "0",
-    amine_ic5h12: "0",
-    amine_nc5h12: "0",
-    amine_h2s: "0.0002",
-    amine_h2o: "0.85",
-    amine_MDEA: "0.25",
-    modalWindowStatus: false,
+    amine_temperature: 25,
+    amine_mass_flow: 10000,
+    amine_pressure: 6701.325,
+    amine_co2: 0.0025,
+    amine_ch4: 0,
+    amine_c2h8: 0,
+    amine_c3h8: 0,
+    amine_ic4h10: 0,
+    amine_nch4h10: 0,
+    amine_ic5h12: 0,
+    amine_nc5h12: 0,
+    amine_h2s: 0.0002,
+    amine_h2o: 0.8563,
+    amine_MDEA: 0.141,
+    modalSGWindowStatus: false,
+    modalAmineWindowStatus: false,
   },
   reducers: {
     setSourGasInitialData: (state, action) => {
@@ -51,18 +52,25 @@ const amineTreatmentSlice = createSlice({
     setAmineInitialData(state, action) {
       state.amine_temperature = action.payload.amine_temperature;
       state.amine_mass_flow = action.payload.amine_mass_flow;
-      // state.amine_co2 = action.payload.amine_co2;
-      // state.amine_h2s = action.payload.amine_h2s;
-      // state.amine_h2o = action.payload.amine_h2o;
-      // state.amine_MDEA = action.payload.amine_MDEA;
+      state.amine_MDEA = action.payload.amine_MDEA;
+      state.amine_h2o = action.payload.amine_h2o;
+      state.amine_co2 = action.payload.amine_co2;
+      state.amine_h2s = action.payload.amine_h2s;
     },
-    setModalWindowStatus(state, action) {
-      state.modalWindowStatus = action.payload.modalWindowStatus;
+    setSGModalWindowStatus(state, action) {
+      state.modalSGWindowStatus = action.payload.modalSGWindowStatus;
+    },
+    setAmineModalWindowStatus(state, action) {
+      state.modalAmineWindowStatus = action.payload.modalAmineWindowStatus;
     },
   },
 });
 
-export const { setSourGasInitialData, setAmineInitialData, setModalWindowStatus } =
-  amineTreatmentSlice.actions;
+export const {
+  setSourGasInitialData,
+  setAmineInitialData,
+  setSGModalWindowStatus,
+  setAmineModalWindowStatus,
+} = amineTreatmentSlice.actions;
 
 export const amineTreatmentReducer = amineTreatmentSlice.reducer;

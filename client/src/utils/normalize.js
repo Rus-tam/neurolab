@@ -79,7 +79,7 @@ export class Normalize {
 
     for (const key in composition) {
       if (this.data.hasOwnProperty(key)) {
-        roundedValues[key] = Number(composition[key].toFixed(2));
+        roundedValues[key] = Number(composition[key].toFixed(4));
       }
     }
 

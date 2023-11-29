@@ -5,11 +5,12 @@ import { ParentContext } from "../../utils/ParentContext.js";
 import InputTable from "../layout/InputTable.jsx";
 import SourGasModal from "../fragments/SourGasModal.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { setModalWindowStatus } from "../../store/slices/amineTreatmentSlice.js";
+import { setSGModalWindowStatus, setAmineModalWindowStatus } from "../../store/slices/amineTreatmentSlice.js";
+import AmineModel from "../fragments/AmineModal.jsx";
 
 const AmineTreatment = () => {
   const dispatch = useDispatch();
-  const { modalWindowStatus } = useSelector((state) => state.amineTreatment);
+  const { modalSGWindowStatus, modalAmineWindowStatus } = useSelector((state) => state.amineTreatment);
 
   const feedGasAmineData = [
     { name: "Температура кислого газа, град. Цельсия", value: "20" },
@@ -20,8 +21,16 @@ const AmineTreatment = () => {
 
   const handleOpenSGCompModal = () => {
     dispatch(
-      setModalWindowStatus({
-        modalWindowStatus: true,
+      setSGModalWindowStatus({
+        modalSGWindowStatus: true,
+      }),
+    );
+  };
+
+  const handleOpenAmineCompModal = () => {
+    dispatch(
+      setAmineModalWindowStatus({
+        modalAmineWindowStatus: true,
       }),
     );
   };
@@ -63,12 +72,22 @@ const AmineTreatment = () => {
         Состав газа
       </button>
 
-      <button className="amine-composition">Состав амина</button>
+      <button className="amine-composition" onClick={handleOpenAmineCompModal}>
+        Состав амина
+      </button>
 
-      {modalWindowStatus && (
+      {modalSGWindowStatus && (
         <div className="modal">
           <div className="modal-content">
             <SourGasModal />
+          </div>
+        </div>
+      )}
+
+      {modalAmineWindowStatus && (
+        <div className="modal">
+          <div className="modal-content">
+            <AmineModel />
           </div>
         </div>
       )}

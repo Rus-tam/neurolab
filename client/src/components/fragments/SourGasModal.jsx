@@ -1,6 +1,6 @@
 import "../styles/modal.css";
 import { useState } from "react";
-import { setModalWindowStatus, setSourGasInitialData } from "../../store/slices/amineTreatmentSlice.js";
+import { setSGModalWindowStatus, setSourGasInitialData } from "../../store/slices/amineTreatmentSlice.js";
 import { useDispatch } from "react-redux";
 import { DataHandler } from "../../utils/preparaDataToState.js";
 import { useSelector } from "react-redux";
@@ -61,8 +61,8 @@ const SourGasModal = () => {
 
   const handleCloseSGCompModal = () => {
     dispatch(
-      setModalWindowStatus({
-        modalWindowStatus: false,
+      setSGModalWindowStatus({
+        modalSGWindowStatus: false,
       }),
     );
     handleNormalize();
