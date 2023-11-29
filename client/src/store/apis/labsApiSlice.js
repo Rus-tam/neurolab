@@ -9,7 +9,14 @@ export const labsApiSlice = apiSlice.injectEndpoints({
         body: { ...dataToAI },
       }),
     }),
+    amineTreatment: builder.mutation({
+      query: (dataToAI) => ({
+        url: "/labs/amine-treatment",
+        method: "POST",
+        body: { ...dataToAI },
+      }),
+    }),
   }),
 });
 
-export const { useSimpleIsoMutation } = labsApiSlice;
+export const { useSimpleIsoMutation, useAmineTreatmentMutation } = labsApiSlice;

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ParentContext } from "../../utils/ParentContext.js";
 import { useDispatch, useSelector } from "react-redux";
 import { setSimpleIsoRes } from "../../store/slices/simpleIsoSlice.js";
-import { useSimpleIsoMutation } from "../../store/apis/labsApiSlice.js";
+import { useSimpleIsoMutation, useAmineTreatmentMutation } from "../../store/apis/labsApiSlice.js";
 import { simpleIsoCheck } from "../../utils/checkValues.js";
 import SimpleIsoInitialDataTableFragment from "../fragments/SimpleIsoInitialDataTableFragment.jsx";
 import AmineTreatmentInitialDataTableFragment from "../fragments/AmineTreatmentInitialDataTableFragment.jsx";
@@ -13,7 +13,8 @@ const InputTable = ({ caption, initialValues }) => {
 
   const simpleIsoData = useSelector((state) => state.simpleIso);
   const amineTreatmentData = useSelector((state) => state.amineTreatment);
-  const [getSimpleIsoRes, results] = useSimpleIsoMutation();
+  const [getSimpleIsoRes, IsoResults] = useSimpleIsoMutation();
+  const [getAmineTreatmentRes, AmineResults] = useAmineTreatmentMutation();
 
   let dataToAI = {};
   let tableFragment = <></>;
@@ -29,6 +30,7 @@ const InputTable = ({ caption, initialValues }) => {
       break;
 
     case "amine-treatment":
+      dataToAI = { ...amineTreatmentData };
       tableFragment = (
         <AmineTreatmentInitialDataTableFragment caption={caption} initialValues={initialValues} />
       );
@@ -50,6 +52,7 @@ const InputTable = ({ caption, initialValues }) => {
         break;
 
       case "amine-treatment":
+        await getAmineTreatmentRes(amineTreatmentData);
         console.log("OOOOOOOOOOOOOOOOO", amineTreatmentData);
     }
   };
