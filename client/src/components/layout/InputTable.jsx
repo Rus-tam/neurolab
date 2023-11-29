@@ -3,7 +3,7 @@ import { ParentContext } from "../../utils/ParentContext.js";
 import { useDispatch, useSelector } from "react-redux";
 import { setSimpleIsoRes } from "../../store/slices/simpleIsoSlice.js";
 import { useSimpleIsoMutation } from "../../store/apis/labsApiSlice.js";
-import { simpleIsoCheck } from "../../utils/simple-iso-check.js";
+import { simpleIsoCheck } from "../../utils/checkValues.js";
 import SimpleIsoInitialDataTableFragment from "../fragments/SimpleIsoInitialDataTableFragment.jsx";
 import AmineTreatmentInitialDataTableFragment from "../fragments/AmineTreatmentInitialDataTableFragment.jsx";
 

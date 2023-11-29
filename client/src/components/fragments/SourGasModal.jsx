@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { DataHandler } from "../../utils/preparaDataToState.js";
 import { useSelector } from "react-redux";
 import { Normalize } from "../../utils/normalize.js";
+import { toast } from "react-toastify";
 
 const SourGasModal = () => {
   const dataHandler = new DataHandler();
@@ -25,6 +26,8 @@ const SourGasModal = () => {
     { name: "Мольная доля воды в газе", value: storedData.sour_gas_h2o },
   ]);
 
+  const [compValueSumm, setComponentValueSumm] = useState(1);
+
   const handleCellValueChange = (index, value) => {
     const updatedData = [...initialTableData];
     updatedData[index].value = value;
@@ -37,7 +40,19 @@ const SourGasModal = () => {
     const normalizer = new Normalize(dataHandler.sourGasComposition(storedData));
     const normalizedComp = normalizer.normalizeData();
     dispatch(setSourGasInitialData(normalizedComp));
-    setInitialTableData();
+    setInitialTableData([
+      { name: "Мольная доля диоксида углерода в газе", value: normalizedComp.sour_gas_co2 },
+      { name: "Мольная доля метана в газе", value: normalizedComp.sour_gas_ch4 },
+      { name: "Мольная доля этана в газе", value: normalizedComp.sour_gas_c2h8 },
+      { name: "Мольная доля пропана в газе", value: normalizedComp.sour_gas_c3h8 },
+      { name: "Мольная доля и-бутана в газе", value: normalizedComp.sour_gas_ic4h10 },
+      { name: "Мольная доля н-бутана в газе", value: normalizedComp.sour_gas_nc4h10 },
+      { name: "Мольная доля и-пентан в газе", value: normalizedComp.sour_gas_ic5h12 },
+      { name: "Мольная доля н-пентан в газе", value: normalizedComp.sour_gas_nc5h12 },
+      { name: "Мольная доля сероводорода в газе", value: normalizedComp.sour_gas_h2s },
+      { name: "Мольная доля воды в газе", value: normalizedComp.sour_gas_h2o },
+    ]);
+    toast.info("Составы были нормализованы");
   };
 
   const handleCloseSGCompModal = () => {
@@ -46,6 +61,7 @@ const SourGasModal = () => {
         modalWindowStatus: false,
       }),
     );
+    handleNormalize();
   };
 
   return (
@@ -70,9 +86,7 @@ const SourGasModal = () => {
           ))}
         </tbody>
       </table>
-      <div>
-        <p>Сумма всех концентраций:</p>
-      </div>
+
       <div className="buttons">
         <button onClick={handleNormalize}>Нормализовать</button>
         <button onClick={handleCloseSGCompModal}>Закрыть</button>
