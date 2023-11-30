@@ -14,8 +14,8 @@ const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
     setSourGasTableData(updatedDataGas);
     dispatch(
       setSourGasInitialData({
-        sour_gas_temperature: sourGasTableData[0].value,
-        sour_gas_mass_flow: sourGasTableData[1].value,
+        sour_gas_temperature: parseFloat(sourGasTableData[0].value),
+        sour_gas_mass_flow: parseFloat(sourGasTableData[1].value),
       }),
     );
   };
@@ -26,8 +26,8 @@ const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
     setAmineTableData(updatedDataAmine);
     dispatch(
       setAmineInitialData({
-        amine_temperature: amineTableData[0].value,
-        amine_mass_flow: amineTableData[1].value,
+        amine_temperature: parseFloat(amineTableData[0].value),
+        amine_mass_flow: parseFloat(amineTableData[1].value),
       }),
     );
   };
