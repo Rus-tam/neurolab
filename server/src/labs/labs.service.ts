@@ -31,10 +31,9 @@ export class LabsService {
 
   async getAmineTreatmentResults(dto: AmineTreatmentDTO) {
     const feedStreamModel = this.tfService.amineTreatmentFeedStreamModel;
+    const productCompModel = this.tfService.amineTreatmentProdCompositionModel;
 
-    console.log(dto);
-
-    const feedStreamInput = tf.tensor([
+    const feedComp = [
       dto.sour_gas_temperature,
       dto.sour_gas_pressure,
       dto.sour_gas_mass_flow,
@@ -63,11 +62,11 @@ export class LabsService {
       dto.amine_h2s,
       dto.amine_h2o,
       dto.amine_MDEA,
-    ]);
+    ];
+
+    const feedStreamInput = tf.tensor([feedComp]);
 
     const feedStreamInputNorm = this.normalizeData(feedStreamInput);
-
-    console.log("QQQQQQQQQQQQQQQQ", feedStreamInputNorm);
 
     const feedStreamResults = (
       feedStreamModel.predict(feedStreamInputNorm.reshape([1, 28])) as tf.Tensor
@@ -78,7 +77,59 @@ export class LabsService {
       feedStreamResults[7] = 0;
     }
 
-    console.log("RRRRRRRRRRRRRRRR", feedStreamResults);
+    const productCompInput = tf.tensor([
+      dto.sour_gas_temperature,
+      dto.sour_gas_pressure,
+      dto.sour_gas_mass_flow,
+      feedStreamResults[0],
+      feedStreamResults[1],
+      feedStreamResults[2],
+      feedStreamResults[3],
+      dto.sour_gas_co2,
+      dto.sour_gas_ch4,
+      dto.sour_gas_c2h8,
+      dto.sour_gas_c3h8,
+      dto.sour_gas_ic4h10,
+      dto.sour_gas_nc4h10,
+      dto.sour_gas_ic5h12,
+      dto.sour_gas_nc5h12,
+      dto.sour_gas_h2s,
+      dto.sour_gas_h2o,
+      dto.sour_gas_MDEA,
+      ((dto.sour_gas_h2s * 34) / 22.4) * 1000000,
+      ((dto.sour_gas_co2 * 44) / 22.4) * 1000000,
+      dto.amine_temperature,
+      dto.amine_pressure,
+      dto.amine_mass_flow,
+      feedStreamResults[4],
+      feedStreamResults[5],
+      feedStreamResults[6],
+      feedStreamResults[7],
+      dto.amine_co2,
+      dto.amine_ch4,
+      dto.amine_c2h8,
+      dto.amine_c3h8,
+      dto.amine_ic4h10,
+      dto.amine_nch4h10,
+      dto.amine_ic5h12,
+      dto.amine_nc5h12,
+      dto.amine_h2s,
+      dto.amine_h2o,
+      dto.amine_MDEA,
+      ((dto.amine_h2s * 34) / 22.4) * 1000000,
+      ((dto.amine_co2 * 44) / 22.4) * 1000000,
+    ]);
+
+    const productCompInputNorm = this.normalizeData(productCompInput);
+
+    console.log("OOOOOOOOOO", productCompInputNorm);
+
+    const productCompResult = (
+      productCompModel.predict(productCompInputNorm.reshape([1, 40])) as tf.Tensor
+    ).dataSync();
+
+    console.log("TTTTTT", this.deleteNegativeValues(productCompResult));
+    console.log("eeee", this.deleteNegativeValues(productCompResult)[1]);
   }
 
   private normalizeData(data: any) {
@@ -88,5 +139,11 @@ export class LabsService {
     const normalizedData = tf.div(tf.sub(data, min), tf.sub(max, min));
 
     return normalizedData;
+  }
+
+  private deleteNegativeValues(data: Float32Array | Int32Array | Uint8Array) {
+    const onlyPositiveValues = data.map((item) => (item < 0 ? (item = 0) : item));
+
+    return onlyPositiveValues;
   }
 }
