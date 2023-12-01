@@ -58,7 +58,6 @@ const AmineModel = () => {
 
   return (
     <div>
-      (
       <div className="sour-gas-comp-modal">
         <h2>Введите состав раствора амина</h2>
 
@@ -86,7 +85,6 @@ const AmineModel = () => {
           <button onClick={handleCloseSGCompModal}>Закрыть</button>
         </div>
       </div>
-      )
     </div>
   );
 };

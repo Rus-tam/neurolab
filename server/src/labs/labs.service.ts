@@ -32,6 +32,8 @@ export class LabsService {
   async getAmineTreatmentResults(dto: AmineTreatmentDTO) {
     const feedStreamModel = this.tfService.amineTreatmentFeedStreamModel;
 
+    console.log(dto);
+
     const feedStreamInput = tf.tensor([
       dto.sour_gas_temperature,
       dto.sour_gas_pressure,

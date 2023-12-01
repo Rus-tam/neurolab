@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setSourGasInitialData, setAmineInitialData } from "../../store/slices/amineTreatmentSlice.js";
+import { setSourGasTempPress, setAmineTempPress } from "../../store/slices/amineTreatmentSlice.js";
 import "../styles/amine-treatment.css";
 
 const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
@@ -13,7 +13,7 @@ const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
     updatedDataGas[index].value = value;
     setSourGasTableData(updatedDataGas);
     dispatch(
-      setSourGasInitialData({
+      setSourGasTempPress({
         sour_gas_temperature: parseFloat(sourGasTableData[0].value),
         sour_gas_mass_flow: parseFloat(sourGasTableData[1].value),
       }),
@@ -25,7 +25,7 @@ const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
     updatedDataAmine[index].value = value;
     setAmineTableData(updatedDataAmine);
     dispatch(
-      setAmineInitialData({
+      setAmineTempPress({
         amine_temperature: parseFloat(amineTableData[0].value),
         amine_mass_flow: parseFloat(amineTableData[1].value),
       }),
