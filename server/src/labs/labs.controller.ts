@@ -34,7 +34,8 @@ export class LabsController {
     @CurrentUser() currentUser: UserEntity,
   ) {
     // console.log("OOOOOOOOOOO", inputData);
-    await this.labService.getAmineTreatmentResults(inputData);
+    const results = await this.labService.getAmineTreatmentResults(inputData);
+    console.log(results);
   }
 
   @UseGuards(AuthGuard("jwt"))
