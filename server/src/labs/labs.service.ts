@@ -68,14 +68,11 @@ export class LabsService {
 
     const feedStreamInputNorm = this.normalizeData(feedStreamInput);
 
-    const feedStreamResults = (
+    const feedStream = (
       feedStreamModel.predict(feedStreamInputNorm.reshape([1, 28])) as tf.Tensor
     ).dataSync();
 
-    if (feedStreamResults[2] || feedStreamResults[7]) {
-      feedStreamResults[2] = 0;
-      feedStreamResults[7] = 0;
-    }
+    const feedStreamResults = this.deleteNegativeValues(feedStream);
 
     const productCompInput = tf.tensor([
       dto.sour_gas_temperature,
@@ -122,14 +119,11 @@ export class LabsService {
 
     const productCompInputNorm = this.normalizeData(productCompInput);
 
-    console.log("OOOOOOOOOO", productCompInputNorm);
-
-    const productCompResult = (
+    const productComp = (
       productCompModel.predict(productCompInputNorm.reshape([1, 40])) as tf.Tensor
     ).dataSync();
 
-    console.log("TTTTTT", this.deleteNegativeValues(productCompResult));
-    console.log("eeee", this.deleteNegativeValues(productCompResult)[1]);
+    const productCompResult = this.deleteNegativeValues(productComp);
   }
 
   private normalizeData(data: any) {
