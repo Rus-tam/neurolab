@@ -7,6 +7,7 @@ import SourGasModal from "../fragments/SourGasModal.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { setSGModalWindowStatus, setAmineModalWindowStatus } from "../../store/slices/amineTreatmentSlice.js";
 import AmineModel from "../fragments/AmineModal.jsx";
+import ResultTable from "../layout/ResultTable.jsx";
 
 const AmineTreatment = () => {
   const dispatch = useDispatch();
@@ -75,6 +76,12 @@ const AmineTreatment = () => {
       <button className="amine-composition" onClick={handleOpenAmineCompModal}>
         Состав амина
       </button>
+
+      <div className="result-table">
+        <ParentContext.Provider value="amine-treatment">
+          <ResultTable caption={"Результаты расчетов"} results={["tttttt"]} />
+        </ParentContext.Provider>
+      </div>
 
       {modalSGWindowStatus && (
         <div className="modal">
