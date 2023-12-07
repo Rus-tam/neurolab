@@ -34,6 +34,10 @@ const InputTable = ({ caption, initialValues }) => {
       tableFragment = (
         <AmineTreatmentInitialDataTableFragment caption={caption} initialValues={initialValues} />
       );
+      break;
+
+    case "low-temp-dist":
+      dataToAI = {};
   }
 
   const handleCalculation = async (e) => {

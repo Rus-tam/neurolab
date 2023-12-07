@@ -1,0 +1,13 @@
+.low-temp-dist {
+  position: relative;
+  height: 90vh;
+}
+
+.low-temp-dist-unit {
+  width: 40rem;
+  height: 40rem;
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translate(-45%, -51%);
+}
