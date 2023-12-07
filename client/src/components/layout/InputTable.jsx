@@ -6,6 +6,7 @@ import { useSimpleIsoMutation, useAmineTreatmentMutation } from "../../store/api
 import { simpleIsoCheck } from "../../utils/checkValues.js";
 import SimpleIsoInitialDataTableFragment from "../fragments/SimpleIsoInitialDataTableFragment.jsx";
 import AmineTreatmentInitialDataTableFragment from "../fragments/AmineTreatmentInitialDataTableFragment.jsx";
+import LowTempDistDataTableFraction from "../fragments/LowTempDistDataTableFragment.jsx";
 
 const InputTable = ({ caption, initialValues }) => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const InputTable = ({ caption, initialValues }) => {
 
   const simpleIsoData = useSelector((state) => state.simpleIso);
   const amineTreatmentData = useSelector((state) => state.amineTreatment);
+  const lowTempDistData = useSelector((state) => state.lowTempDistData);
   const [getSimpleIsoRes, IsoResults] = useSimpleIsoMutation();
   const [getAmineTreatmentRes, AmineResults] = useAmineTreatmentMutation();
 
@@ -37,7 +39,14 @@ const InputTable = ({ caption, initialValues }) => {
       break;
 
     case "low-temp-dist":
-      dataToAI = {};
+      dataToAI = { ...lowTempDistData };
+      tableFragment = (
+        <LowTempDistDataTableFraction
+          caption={caption}
+          initialValues={initialValues}
+        ></LowTempDistDataTableFraction>
+      );
+      break;
   }
 
   const handleCalculation = async (e) => {
