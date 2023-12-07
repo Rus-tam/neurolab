@@ -11,3 +11,9 @@
   left: 45%;
   transform: translate(-45%, -51%);
 }
+
+.low-temp-dist .input-table {
+  position: absolute;
+  width: 23rem;
+  top: 25%;
+}
