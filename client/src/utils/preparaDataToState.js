@@ -48,6 +48,21 @@ export class DataHandler {
         };
         break;
 
+      case "low-temp-dist":
+        return {
+          n2_mass_frac: data[0].value,
+          co2_mass_frac: data[1].value,
+          ch4_mass_frac: data[2].value,
+          c2h6_mass_frac: data[3].value,
+          c3h8_mass_frac: data[4].value,
+          ic4h10_mass_frac: data[5].value,
+          nc4h10_mass_frac: data[6].value,
+          c5h12_mass_frac: data[7].value,
+          c6h14_mass_frac: data[8].value,
+          c7h16_mass_frac: data[9].value,
+        };
+        break;
+
       default:
         return null;
     }
@@ -74,6 +89,21 @@ export class DataHandler {
       amine_h2o: data.amine_h2o,
       amine_co2: data.amine_co2,
       amine_h2s: data.amine_h2s,
+    };
+  }
+
+  low_temp_dist_gas(data) {
+    return {
+      n2_mass_frac: data.n2_mass_frac,
+      co2_mass_frac: data.co2_mass_frac,
+      ch4_mass_frac: data.ch4_mass_frac,
+      c2h6_mass_frac: data.c2h6_mass_frac,
+      c3h8_mass_frac: data.c3h8_mass_frac,
+      ic4h10_mass_frac: data.ic4h10_mass_frac,
+      nc4h10_mass_frac: data.nc4h10_mass_frac,
+      c5h12_mass_frac: data.c5h12_mass_frac,
+      c6h14_mass_frac: data.c6h14_mass_frac,
+      c7h16_mass_frac: data.c7h16_mass_frac,
     };
   }
 }

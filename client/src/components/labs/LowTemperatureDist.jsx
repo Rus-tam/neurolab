@@ -1,4 +1,5 @@
 import "../styles/low-temp-dist.css";
+import "../styles/modal.css";
 import LowTempDist from "../../blueprints/low-temperature-dist/low-temperature-dist.svg";
 import { ParentContext } from "../../utils/ParentContext.js";
 import InputTable from "../layout/InputTable.jsx";
