@@ -21,7 +21,6 @@ const ResultTable = ({ caption, results }) => {
       break;
 
     case "amine-treatment":
-      console.log(results);
       resultData = [
         {
           name: "Температура очищенного газа, град. Цельсия",
@@ -64,6 +63,9 @@ const ResultTable = ({ caption, results }) => {
           value: 0.14,
         },
       ];
+      break;
+
+    case "low-temp-dist":
       break;
 
     default:
