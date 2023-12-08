@@ -19,6 +19,7 @@ const lowTempDistSlice = createSlice({
     column_pressure: 3.699,
     gas_pressure_after_D1: 0.021,
     heat_flow_T1: 5.5,
+    lowTempDistModalStatus: false,
   },
 
   reducers: {
@@ -41,9 +42,12 @@ const lowTempDistSlice = createSlice({
       state.c6h14_mass_frac = action.payload.c6h14_mass_frac;
       state.c7h16_mass_frac = action.payload.c7h16_mass_frac;
     },
+    setModalWindowStatus: (state, action) => {
+      state.lowTempDistModalStatus = action.payload.lowTempDistModalStatus;
+    },
   },
 });
 
-export const { setProp, setGasComp } = lowTempDistSlice.actions;
+export const { setProp, setGasComp, setModalWindowStatus } = lowTempDistSlice.actions;
 
 export const lowTempDistReducer = lowTempDistSlice.reducer;

@@ -2,8 +2,14 @@ import "../styles/low-temp-dist.css";
 import LowTempDist from "../../blueprints/low-temperature-dist/low-temperature-dist.svg";
 import { ParentContext } from "../../utils/ParentContext.js";
 import InputTable from "../layout/InputTable.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { setModalWindowStatus } from "../../store/slices/lowTempDistSlice.js";
+import LowTempDistModal from "../fragments/LowTempDistModal.jsx";
 
 const LowTemperatureDist = () => {
+  const dispatch = useDispatch();
+  const { lowTempDistModalStatus } = useSelector((state) => state.lowTempDist);
+
   const feedGasData = [
     { name: "Температура газа, град. Цельсия", value: "20" },
     { name: "Массовый расход газа, кг/ч", value: "10000" },
@@ -12,6 +18,14 @@ const LowTemperatureDist = () => {
     { name: "Давление газа после Д-1, МПа", value: "0.02" },
     { name: "Тепловая нагрузка Т-1, МДж", value: "5.5" },
   ];
+
+  const handleOpenGasCompModal = () => {
+    dispatch(
+      setModalWindowStatus({
+        lowTempDistModalStatus: true,
+      }),
+    );
+  };
 
   return (
     <div className="low-temp-dist">
@@ -22,6 +36,18 @@ const LowTemperatureDist = () => {
           <InputTable caption={"Низкотемпературная ректификация"} initialValues={feedGasData} />
         </ParentContext.Provider>
       </div>
+
+      <button className="gas-composition" onClick={handleOpenGasCompModal}>
+        Состав газа
+      </button>
+
+      {lowTempDistModalStatus && (
+        <div className="modal">
+          <div className="modal-content">
+            <LowTempDistModal />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,4 +1,13 @@
+import { useDispatch, useSelector } from "react-redux";
+import { DataHandler } from "../../utils/preparaDataToState.js";
+import { useState } from "react";
+
 const LowTempDistModal = () => {
+  const dataHandler = new DataHandler();
+  const dispatch = useDispatch();
+
+  const storedData = useSelector((state) => state.lowTempDist);
+
   const [initialTableData, setInitialTableData] = useState([
     { name: "Массовая доля азота", value: "0.018" },
     { name: "Массовая доля оксида углерода II", value: "0.011" },
