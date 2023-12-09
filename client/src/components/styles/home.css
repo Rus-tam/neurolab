@@ -1,12 +1,26 @@
 .home-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
 }
 
-.home-page p {
-    font-size: 1.2rem;
-    width: 50rem;
+.home-page p,
+h2,
+h3,
+h4 {
+  font-size: 1.2rem;
+  width: 75rem;
+}
+
+.home-page h3 {
+  text-align: center;
+}
+
+.home-page li {
+  font-family: "Indie Flower", cursive;
+  color: #001dbc;
+  width: 75rem;
+  font-size: 1.2rem;
 }

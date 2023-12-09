@@ -2,12 +2,12 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-  "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: linear-gradient(#bbd9f5 1.1px, transparent 1.1px),
-  linear-gradient(to right, rgba(141, 203, 248, 0.8) 1.1px, #fdfcfb 1.1px);
+    linear-gradient(to right, rgba(141, 203, 248, 0.8) 1.1px, #fdfcfb 1.1px);
   background-size: 22px 22px;
 }
 
@@ -100,7 +100,9 @@ p {
   color: #001dbc;
 }
 
-h2 {
+h2,
+h3,
+h4 {
   font-family: "Indie Flower", cursive;
   color: #001dbc;
 }

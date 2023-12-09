@@ -5,21 +5,46 @@ const Home = () => {
   const navigate = useNavigate();
   return (
     <div className="home-page">
+      <h3>Добро пожаловать в комплекс лабораторных работ Neurolab!</h3>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aut, consequatur
-        corporis cum cupiditate dolore dolorem dolorum, enim fuga in ipsa, minus nesciunt
-        non omnis quo repudiandae sunt tenetur voluptates.
+        Преобразите свой опыт изучения химической технологии с помощью наших инновационных виртуальных
+        лабораторных работ. Мы предлагаем уникальный подход к изучению, используя передовые технологии
+        искусственного интеллекта.
       </p>
+
+      <h3>Почему наш лабораторный комплекс уникальный?</h3>
+
+      <ul className="list">
+        <li>
+          <b>Использование нейросетей</b>: Наши лабораторные работы не просто имитируют химические процессы –
+          они оптимизированы с использованием нейросетей на сервере, обеспечивая высокоточные результаты и
+          реалистичные условия;
+        </li>
+        <li>
+          <b>Безопасное обучение</b>: Забудьте о рисках, связанных с реальными химическими экспериментами.
+          Наши виртуальные работы позволяют безопасно исследовать и проводить эксперименты, минимизируя
+          потенциальные опасности;
+        </li>
+        <li>
+          <b>Интерактивность и удобство</b>: Интерфейс нашего приложения разработан для максимально
+          комфортного взаимодействия с виртуальными процессами. Изучайте материал в реальном времени,
+          настраивая параметры и следя за результатами;
+        </li>
+        <li>
+          <b>Индивидуализированное обучение</b>: Персонализируйте свой путь обучения, выбирая интересующие вас
+          лабораторные работы и фокусируясь на конкретных аспектах химической технологии;
+        </li>
+        <li>
+          <b>Высококачественные результаты</b>: Наше приложение обеспечивает точные и воспроизводимые
+          результаты;
+        </li>
+      </ul>
+
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam assumenda
-        cupiditate dolorum earum impedit ipsum iste neque nobis quo reiciendis,
-        reprehenderit, rerum tempore vero? Beatae ex explicabo laborum non saepe.
+        Присоединяйтесь к нам и откройте новые горизонты в изучении химической технологии через передовые
+        технологии!
       </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam cupiditate
-        doloribus excepturi exercitationem harum id incidunt ipsam modi nemo, obcaecati
-        optio quisquam ratione sed, tempore velit. Aut eos perspiciatis repellat?
-      </p>
+
       <button onClick={() => navigate("/labs")}>К списку лабораторных работ</button>
     </div>
   );
