@@ -17,3 +17,9 @@
   width: 25rem;
   top: 30%;
 }
+
+.gas-composition {
+  position: absolute;
+  top: 70%;
+  left: 28%;
+}
