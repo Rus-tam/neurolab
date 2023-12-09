@@ -32,9 +32,7 @@ const LabCards = () => {
         {parentComponentName === "labs-list" ? (
           <button onClick={() => navigate("/labs/simple-isomerization")}>Перейти к работе</button>
         ) : (
-          <button onClick={() => navigate("/labs/simple-isomerization/results")}>
-            Посмотреть результаты
-          </button>
+          <button onClick={() => navigate("/labs/simple-isomerization/results")}>Результаты</button>
         )}
       </div>
 
@@ -50,7 +48,7 @@ const LabCards = () => {
         <div className="card-details">
           <ul>
             <li>Модель аминовой очистки кислого газа</li>
-            <li>Самые сложные зависимости</li>
+            <li>Возможность изменения расхода, температуры и состава кислого газа и аминового раствора</li>
             <li>Сложность: средняя</li>
           </ul>
         </div>
@@ -58,9 +56,7 @@ const LabCards = () => {
         {parentComponentName === "labs-list" ? (
           <button onClick={() => navigate("/labs/amine-treatment")}>Перейти к работе</button>
         ) : (
-          <button onClick={() => navigate("/labs/simple-isomerization/results")}>
-            Посмотреть результаты
-          </button>
+          <button onClick={() => navigate("/labs/simple-isomerization/results")}>Результаты</button>
         )}
       </div>
 
@@ -76,17 +72,15 @@ const LabCards = () => {
         <div className="card-details">
           <ul>
             <li>Модель низкотемпературной ректификации</li>
-            <li>Самые сложные зависимости</li>
-            <li>Сложность: высокая</li>
+            <li>Возможность изучения параметров работы детандера и ректификационной колонны</li>
+            <li>Сложность: средняя</li>
           </ul>
         </div>
 
         {parentComponentName === "labs-list" ? (
           <button onClick={() => navigate("/labs/low-temperature-distillation")}>Перейти к работе</button>
         ) : (
-          <button onClick={() => navigate("/labs/simple-isomerization/results")}>
-            Посмотреть результаты
-          </button>
+          <button onClick={() => navigate("/labs/simple-isomerization/results")}>Результаты</button>
         )}
       </div>
     </div>
