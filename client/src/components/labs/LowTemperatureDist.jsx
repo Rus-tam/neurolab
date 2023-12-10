@@ -6,6 +6,7 @@ import InputTable from "../layout/InputTable.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { setModalWindowStatus } from "../../store/slices/lowTempDistSlice.js";
 import LowTempDistModal from "../fragments/LowTempDistModal.jsx";
+import ResultTable from "../layout/ResultTable.jsx";
 
 const LowTemperatureDist = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,12 @@ const LowTemperatureDist = () => {
       <button className="gas-composition" onClick={handleOpenGasCompModal}>
         Состав газа
       </button>
+
+      <div className="result-table">
+        <ParentContext.Provider value="low-temp-dist">
+          <ResultTable caption={"Результаты расчетов"} results={["tttttt"]} />
+        </ParentContext.Provider>
+      </div>
 
       {lowTempDistModalStatus && (
         <div className="modal">
