@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from dto.dto import SimpleIsoInitial
-from models.models import simple_iso_model
+from service.simple_isomerization_service import simple_isomerization_service
 
 app = FastAPI()
 
@@ -12,5 +12,6 @@ def read_root():
 
 @app.post("/simple_isomerization")
 def simple_isomerization(dto: SimpleIsoInitial):
-    pass
+    simple_isomerization_service(dto)
+
 
