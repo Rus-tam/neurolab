@@ -28,6 +28,5 @@ def simple_isomerization_service(dto: SimpleIsoInitial):
 
     norm_data = normalize_data(initial_data)
     prediction_results = simple_iso_model.predict(norm_data)
-    print('NORM DATA', norm_data)
-    print('PREDICTION DATA', prediction_results)
+    return prediction_results.tolist()
 
