@@ -22,5 +22,9 @@ def simple_isomerization(dto: SimpleIsoInitial):
 
 @app.post("/amine_treatment")
 def amine_treatment(dto: AmineTreatmentInitial):
-    amine_treatment_prod_temp(dto)
+    prod_temp = amine_treatment_prod_temp(dto)
+
+    print('PROD TEMP', prod_temp[0])
+
+    return prod_temp[0]
 

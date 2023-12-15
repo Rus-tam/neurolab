@@ -1,5 +1,5 @@
 from dto.dto import AmineTreatmentInitial
-from models.simple_isomerization.simple_iso_model import simple_iso_model
+from models.amine_treatment.amine_treatment import amine_treatment_prod_temp_model
 import pandas as pd
 from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import MinMaxScaler
@@ -48,7 +48,9 @@ def amine_treatment_prod_temp(dto: AmineTreatmentInitial):
         'lean_amine H2O mol frac': [dto.amine_h2o], 'lean_amine MDEAmine mol frac': [dto.amine_MDEA]
     })
     norm_temp_data = normalize_temp_data(initial_data)
+    prod_temp = amine_treatment_prod_temp_model(norm_temp_data).numpy().tolist()
 
+    return prod_temp[0]
 
 
 
