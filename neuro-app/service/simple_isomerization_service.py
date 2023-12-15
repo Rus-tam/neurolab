@@ -25,7 +25,6 @@ def simple_isomerization_service(dto: SimpleIsoInitial):
         "feed_temperature": [dto.feed_temperature],
         "feed_mass_flow": [dto.feed_mass_flow]
     })
-
     norm_data = normalize_data(initial_data)
     prediction_results = simple_iso_model.predict(norm_data)
     return prediction_results.tolist()

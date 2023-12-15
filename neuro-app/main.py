@@ -1,6 +1,7 @@
 from fastapi import FastAPI
-from dto.dto import SimpleIsoInitial, SimpleIsoResponse
+from dto.dto import SimpleIsoInitial, SimpleIsoResponse, AmineTreatmentInitial
 from service.simple_isomerization_service import simple_isomerization_service
+from service.amine_treatment_service import amine_treatment_prod_temp
 
 app = FastAPI()
 
@@ -18,4 +19,8 @@ def simple_isomerization(dto: SimpleIsoInitial):
         "product_temperature": prediction[1]
     }
 
+
+@app.post("/amine_treatment")
+def amine_treatment(dto: AmineTreatmentInitial):
+    amine_treatment_prod_temp(dto)
 

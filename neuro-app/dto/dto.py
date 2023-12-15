@@ -15,7 +15,6 @@ class SimpleIsoResponse(BaseModel):
 class AmineTreatmentInitial(BaseModel):
     sour_gas_temperature: float
     sour_gas_mass_flow: float
-    sour_gas_pressure: float
     sour_gas_co2: float
     sour_gas_ch4: float
     sour_gas_c2h8: float
@@ -29,7 +28,6 @@ class AmineTreatmentInitial(BaseModel):
     sour_gas_MDEA: float
     amine_temperature: float
     amine_mass_flow: float
-    amine_pressure: float
     amine_co2: float
     amine_ch4: float
     amine_c2h8: float
@@ -41,3 +39,4 @@ class AmineTreatmentInitial(BaseModel):
     amine_h2s: float
     amine_h2o: float
     amine_MDEA: float
+
