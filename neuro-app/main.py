@@ -26,5 +26,8 @@ def amine_treatment(dto: AmineTreatmentInitial):
 
     print('PROD TEMP', prod_temp[0])
 
-    return prod_temp[0]
+    return {
+        "sweet_gas temperature, C": round(prod_temp[0][0], 4),
+        "rich_amine temperature, C": round(prod_temp[0][1], 4)
+    }
 

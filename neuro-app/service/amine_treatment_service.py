@@ -50,7 +50,7 @@ def amine_treatment_prod_temp(dto: AmineTreatmentInitial):
     norm_temp_data = normalize_temp_data(initial_data)
     prod_temp = amine_treatment_prod_temp_model(norm_temp_data).numpy().tolist()
 
-    return prod_temp[0]
+    return prod_temp
 
 
 
