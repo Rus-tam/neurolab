@@ -1,5 +1,4 @@
 from dto.dto import AmineTreatmentInitial
-from dto.dto import RichAmineMassFlow
 from models.amine_treatment.amine_treatment import amine_treatment_prod_temp_model
 from models.amine_treatment.amine_treatment import amine_treatment_rich_amine_mass_flow_model
 import pandas as pd
@@ -19,28 +18,6 @@ def normalize_data(example_data, input_data, columns, labels):
     )
     ct.fit(x_train)
     return ct.transform(input_data)
-
-
-def normalize_rich_amine_mass_flow_data(input_data):
-    columns = [
-    'feed_gas temperature, C', 'feed_gas mass flow, kg/h', 'feed_gas CO2 mol frac', 'feed_gas Methane mol frac',
-    'feed_gas Ethane mol frac', 'feed_gas Propane mol frac', 'feed_gas i-Butane mol frac', 'feed_gas n-Butane mol frac',
-    'feed_gas i-Pentane mol frac', 'feed_gas n-Pentane mol frac', 'feed_gas H2S mol frac', 'feed_gas H2O mol frac',
-    'feed_gas MDEAmine mol frac', 'lean_amine temperature, C', 'lean_amine mass flow, kg/h', 'lean_amine CO2 mol frac',
-    'lean_amine Methane mol frac', 'lean_amine Ethane mol frac', 'lean_amine Propane mol frac',
-    'lean_amine i-Butane mol frac', 'lean_amine n-Butane mol frac', 'lean_amine i-Pentane mol frac',
-    'lean_amine n-Pentane mol frac', 'lean_amine H2S mol frac', 'lean_amine H2O mol frac', 'lean_amine MDEAmine mol frac',
-    'sweet_gas temperature, C', 'rich_amine temperature, C'
-    ]
-    x = amine_treatment_rich_amine_mass_flow_data[columns]
-    y = amine_treatment_rich_amine_mass_flow_data[['rich_amine mass flow, kg/h']]
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
-    ct = make_column_transformer(
-        (MinMaxScaler(), columns)
-    )
-    ct.fit(x_train)
-    norm_data = ct.transform(input_data)
-    return norm_data
 
 
 def amine_treatment_prod_temp(dto: AmineTreatmentInitial):
@@ -78,7 +55,7 @@ def amine_treatment_prod_temp(dto: AmineTreatmentInitial):
     return prod_temp
 
 
-def amine_treatment_rich_amine_mass_flow(dto: RichAmineMassFlow):
+def amine_treatment_rich_amine_mass_flow(dto: AmineTreatmentInitial):
     initial_data = pd.DataFrame({
         'feed_gas temperature, C': [dto.sour_gas_temperature], 'feed_gas mass flow, kg/h': [dto.sour_gas_mass_flow],
         'feed_gas CO2 mol frac': [dto.sour_gas_co2], 'feed_gas Methane mol frac': [dto.sour_gas_ch4],
@@ -96,6 +73,7 @@ def amine_treatment_rich_amine_mass_flow(dto: RichAmineMassFlow):
         'sweet_gas temperature, C': [dto.sweet_gas_temperature],
         'rich_amine temperature, C': [dto.rich_amine_temperature]
     })
+
     columns = [
     'feed_gas temperature, C', 'feed_gas mass flow, kg/h', 'feed_gas CO2 mol frac', 'feed_gas Methane mol frac',
     'feed_gas Ethane mol frac', 'feed_gas Propane mol frac', 'feed_gas i-Butane mol frac', 'feed_gas n-Butane mol frac',
@@ -106,6 +84,7 @@ def amine_treatment_rich_amine_mass_flow(dto: RichAmineMassFlow):
     'lean_amine n-Pentane mol frac', 'lean_amine H2S mol frac', 'lean_amine H2O mol frac', 'lean_amine MDEAmine mol frac',
     'sweet_gas temperature, C', 'rich_amine temperature, C'
     ]
+
     labels = ['rich_amine mass flow, kg/h']
     norm_rich_amine_mass_flow_data = normalize_data(
         amine_treatment_rich_amine_mass_flow_data,
@@ -113,8 +92,8 @@ def amine_treatment_rich_amine_mass_flow(dto: RichAmineMassFlow):
         columns,
         labels
     )
-    rich_amine_mass_flow = amine_treatment_rich_amine_mass_flow_model(norm_rich_amine_mass_flow_data)
 
-    print('TTTTTTTTTT', rich_amine_mass_flow)
+    rich_amine_mass_flow = amine_treatment_rich_amine_mass_flow_model(norm_rich_amine_mass_flow_data).numpy().tolist()
+    return rich_amine_mass_flow
 
 

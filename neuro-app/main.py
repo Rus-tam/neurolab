@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from dto.dto import SimpleIsoInitial, SimpleIsoResponse, AmineTreatmentInitial, RichAmineMassFlow
+from dto.dto import SimpleIsoInitial, SimpleIsoResponse, AmineTreatmentInitial
 from service.simple_isomerization_service import simple_isomerization_service
 from service.amine_treatment_service import amine_treatment_prod_temp
 from service.amine_treatment_service import amine_treatment_rich_amine_mass_flow
@@ -25,12 +25,14 @@ def simple_isomerization(dto: SimpleIsoInitial):
 def amine_treatment(dto: AmineTreatmentInitial):
     prod_temp = amine_treatment_prod_temp(dto)
 
-    dto['sweet_gas temperature, C'] = round(prod_temp[0][0], 4)
-    dto['rich_amine temperature, C'] = round(prod_temp[0][1], 4)
+    dto.sweet_gas_temperature = round(prod_temp[0][0], 4)
+    dto.rich_amine_temperature = round(prod_temp[0][1], 4)
 
-    amine_treatment_rich_amine_mass_flow(dto)
+    rich_amine_mass_flow = amine_treatment_rich_amine_mass_flow(dto)
 
     return {
         "sweet_gas temperature, C": round(prod_temp[0][0], 4),
-        "rich_amine temperature, C": round(prod_temp[0][1], 4)
+        "rich_amine temperature, C": round(prod_temp[0][1], 4),
+        "rich_amine mass flow, kg/h": round(rich_amine_mass_flow[0][0], 4),
+        "sweet_gas mass flow, kg/h": round(((dto.sour_gas_mass_flow + dto.amine_mass_flow) - rich_amine_mass_flow[0][0]), 4)
     }
