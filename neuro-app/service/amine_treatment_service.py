@@ -1,12 +1,14 @@
 from dto.dto import AmineTreatmentInitial
 from models.amine_treatment.amine_treatment import amine_treatment_prod_temp_model
 from models.amine_treatment.amine_treatment import amine_treatment_rich_amine_mass_flow_model
+from models.amine_treatment.amine_treatment import amine_treatment_stream_mol_weight_model
 import pandas as pd
 from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 from data.amine_treatment.amine_treatment import amine_treatment_temp_data
 from data.amine_treatment.amine_treatment import amine_treatment_rich_amine_mass_flow_data
+from data.amine_treatment.amine_treatment import amine_treatment_stream_molar_weight_data
 from utils.initial_data_handler import prepare_initial_data
 
 
@@ -76,6 +78,15 @@ def amine_treatment_stream_mol_weight(dto: AmineTreatmentInitial):
         'rich_amine molecular weight',
         'sweet_gas molecular weight'
     ]
+    norm_stream_molar_weight = normalize_data(
+        amine_treatment_stream_molar_weight_data,
+        initial_data,
+        columns,
+        labels
+    )
+    molar_weight = amine_treatment_stream_mol_weight_model(norm_stream_molar_weight).numpy().tolist()
+
+    return molar_weight
 
 
 
