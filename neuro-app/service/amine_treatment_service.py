@@ -89,4 +89,9 @@ def amine_treatment_stream_mol_weight(dto: AmineTreatmentInitial):
     return molar_weight
 
 
+def rich_amine_sour_comp_molar_flow(dto: AmineTreatmentInitial):
+    data = prepare_initial_data(dto)
+    initial_data = pd.DataFrame({
+        **data,
 
+    })

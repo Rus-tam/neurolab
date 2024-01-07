@@ -5,6 +5,7 @@ from service.amine_treatment_service import amine_treatment_prod_temp
 from service.amine_treatment_service import amine_treatment_rich_amine_mass_flow
 from service.amine_treatment_service import amine_treatment_stream_mol_weight
 
+
 app = FastAPI()
 
 
@@ -29,17 +30,28 @@ def amine_treatment(dto: AmineTreatmentInitial):
     dto.sweet_gas_temperature = round(prod_temp[0][0], 4)
     dto.rich_amine_temperature = round(prod_temp[0][1], 4)
 
-    rich_amine_mass_flow = amine_treatment_rich_amine_mass_flow(dto)
+    rich_amine_mass_flow = amine_treatment_rich_amine_mass_flow(dto)[0][0]
 
-    feed_gas_mol_weight, lean_amine_mol_weight, rich_amine_mol_weight, sweet_gas_mol_weight = amine_treatment_stream_mol_weight(dto)[0]
+    dto.feed_gas_mol_weight, dto.lean_amine_mol_weight, dto.rich_amine_mol_weight, dto.sweet_gas_mol_weight = amine_treatment_stream_mol_weight(dto)[0]
+
+    dto.feed_gas_mol_flow = dto.sour_gas_mass_flow / dto.feed_gas_mol_weight
+    dto.feed_gas_H2S_mol_flow = dto.feed_gas_mol_flow * dto.sour_gas_h2s
+    dto.feed_gas_CO2_mol_flow = dto.feed_gas_mol_flow * dto.sour_gas_co2
+    dto.lean_amine_mol_flow = dto.amine_mass_flow / dto.lean_amine_mol_weight
+    dto.lean_amine_H2S_mol_flow = dto.lean_amine_mol_flow * dto.amine_h2s
+    dto.lean_amine_CO2_mol_flow = dto.lean_amine_mol_flow * dto.amine_co2
+    dto.rich_amine_mol_flow = rich_amine_mass_flow / dto.rich_amine_mol_weight
+
+
+
 
     return {
         "sweet_gas temperature, C": round(prod_temp[0][0], 4),
         "rich_amine temperature, C": round(prod_temp[0][1], 4),
-        "rich_amine mass flow, kg/h": round(rich_amine_mass_flow[0][0], 4),
-        "sweet_gas mass flow, kg/h": round(((dto.sour_gas_mass_flow + dto.amine_mass_flow) - rich_amine_mass_flow[0][0]), 4),
-        "feed_gas_mol_weight": round(feed_gas_mol_weight, 4),
-        "lean_amine_mol_weight": round(lean_amine_mol_weight, 4),
-        "rich_amine_mol_weight": round(rich_amine_mol_weight, 4),
-        "sweet_gas_mol_weight": round(sweet_gas_mol_weight, 4),
+        "rich_amine mass flow, kg/h": round(rich_amine_mass_flow, 4),
+        "sweet_gas mass flow, kg/h": round(((dto.sour_gas_mass_flow + dto.amine_mass_flow) - rich_amine_mass_flow), 4),
+        "feed_gas_mol_weight": round(dto.feed_gas_mol_weight, 4),
+        "lean_amine_mol_weight": round(dto.lean_amine_mol_weight, 4),
+        "rich_amine_mol_weight": round(dto.rich_amine_mol_weight, 4),
+        "sweet_gas_mol_weight": round(dto.sweet_gas_mol_weight, 4),
     }
