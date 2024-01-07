@@ -32,10 +32,6 @@ def amine_treatment(dto: AmineTreatmentInitial):
     rich_amine_mass_flow = amine_treatment_rich_amine_mass_flow(dto)
 
     feed_gas_mol_weight, lean_amine_mol_weight, rich_amine_mol_weight, sweet_gas_mol_weight = amine_treatment_stream_mol_weight(dto)[0]
-    print('ggggg', feed_gas_mol_weight)
-
-    # res = amine_treatment_stream_mol_weight(dto)[0]
-    # print('TTTTTTT', type(res))
 
     return {
         "sweet_gas temperature, C": round(prod_temp[0][0], 4),
