@@ -41,6 +41,8 @@ class AmineTreatmentInitial(BaseModel):
     amine_MDEA: float
     sweet_gas_temperature: float
     rich_amine_temperature: float
+    sweet_gas_mass_flow: float
+    rich_amine_mass_flow: float
     feed_gas_mol_weight: float
     lean_amine_mol_weight: float
     rich_amine_mol_weight: float
