@@ -5,6 +5,7 @@ from service.amine_treatment_service import amine_treatment_prod_temp
 from service.amine_treatment_service import amine_treatment_rich_amine_mass_flow
 from service.amine_treatment_service import amine_treatment_stream_mol_weight
 from service.amine_treatment_service import sweet_gas_H2S_ppm
+from service.amine_treatment_service import sweet_gas_CO2_ppm
 
 
 app = FastAPI()
@@ -46,6 +47,7 @@ def amine_treatment(dto: AmineTreatmentInitial):
     dto.sweet_gas_mol_flow = dto.sweet_gas_mass_flow / dto.sweet_gas_mol_weight
 
     sweet_gas_H2S_ppm_rate = sweet_gas_H2S_ppm(dto)[0][0]
+    sweet_gas_CO2_ppm_rate = sweet_gas_CO2_ppm(dto)[0][0]
 
     return {
         "sweet_gas temperature, C": round(prod_temp[0][0], 4),
@@ -56,5 +58,6 @@ def amine_treatment(dto: AmineTreatmentInitial):
         "lean_amine_mol_weight": round(dto.lean_amine_mol_weight, 4),
         "rich_amine_mol_weight": round(dto.rich_amine_mol_weight, 4),
         "sweet_gas_mol_weight": round(dto.sweet_gas_mol_weight, 4),
-        "sweet_gas_H2S_ppm_rate": round(sweet_gas_H2S_ppm_rate, 4)
+        "sweet_gas_H2S_ppm_rate": round(sweet_gas_H2S_ppm_rate, 4),
+        "sweet_gas_CO2_ppm_rate": round(sweet_gas_CO2_ppm_rate, 4)
     }
