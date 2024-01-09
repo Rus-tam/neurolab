@@ -55,6 +55,9 @@ def amine_treatment(dto: AmineTreatmentInitial):
 
     rich_amine_H2O_mol_frac, rich_amine_MDEA_mol_frac = rich_amine_H2O_MDEA(dto)[0]
 
+    if (rich_amine_H2O_mol_frac + rich_amine_MDEA_mol_frac) >= 1:
+        rich_amine_H2O_mol_frac = 1 - (rich_amine_MDEA_mol_frac + rich_amine_H2S_mol_frac + rich_amine_CO2_mol_frac)
+
     return {
         "sweet_gas temperature, C": round(prod_temp[0][0], 4),
         "rich_amine temperature, C": round(prod_temp[0][1], 4),
