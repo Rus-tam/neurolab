@@ -7,6 +7,7 @@ from service.amine_treatment_service import amine_treatment_stream_mol_weight
 from service.amine_treatment_service import sweet_gas_H2S_ppm
 from service.amine_treatment_service import sweet_gas_CO2_ppm
 from service.amine_treatment_service import rich_amine_sour_comp
+from service.amine_treatment_service import rich_amine_H2O_MDEA
 
 
 app = FastAPI()
@@ -52,6 +53,8 @@ def amine_treatment(dto: AmineTreatmentInitial):
 
     rich_amine_H2S_mol_frac, rich_amine_CO2_mol_frac = rich_amine_sour_comp(dto)[0]
 
+    rich_amine_H2O_mol_frac, rich_amine_MDEA_mol_frac = rich_amine_H2O_MDEA(dto)[0]
+
     return {
         "sweet_gas temperature, C": round(prod_temp[0][0], 4),
         "rich_amine temperature, C": round(prod_temp[0][1], 4),
@@ -63,6 +66,8 @@ def amine_treatment(dto: AmineTreatmentInitial):
         "sweet_gas_mol_weight": round(dto.sweet_gas_mol_weight, 4),
         "sweet_gas_H2S_ppm_rate": round(sweet_gas_H2S_ppm_rate, 4),
         "sweet_gas_CO2_ppm_rate": round(sweet_gas_CO2_ppm_rate, 4),
-        "rich_amine_H2S_mol_frac": round(rich_amine_H2S_mol_frac, 4),
-        "rich_amine_CO2_mol_frac": round(rich_amine_CO2_mol_frac, 4)
+        "rich_amine_H2S_mol_frac": round(rich_amine_H2S_mol_frac, 5),
+        "rich_amine_CO2_mol_frac": round(rich_amine_CO2_mol_frac, 5),
+        "rich_amine_H2O_mol_frac": round(rich_amine_H2O_mol_frac, 5),
+        "rich_amine_MDEA_mol_frac": round(rich_amine_MDEA_mol_frac, 5)
     }

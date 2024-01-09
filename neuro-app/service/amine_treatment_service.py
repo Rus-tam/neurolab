@@ -5,6 +5,7 @@ from models.amine_treatment.amine_treatment import amine_treatment_stream_mol_we
 from models.amine_treatment.amine_treatment import amine_treatment_sweet_gas_H2S_ppm_model
 from models.amine_treatment.amine_treatment import amine_treatment_sweet_gas_CO2_ppm_model
 from models.amine_treatment.amine_treatment import amine_treatment_rich_amine_sour_comp_model
+from models.amine_treatment.amine_treatment import amine_treatment_rich_amine_H2O_MDEA_model
 import pandas as pd
 from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import MinMaxScaler
@@ -15,6 +16,7 @@ from data.amine_treatment.amine_treatment import amine_treatment_stream_molar_we
 from data.amine_treatment.amine_treatment import amine_treatment_sweet_gas_H2S_ppm_data
 from data.amine_treatment.amine_treatment import amine_treatment_sweet_gas_CO2_ppm_data
 from data.amine_treatment.amine_treatment import amine_treatment_rich_amine_sour_comp_data
+from data.amine_treatment.amine_treatment import amine_treatment_rich_amine_H2O_MDEA_data
 from utils.initial_data_handler import prepare_initial_data
 
 
@@ -182,5 +184,42 @@ def rich_amine_sour_comp(dto: AmineTreatmentInitial):
     )
 
     return amine_treatment_rich_amine_sour_comp_model(norm_rich_amine_sour_comp).numpy().tolist()
+
+
+def rich_amine_H2O_MDEA(dto: AmineTreatmentInitial):
+    data = prepare_initial_data(dto)
+    initial_data = pd.DataFrame({
+        **data, 'feed_gas molecular weight': [dto.sweet_gas_mol_weight],
+        'feed_gas molar flow, kgmol/h': [dto.feed_gas_mol_flow],
+        'feed_gas H2S molar flow, kgmol/h': [dto.feed_gas_H2S_mol_flow],
+        'feed_gas CO2 molar flow, kgmol/h': [dto.feed_gas_CO2_mol_flow],
+        'lean_amine molecular weight': [dto.lean_amine_mol_weight],
+        'lean_amine molar flow, kgmol/h': [dto.lean_amine_mol_flow],
+        'lean_amine H2S molar flow, kgmol/h': [dto.lean_amine_H2S_mol_flow],
+        'lean_amine CO2 molar flow, kgmol/h': [dto.lean_amine_CO2_mol_flow],
+        'rich_amine temperature, C': [dto.rich_amine_temperature],
+        'rich_amine mass flow, kg/h': [dto.rich_amine_mass_flow],
+        'rich_amine molecular weight': [dto.rich_amine_mol_weight],
+        'rich_amine molar flow, kgmol/h': [dto.rich_amine_mol_flow],
+        'sweet_gas temperature, C': [dto.sweet_gas_temperature],
+        'sweet_gas mass flow, kg/h': [dto.sweet_gas_mass_flow],
+        'sweet_gas molecular weight': [dto.sweet_gas_mol_weight],
+        'sweet_gas molar flow, kgmol/h': [dto.sweet_gas_mol_flow]
+    })
+    columns = [*column, 'feed_gas molecular weight', 'feed_gas molar flow, kgmol/h', 'feed_gas H2S molar flow, kgmol/h',
+        'feed_gas CO2 molar flow, kgmol/h', 'lean_amine molecular weight', 'lean_amine molar flow, kgmol/h',
+        'lean_amine H2S molar flow, kgmol/h', 'lean_amine CO2 molar flow, kgmol/h', 'rich_amine temperature, C',
+        'rich_amine mass flow, kg/h', 'rich_amine molecular weight', 'rich_amine molar flow, kgmol/h',
+        'sweet_gas temperature, C', 'sweet_gas mass flow, kg/h', 'sweet_gas molecular weight',
+        'sweet_gas molar flow, kgmol/h']
+    labels = ['rich_amine H2O mol frac', 'rich_amine MDEAmine mol frac']
+    norm_rich_amine_H2O_MDEA = normalize_data(
+        amine_treatment_rich_amine_H2O_MDEA_data,
+        initial_data,
+        columns,
+        labels
+    )
+
+    return amine_treatment_rich_amine_H2O_MDEA_model(norm_rich_amine_H2O_MDEA).numpy().tolist()
 
 
