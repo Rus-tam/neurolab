@@ -54,4 +54,5 @@ class AmineTreatmentInitial(BaseModel):
     lean_amine_H2S_mol_flow: float
     lean_amine_CO2_mol_flow: float
     rich_amine_mol_flow: float
+    sweet_gas_mol_flow: float
 

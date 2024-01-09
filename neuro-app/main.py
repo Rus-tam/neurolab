@@ -4,7 +4,7 @@ from service.simple_isomerization_service import simple_isomerization_service
 from service.amine_treatment_service import amine_treatment_prod_temp
 from service.amine_treatment_service import amine_treatment_rich_amine_mass_flow
 from service.amine_treatment_service import amine_treatment_stream_mol_weight
-from service.amine_treatment_service import rich_amine_sour_comp_molar_flow
+from service.amine_treatment_service import sweet_gas_H2S_ppm
 
 
 app = FastAPI()
@@ -43,17 +43,9 @@ def amine_treatment(dto: AmineTreatmentInitial):
     dto.lean_amine_H2S_mol_flow = dto.lean_amine_mol_flow * dto.amine_h2s
     dto.lean_amine_CO2_mol_flow = dto.lean_amine_mol_flow * dto.amine_co2
     dto.rich_amine_mol_flow = dto.rich_amine_mass_flow / dto.rich_amine_mol_weight
+    dto.sweet_gas_mol_flow = dto.sweet_gas_mass_flow / dto.sweet_gas_mol_weight
 
-    rich_amine_H2S_mol_flow, rich_amine_CO2_mol_flow = rich_amine_sour_comp_molar_flow(dto)[0]
-
-    print('FEED_GAS', dto.feed_gas_H2S_mol_flow, '+++++', dto.feed_gas_CO2_mol_flow, '====', dto.feed_gas_H2S_mol_flow + dto.feed_gas_CO2_mol_flow)
-    print(' ')
-    print('LEAN_AMINE', dto.lean_amine_H2S_mol_flow, '+++++', dto.lean_amine_CO2_mol_flow, '====', dto.lean_amine_H2S_mol_flow + dto.lean_amine_CO2_mol_flow)
-    print(' ')
-    print('RICH_AMINE', rich_amine_H2S_mol_flow, '+++++', rich_amine_CO2_mol_flow, '====', rich_amine_H2S_mol_flow + rich_amine_CO2_mol_flow)
-
-
-
+    sweet_gas_H2S_ppm_rate = sweet_gas_H2S_ppm(dto)[0][0]
 
     return {
         "sweet_gas temperature, C": round(prod_temp[0][0], 4),
@@ -64,4 +56,5 @@ def amine_treatment(dto: AmineTreatmentInitial):
         "lean_amine_mol_weight": round(dto.lean_amine_mol_weight, 4),
         "rich_amine_mol_weight": round(dto.rich_amine_mol_weight, 4),
         "sweet_gas_mol_weight": round(dto.sweet_gas_mol_weight, 4),
+        "sweet_gas_H2S_ppm_rate": round(sweet_gas_H2S_ppm_rate, 4)
     }
