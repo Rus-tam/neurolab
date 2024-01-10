@@ -14,4 +14,4 @@ import { ConfigService } from "@nestjs/config";
   ],
   exports: [NestHttpModule],
 })
-export class HttpModule {}
+export class AxiosModule {}

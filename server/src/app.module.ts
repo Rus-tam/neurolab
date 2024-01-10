@@ -6,7 +6,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AuthModule } from "./auth/auth.module";
 import { LabsModule } from "./labs/labs.module";
-import { HttpModule } from "./axios/axios.module";
+import { AxiosModule } from "./axios/axios.module";
 
 @Module({
   imports: [
@@ -32,7 +32,7 @@ import { HttpModule } from "./axios/axios.module";
     DbModule,
     AuthModule,
     LabsModule,
-    HttpModule,
+    AxiosModule,
   ],
   controllers: [AppController],
   providers: [AppService],

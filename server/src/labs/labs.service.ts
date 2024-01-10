@@ -1,25 +1,43 @@
 import { Injectable } from "@nestjs/common";
 import { AmineTreatmentDTO, SimpleIsoDto } from "@labs/dto";
 import { ISimpleIsoResult } from "@types";
+import { HttpService } from "@nestjs/axios";
+import { AxiosResponse } from "axios";
+import { map, Observable, firstValueFrom } from "rxjs";
+import { response } from "express";
 
 @Injectable()
 export class LabsService {
+  constructor(private readonly httpService: HttpService) {}
+
   async getSimpleIsomerizationResults(dto: SimpleIsoDto) {
     console.log(dto);
-    // const input = tf.tensor([
-    //   parseFloat(dto.vessel_volume),
-    //   parseFloat(dto.feed_temperature),
-    //   parseFloat(dto.feed_mass_flow) / 3600,
-    // ]);
-    // const result = (model.predict(input.reshape([-1, 3])) as tf.Tensor).dataSync();
-    // if (result["0"] > 1) {
-    //   result["0"] = 1;
-    // }
-    // return {
-    //   product_concentration: parseFloat(result["0"].toFixed(2)),
-    //   product_temperature: parseFloat(result["1"].toFixed(2)),
-    // };
+    // await this.httpService.get<any>("/").pipe(
+    //   map((response) => {
+    //     console.log("Hello");
+    //   }),
+    // );
+    const responseObserver = await this.httpService.get<any>("/");
+    const res = await firstValueFrom(responseObserver);
+    console.log(res.data);
   }
+  //   const res = await this.httpService.get<any>("/").pipe(
+  //       map(response => console.log(response.data)))
+  // )
+
+  // const input = tf.tensor([
+  //   parseFloat(dto.vessel_volume),
+  //   parseFloat(dto.feed_temperature),
+  //   parseFloat(dto.feed_mass_flow) / 3600,
+  // ]);
+  // const result = (model.predict(input.reshape([-1, 3])) as tf.Tensor).dataSync();
+  // if (result["0"] > 1) {
+  //   result["0"] = 1;
+  // }
+  // return {
+  //   product_concentration: parseFloat(result["0"].toFixed(2)),
+  //   product_temperature: parseFloat(result["1"].toFixed(2)),
+  // };
 
   // async getAmineTreatmentResults(dto: AmineTreatmentDTO) {
   //   const sweetGasH2SModel = this.tfService.amineTreatmentSweetGasH2SModel;
