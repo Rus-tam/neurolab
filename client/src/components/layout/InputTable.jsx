@@ -24,16 +24,10 @@ const InputTable = ({ caption, initialValues }) => {
 
   switch (parentComponentName) {
     case "simple-isomerization":
-      // dataToAI = {
-      //   vessel_volume: parseFloat(simpleIsoData.vessel_volume),
-      //   feed_temperature: parseFloat(simpleIsoData.feed_temperature),
-      //   feed_mass_flow: parseFloat(simpleIsoData.feed_mass_flow),
-      // };
       tableFragment = <SimpleIsoInitialDataTableFragment caption={caption} initialValues={initialValues} />;
       break;
 
     case "amine-treatment":
-      let { modalAmineWindowStatus, modalSGWindowStatus, ...dataToAI } = amineTreatmentData;
       tableFragment = (
         <AmineTreatmentInitialDataTableFragment caption={caption} initialValues={initialValues} />
       );
@@ -57,7 +51,7 @@ const InputTable = ({ caption, initialValues }) => {
 
     switch (parentComponentName) {
       case "simple-isomerization":
-        const dataToAI = prepareDataToAI(simpleIsoData, "simple-isomerization");
+        dataToAI = prepareDataToAI(simpleIsoData, "simple-isomerization");
         if (simpleIsoCheck(dataToAI) instanceof Error) {
           return null;
         } else {
@@ -67,8 +61,9 @@ const InputTable = ({ caption, initialValues }) => {
         break;
 
       case "amine-treatment":
+        dataToAI = prepareDataToAI(amineTreatmentData, "amine-treatment");
         await getAmineTreatmentRes(dataToAI);
-        console.log("OOOOOOOOOOOOOOOOO", dataToAI);
+        console.log("YYYYYYYYYYYY", dataToAI);
     }
   };
 
