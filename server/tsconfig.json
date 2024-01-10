@@ -59,6 +59,12 @@
       ],
       "@labs/*": [
         "src/labs/*"
+      ],
+      "@axios": [
+        "src/axios"
+      ],
+      "@axios/*": [
+        "src/axios/*"
       ]
     }
   }

@@ -24,9 +24,9 @@ const InputTable = ({ caption, initialValues }) => {
   switch (parentComponentName) {
     case "simple-isomerization":
       dataToAI = {
-        vesselVolume: simpleIsoData.vessel_volume,
-        feedMassFlow: simpleIsoData.feed_mass_flow,
-        feedTemperature: simpleIsoData.feed_temperature,
+        vessel_volume: parseFloat(simpleIsoData.vessel_volume),
+        feed_temperature: parseFloat(simpleIsoData.feed_temperature),
+        feed_mass_flow: parseFloat(simpleIsoData.feed_mass_flow),
       };
       tableFragment = <SimpleIsoInitialDataTableFragment caption={caption} initialValues={initialValues} />;
       break;
@@ -59,7 +59,7 @@ const InputTable = ({ caption, initialValues }) => {
         if (simpleIsoCheck(dataToAI) instanceof Error) {
           return null;
         } else {
-          calculationRes = await getSimpleIsoRes(simpleIsoData);
+          calculationRes = await getSimpleIsoRes(dataToAI);
           dispatch(setSimpleIsoRes(calculationRes.data));
         }
         break;

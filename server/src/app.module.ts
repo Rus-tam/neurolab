@@ -25,7 +25,7 @@ import { AxiosModule } from "./axios/axios.module";
           database: config.get<string>("POSTGRES_DATABASE"),
           autoLoadEntities: true,
           synchronize: true,
-          logging: true,
+          logging: false,
         };
       },
     }),

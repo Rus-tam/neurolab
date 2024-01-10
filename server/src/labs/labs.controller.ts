@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Logger, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, InternalServerErrorException, Logger, Post, UseGuards } from "@nestjs/common";
 import { LabsService } from "@labs/labs.service";
 import { AmineTreatmentDTO, SimpleIsoDto } from "@labs/dto";
 import { IJWTPayload, ISimpleIsoResult } from "@types";
@@ -8,6 +8,7 @@ import { JwtAuthGuard } from "@auth/guards/jwt-auth.guard";
 import { AuthGuard } from "@nestjs/passport";
 import { UserEntity } from "@db/entities/user.entity";
 import { SimpleIsoResultEntity } from "@db/entities/simple-iso-result.entity";
+import { LabsError } from "@errors";
 
 @Controller("labs")
 export class LabsController {
@@ -16,10 +17,21 @@ export class LabsController {
 
   @UseGuards(AuthGuard("jwt"))
   @Post("/simple-isomerization")
-  async calculateSimpleIso(@Body() inputData: SimpleIsoDto, @CurrentUser() currentUser: UserEntity) {
-    console.log(inputData);
-    const results = await this.labService.getSimpleIsomerizationResults(inputData);
-    // await this.dbService.createSimpleIsoNote(inputData, results, currentUser);
+  async calculateSimpleIso(
+    @Body() inputData: SimpleIsoDto,
+    @CurrentUser() currentUser: UserEntity,
+  ): Promise<ISimpleIsoResult> {
+    try {
+      const results = await this.labService.getSimpleIsomerizationResults(inputData);
+      await this.dbService.createSimpleIsoNote(inputData, results, currentUser);
+      this.logger.log(
+        `Лабораторная работа: Простая изомеризация. Пользователь: ${currentUser.student1} и др. Группа: ${currentUser.group}. Результат: prod_conc: ${results.product_concentration}, prod_temp: ${results.product_temperature} записаны в бд`,
+      );
+      return results;
+    } catch (err) {
+      this.logger.error(`Возникла ошибка на стороне нейросетевого сервиса ${err.message}`);
+      throw new InternalServerErrorException(LabsError.CalculationError);
+    }
   }
 
   @UseGuards(AuthGuard("jwt"))

@@ -1,25 +1,28 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { AmineTreatmentDTO, SimpleIsoDto } from "@labs/dto";
 import { ISimpleIsoResult } from "@types";
 import { HttpService } from "@nestjs/axios";
 import { AxiosResponse } from "axios";
 import { map, Observable, firstValueFrom } from "rxjs";
-import { response } from "express";
+import { LabsError } from "@errors";
 
 @Injectable()
 export class LabsService {
+  logger = new Logger();
   constructor(private readonly httpService: HttpService) {}
 
   async getSimpleIsomerizationResults(dto: SimpleIsoDto) {
-    console.log(dto);
-    // await this.httpService.get<any>("/").pipe(
-    //   map((response) => {
-    //     console.log("Hello");
-    //   }),
-    // );
-    const responseObserver = await this.httpService.get<any>("/");
-    const res = await firstValueFrom(responseObserver);
-    console.log(res.data);
+    try {
+      const simpleIsoResObserver: Observable<AxiosResponse<ISimpleIsoResult>> = this.httpService.post(
+        "/simple_isomerization",
+        dto,
+      );
+
+      return (await firstValueFrom(simpleIsoResObserver)).data;
+    } catch (err) {
+      this.logger.error("Произошла ошибка вычисления!");
+      throw new NotFoundException(LabsError.CalculationError);
+    }
   }
   //   const res = await this.httpService.get<any>("/").pipe(
   //       map(response => console.log(response.data)))

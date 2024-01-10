@@ -22,8 +22,8 @@ def read_root():
 def simple_isomerization(dto: SimpleIsoInitial):
     prediction = simple_isomerization_service(dto)[0]
     return {
-        "product_concentration": prediction[0],
-        "product_temperature": prediction[1]
+        "product_concentration": round(prediction[0], 3),
+        "product_temperature": round(prediction[1], 3)
     }
 
 
