@@ -16,15 +16,10 @@ export class LabsController {
 
   @UseGuards(AuthGuard("jwt"))
   @Post("/simple-isomerization")
-  async calculateSimpleIso(
-    @Body() inputData: SimpleIsoDto,
-    @CurrentUser() currentUser: UserEntity,
-  ): Promise<ISimpleIsoResult> {
+  async calculateSimpleIso(@Body() inputData: SimpleIsoDto, @CurrentUser() currentUser: UserEntity) {
     console.log(inputData);
     const results = await this.labService.getSimpleIsomerizationResults(inputData);
-    await this.dbService.createSimpleIsoNote(inputData, results, currentUser);
-
-    return results;
+    // await this.dbService.createSimpleIsoNote(inputData, results, currentUser);
   }
 
   @UseGuards(AuthGuard("jwt"))
@@ -34,8 +29,8 @@ export class LabsController {
     @CurrentUser() currentUser: UserEntity,
   ) {
     // console.log("OOOOOOOOOOO", inputData);
-    const results = await this.labService.getAmineTreatmentResults(inputData);
-    console.log(results);
+    // const results = await this.labService.getAmineTreatmentResults(inputData);
+    // console.log(results);
   }
 
   @UseGuards(AuthGuard("jwt"))
