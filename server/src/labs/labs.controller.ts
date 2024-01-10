@@ -1,10 +1,9 @@
 import { Body, Controller, Get, InternalServerErrorException, Logger, Post, UseGuards } from "@nestjs/common";
 import { LabsService } from "@labs/labs.service";
 import { AmineTreatmentDTO, SimpleIsoDto } from "@labs/dto";
-import { IJWTPayload, ISimpleIsoResult } from "@types";
+import { ISimpleIsoResult } from "@types";
 import { DbService } from "@db/db.service";
 import { CurrentUser } from "@decorators";
-import { JwtAuthGuard } from "@auth/guards/jwt-auth.guard";
 import { AuthGuard } from "@nestjs/passport";
 import { UserEntity } from "@db/entities/user.entity";
 import { SimpleIsoResultEntity } from "@db/entities/simple-iso-result.entity";
@@ -29,7 +28,7 @@ export class LabsController {
       );
       return results;
     } catch (err) {
-      this.logger.error(`Возникла ошибка на стороне нейросетевого сервиса ${err.message}`);
+      this.logger.error(`Ошибка лабораторной работы "Простая изомеризация" -  ${err.message}`);
       throw new InternalServerErrorException(LabsError.CalculationError);
     }
   }
