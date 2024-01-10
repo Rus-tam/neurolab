@@ -28,7 +28,7 @@ export class LabsController {
       );
       return results;
     } catch (err) {
-      this.logger.error(`Ошибка лабораторной работы "Простая изомеризация" -  ${err.message}`);
+      this.logger.error(`Ошибка лабораторной работы "Простая изомеризация" - ${err.message}`);
       throw new InternalServerErrorException(LabsError.CalculationError);
     }
   }
@@ -39,7 +39,7 @@ export class LabsController {
     @Body() inputData: AmineTreatmentDTO,
     @CurrentUser() currentUser: UserEntity,
   ) {
-    // console.log("OOOOOOOOOOO", inputData);
+    console.log("OOOOOOOOOOO", inputData);
     // const results = await this.labService.getAmineTreatmentResults(inputData);
     // console.log(results);
   }

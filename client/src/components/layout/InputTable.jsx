@@ -7,6 +7,7 @@ import { simpleIsoCheck } from "../../utils/checkValues.js";
 import SimpleIsoInitialDataTableFragment from "../fragments/SimpleIsoInitialDataTableFragment.jsx";
 import AmineTreatmentInitialDataTableFragment from "../fragments/AmineTreatmentInitialDataTableFragment.jsx";
 import LowTempDistDataTableFraction from "../fragments/LowTempDistDataTableFragment.jsx";
+import { prepareDataToAI } from "../../utils/prepareDataToAI.js";
 
 const InputTable = ({ caption, initialValues }) => {
   const dispatch = useDispatch();
@@ -23,16 +24,16 @@ const InputTable = ({ caption, initialValues }) => {
 
   switch (parentComponentName) {
     case "simple-isomerization":
-      dataToAI = {
-        vessel_volume: parseFloat(simpleIsoData.vessel_volume),
-        feed_temperature: parseFloat(simpleIsoData.feed_temperature),
-        feed_mass_flow: parseFloat(simpleIsoData.feed_mass_flow),
-      };
+      // dataToAI = {
+      //   vessel_volume: parseFloat(simpleIsoData.vessel_volume),
+      //   feed_temperature: parseFloat(simpleIsoData.feed_temperature),
+      //   feed_mass_flow: parseFloat(simpleIsoData.feed_mass_flow),
+      // };
       tableFragment = <SimpleIsoInitialDataTableFragment caption={caption} initialValues={initialValues} />;
       break;
 
     case "amine-treatment":
-      dataToAI = { ...amineTreatmentData };
+      let { modalAmineWindowStatus, modalSGWindowStatus, ...dataToAI } = amineTreatmentData;
       tableFragment = (
         <AmineTreatmentInitialDataTableFragment caption={caption} initialValues={initialValues} />
       );
@@ -56,6 +57,7 @@ const InputTable = ({ caption, initialValues }) => {
 
     switch (parentComponentName) {
       case "simple-isomerization":
+        const dataToAI = prepareDataToAI(simpleIsoData, "simple-isomerization");
         if (simpleIsoCheck(dataToAI) instanceof Error) {
           return null;
         } else {
@@ -65,8 +67,8 @@ const InputTable = ({ caption, initialValues }) => {
         break;
 
       case "amine-treatment":
-        await getAmineTreatmentRes(amineTreatmentData);
-        console.log("OOOOOOOOOOOOOOOOO", amineTreatmentData);
+        await getAmineTreatmentRes(dataToAI);
+        console.log("OOOOOOOOOOOOOOOOO", dataToAI);
     }
   };
 
