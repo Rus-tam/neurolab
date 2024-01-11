@@ -141,12 +141,37 @@ export class DbService {
     return newEntry;
   }
 
-  // aMINE TREATMENT
+  // AMINE TREATMENT
   async createAmineTreatmentNote(
     inputData: AmineTreatmentDTO,
     result: IAmineTreatmentResult,
     user: UserEntity,
-  ) {}
+  ) {
+    const { modalSGWindowStatus, modalAmineWindowStatus, ...initialData } = inputData;
+    const newEntry = this.amineTreatmentResRepository.create({
+      ...initialData,
+      sweet_gas_temperature: result["sweet_gas temperature, C"],
+      rich_amine_temperature: result["rich_amine temperature, C"],
+      rich_amine_mass_flow: result["rich_amine mass flow, kg/h"],
+      sweet_gas_mass_flow: result["sweet_gas mass flow, kg/h"],
+      feed_gas_mol_weight: result["feed_gas mol weight"],
+      lean_amine_mol_weight: result["lean_amine mol weight"],
+      rich_amine_mol_weight: result["rich_amine mol weight"],
+      sweet_gas_mol_weight: result["sweet_gas mol weight"],
+      sweet_gas_H2S_ppm: result["sweet_gas H2S ppm"],
+      sweet_gas_CO2_ppm: result["sweet_gas CO2 ppm"],
+      rich_amine_h2s: result["rich_amine H2S mol frac"],
+      rich_amine_co2: result["rich_amine CO2 mol frac"],
+      rich_amine_h2o: result["rich_amine H2O mol frac"],
+      rich_amine_MDEA: result["rich_amine MDEA mol frac"],
+      createdTime: new Date(),
+      user,
+    });
+
+    await this.amineTreatmentResRepository.save(newEntry);
+
+    return newEntry;
+  }
 
   async fetchSimpleIsoRes(userId: string): Promise<SimpleIsoResultEntity[]> {
     return this.simpleIsoResRepository.find({ where: { user: { id: userId } } });

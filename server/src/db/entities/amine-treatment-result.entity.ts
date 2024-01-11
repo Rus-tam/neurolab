@@ -25,7 +25,7 @@ export class AmineTreatmentEntity {
   sour_gas_c2h8: number;
 
   @Column({ type: "float" })
-  ssour_gas_c3h8: number;
+  sour_gas_c3h8: number;
 
   @Column({ type: "float" })
   sour_gas_ic4h10: number;
@@ -131,6 +131,9 @@ export class AmineTreatmentEntity {
 
   @Column({ type: "float" })
   rich_amine_MDEA: number;
+
+  @Column({ type: "timestamptz" })
+  createdTime: Date;
 
   @ManyToOne(() => UserEntity, (user: UserEntity) => user.simpleIsoRes, {
     onDelete: "CASCADE",
