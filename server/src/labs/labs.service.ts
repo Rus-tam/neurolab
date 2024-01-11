@@ -1,6 +1,7 @@
 import { Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { AmineTreatmentDTO, SimpleIsoDto } from "@labs/dto";
 import { ISimpleIsoResult } from "@types";
+import { IAmineTreatmentResult } from "@types";
 import { HttpService } from "@nestjs/axios";
 import { AxiosResponse } from "axios";
 import { map, Observable, firstValueFrom } from "rxjs";
@@ -25,7 +26,7 @@ export class LabsService {
     }
   }
 
-  async getAmineTreatmentResults(dto: AmineTreatmentDTO) {
+  async getAmineTreatmentResults(dto: AmineTreatmentDTO): Promise<IAmineTreatmentResult> {
     try {
       const amineTreatmentResObserver = this.httpService.post("/amine_treatment", dto);
       return (await firstValueFrom(amineTreatmentResObserver)).data;

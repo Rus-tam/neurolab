@@ -39,7 +39,17 @@ export class LabsController {
     @Body() inputData: AmineTreatmentDTO,
     @CurrentUser() currentUser: UserEntity,
   ) {
-    const results = await this.labService.getAmineTreatmentResults(inputData);
+    try {
+      const results = await this.labService.getAmineTreatmentResults(inputData);
+      console.log(results);
+      this.logger.log(
+        `Лабораторная работа: Аминовая очистка. Пользователь: ${currentUser.student1} и др. Группа: ${currentUser.group}. Результат: prod_conc: , prod_temp: записаны в бд`,
+      );
+    } catch (err) {
+      this.logger.error(`Ошибка лабораторной работы "Простая изомеризация" - ${err.message}`);
+      throw new InternalServerErrorException(LabsError.CalculationError);
+    }
+
     // console.log(results);
   }
 
