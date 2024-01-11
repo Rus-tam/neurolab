@@ -39,8 +39,7 @@ export class LabsController {
     @Body() inputData: AmineTreatmentDTO,
     @CurrentUser() currentUser: UserEntity,
   ) {
-    console.log("OOOOOOOOOOO", inputData);
-    // const results = await this.labService.getAmineTreatmentResults(inputData);
+    const results = await this.labService.getAmineTreatmentResults(inputData);
     // console.log(results);
   }
 
