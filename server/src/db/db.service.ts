@@ -6,11 +6,12 @@ import { TokenEntity } from "@db/entities/token.entity";
 import { UserDTO } from "@db/dto";
 import { DbErrors } from "@errors";
 import * as bcrypt from "bcrypt";
-import { IJWTPayload, ISimpleIsoResult, Roles } from "@types";
+import { IAmineTreatmentResult, IJWTPayload, ISimpleIsoResult, Roles } from "@types";
 import { v4 } from "uuid";
 import { add } from "date-fns";
 import { SimpleIsoResultEntity } from "@db/entities/simple-iso-result.entity";
-import { SimpleIsoDto } from "@labs/dto";
+import { AmineTreatmentDTO, SimpleIsoDto } from "@labs/dto";
+import { AmineTreatmentEntity } from "./entities/amine-treatment-result.entity";
 
 @Injectable()
 export class DbService {
@@ -22,6 +23,8 @@ export class DbService {
     private readonly tokenRepository: Repository<TokenEntity>,
     @InjectRepository(SimpleIsoResultEntity)
     private readonly simpleIsoResRepository: Repository<SimpleIsoResultEntity>,
+    @InjectRepository(AmineTreatmentEntity)
+    private readonly amineTreatmentResRepository: Repository<AmineTreatmentEntity>,
   ) {}
 
   async createUser(dto: UserDTO) {
@@ -66,16 +69,7 @@ export class DbService {
   async findUserById(id: string): Promise<UserEntity> {
     const user = await this.userRepository.findOne({
       where: { id },
-      select: [
-        "id",
-        "group",
-        "email",
-        "role",
-        "student1",
-        "student2",
-        "student3",
-        "professorName",
-      ],
+      select: ["id", "group", "email", "role", "student1", "student2", "student3", "professorName"],
     });
     if (!user) {
       this.logger.error("Пользователь не найден");
@@ -146,6 +140,13 @@ export class DbService {
 
     return newEntry;
   }
+
+  // aMINE TREATMENT
+  async createAmineTreatmentNote(
+    inputData: AmineTreatmentDTO,
+    result: IAmineTreatmentResult,
+    user: UserEntity,
+  ) {}
 
   async fetchSimpleIsoRes(userId: string): Promise<SimpleIsoResultEntity[]> {
     return this.simpleIsoResRepository.find({ where: { user: { id: userId } } });

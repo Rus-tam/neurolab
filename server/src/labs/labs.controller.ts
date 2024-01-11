@@ -24,7 +24,8 @@ export class LabsController {
       const results = await this.labService.getSimpleIsomerizationResults(inputData);
       await this.dbService.createSimpleIsoNote(inputData, results, currentUser);
       this.logger.log(
-        `Лабораторная работа: Простая изомеризация. Пользователь: ${currentUser.student1} и др. Группа: ${currentUser.group}. Результат: prod_conc: ${results.product_concentration}, prod_temp: ${results.product_temperature} записаны в бд`,
+        `Лабораторная работа: Простая изомеризация. Пользователь: ${currentUser.student1} и др. Группа: ${currentUser.group}.
+         Результат: prod_conc: ${results.product_concentration}, prod_temp: ${results.product_temperature} записаны в бд`,
       );
       return results;
     } catch (err) {
@@ -41,16 +42,14 @@ export class LabsController {
   ) {
     try {
       const results = await this.labService.getAmineTreatmentResults(inputData);
-      console.log(results);
       this.logger.log(
-        `Лабораторная работа: Аминовая очистка. Пользователь: ${currentUser.student1} и др. Группа: ${currentUser.group}. Результат: prod_conc: , prod_temp: записаны в бд`,
+        `Лабораторная работа: Аминовая очистка. Пользователь: ${currentUser.student1} и др. Группа: ${currentUser.group}. Результат: sweet_gas_temp: ${results["sweet_gas temperature, C"]}, rich_amine_temp: ${results["rich_amine temperature, C"]} и др. записаны в бд`,
       );
+      return results;
     } catch (err) {
       this.logger.error(`Ошибка лабораторной работы "Простая изомеризация" - ${err.message}`);
       throw new InternalServerErrorException(LabsError.CalculationError);
     }
-
-    // console.log(results);
   }
 
   @UseGuards(AuthGuard("jwt"))

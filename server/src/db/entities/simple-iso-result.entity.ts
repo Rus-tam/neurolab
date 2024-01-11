@@ -1,6 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { UserEntity } from "@db/entities/user.entity";
-import { CompletionListener } from "concurrently/dist/src/completion-listener";
 
 @Entity()
 export class SimpleIsoResultEntity {
