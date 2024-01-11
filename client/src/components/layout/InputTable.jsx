@@ -3,7 +3,7 @@ import { ParentContext } from "../../utils/ParentContext.js";
 import { useDispatch, useSelector } from "react-redux";
 import { setSimpleIsoRes } from "../../store/slices/simpleIsoSlice.js";
 import { useSimpleIsoMutation, useAmineTreatmentMutation } from "../../store/apis/labsApiSlice.js";
-import { simpleIsoCheck } from "../../utils/checkValues.js";
+import { simpleIsoCheck, amineTreatmentCheck } from "../../utils/checkValues.js";
 import SimpleIsoInitialDataTableFragment from "../fragments/SimpleIsoInitialDataTableFragment.jsx";
 import AmineTreatmentInitialDataTableFragment from "../fragments/AmineTreatmentInitialDataTableFragment.jsx";
 import LowTempDistDataTableFraction from "../fragments/LowTempDistDataTableFragment.jsx";
@@ -62,8 +62,12 @@ const InputTable = ({ caption, initialValues }) => {
 
       case "amine-treatment":
         dataToAI = prepareDataToAI(amineTreatmentData, "amine-treatment");
-        await getAmineTreatmentRes(dataToAI);
-        console.log("YYYYYYYYYYYY", dataToAI);
+        if (amineTreatmentCheck(dataToAI) instanceof Error) {
+          return null;
+        } else {
+          calculationRes = await getAmineTreatmentRes(dataToAI);
+          console.log("YYYYYYYYYYYY", dataToAI);
+        }
     }
   };
 
