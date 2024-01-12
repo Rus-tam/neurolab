@@ -24,43 +24,43 @@ const ResultTable = ({ caption, results }) => {
       resultData = [
         {
           name: "Температура очищенного газа, град. Цельсия",
-          value: 22,
+          value: results.sweet_gas_temperature,
         },
         {
           name: "Массовый расход очищенного газа, кг/ч",
-          value: 9998,
+          value: results.sweet_gas_mass_flow,
         },
         {
-          name: "Мольная доля H2S в очищенном газе",
-          value: 0.0002,
+          name: "Концентрация H2S в очищенном газе, ppm",
+          value: results.sweet_gas_h2s_ppm,
         },
         {
-          name: "Мольная доля CO2 в очищенном газе",
-          value: 0.00001,
+          name: "Концентрация CO2 в очищенном газе, ppm",
+          value: results.sweet_gas_co2_ppm,
         },
         {
           name: "Температура насыщенного амина, град. Цельсия",
-          value: 24,
+          value: results.rich_amine_temperature,
         },
         {
           name: "Массовый расход насыщенного амина, кг/ч",
-          value: 1002,
+          value: results.rich_amine_mass_flow,
         },
         {
           name: "Мольная доля H2S в насыщенном амине",
-          value: 0.034,
+          value: results.rich_amine_h2s,
         },
         {
           name: "Мольная доля CO2 в насыщенном амине",
-          value: 0.012,
+          value: results.rich_amine_co2,
         },
         {
           name: "Мольная доля H2O в насыщенном амине",
-          value: 0.85,
+          value: results.rich_amine_h2o,
         },
         {
           name: "Мольная доля MDEA в насыщенном амине",
-          value: 0.14,
+          value: results.rich_amine_MDEA,
         },
       ];
       break;
