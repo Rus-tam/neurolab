@@ -31,22 +31,28 @@ const amineTreatmentSlice = createSlice({
     amine_h2s: 0.0002,
     amine_h2o: 0.8563,
     amine_MDEA: 0.141,
-    sweet_gas_temperature: 0,
-    rich_amine_temperature: 0,
-    sweet_gas_mass_flow: 0,
-    rich_amine_mass_flow: 0,
-    feed_gas_mol_weight: 0,
-    lean_amine_mol_weight: 0,
-    rich_amine_mol_weight: 0,
-    sweet_gas_mol_weight: 0,
-    feed_gas_mol_flow: 0,
-    feed_gas_H2S_mol_flow: 0,
-    feed_gas_CO2_mol_flow: 0,
-    lean_amine_mol_flow: 0,
-    lean_amine_H2S_mol_flow: 0,
-    lean_amine_CO2_mol_flow: 0,
-    rich_amine_mol_flow: 0,
-    sweet_gas_mol_flow: 0,
+    sweet_gas_temperature: 0.0,
+    rich_amine_temperature: 0.0,
+    sweet_gas_mass_flow: 0.0,
+    rich_amine_mass_flow: 0.0,
+    feed_gas_mol_weight: 0.0,
+    lean_amine_mol_weight: 0.0,
+    rich_amine_mol_weight: 0.0,
+    sweet_gas_mol_weight: 0.0,
+    sweet_gas_h2s_ppm: 0.0,
+    sweet_gas_co2_ppm: 0.0,
+    rich_amine_h2s: 0.0,
+    rich_amine_co2: 0.0,
+    rich_amine_h2o: 0.0,
+    rich_amine_MDEA: 0.0,
+    feed_gas_mol_flow: 0.0,
+    feed_gas_H2S_mol_flow: 0.0,
+    feed_gas_CO2_mol_flow: 0.0,
+    lean_amine_mol_flow: 0.0,
+    lean_amine_H2S_mol_flow: 0.0,
+    lean_amine_CO2_mol_flow: 0.0,
+    rich_amine_mol_flow: 0.0,
+    sweet_gas_mol_flow: 0.0,
     modalSGWindowStatus: false,
     modalAmineWindowStatus: false,
   },
@@ -86,8 +92,8 @@ const amineTreatmentSlice = createSlice({
     setAmineTreatmentResults(state, action) {
       state.sweet_gas_temperature = action.payload.sweet_gas_temperature;
       state.rich_amine_temperature = action.payload.rich_amine_temperature;
-      state.rich_amine_mass_flow = action.payload.rich_amine_mass_flow;
       state.sweet_gas_mass_flow = action.payload.sweet_gas_mass_flow;
+      state.rich_amine_mass_flow = action.payload.rich_amine_mass_flow;
       state.feed_gas_mol_weight = action.payload.feed_gas_mol_weight;
       state.lean_amine_mol_weight = action.payload.lean_amine_mol_weight;
       state.rich_amine_mol_weight = action.payload.rich_amine_mol_weight;

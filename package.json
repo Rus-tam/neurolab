@@ -7,7 +7,7 @@
     "start:client": "cd client && npm run dev",
     "start:server": "cd server && npm run start:dev",
     "start:neuro-app": "start cmd /k run-neuro-app.bat",
-    "start": "concurrently \"npm run start:client\" \"npm run start:server\" \"npm run start:neuro-app\""
+    "start": "concurrently \"npm run start:client\" \"npm run start:server\""
   },
   "author": "Akhmetov Rustam",
   "license": "ISC",

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { ParentContext } from "../../utils/ParentContext.js";
 import { useDispatch, useSelector } from "react-redux";
 import { setSimpleIsoRes } from "../../store/slices/simpleIsoSlice.js";
+import { setAmineTreatmentResults } from "../../store/slices/amineTreatmentSlice.js";
 import { useSimpleIsoMutation, useAmineTreatmentMutation } from "../../store/apis/labsApiSlice.js";
 import { simpleIsoCheck, amineTreatmentCheck } from "../../utils/checkValues.js";
 import SimpleIsoInitialDataTableFragment from "../fragments/SimpleIsoInitialDataTableFragment.jsx";
@@ -66,7 +67,7 @@ const InputTable = ({ caption, initialValues }) => {
           return null;
         } else {
           calculationRes = await getAmineTreatmentRes(dataToAI);
-          console.log("RRRRRR", calculationRes);
+          dispatch(setAmineTreatmentResults(calculationRes.data));
         }
     }
   };

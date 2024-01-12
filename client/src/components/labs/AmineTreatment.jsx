@@ -10,6 +10,7 @@ import AmineModel from "../fragments/AmineModal.jsx";
 import ResultTable from "../layout/ResultTable.jsx";
 
 const AmineTreatment = () => {
+  const calculationResults = useSelector((state) => state.amineTreatment);
   const dispatch = useDispatch();
   const { modalSGWindowStatus, modalAmineWindowStatus } = useSelector((state) => state.amineTreatment);
 
@@ -79,7 +80,7 @@ const AmineTreatment = () => {
 
       <div className="result-table">
         <ParentContext.Provider value="amine-treatment">
-          <ResultTable caption={"Результаты расчетов"} results={["tttttt"]} />
+          <ResultTable caption={"Результаты расчетов"} results={calculationResults} />
         </ParentContext.Provider>
       </div>
 
