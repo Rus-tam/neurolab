@@ -66,7 +66,7 @@ const InputTable = ({ caption, initialValues }) => {
           return null;
         } else {
           calculationRes = await getAmineTreatmentRes(dataToAI);
-          console.log("YYYYYYYYYYYY", calculationRes);
+          console.log("RRRRRR", calculationRes);
         }
     }
   };

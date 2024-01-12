@@ -83,6 +83,22 @@ const amineTreatmentSlice = createSlice({
     setAmineModalWindowStatus(state, action) {
       state.modalAmineWindowStatus = action.payload.modalAmineWindowStatus;
     },
+    setAmineTreatmentResults(state, action) {
+      state.sweet_gas_temperature = action.payload.sweet_gas_temperature;
+      state.rich_amine_temperature = action.payload.rich_amine_temperature;
+      state.rich_amine_mass_flow = action.payload.rich_amine_mass_flow;
+      state.sweet_gas_mass_flow = action.payload.sweet_gas_mass_flow;
+      state.feed_gas_mol_weight = action.payload.feed_gas_mol_weight;
+      state.lean_amine_mol_weight = action.payload.lean_amine_mol_weight;
+      state.rich_amine_mol_weight = action.payload.rich_amine_mol_weight;
+      state.sweet_gas_mol_weight = action.payload.sweet_gas_mol_weight;
+      state.sweet_gas_h2s_ppm = action.payload.sweet_gas_h2s_ppm;
+      state.sweet_gas_co2_ppm = action.payload.sweet_gas_co2_ppm;
+      state.rich_amine_h2s = action.payload.rich_amine_h2s;
+      state.rich_amine_co2 = action.payload.rich_amine_co2;
+      state.rich_amine_h2o = action.payload.rich_amine_h2o;
+      state.rich_amine_MDEA = action.payload.rich_amine_MDEA;
+    },
   },
 });
 
@@ -93,6 +109,7 @@ export const {
   setAmineInitialData,
   setSGModalWindowStatus,
   setAmineModalWindowStatus,
+  setAmineTreatmentResults,
 } = amineTreatmentSlice.actions;
 
 export const amineTreatmentReducer = amineTreatmentSlice.reducer;

@@ -59,18 +59,18 @@ def amine_treatment(dto: AmineTreatmentInitial):
         rich_amine_H2O_mol_frac = 1 - (rich_amine_MDEA_mol_frac + rich_amine_H2S_mol_frac + rich_amine_CO2_mol_frac)
 
     return {
-        "sweet_gas temperature, C": round(prod_temp[0][0], 4),
-        "rich_amine temperature, C": round(prod_temp[0][1], 4),
-        "rich_amine mass flow, kg/h": round(dto.rich_amine_mass_flow, 4),
-        "sweet_gas mass flow, kg/h": round(dto.sour_gas_mass_flow, 4),
-        "feed_gas mol weight": round(dto.feed_gas_mol_weight, 4),
-        "lean_amine mol weight": round(dto.lean_amine_mol_weight, 4),
-        "rich_amine mol weight": round(dto.rich_amine_mol_weight, 4),
-        "sweet_gas mol weight": round(dto.sweet_gas_mol_weight, 4),
-        "sweet_gas H2S ppm": round(sweet_gas_H2S_ppm_rate, 4),
-        "sweet_gas CO2 ppm": round(sweet_gas_CO2_ppm_rate, 4),
-        "rich_amine H2S mol frac": round(rich_amine_H2S_mol_frac, 5),
-        "rich_amine CO2 mol frac": round(rich_amine_CO2_mol_frac, 5),
-        "rich_amine H2O mol frac": round(rich_amine_H2O_mol_frac, 5),
-        "rich_amine MDEA mol frac": round(rich_amine_MDEA_mol_frac, 5)
+        "sweet_gas_temperature": round(prod_temp[0][0], 4),
+        "rich_amine_temperature": round(prod_temp[0][1], 4),
+        "rich_amine_mass_flow": round(dto.rich_amine_mass_flow, 4),
+        "sweet_gas_mass_flow": round(dto.sour_gas_mass_flow, 4),
+        "feed_gas_mol_weight": round(dto.feed_gas_mol_weight, 4),
+        "lean_amine_mol_weight": round(dto.lean_amine_mol_weight, 4),
+        "rich_amine_mol_weight": round(dto.rich_amine_mol_weight, 4),
+        "sweet_gas_mol_weight": round(dto.sweet_gas_mol_weight, 4),
+        "sweet_gas_h2s_ppm": round(sweet_gas_H2S_ppm_rate, 4),
+        "sweet_gas_co2_ppm": round(sweet_gas_CO2_ppm_rate, 4),
+        "rich_amine_h2s": round(rich_amine_H2S_mol_frac, 5),
+        "rich_amine_co2": round(rich_amine_CO2_mol_frac, 5),
+        "rich_amine_h2o": round(rich_amine_H2O_mol_frac, 5),
+        "rich_amine_MDEA": round(rich_amine_MDEA_mol_frac, 5)
     }
