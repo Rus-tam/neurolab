@@ -6,7 +6,8 @@
   "scripts": {
     "start:client": "cd client && npm run dev",
     "start:server": "cd server && npm run start:dev",
-    "start": "concurrently \"npm run start:client\" \"npm run start:server\""
+    "start:neuro-app": "start cmd /k run-neuro-app.bat",
+    "start": "concurrently \"npm run start:client\" \"npm run start:server\" \"npm run start:neuro-app\""
   },
   "author": "Akhmetov Rustam",
   "license": "ISC",
@@ -14,7 +15,5 @@
     "concurrently": "^8.2.0",
     "prettier": "3.0.0"
   },
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }
