@@ -1,4 +1,4 @@
-import OverallResultTable from "../layout/OverallResultTable.jsx";
+import OverallResultTable from "../fragments/OverallResultTable.jsx";
 import { useFetchSimpleIsoResQuery } from "../../store/apis/labsResultsApiSlice.js";
 import { prepareSimpleIsoRes } from "../../utils/prepare-simple-iso-res.js";
 import "../styles/simple-isomerization-result.css";
