@@ -8,6 +8,7 @@ import { AuthGuard } from "@nestjs/passport";
 import { UserEntity } from "@db/entities/user.entity";
 import { SimpleIsoResultEntity } from "@db/entities/simple-iso-result.entity";
 import { LabsError } from "@errors";
+import { AmineTreatmentEntity } from "@db/entities/amine-treatment-result.entity";
 
 @Controller("labs")
 export class LabsController {
@@ -57,5 +58,11 @@ export class LabsController {
       this.logger.error(`Ошибка лабораторной работы "Простая изомеризация" - ${err.message}`);
       throw new InternalServerErrorException(LabsError.CalculationError);
     }
+  }
+
+  @UseGuards(AuthGuard("jwt"))
+  @Get("/amine-treatment")
+  async getAmineTreatmentResult(@CurrentUser() currentUser: UserEntity): Promise<AmineTreatmentEntity[]> {
+    return this.dbService.fetchAmineTreatmentRes(currentUser.id);
   }
 }

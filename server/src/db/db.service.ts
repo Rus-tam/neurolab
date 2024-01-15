@@ -141,12 +141,16 @@ export class DbService {
     return newEntry;
   }
 
+  async fetchSimpleIsoRes(userId: string): Promise<SimpleIsoResultEntity[]> {
+    return this.simpleIsoResRepository.find({ where: { user: { id: userId } } });
+  }
+
   // AMINE TREATMENT
   async createAmineTreatmentNote(
     inputData: AmineTreatmentDTO,
     result: IAmineTreatmentResult,
     user: UserEntity,
-  ) {
+  ): Promise<AmineTreatmentEntity> {
     const { modalSGWindowStatus, modalAmineWindowStatus, ...initialData } = inputData;
     const newEntry = this.amineTreatmentResRepository.create({
       ...initialData,
@@ -173,7 +177,7 @@ export class DbService {
     return newEntry;
   }
 
-  async fetchSimpleIsoRes(userId: string): Promise<SimpleIsoResultEntity[]> {
-    return this.simpleIsoResRepository.find({ where: { user: { id: userId } } });
+  async fetchAmineTreatmentRes(userId: string) {
+    return this.amineTreatmentResRepository.find({ where: { user: { id: userId } } });
   }
 }
