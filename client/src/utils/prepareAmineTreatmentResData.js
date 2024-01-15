@@ -33,3 +33,18 @@ export const prepareLeanAmineResData = (data) => {
     "Мольная доля MDEA в очищенном амине": data.amine_MDEA,
   };
 };
+
+export const preparePredictedData = (data) => {
+  return {
+    "Температура очищенного газа, град С": data.sweet_gas_temperature,
+    "Массовый расход очищенного газа, кг/ч": data.sweet_gas_mass_flow,
+    "Концентрация сероводорода в очищенном газе, ppm": data.sweet_gas_H2S_ppm,
+    "Концентрация дикосида углерода в очищенном газе, ppm": data.sweet_gas_CO2_ppm,
+    "Температура насыщенного амина, град С": data.rich_amine_temperature,
+    "Массовый расход насыщенного амина, кг/ч": data.rich_amine_mass_flow,
+    "Мольная доля сероводорода в насыщенном амине": data.rich_amine_h2s,
+    "Мольная доля диоксида углерода в насыщенном амине": data.rich_amine_co2,
+    "Мольная доля воды в насыщенном амине": data.rich_amine_h2o,
+    "Мольная доля MDEA в очищенном амине": data.rich_amine_MDEA,
+  };
+};
