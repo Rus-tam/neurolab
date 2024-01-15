@@ -35,6 +35,12 @@ export class LabsController {
   }
 
   @UseGuards(AuthGuard("jwt"))
+  @Get("/simple-isomerization")
+  async getSimpleIsoResult(@CurrentUser() currentUser: UserEntity): Promise<SimpleIsoResultEntity[]> {
+    return this.dbService.fetchSimpleIsoRes(currentUser.id);
+  }
+
+  @UseGuards(AuthGuard("jwt"))
   @Post("/amine-treatment")
   async calculateAmineTreatment(
     @Body() inputData: AmineTreatmentDTO,
@@ -51,11 +57,5 @@ export class LabsController {
       this.logger.error(`Ошибка лабораторной работы "Простая изомеризация" - ${err.message}`);
       throw new InternalServerErrorException(LabsError.CalculationError);
     }
-  }
-
-  @UseGuards(AuthGuard("jwt"))
-  @Get("/simple-isomerization")
-  async getSimpleIsoResult(@CurrentUser() currentUser: UserEntity): Promise<SimpleIsoResultEntity[]> {
-    return this.dbService.fetchSimpleIsoRes(currentUser.id);
   }
 }

@@ -11,9 +11,10 @@ import LabsList from "./components/labs/Labs.jsx";
 import RequireAuth from "./store/RequireAuth.jsx";
 import UsersList from "./components/views/UsersList.jsx";
 import MyWorks from "./components/views/MyWorks.jsx";
-import SimpleIsomerizationResults from "./components/labs/SimpleIsomerizationResults.jsx";
+import SimpleIsomerizationResults from "./components/results/SimpleIsomerizationResults.jsx";
 import AmineTreatment from "./components/labs/AmineTreatment.jsx";
 import LowTemperatureDist from "./components/labs/LowTemperatureDist.jsx";
+import AmineTreatmentResults from "./components/results/AmineTreatmentResults.jsx";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
 
             <Route path="/labs/my-works" element={<MyWorks />}></Route>
             <Route path="/labs/simple-isomerization/results" element={<SimpleIsomerizationResults />}></Route>
+            <Route path="/labs/amine-treatment/results" element={<AmineTreatmentResults />}></Route>
 
             <Route path="/all-users" element={<UsersList />}></Route>
           </Route>

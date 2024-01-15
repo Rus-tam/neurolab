@@ -56,7 +56,7 @@ const LabCards = () => {
         {parentComponentName === "labs-list" ? (
           <button onClick={() => navigate("/labs/amine-treatment")}>Перейти к работе</button>
         ) : (
-          <button onClick={() => navigate("/labs/simple-isomerization/results")}>Результаты</button>
+          <button onClick={() => navigate("/labs/amine-treatment/results")}>Результаты</button>
         )}
       </div>
 
