@@ -1,0 +1,22 @@
+.amine-treatment-res-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.amine_treatment_res_tables {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.navigation-buttons {
+  padding-top: 0.5rem;
+}
+
+.navigation-buttons button {
+  margin-right: 0.5rem;
+}
