@@ -181,6 +181,7 @@ export class DbService {
     const sourGasData = await this.amineTreatmentResRepository
       .createQueryBuilder("table")
       .select([
+        "table.id",
         "table.sweet_gas_temperature",
         "table.sour_gas_temperature",
         "table.sour_gas_mass_flow",
@@ -199,9 +200,10 @@ export class DbService {
       .andWhere("table.user.id = :userId", { userId })
       .getRawMany();
 
-    const leanAmineResData = await this.amineTreatmentResRepository
+    const leanAmineData = await this.amineTreatmentResRepository
       .createQueryBuilder("table")
       .select([
+        "table.id",
         "table.amine_temperature",
         "table.amine_mass_flow",
         "table.amine_co2",
@@ -222,6 +224,7 @@ export class DbService {
     const predictedData = await this.amineTreatmentResRepository
       .createQueryBuilder("table")
       .select([
+        "table.id",
         "table.sweet_gas_temperature",
         "table.sweet_gas_mass_flow",
         "table.sweet_gas_H2S_ppm",
@@ -236,6 +239,6 @@ export class DbService {
       .andWhere("table.user.id = :userId", { userId })
       .getRawMany();
 
-    console.log("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", predictedData);
+    return { sourGas: sourGasData, leanAmine: leanAmineData, predictedData: predictedData };
   }
 }
