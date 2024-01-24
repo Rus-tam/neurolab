@@ -6,7 +6,16 @@ import { TokenEntity } from "@db/entities/token.entity";
 import { UserDTO } from "@db/dto";
 import { DbErrors } from "@errors";
 import * as bcrypt from "bcrypt";
-import { IAmineTreatmentResult, IJWTPayload, ISimpleIsoResult, Roles } from "@types";
+import {
+  IAmineTreatmentResult,
+  IFetchAmineRes,
+  IJWTPayload,
+  ILeanAmineData,
+  IPredictData,
+  ISimpleIsoResult,
+  ISourGasData,
+  Roles,
+} from "@types";
 import { v4 } from "uuid";
 import { add } from "date-fns";
 import { SimpleIsoResultEntity } from "@db/entities/simple-iso-result.entity";
@@ -177,8 +186,8 @@ export class DbService {
     return newEntry;
   }
 
-  async fetchAmineTreatmentRes(userId: string) {
-    const sourGasData = await this.amineTreatmentResRepository
+  async fetchAmineTreatmentRes(userId: string): Promise<IFetchAmineRes> {
+    const sourGasData: ISourGasData[] = await this.amineTreatmentResRepository
       .createQueryBuilder("table")
       .select([
         "table.id",
@@ -200,7 +209,7 @@ export class DbService {
       .andWhere("table.user.id = :userId", { userId })
       .getRawMany();
 
-    const leanAmineData = await this.amineTreatmentResRepository
+    const leanAmineData: ILeanAmineData[] = await this.amineTreatmentResRepository
       .createQueryBuilder("table")
       .select([
         "table.id",
@@ -221,7 +230,7 @@ export class DbService {
       .andWhere("table.user.id = :userId", { userId })
       .getRawMany();
 
-    const predictedData = await this.amineTreatmentResRepository
+    const predictedData: IPredictData[] = await this.amineTreatmentResRepository
       .createQueryBuilder("table")
       .select([
         "table.id",

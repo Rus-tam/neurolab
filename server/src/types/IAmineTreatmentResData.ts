@@ -46,3 +46,9 @@ export interface IPredictData {
   rich_amine_h2o: string;
   rich_amine_MDEA: string;
 }
+
+export interface IFetchAmineRes {
+  sourGas: ISourGasData[];
+  leanAmine: ILeanAmineData[];
+  predictedData: IPredictData[];
+}
