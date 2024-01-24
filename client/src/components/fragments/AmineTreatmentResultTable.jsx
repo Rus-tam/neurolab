@@ -1,4 +1,9 @@
 const AmineTreatmentResultTable = ({ data }) => {
+  console.log("rrrrr", data);
+  if (!data || data.length === 0) {
+    return <p>Нет данных для отображения</p>;
+  }
+
   return (
     <>
       <table className="table">

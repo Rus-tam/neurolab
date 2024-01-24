@@ -62,7 +62,7 @@ export class LabsController {
 
   @UseGuards(AuthGuard("jwt"))
   @Get("/amine-treatment")
-  async getAmineTreatmentResult(@CurrentUser() currentUser: UserEntity): Promise<AmineTreatmentEntity[]> {
+  async getAmineTreatmentResult(@CurrentUser() currentUser: UserEntity) {
     return this.dbService.fetchAmineTreatmentRes(currentUser.id);
   }
 }

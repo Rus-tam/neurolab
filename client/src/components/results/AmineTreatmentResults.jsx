@@ -1,35 +1,58 @@
+import { useState, useEffect } from "react";
 import { useFetchAmineTreatmentResQuery } from "../../store/apis/labsResultsApiSlice";
 import {
   prepareLeanAmineResData,
   preparePredictedData,
   prepareSourGasResData,
+  prepareAmineTreatmentData,
 } from "../../utils/prepareAmineTreatmentResData";
-import AmineTreatmentResultTable from "../fragments/AmineTreatmentResultTable";
+
 import Spinner from "../layout/Spinner";
 import "../styles/amine-treatment-res.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import AmineTreatmentResTables from "./AmineTreatmentResTables";
 
 const AmineTreatmentResults = () => {
   const { data: results, isError, isLoading } = useFetchAmineTreatmentResQuery();
-  let sourGasData;
-  let leanAmineData;
-  let predictedData;
+  const [currentPage, setCurrentPage] = useState(0);
+  let preparedResults = {};
 
-  if (!isError && !isLoading) {
-    sourGasData = prepareSourGasResData(results[0]);
-    leanAmineData = prepareLeanAmineResData(results[0]);
-    predictedData = preparePredictedData(results[0]);
+  if (results) {
+    preparedResults = prepareAmineTreatmentData(results);
   }
 
-  const handlePrevClick = () => {};
-  const handleNextClick = () => {};
+  let sourGasDataToComp;
+
+  // let sourGasData = { "some key": "some value" };
+  // let leanAmineData = {};
+  // let predictedData = {};
+
+  const updateDataToDisplay = () => {
+    if (!isError && !isLoading && preparedResults) {
+      sourGasDataToComp = preparedResults.sourGasResData[currentPage];
+      console.log("RRRRRRRR", sourGasDataToComp);
+    }
+  };
+
+  const handlePrevClick = () => {
+    if (currentPage > 0 && currentPage !== 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const handleNextClick = () => {
+    if (currentPage <= results.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  useEffect(() => {
+    updateDataToDisplay();
+  }, [currentPage, sourGasDataToComp]);
 
   const component = (
     <div className="amine-treatment-res-container">
       <div className="amine_treatment_res_tables">
-        <AmineTreatmentResultTable className="amine_treatment_table" data={sourGasData} />
-        <AmineTreatmentResultTable className="amine_treatment_table" data={leanAmineData} />
-        <AmineTreatmentResultTable className="amine_treatment_table" data={predictedData} />
+        <AmineTreatmentResTables sourGasData={sourGasDataToComp} />
       </div>
       <div className="navigation-buttons">
         <button onClick={handlePrevClick}>
@@ -42,7 +65,7 @@ const AmineTreatmentResults = () => {
     </div>
   );
 
-  return <div>{isLoading ? <Spinner /> : component}</div>;
+  return <div>{sourGasDataToComp ? <Spinner /> : component}</div>;
 };
 
 export default AmineTreatmentResults;

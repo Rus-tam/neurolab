@@ -178,6 +178,28 @@ export class DbService {
   }
 
   async fetchAmineTreatmentRes(userId: string) {
-    return this.amineTreatmentResRepository.find({ where: { user: { id: userId } } });
+    // return this.amineTreatmentResRepository.find({ where: { user: { id: userId } } });
+    const sourGasData = await this.amineTreatmentResRepository
+      .createQueryBuilder("table")
+      .select([
+        "table.sweet_gas_temperature",
+        "table.sour_gas_temperature",
+        "table.sour_gas_mass_flow",
+        "table.sour_gas_co2",
+        "table.sour_gas_ch4",
+        "table.sour_gas_c2h8",
+        "table.sour_gas_c3h8",
+        "table.sour_gas_ic4h10",
+        "table.sour_gas_nc4h10",
+        "table.sour_gas_ic5h12",
+        "table.sour_gas_nc5h12",
+        "table.sour_gas_h2s",
+        "table.sour_gas_h2o",
+        "table.sour_gas_MDEA",
+      ])
+      .andWhere("table.user.id = :userId", { userId })
+      .getRawMany();
+
+    console.log("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", sourGasData);
   }
 }
