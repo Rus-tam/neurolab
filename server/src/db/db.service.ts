@@ -178,7 +178,6 @@ export class DbService {
   }
 
   async fetchAmineTreatmentRes(userId: string) {
-    // return this.amineTreatmentResRepository.find({ where: { user: { id: userId } } });
     const sourGasData = await this.amineTreatmentResRepository
       .createQueryBuilder("table")
       .select([
@@ -200,6 +199,43 @@ export class DbService {
       .andWhere("table.user.id = :userId", { userId })
       .getRawMany();
 
-    console.log("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", sourGasData);
+    const leanAmineResData = await this.amineTreatmentResRepository
+      .createQueryBuilder("table")
+      .select([
+        "table.amine_temperature",
+        "table.amine_mass_flow",
+        "table.amine_co2",
+        "table.amine_ch4",
+        "table.amine_c2h8",
+        "table.amine_c3h8",
+        "table.amine_ic4h10",
+        "table.amine_nch4h10",
+        "table.amine_ic5h12",
+        "table.amine_nc5h12",
+        "table.amine_h2s",
+        "table.amine_h2o",
+        "table.amine_MDEA",
+      ])
+      .andWhere("table.user.id = :userId", { userId })
+      .getRawMany();
+
+    const predictedData = await this.amineTreatmentResRepository
+      .createQueryBuilder("table")
+      .select([
+        "table.sweet_gas_temperature",
+        "table.sweet_gas_mass_flow",
+        "table.sweet_gas_H2S_ppm",
+        "table.sweet_gas_CO2_ppm",
+        "table.rich_amine_temperature",
+        "table.rich_amine_mass_flow",
+        "table.rich_amine_h2s",
+        "table.rich_amine_co2",
+        "table.rich_amine_h2o",
+        "table.rich_amine_MDEA",
+      ])
+      .andWhere("table.user.id = :userId", { userId })
+      .getRawMany();
+
+    console.log("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ", predictedData);
   }
 }
