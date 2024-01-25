@@ -4,7 +4,6 @@ import {
   prepareLeanAmineResData,
   preparePredictedData,
   prepareSourGasResData,
-  prepareAmineTreatmentData,
 } from "../../utils/prepareAmineTreatmentResData";
 
 import Spinner from "../layout/Spinner";
@@ -13,21 +12,19 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import AmineTreatmentResultTable from "../fragments/AmineTreatmentResultTable";
 
 const AmineTreatmentResults = () => {
-  let leanAmineData = {};
-  let predictedData = {};
   const { data: results, isError, isLoading } = useFetchAmineTreatmentResQuery();
   const [currentPage, setCurrentPage] = useState(0);
   const [sourGasData, setSourGasData] = useState({});
-
-  console.log("CHECK RESULTS", results);
+  const [leanAmineData, setLeanAmineData] = useState({});
+  const [predictedData, setPredictedData] = useState({});
 
   const workingData = { ...results };
 
   const updateDataToDisplay = () => {
-    if (!isError && !isLoading && workingData.sourGas) {
+    if (!isError && !isLoading && workingData.sourGas && workingData.leanAmine) {
       setSourGasData(prepareSourGasResData(workingData.sourGas[currentPage]));
-
-      console.log("CHECK updateDataToDisplay function", sourGasData);
+      setLeanAmineData(prepareLeanAmineResData(workingData.leanAmine[currentPage]));
+      setPredictedData(preparePredictedData(workingData.predictedData[currentPage]));
     }
   };
 
@@ -37,7 +34,7 @@ const AmineTreatmentResults = () => {
     }
   };
   const handleNextClick = () => {
-    if (currentPage <= results.length) {
+    if (currentPage <= results.sourGas.length) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -48,7 +45,12 @@ const AmineTreatmentResults = () => {
 
   const component = (
     <div className="amine-treatment-res-container">
-      <AmineTreatmentResultTable data={sourGasData} />
+      <div className="amine_treatment_res_tables">
+        <AmineTreatmentResultTable data={sourGasData} />
+        <AmineTreatmentResultTable data={leanAmineData} />
+        <AmineTreatmentResultTable data={predictedData} />
+      </div>
+
       <div className="navigation-buttons">
         <button onClick={handlePrevClick}>
           <FaArrowLeft />
