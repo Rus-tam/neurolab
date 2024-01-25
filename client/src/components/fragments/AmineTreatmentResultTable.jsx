@@ -1,6 +1,6 @@
 const AmineTreatmentResultTable = ({ data }) => {
-  console.log("rrrrr", data);
-  if (!data || data.length === 0) {
+  console.log("CHECK data INCOME IN TABLE FRAGMENT", data);
+  if (!data || Object.keys(data).length === 0) {
     return <p>Нет данных для отображения</p>;
   }
 

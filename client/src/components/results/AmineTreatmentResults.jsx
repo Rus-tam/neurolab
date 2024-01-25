@@ -10,27 +10,24 @@ import {
 import Spinner from "../layout/Spinner";
 import "../styles/amine-treatment-res.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import AmineTreatmentResTables from "./AmineTreatmentResTables";
+import AmineTreatmentResultTable from "../fragments/AmineTreatmentResultTable";
 
 const AmineTreatmentResults = () => {
+  let leanAmineData = {};
+  let predictedData = {};
   const { data: results, isError, isLoading } = useFetchAmineTreatmentResQuery();
   const [currentPage, setCurrentPage] = useState(0);
-  let preparedResults = {};
+  const [sourGasData, setSourGasData] = useState({});
 
-  if (results) {
-    preparedResults = prepareAmineTreatmentData(results);
-  }
+  console.log("CHECK RESULTS", results);
 
-  let sourGasDataToComp;
-
-  // let sourGasData = { "some key": "some value" };
-  // let leanAmineData = {};
-  // let predictedData = {};
+  const workingData = { ...results };
 
   const updateDataToDisplay = () => {
-    if (!isError && !isLoading && preparedResults) {
-      sourGasDataToComp = preparedResults.sourGasResData[currentPage];
-      console.log("RRRRRRRR", sourGasDataToComp);
+    if (!isError && !isLoading && workingData.sourGas) {
+      setSourGasData(prepareSourGasResData(workingData.sourGas[currentPage]));
+
+      console.log("CHECK updateDataToDisplay function", sourGasData);
     }
   };
 
@@ -47,13 +44,11 @@ const AmineTreatmentResults = () => {
 
   useEffect(() => {
     updateDataToDisplay();
-  }, [currentPage, sourGasDataToComp]);
+  }, [currentPage, isLoading]);
 
   const component = (
     <div className="amine-treatment-res-container">
-      <div className="amine_treatment_res_tables">
-        <AmineTreatmentResTables sourGasData={sourGasDataToComp} />
-      </div>
+      <AmineTreatmentResultTable data={sourGasData} />
       <div className="navigation-buttons">
         <button onClick={handlePrevClick}>
           <FaArrowLeft />
@@ -65,7 +60,7 @@ const AmineTreatmentResults = () => {
     </div>
   );
 
-  return <div>{sourGasDataToComp ? <Spinner /> : component}</div>;
+  return <div>{isLoading ? <Spinner /> : component}</div>;
 };
 
 export default AmineTreatmentResults;

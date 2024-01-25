@@ -1,7 +1,7 @@
 import { Body, Controller, Get, InternalServerErrorException, Logger, Post, UseGuards } from "@nestjs/common";
 import { LabsService } from "@labs/labs.service";
 import { AmineTreatmentDTO, SimpleIsoDto } from "@labs/dto";
-import { ISimpleIsoResult } from "@types";
+import { IFetchAmineRes, ISimpleIsoResult } from "@types";
 import { DbService } from "@db/db.service";
 import { CurrentUser } from "@decorators";
 import { AuthGuard } from "@nestjs/passport";
@@ -62,7 +62,7 @@ export class LabsController {
 
   @UseGuards(AuthGuard("jwt"))
   @Get("/amine-treatment")
-  async getAmineTreatmentResult(@CurrentUser() currentUser: UserEntity) {
+  async getAmineTreatmentResult(@CurrentUser() currentUser: UserEntity): Promise<IFetchAmineRes> {
     return this.dbService.fetchAmineTreatmentRes(currentUser.id);
   }
 }

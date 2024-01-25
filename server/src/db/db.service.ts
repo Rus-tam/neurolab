@@ -248,6 +248,8 @@ export class DbService {
       .andWhere("table.user.id = :userId", { userId })
       .getRawMany();
 
+    console.log("QQQQQ", sourGasData);
+
     return { sourGas: sourGasData, leanAmine: leanAmineData, predictedData: predictedData };
   }
 }
