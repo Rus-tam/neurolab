@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from dto.dto import SimpleIsoInitial, SimpleIsoResponse, AmineTreatmentInitial
+from dto.dto import SimpleIsoInitial, SimpleIsoResponse, AmineTreatmentInitial, LowTempDistInitial
 from service.simple_isomerization_service import simple_isomerization_service
 from service.amine_treatment_service import amine_treatment_prod_temp
 from service.amine_treatment_service import amine_treatment_rich_amine_mass_flow
@@ -78,5 +78,5 @@ def amine_treatment(dto: AmineTreatmentInitial):
 
 
 @app.post('/low-temp-distillation')
-def low_temp_distillation(dto):
+def low_temp_distillation(dto: LowTempDistInitial):
     pass

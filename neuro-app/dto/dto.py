@@ -18,6 +18,18 @@ class LowTempDistInitial(BaseModel):
     feed_gas_pressure: float
     cooled_gas_pressure: float
     column_power: float
+    feed_gas_n2: float
+    feed_gas_co2: float
+    feed_gas_ch4: float
+    feed_gas_c2h6: float
+    feed_gas_c3h8: float
+    feed_gas_ic4h10: float
+    feed_gas_nc4h10: float
+    feed_gas_ic5h12: float
+    feed_gas_nc5h12: float
+    feed_gas_c6h14: float
+    feed_gas_c7h16: float
+
 
 
 class AmineTreatmentInitial(BaseModel):
