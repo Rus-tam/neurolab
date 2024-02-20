@@ -1,4 +1,4 @@
-from dto.dto import AmineTreatmentInitial
+from dto.dto import AmineTreatmentInitial, LowTempDistInitial
 
 
 def prepare_initial_data(dto: AmineTreatmentInitial):
@@ -16,5 +16,15 @@ def prepare_initial_data(dto: AmineTreatmentInitial):
         'lean_amine n-Butane mol frac': [dto.amine_nch4h10], 'lean_amine i-Pentane mol frac': [dto.amine_ic5h12],
         'lean_amine n-Pentane mol frac': [dto.amine_nc5h12], 'lean_amine H2S mol frac': [dto.amine_h2s],
         'lean_amine H2O mol frac': [dto.amine_h2o], 'lean_amine MDEAmine mol frac': [dto.amine_MDEA]
+    }
+
+
+def prepare_low_temp_data(dto: LowTempDistInitial):
+    return {
+    'gas_feed temperature, C': [dto.feed_gas_temperature], 'gas_feed pressure, kPa': [dto.feed_gas_pressure],
+    'gas_feed mass flow, kg/h': [dto.feed_gas_mass_flow], 'gas_feed Methane mass frac': [dto.feed_gas_ch4],
+    'gas_feed Ethane mass frac': [dto.feed_gas_c2h6], 'gas_feed Propane mass frac': [dto.feed_gas_c3h8],
+    'gas_feed i-Butane mass frac': [dto.feed_gas_ic4h10], 'gas_feed n-Butane mass frac': [dto.feed_gas_nc4h10],
+    'gas_feed i-Pentane mass frac': [dto.feed_gas_ic5h12], 'gas_feed n-Pentane mass frac': [dto.feed_gas_nc5h12],
     }
 

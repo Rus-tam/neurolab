@@ -9,6 +9,8 @@ from service.amine_treatment_service import sweet_gas_CO2_ppm
 from service.amine_treatment_service import rich_amine_sour_comp
 from service.amine_treatment_service import rich_amine_H2O_MDEA
 
+from service.low_temp_dist_service import separator_vapour_mass_flow
+
 
 app = FastAPI()
 
@@ -29,7 +31,6 @@ def simple_isomerization(dto: SimpleIsoInitial):
 
 @app.post("/amine_treatment")
 def amine_treatment(dto: AmineTreatmentInitial):
-    print(dto.sour_gas_temperature)
     prod_temp = amine_treatment_prod_temp(dto)
 
     dto.sweet_gas_temperature = round(prod_temp[0][0], 4)
@@ -79,4 +80,6 @@ def amine_treatment(dto: AmineTreatmentInitial):
 
 @app.post('/low-temp-distillation')
 def low_temp_distillation(dto: LowTempDistInitial):
-    pass
+    sep_vap_mass_flow = separator_vapour_mass_flow(dto)
+
+    print('OOOO', sep_vap_mass_flow)
