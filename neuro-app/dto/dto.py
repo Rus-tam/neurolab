@@ -12,6 +12,14 @@ class SimpleIsoResponse(BaseModel):
     product_temperature: float
 
 
+class LowTempDistInitial(BaseModel):
+    feed_gas_temperature: float
+    feed_gas_mass_flow: float
+    feed_gas_pressure: float
+    cooled_gas_pressure: float
+    column_power: float
+
+
 class AmineTreatmentInitial(BaseModel):
     sour_gas_temperature: float
     sour_gas_mass_flow: float

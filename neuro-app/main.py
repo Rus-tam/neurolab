@@ -75,3 +75,8 @@ def amine_treatment(dto: AmineTreatmentInitial):
         "rich_amine_h2o": round(rich_amine_H2O_mol_frac, 5),
         "rich_amine_MDEA": round(rich_amine_MDEA_mol_frac, 5)
     }
+
+
+@app.post('/low-temp-distillation')
+def low_temp_distillation(dto):
+    pass
