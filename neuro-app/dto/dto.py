@@ -34,6 +34,13 @@ class LowTempDistInitial(BaseModel):
     sep_vap_nc4h10: float
     sep_vap_ic5h12: float
     sep_vap_nc5h12: float
+    sep_liq_ch4: float
+    sep_liq_c2h6: float
+    sep_liq_c3h8: float
+    sep_liq_ic4h10: float
+    sep_liq_nc4h10: float
+    sep_liq_ic5h12: float
+    sep_liq_nc5h12: float
 
 
 

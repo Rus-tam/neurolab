@@ -76,11 +76,13 @@ def separator_liquid_mass_frac(dto: LowTempDistInitial):
                '1 i-Pentane mass frac', '1 n-Pentane mass frac']
     norm_vap_liq_mass_frac_data = normalize_data(sep_liq_mass_frac_data, initial_data, columns, labels)
 
-    sep_liq_mass_frac = sep_liq_mass_frac_model(norm_vap_liq_mass_frac_data).numpy().tolist()[0]
+    liq_mass_frac = sep_liq_mass_frac_model(norm_vap_liq_mass_frac_data).numpy().tolist()[0]
+
+    return liq_mass_frac
 
     # print(' ')
     # print('+++++++++++')
-    # print(sep_liq_mass_frac)
+    # print(type(liq_mass_frac))
     # print('+++++++++++')
     # print(' ')
 

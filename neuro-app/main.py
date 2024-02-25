@@ -83,4 +83,8 @@ def low_temp_distillation(dto: LowTempDistInitial):
     dto.sep_vap_mass_flow = separator_vapour_mass_flow(dto)
     dto.sep_liq_mass_flow = dto.feed_gas_mass_flow - dto.sep_vap_mass_flow
     dto.sep_vap_ch4, dto.sep_vap_c2h6, dto.sep_vap_c3h8, dto.sep_vap_ic4h10, dto.sep_vap_nc4h10, dto.sep_vap_ic5h12, dto.sep_vap_nc5h12 = separator_vapour_mass_frac(dto)
-    separator_liquid_mass_frac(dto)
+    dto.sep_liq_ch4, dto.sep_liq_c2h6, dto.sep_liq_c3h8, dto.sep_liq_ic4h10, dto.sep_liq_nc4h10, dto.sep_liq_ic5h12, dto.sep_liq_nc5h12 = separator_liquid_mass_frac(dto)
+    
+
+
+    print('HHHH', dto)
