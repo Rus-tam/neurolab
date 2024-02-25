@@ -80,6 +80,8 @@ def amine_treatment(dto: AmineTreatmentInitial):
 
 @app.post('/low-temp-distillation')
 def low_temp_distillation(dto: LowTempDistInitial):
-    sep_vap_mass_flow = separator_vapour_mass_flow(dto)
+    dto.sep_vap_mass_flow = separator_vapour_mass_flow(dto)
+    dto.sep_liq_mass_flow = dto.feed_gas_mass_flow - dto.sep_vap_mass_flow
 
-    print('OOOO', sep_vap_mass_flow)
+
+    print('OOOO', dto.sep_vap_mass_flow)
