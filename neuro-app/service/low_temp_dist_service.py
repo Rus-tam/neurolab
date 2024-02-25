@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from utils.initial_data_handler import prepare_low_temp_data
 from dto.dto import LowTempDistInitial
 from data.low_temp_distillation.low_temp_dist_data import sep_vap_mass_flow_data, sep_vap_mass_frac_data
-from models.low_temp_distillation.low_temp_distillation import sep_vap_mass_flow_model
+from models.low_temp_distillation.low_temp_distillation import sep_vap_mass_flow_model, sep_vap_mass_frac_model
 
 column = [
     'gas_feed temperature, C', 'gas_feed pressure, kPa', 'gas_feed mass flow, kg/h', 'gas_feed Methane mass frac',
@@ -51,7 +51,16 @@ def separator_vapour_mass_frac(dto: LowTempDistInitial):
         '1 n-Butane mass frac', '1 i-Pentane mass frac', '1 n-Pentane mass frac'
     ]
     columns = [*column, '1 mass flow, kg/h', '2 mass flow, kg/h']
-    norm_vap_mass_frac_norm_data = normalize_data()
+    norm_vap_mass_frac_norm_data = normalize_data(sep_vap_mass_frac_data, initial_data, columns, labels)
+    vapour_mass_frac = sep_vap_mass_frac_model(norm_vap_mass_frac_norm_data).numpy().tolist()[0]
+
+    return vapour_mass_frac
+    # print(' ')
+    # print('+++++++++++')
+    # print(vapour_mass_frac)
+    # print('+++++++++++')
+    # print(' ')
+
 
 
 

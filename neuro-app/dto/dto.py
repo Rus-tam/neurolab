@@ -27,6 +27,13 @@ class LowTempDistInitial(BaseModel):
     feed_gas_nc5h12: float
     sep_vap_mass_flow: float
     sep_liq_mass_flow: float
+    sep_vap_ch4: float
+    sep_vap_c2h6: float
+    sep_vap_c3h8: float
+    sep_vap_ic4h10: float
+    sep_vap_nc4h10: float
+    sep_vap_ic5h12: float
+    sep_vap_nc5h12: float
 
 
 
