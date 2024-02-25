@@ -9,7 +9,7 @@ from service.amine_treatment_service import sweet_gas_CO2_ppm
 from service.amine_treatment_service import rich_amine_sour_comp
 from service.amine_treatment_service import rich_amine_H2O_MDEA
 
-from service.low_temp_dist_service import separator_vapour_mass_flow, separator_vapour_mass_frac
+from service.low_temp_dist_service import separator_vapour_mass_flow, separator_vapour_mass_frac, separator_liquid_mass_frac
 
 
 app = FastAPI()
@@ -83,4 +83,4 @@ def low_temp_distillation(dto: LowTempDistInitial):
     dto.sep_vap_mass_flow = separator_vapour_mass_flow(dto)
     dto.sep_liq_mass_flow = dto.feed_gas_mass_flow - dto.sep_vap_mass_flow
     dto.sep_vap_ch4, dto.sep_vap_c2h6, dto.sep_vap_c3h8, dto.sep_vap_ic4h10, dto.sep_vap_nc4h10, dto.sep_vap_ic5h12, dto.sep_vap_nc5h12 = separator_vapour_mass_frac(dto)
-
+    separator_liquid_mass_frac(dto)
