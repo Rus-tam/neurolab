@@ -10,7 +10,7 @@ from service.amine_treatment_service import rich_amine_sour_comp
 from service.amine_treatment_service import rich_amine_H2O_MDEA
 
 from service.low_temp_dist_service import separator_vapour_mass_flow, separator_vapour_mass_frac, separator_liquid_mass_frac
-from service.low_temp_dist_service import expander_cooled_gas_temp
+from service.low_temp_dist_service import expander_cooled_gas_temp, expander_power
 
 app = FastAPI()
 
@@ -85,6 +85,7 @@ def low_temp_distillation(dto: LowTempDistInitial):
     dto.sep_vap_ch4, dto.sep_vap_c2h6, dto.sep_vap_c3h8, dto.sep_vap_ic4h10, dto.sep_vap_nc4h10, dto.sep_vap_ic5h12, dto.sep_vap_nc5h12 = separator_vapour_mass_frac(dto)
     dto.sep_liq_ch4, dto.sep_liq_c2h6, dto.sep_liq_c3h8, dto.sep_liq_ic4h10, dto.sep_liq_nc4h10, dto.sep_liq_ic5h12, dto.sep_liq_nc5h12 = separator_liquid_mass_frac(dto)
     dto.cooled_gas_temperature = expander_cooled_gas_temp(dto)
+    dto.expander_power = expander_power(dto)
 
 
     print('HHHH', dto)

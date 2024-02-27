@@ -6,8 +6,8 @@ from utils.initial_data_handler import prepare_low_temp_data
 from dto.dto import LowTempDistInitial
 from data.low_temp_distillation.low_temp_dist_data import sep_vap_mass_flow_data, sep_vap_mass_frac_data, sep_liq_mass_frac_data
 from models.low_temp_distillation.low_temp_distillation import sep_vap_mass_flow_model, sep_vap_mass_frac_model, sep_liq_mass_frac_model
-from data.low_temp_distillation.low_temp_dist_data import cooled_gas_temp_data
-from models.low_temp_distillation.low_temp_distillation import expander_cooled_gas_model
+from data.low_temp_distillation.low_temp_dist_data import cooled_gas_temp_data, expander_power_data
+from models.low_temp_distillation.low_temp_distillation import expander_cooled_gas_model, expander_power_model
 
 column = [
     'gas_feed temperature, C', 'gas_feed pressure, kPa', 'gas_feed mass flow, kg/h', 'gas_feed Methane mass frac',
@@ -90,7 +90,6 @@ def separator_liquid_mass_frac(dto: LowTempDistInitial):
 
 
 def expander_cooled_gas_temp(dto: LowTempDistInitial):
-    data = prepare_low_temp_data(dto)
     initial_data = pd.DataFrame({
     '1 temperature, C': [dto.feed_gas_temperature], '1 pressure, kPa': [dto.feed_gas_pressure],
     '1 mass flow, kg/h': [dto.sep_vap_mass_flow], '1 Methane mass frac': [dto.sep_vap_ch4],
@@ -104,17 +103,30 @@ def expander_cooled_gas_temp(dto: LowTempDistInitial):
     norm_expander_cooled_gas_temp_data = normalize_data(cooled_gas_temp_data, initial_data, columns, labels)
     cooled_gas_temp = expander_cooled_gas_model(norm_expander_cooled_gas_temp_data).numpy().tolist()[0][0]
 
-    print(' ')
-    print('+++++++++++')
-    print(cooled_gas_temp)
-    print('+++++++++++')
-    print(' ')
-
     return cooled_gas_temp
+
+
+def expander_power(dto: LowTempDistInitial):
+    initial_data = pd.DataFrame({
+    '1 temperature, C': [dto.feed_gas_temperature], '1 pressure, kPa': [dto.feed_gas_pressure],
+    '1 mass flow, kg/h': [dto.sep_vap_mass_flow], '1 Methane mass frac': [dto.sep_vap_ch4],
+    '1 Ethane mass frac': [dto.sep_vap_c2h6], '1 Propane mass frac': [dto.sep_vap_c3h8],
+    '1 i-Butane mass frac': [dto.sep_vap_ic4h10], '1 n-Butane mass frac': [dto.sep_vap_nc4h10],
+    '1 i-Pentane mass frac': [dto.sep_vap_ic5h12], '1 n-Pentane mass frac': [dto.sep_vap_nc5h12],
+    '3 temperature, C': [dto.cooled_gas_temperature], '3 pressure, kPa': [dto.cooled_gas_pressure]
+    })
+    labels = ['Q-100']
+    columns = [*columns_expander, '3 temperature, C']
+    norm_expander_power_data = normalize_data(expander_power_data, initial_data, columns, labels)
+    exp_data = expander_power_model(norm_expander_power_data).numpy().tolist()[0][0]
+
+    return exp_data
+
+
 
     # print(' ')
     # print('+++++++++++')
-    # print(norm_expander_cooled_gas_temp_data)
+    # print(exp_data)
     # print('+++++++++++')
     # print(' ')
 
