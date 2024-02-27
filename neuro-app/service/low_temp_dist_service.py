@@ -6,12 +6,19 @@ from utils.initial_data_handler import prepare_low_temp_data
 from dto.dto import LowTempDistInitial
 from data.low_temp_distillation.low_temp_dist_data import sep_vap_mass_flow_data, sep_vap_mass_frac_data, sep_liq_mass_frac_data
 from models.low_temp_distillation.low_temp_distillation import sep_vap_mass_flow_model, sep_vap_mass_frac_model, sep_liq_mass_frac_model
+from data.low_temp_distillation.low_temp_dist_data import cooled_gas_temp_data
 
 column = [
     'gas_feed temperature, C', 'gas_feed pressure, kPa', 'gas_feed mass flow, kg/h', 'gas_feed Methane mass frac',
     'gas_feed Ethane mass frac', 'gas_feed Propane mass frac', 'gas_feed i-Butane mass frac',
     'gas_feed n-Butane mass frac',
     'gas_feed i-Pentane mass frac', 'gas_feed n-Pentane mass frac',
+]
+
+columns_expander = [
+    '1 temperature, C', '1 pressure, kPa', '1 mass flow, kg/h', '1 Methane mass frac', '1 Ethane mass frac',
+    '1 Propane mass frac', '1 i-Butane mass frac', '1 n-Butane mass frac', '1 i-Pentane mass frac',
+    '1 n-Pentane mass frac', '3 pressure, kPa',
 ]
 
 
@@ -80,11 +87,26 @@ def separator_liquid_mass_frac(dto: LowTempDistInitial):
 
     return liq_mass_frac
 
-    # print(' ')
-    # print('+++++++++++')
-    # print(type(liq_mass_frac))
-    # print('+++++++++++')
-    # print(' ')
+
+def expander_cooled_gas_temp(dto: LowTempDistInitial):
+    data = prepare_low_temp_data(dto)
+    initial_data = pd.DataFrame({
+    '1 temperature, C': [dto.feed_gas_temperature], '1 pressure, kPa': [dto.feed_gas_pressure],
+    '1 mass flow, kg/h': [dto.sep_vap_mass_flow], '1 Methane mass frac': [dto.sep_vap_ch4],
+    '1 Ethane mass frac': [dto.sep_vap_c2h6], '1 Propane mass frac': [dto.sep_vap_c3h8],
+    '1 i-Butane mass frac': [dto.sep_vap_ic4h10], '1 n-Butane mass frac': [dto.sep_vap_nc4h10],
+    '1 i-Pentane mass frac': [dto.sep_vap_ic5h12], '1 n-Pentane mass frac': [dto.sep_vap_nc5h12],
+    '3 pressure, kPa': [dto.cooled_gas_pressure]
+    })
+    labels = ['3 temperature, C']
+    columns = [*columns_expander]
+    norm_expander_cooled_gas_temp_data = normalize_data(cooled_gas_temp_data, initial_data, columns, labels)
+
+    print(' ')
+    print('+++++++++++')
+    print(norm_expander_cooled_gas_temp_data)
+    print('+++++++++++')
+    print(' ')
 
 
 
