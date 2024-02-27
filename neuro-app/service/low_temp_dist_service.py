@@ -7,6 +7,7 @@ from dto.dto import LowTempDistInitial
 from data.low_temp_distillation.low_temp_dist_data import sep_vap_mass_flow_data, sep_vap_mass_frac_data, sep_liq_mass_frac_data
 from models.low_temp_distillation.low_temp_distillation import sep_vap_mass_flow_model, sep_vap_mass_frac_model, sep_liq_mass_frac_model
 from data.low_temp_distillation.low_temp_dist_data import cooled_gas_temp_data
+from models.low_temp_distillation.low_temp_distillation import expander_cooled_gas_model
 
 column = [
     'gas_feed temperature, C', 'gas_feed pressure, kPa', 'gas_feed mass flow, kg/h', 'gas_feed Methane mass frac',
@@ -101,12 +102,21 @@ def expander_cooled_gas_temp(dto: LowTempDistInitial):
     labels = ['3 temperature, C']
     columns = [*columns_expander]
     norm_expander_cooled_gas_temp_data = normalize_data(cooled_gas_temp_data, initial_data, columns, labels)
+    cooled_gas_temp = expander_cooled_gas_model(norm_expander_cooled_gas_temp_data).numpy().tolist()[0][0]
 
     print(' ')
     print('+++++++++++')
-    print(norm_expander_cooled_gas_temp_data)
+    print(cooled_gas_temp)
     print('+++++++++++')
     print(' ')
+
+    return cooled_gas_temp
+
+    # print(' ')
+    # print('+++++++++++')
+    # print(norm_expander_cooled_gas_temp_data)
+    # print('+++++++++++')
+    # print(' ')
 
 
 
