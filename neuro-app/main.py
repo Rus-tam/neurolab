@@ -87,5 +87,24 @@ def low_temp_distillation(dto: LowTempDistInitial):
     dto.cooled_gas_temperature = expander_cooled_gas_temp(dto)
     dto.expander_power = expander_power(dto)
 
+    return {
+        "sep_vap_mass_flow": round(dto.sep_vap_mass_flow, 5),
+        "sep_liq_mass_flow": round(dto.sep_liq_mass_flow, 5),
+        "sep_vap_ch4": round(dto.sep_vap_ch4, 5),
+        "sep_vap_c2h6": round(dto.sep_vap_c2h6, 5),
+        "sep_vap_c3h8": round(dto.sep_vap_c3h8, 5),
+        "sep_vap_ic4h10": round(dto.sep_vap_ic4h10, 5),
+        "sep_vap_nc4h10": round(dto.sep_vap_nc4h10, 5),
+        "sep_vap_ic5h12": round(dto.sep_vap_ic5h12, 5),
+        "sep_vap_nc5h12": round(dto.sep_vap_nc5h12, 5),
+        "sep_liq_ch4": round(dto.sep_liq_ch4, 5),
+        "sep_liq_c2h6": round(dto.sep_liq_c2h6, 5),
+        "sep_liq_c3h8": round(dto.sep_liq_c3h8, 5),
+        "sep_liq_ic4h10": round(dto.sep_liq_ic4h10, 5),
+        "sep_liq_nc4h10": round(dto.sep_liq_nc4h10, 5),
+        "sep_liq_ic5h12": round(dto.sep_liq_ic5h12, 5),
+        "sep_liq_nc5h12": round(dto.sep_liq_nc5h12, 5),
+        "cooled_gas_temperature": round(dto.cooled_gas_temperature, 5),
+        "expander_power": round(dto.expander_power, 5)
+    }
 
-    print('HHHH', dto)
