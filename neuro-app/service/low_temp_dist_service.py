@@ -8,6 +8,7 @@ from data.low_temp_distillation.low_temp_dist_data import sep_vap_mass_flow_data
 from models.low_temp_distillation.low_temp_distillation import sep_vap_mass_flow_model, sep_vap_mass_frac_model, sep_liq_mass_frac_model
 from data.low_temp_distillation.low_temp_dist_data import cooled_gas_temp_data, expander_power_data
 from models.low_temp_distillation.low_temp_distillation import expander_cooled_gas_model, expander_power_model
+from data.low_temp_distillation.low_temp_dist_data import column_prod_temp_data
 
 column = [
     'gas_feed temperature, C', 'gas_feed pressure, kPa', 'gas_feed mass flow, kg/h', 'gas_feed Methane mass frac',
@@ -121,6 +122,35 @@ def expander_power(dto: LowTempDistInitial):
     exp_data = expander_power_model(norm_expander_power_data).numpy().tolist()[0][0]
 
     return exp_data
+
+
+def column_prod_temp(dto: LowTempDistInitial):
+    initial_data = pd.DataFrame({
+    '4 temperature, C': [dto.cooled_gas_temperature], '4 pressure, kPa': [dto.cooled_gas_pressure],
+    '4 mass flow, kg/h': [dto.sep_vap_mass_flow],  '4 Methane mass frac': [dto.sep_vap_ch4],
+    '4 Ethane mass frac': [dto.sep_vap_c2h6], '4 Propane mass frac': [dto.sep_vap_c3h8],
+    '4 i-Butane mass frac': [dto.sep_vap_ic4h10], '4 n-Butane mass frac': [dto.sep_vap_nc4h10],
+    '4 i-Pentane mass frac': [dto.sep_vap_ic5h12], '4 n-Pentane mass frac': [dto.sep_vap_nc5h12],
+    'Q-104': [dto.column_power],
+    '5 temperature, C': [dto.feed_gas_temperature], '5 pressure, kPa': [dto.feed_gas_pressure],
+    '5 mass flow, kg/h': [dto.sep_liq_mass_flow], '5 Methane mass frac': [dto.sep_liq_ch4],
+    '5 Ethane mass frac': [dto.sep_liq_c2h6], '5 Propane mass frac': [dto.sep_liq_c3h8],
+    '5 i-Butane mass frac': [dto.sep_liq_ic4h10], '5 n-Butane mass frac': [dto.sep_liq_nc4h10],
+    '5 i-Pentane mass frac': [dto.sep_liq_ic5h12], '5 n-Pentane mass frac': [dto.sep_liq_nc5h12],
+    })
+
+    labels = ['16 temperature, C', '17 temperature, C']
+    columns = [
+        '4 temperature, C', '4 pressure, kPa', '4 mass flow, kg/h',  '4 Methane mass frac',
+        '4 Ethane mass frac', '4 Propane mass frac', '4 i-Butane mass frac', '4 n-Butane mass frac',
+        '4 i-Pentane mass frac', '4 n-Pentane mass frac', 'Q-104',
+        '5 temperature, C', '5 pressure, kPa', '5 mass flow, kg/h', '5 Methane mass frac',
+        '5 Ethane mass frac', '5 Propane mass frac', '5 i-Butane mass frac', '5 n-Butane mass frac',
+        '5 i-Pentane mass frac', '5 n-Pentane mass frac'
+    ]
+    norm_column_prod_temp_data = normalize_data(column_prod_temp_data, initial_data, columns, labels)
+
+    print(norm_column_prod_temp_data)
 
 
 
