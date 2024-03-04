@@ -9,6 +9,7 @@ from models.low_temp_distillation.low_temp_distillation import sep_vap_mass_flow
 from data.low_temp_distillation.low_temp_dist_data import cooled_gas_temp_data, expander_power_data
 from models.low_temp_distillation.low_temp_distillation import expander_cooled_gas_model, expander_power_model
 from data.low_temp_distillation.low_temp_dist_data import column_prod_temp_data
+from models.low_temp_distillation.low_temp_distillation import column_prod_temp_model
 
 column = [
     'gas_feed temperature, C', 'gas_feed pressure, kPa', 'gas_feed mass flow, kg/h', 'gas_feed Methane mass frac',
@@ -150,7 +151,7 @@ def column_prod_temp(dto: LowTempDistInitial):
     ]
     norm_column_prod_temp_data = normalize_data(column_prod_temp_data, initial_data, columns, labels)
 
-    print(norm_column_prod_temp_data)
+    return column_prod_temp_model(norm_column_prod_temp_data).numpy().tolist()[0]
 
 
 

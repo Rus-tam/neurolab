@@ -43,6 +43,8 @@ class LowTempDistInitial(BaseModel):
     sep_liq_nc5h12: float
     cooled_gas_temperature: float
     expander_power: float
+    column_bot_prod_temp: float
+    column_top_prod_temp: float
 
 
 

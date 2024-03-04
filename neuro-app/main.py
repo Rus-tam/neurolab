@@ -87,7 +87,7 @@ def low_temp_distillation(dto: LowTempDistInitial):
     dto.cooled_gas_temperature = expander_cooled_gas_temp(dto)
     dto.expander_power = expander_power(dto)
 
-    column_prod_temp(dto)
+    dto.column_top_prod_temp, dto.column_bot_prod_temp = column_prod_temp(dto)
 
     return {
         "sep_vap_mass_flow": round(dto.sep_vap_mass_flow, 5),
@@ -107,6 +107,8 @@ def low_temp_distillation(dto: LowTempDistInitial):
         "sep_liq_ic5h12": round(dto.sep_liq_ic5h12, 5),
         "sep_liq_nc5h12": round(dto.sep_liq_nc5h12, 5),
         "cooled_gas_temperature": round(dto.cooled_gas_temperature, 5),
-        "expander_power": round(dto.expander_power, 5)
+        "expander_power": round(dto.expander_power, 5),
+        "column_top_prod_temperature": round(dto.column_top_prod_temp, 5),
+        "column_bot_prod_temperature": round(dto.column_bot_prod_temp, 5)
     }
 
