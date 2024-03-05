@@ -10,6 +10,8 @@ from data.low_temp_distillation.low_temp_dist_data import cooled_gas_temp_data, 
 from models.low_temp_distillation.low_temp_distillation import expander_cooled_gas_model, expander_power_model
 from data.low_temp_distillation.low_temp_dist_data import column_prod_temp_data, column_prod_mass_flow_data
 from models.low_temp_distillation.low_temp_distillation import column_prod_temp_model, column_prod_mass_flow_model
+from data.low_temp_distillation.low_temp_dist_data import column_top_prod_mass_frac_data
+from models.low_temp_distillation.low_temp_distillation import column_top_prod_mass_frac_model
 
 
 column = [
@@ -163,6 +165,32 @@ def column_prod_mass_flow(dto: LowTempDistInitial):
     norm_column_prod_mass_data = normalize_data(column_prod_mass_flow_data, initial_data, columns, labels)
 
     return column_prod_mass_flow_model(norm_column_prod_mass_data).numpy().tolist()[0][0]
+
+
+def column_top_prod_mass_frac(dto: LowTempDistInitial):
+    data = prepare_low_temp_column_data(dto)
+    initial_data = pd.DataFrame({
+        **data,
+        '16 temperature, C': [dto.column_top_prod_temp], '17 temperature, C': [dto.column_bot_prod_temp],
+        '16 mass flow, kg/h': [dto.column_top_prod_mass_flow], '17 mass flow, kg/h': [dto.column_bot_prod_mass_flow]
+    })
+    labels = [
+        '16 Methane mass frac', '16 Ethane mass frac', '16 Propane mass frac', '16 i-Butane mass frac',
+        '16 n-Butane mass frac', '16 i-Pentane mass frac', '16 n-Pentane mass frac'
+    ]
+    columns = [
+        '4 temperature, C', '4 pressure, kPa', '4 mass flow, kg/h', '4 Methane mass frac', '4 Ethane mass frac',
+        '4 Propane mass frac', '4 i-Butane mass frac', '4 n-Butane mass frac', '4 i-Pentane mass frac',
+        '4 n-Pentane mass frac',
+        'Q-104',
+        '5 temperature, C', '5 pressure, kPa', '5 mass flow, kg/h', '5 Methane mass frac', '5 Ethane mass frac',
+        '5 Propane mass frac', '5 i-Butane mass frac', '5 n-Butane mass frac', '5 i-Pentane mass frac',
+        '5 n-Pentane mass frac', '16 temperature, C', '17 temperature, C', '16 mass flow, kg/h', '17 mass flow, kg/h',
+    ]
+    norm_column_top_prod_mass_frac_data = normalize_data(column_top_prod_mass_frac_data, initial_data, columns, labels)
+
+    return column_top_prod_mass_frac_model(norm_column_top_prod_mass_frac_data).numpy().tolist()[0]
+
 
 
 
