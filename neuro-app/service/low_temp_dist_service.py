@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
-from utils.initial_data_handler import prepare_low_temp_data
+from utils.initial_data_handler import prepare_low_temp_data, prepare_low_temp_column_data
 from dto.dto import LowTempDistInitial
 from data.low_temp_distillation.low_temp_dist_data import sep_vap_mass_flow_data, sep_vap_mass_frac_data, sep_liq_mass_frac_data
 from models.low_temp_distillation.low_temp_distillation import sep_vap_mass_flow_model, sep_vap_mass_frac_model, sep_liq_mass_frac_model
@@ -126,19 +126,8 @@ def expander_power(dto: LowTempDistInitial):
 
 
 def column_prod_temp(dto: LowTempDistInitial):
-    initial_data = pd.DataFrame({
-    '4 temperature, C': [dto.cooled_gas_temperature], '4 pressure, kPa': [dto.cooled_gas_pressure],
-    '4 mass flow, kg/h': [dto.sep_vap_mass_flow],  '4 Methane mass frac': [dto.sep_vap_ch4],
-    '4 Ethane mass frac': [dto.sep_vap_c2h6], '4 Propane mass frac': [dto.sep_vap_c3h8],
-    '4 i-Butane mass frac': [dto.sep_vap_ic4h10], '4 n-Butane mass frac': [dto.sep_vap_nc4h10],
-    '4 i-Pentane mass frac': [dto.sep_vap_ic5h12], '4 n-Pentane mass frac': [dto.sep_vap_nc5h12],
-    'Q-104': [dto.column_power],
-    '5 temperature, C': [dto.feed_gas_temperature], '5 pressure, kPa': [dto.feed_gas_pressure],
-    '5 mass flow, kg/h': [dto.sep_liq_mass_flow], '5 Methane mass frac': [dto.sep_liq_ch4],
-    '5 Ethane mass frac': [dto.sep_liq_c2h6], '5 Propane mass frac': [dto.sep_liq_c3h8],
-    '5 i-Butane mass frac': [dto.sep_liq_ic4h10], '5 n-Butane mass frac': [dto.sep_liq_nc4h10],
-    '5 i-Pentane mass frac': [dto.sep_liq_ic5h12], '5 n-Pentane mass frac': [dto.sep_liq_nc5h12],
-    })
+    data = prepare_low_temp_column_data(dto)
+    initial_data = pd.DataFrame(data)
 
     labels = ['16 temperature, C', '17 temperature, C']
     columns = [
@@ -152,6 +141,22 @@ def column_prod_temp(dto: LowTempDistInitial):
     norm_column_prod_temp_data = normalize_data(column_prod_temp_data, initial_data, columns, labels)
 
     return column_prod_temp_model(norm_column_prod_temp_data).numpy().tolist()[0]
+
+
+def column_prod_mass_flow(dto: LowTempDistInitial):
+    initial_data = pd.DataFrame({
+    '4 temperature, C': [dto.cooled_gas_temperature], '4 pressure, kPa': [dto.cooled_gas_pressure],
+    '4 mass flow, kg/h': [dto.sep_vap_mass_flow],  '4 Methane mass frac': [dto.sep_vap_ch4],
+    '4 Ethane mass frac': [dto.sep_vap_c2h6], '4 Propane mass frac': [dto.sep_vap_c3h8],
+    '4 i-Butane mass frac': [dto.sep_vap_ic4h10], '4 n-Butane mass frac': [dto.sep_vap_nc4h10],
+    '4 i-Pentane mass frac': [dto.sep_vap_ic5h12], '4 n-Pentane mass frac': [dto.sep_vap_nc5h12],
+    'Q-104': [dto.column_power],
+    '5 temperature, C': [dto.feed_gas_temperature], '5 pressure, kPa': [dto.feed_gas_pressure],
+    '5 mass flow, kg/h': [dto.sep_liq_mass_flow], '5 Methane mass frac': [dto.sep_liq_ch4],
+    '5 Ethane mass frac': [dto.sep_liq_c2h6], '5 Propane mass frac': [dto.sep_liq_c3h8],
+    '5 i-Butane mass frac': [dto.sep_liq_ic4h10], '5 n-Butane mass frac': [dto.sep_liq_nc4h10],
+    '5 i-Pentane mass frac': [dto.sep_liq_ic5h12], '5 n-Pentane mass frac': [dto.sep_liq_nc5h12],
+    })
 
 
 
