@@ -45,6 +45,8 @@ class LowTempDistInitial(BaseModel):
     expander_power: float
     column_bot_prod_temp: float
     column_top_prod_temp: float
+    column_top_prod_mass_flow: float
+    column_bot_prod_mass_flow: float
 
 
 

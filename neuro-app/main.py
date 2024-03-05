@@ -11,6 +11,7 @@ from service.amine_treatment_service import rich_amine_H2O_MDEA
 
 from service.low_temp_dist_service import separator_vapour_mass_flow, separator_vapour_mass_frac, separator_liquid_mass_frac
 from service.low_temp_dist_service import expander_cooled_gas_temp, expander_power, column_prod_temp
+from service.low_temp_dist_service import column_prod_mass_flow
 
 app = FastAPI()
 
@@ -89,6 +90,9 @@ def low_temp_distillation(dto: LowTempDistInitial):
 
     dto.column_top_prod_temp, dto.column_bot_prod_temp = column_prod_temp(dto)
 
+    dto.column_top_prod_mass_flow = column_prod_mass_flow(dto)
+    dto.column_bot_prod_temp = dto.feed_gas_mass_flow - dto.column_top_prod_mass_flow
+
     return {
         "sep_vap_mass_flow": round(dto.sep_vap_mass_flow, 5),
         "sep_liq_mass_flow": round(dto.sep_liq_mass_flow, 5),
@@ -109,6 +113,8 @@ def low_temp_distillation(dto: LowTempDistInitial):
         "cooled_gas_temperature": round(dto.cooled_gas_temperature, 5),
         "expander_power": round(dto.expander_power, 5),
         "column_top_prod_temperature": round(dto.column_top_prod_temp, 5),
-        "column_bot_prod_temperature": round(dto.column_bot_prod_temp, 5)
+        "column_bot_prod_temperature": round(dto.column_bot_prod_temp, 5),
+        "column_top_prod_mass_flow": round(dto.column_top_prod_mass_flow, 5),
+        "column_bot_prod_mass_flow": round(dto.column_bot_prod_temp, 5)
     }
 
