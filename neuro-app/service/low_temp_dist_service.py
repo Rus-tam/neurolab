@@ -189,7 +189,16 @@ def column_top_prod_mass_frac(dto: LowTempDistInitial):
     ]
     norm_column_top_prod_mass_frac_data = normalize_data(column_top_prod_mass_frac_data, initial_data, columns, labels)
 
-    return column_top_prod_mass_frac_model(norm_column_top_prod_mass_frac_data).numpy().tolist()[0]
+    column_prod_mass_frac = column_top_prod_mass_frac_model(norm_column_top_prod_mass_frac_data).numpy().tolist()[0]
+
+    top_prod_mass_frac = []
+    for elem in column_prod_mass_frac:
+        if elem < 0:
+            top_prod_mass_frac.append(0.0)
+        else:
+            top_prod_mass_frac.append(elem)
+
+    return top_prod_mass_frac
 
 
 
