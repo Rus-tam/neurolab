@@ -11,7 +11,8 @@ from models.low_temp_distillation.low_temp_distillation import expander_cooled_g
 from data.low_temp_distillation.low_temp_dist_data import column_prod_temp_data, column_prod_mass_flow_data
 from models.low_temp_distillation.low_temp_distillation import column_prod_temp_model, column_prod_mass_flow_model
 from data.low_temp_distillation.low_temp_dist_data import column_top_prod_mass_frac_data, column_bot_prod_mass_frac_data
-from models.low_temp_distillation.low_temp_distillation import column_top_prod_mass_frac_model
+from models.low_temp_distillation.low_temp_distillation import column_top_prod_mass_frac_model, column_bot_prod_mass_frac_model
+
 
 
 
@@ -230,6 +231,17 @@ def column_bot_prod_mass_frac(dto: LowTempDistInitial):
         '16 i-Pentane mass frac', '16 n-Pentane mass frac',
     ]
     norm_col_bot_prod_data = normalize_data(column_bot_prod_mass_frac_data, initial_data, columns, labels)
+    col_bot_mass_frac = column_bot_prod_mass_frac_model(norm_col_bot_prod_data).numpy().tolist()[0]
+
+    bot_prod_mass_frac = []
+
+    for elem in col_bot_mass_frac:
+        if elem < 0:
+            bot_prod_mass_frac.append(0.0)
+        else:
+            bot_prod_mass_frac.append(elem)
+
+    return bot_prod_mass_frac
 
 
 

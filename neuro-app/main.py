@@ -96,7 +96,7 @@ def low_temp_distillation(dto: LowTempDistInitial):
 
     dto.col_top_ch4, dto.col_top_c2h6, dto.col_top_c3h8, dto.col_top_ic4h10, dto.col_top_nc4h10, dto.col_top_ic5h12, dto.col_top_nc5h12 = column_top_prod_mass_frac(dto)
 
-    column_bot_prod_mass_frac(dto)
+    dto.col_bot_ch4, dto.col_bot_c2h6, dto.col_bot_c3h8, dto.col_bot_ic4h10, dto.col_bot_nc4h10, dto.col_bot_ic5h12, dto.col_bot_nc5h12 = column_bot_prod_mass_frac(dto)
     return {
         "sep_vap_mass_flow": round(dto.sep_vap_mass_flow, 5),
         "sep_liq_mass_flow": round(dto.sep_liq_mass_flow, 5),
@@ -127,5 +127,12 @@ def low_temp_distillation(dto: LowTempDistInitial):
         "col_top_nc4h1o": round(dto.col_top_nc4h10, 5),
         "col_top_ic5h12": round(dto.col_top_ic5h12, 5),
         "col_top_nc5h12": round(dto.col_top_nc5h12, 5),
+        "col_bot_ch4": round(dto.col_bot_ch4, 5),
+        "col_bot_c2h6": round(dto.col_bot_c2h6, 5),
+        "col_bot_c3h8": round(dto.col_bot_c3h8, 5),
+        "col_bot_ic4h10": round(dto.col_bot_ic4h10, 5),
+        "col_bot_nc4h10": round(dto.col_bot_nc4h10, 5),
+        "col_bot_ic5h12": round(dto.col_bot_ic5h12, 5),
+        "col_bot_nc5h12": round(dto.col_bot_nc5h12, 5)
     }
 

@@ -54,6 +54,13 @@ class LowTempDistInitial(BaseModel):
     col_top_nc4h10: float
     col_top_ic5h12: float
     col_top_nc5h12: float
+    col_bot_ch4: float
+    col_bot_c2h6: float
+    col_bot_c3h8: float
+    col_bot_ic4h10: float
+    col_bot_nc4h10: float
+    col_bot_ic5h12: float
+    col_bot_nc5h12: float
 
 
 
