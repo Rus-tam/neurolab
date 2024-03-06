@@ -246,14 +246,3 @@ def column_bot_prod_mass_frac(dto: LowTempDistInitial):
 
 
 
-
-
-    # print(' ')
-    # print('+++++++++++')
-    # print(exp_data)
-    # print('+++++++++++')
-    # print(' ')
-
-
-
-
