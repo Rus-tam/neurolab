@@ -50,16 +50,15 @@ export class DataHandler {
 
       case "low-temp-dist":
         return {
-          n2_mass_frac: data[0].value,
-          co2_mass_frac: data[1].value,
-          ch4_mass_frac: data[2].value,
-          c2h6_mass_frac: data[3].value,
-          c3h8_mass_frac: data[4].value,
-          ic4h10_mass_frac: data[5].value,
-          nc4h10_mass_frac: data[6].value,
-          c5h12_mass_frac: data[7].value,
-          c6h14_mass_frac: data[8].value,
-          c7h16_mass_frac: data[9].value,
+          feed_gas_n2: data[0].value,
+          feed_gas_co2: data[1].value,
+          feed_gas_ch4: data[2].value,
+          feed_gas_c2h6: data[3].value,
+          feed_gas_c3h8: data[4].value,
+          feed_gas_ic4h10: data[5].value,
+          feed_gas_nc4h10: data[6].value,
+          feed_gas_ic5h12: data[7].value,
+          feed_gas_nc5h12: data[8].value,
         };
         break;
 
@@ -94,16 +93,15 @@ export class DataHandler {
 
   low_temp_dist_gas(data) {
     return {
-      n2_mass_frac: data.n2_mass_frac,
-      co2_mass_frac: data.co2_mass_frac,
-      ch4_mass_frac: data.ch4_mass_frac,
-      c2h6_mass_frac: data.c2h6_mass_frac,
-      c3h8_mass_frac: data.c3h8_mass_frac,
-      ic4h10_mass_frac: data.ic4h10_mass_frac,
-      nc4h10_mass_frac: data.nc4h10_mass_frac,
-      c5h12_mass_frac: data.c5h12_mass_frac,
-      c6h14_mass_frac: data.c6h14_mass_frac,
-      c7h16_mass_frac: data.c7h16_mass_frac,
+      feed_gas_n2: data.feed_gas_n2,
+      feed_gas_co2: data.feed_gas_co2,
+      feed_gas_ch4: data.feed_gas_ch4,
+      feed_gas_c2h6: data.feed_gas_c2h6,
+      feed_gas_c3h8: data.feed_gas_c3h8,
+      feed_gas_ic4h10: data.feed_gas_ic4h10,
+      feed_gas_nc4h10: data.feed_gas_nc4h10,
+      feed_gas_ic5h12: data.feed_gas_ic5h12,
+      feed_gas_nc5h12: data.feed_gas_nc5h12,
     };
   }
 }

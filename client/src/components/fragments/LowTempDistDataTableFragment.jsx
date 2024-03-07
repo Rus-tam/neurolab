@@ -6,8 +6,6 @@ const LowTempDistDataTableFraction = ({ caption, initialValues }) => {
   const dispatch = useDispatch();
   const [initialTableData, setInitialTableData] = useState(initialValues);
 
-  console.log("YYYYYYYYYYYY", initialValues);
-
   const handleCellValueChange = (index, value) => {
     const updatedData = [...initialTableData];
     updatedData[index].value = value;

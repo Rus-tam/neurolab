@@ -14,16 +14,15 @@ const LowTempDistModal = () => {
   const storedData = useSelector((state) => state.lowTempDist);
 
   const [initialTableData, setInitialTableData] = useState([
-    { name: "Массовая доля азота", value: "0.018" },
-    { name: "Массовая доля оксида углерода II", value: "0.011" },
-    { name: "Массовая доля метана", value: "0.576" },
-    { name: "Массовая доля этана", value: "0.113" },
-    { name: "Массовая доля пропана", value: "0.128" },
-    { name: "Массовая доля и-бутана", value: "0.0475" },
-    { name: "Массовая доля н-бутана", value: "0.0515" },
-    { name: "Массовая доля пентана", value: "0.02" },
-    { name: "Массовая доля гексана", value: "0.0084" },
-    { name: "Массовая доля гептана", value: "0.003" },
+    { name: "Массовая доля азота", value: "0.0" },
+    { name: "Массовая доля оксида углерода II", value: "0.0" },
+    { name: "Массовая доля метана", value: "0.679" },
+    { name: "Массовая доля этана", value: "0.1189" },
+    { name: "Массовая доля пропана", value: "0.0669" },
+    { name: "Массовая доля и-бутана", value: "0.109" },
+    { name: "Массовая доля н-бутана", value: "0.0083" },
+    { name: "Массовая доля и-пентана", value: "0.009" },
+    { name: "Массовая доля н-пентана", value: "0.0085" },
   ]);
 
   const handleCellValueChange = (index, value) => {
@@ -41,7 +40,7 @@ const LowTempDistModal = () => {
   };
 
   const handleNormalize = () => {
-    const normalizer = new Normalize(dataHandler.sourGasComposition(storedData));
+    const normalizer = new Normalize(dataHandler.low_temp_dist_gas(storedData));
     const normalizedComp = normalizer.normalizeData();
     dispatch(setGasComp(normalizedComp));
     setInitialTableData([
@@ -53,8 +52,6 @@ const LowTempDistModal = () => {
       { name: "Массовая доля и-бутана", value: normalizedComp.ic4h10_mass_frac },
       { name: "Массовая доля н-бутана", value: normalizedComp.nc4h10_mass_frac },
       { name: "Массовая доля пентана", value: normalizedComp.c5h12_mass_frac },
-      { name: "Массовая доля гексана", value: normalizedComp.c6h14_mass_frac },
-      { name: "Массовая доля гептана", value: normalizedComp.c7h16_mass_frac },
     ]);
     toast.info("Составы были нормализованы");
   };
