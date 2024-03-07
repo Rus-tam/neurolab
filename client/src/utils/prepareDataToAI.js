@@ -55,5 +55,24 @@ export const prepareDataToAI = (data, mode) => {
         sweet_gas_mol_flow: parseFloat(data.sweet_gas_mol_flow),
       };
       break;
+
+    case "low-temp-dist":
+      return {
+        feed_gas_temperature: parseFloat(data.feed_gas_temperature),
+        feed_gas_mass_flow: parseFloat(data.feed_gas_mass_flow),
+        feed_gas_pressure: parseFloat(data.feed_gas_pressure),
+        cooled_gas_pressure: parseFloat(data.cooled_gas_pressure),
+        column_power: parseFloat(data.column_power),
+        feed_gas_n2: parseFloat(data.feed_gas_n2),
+        feed_gas_co2: parseFloat(data.feed_gas_co2),
+        feed_gas_ch4: parseFloat(data.feed_gas_ch4),
+        feed_gas_c2h6: parseFloat(data.feed_gas_c2h6),
+        feed_gas_c3h8: parseFloat(data.feed_gas_c3h8),
+        feed_gas_ic4h10: parseFloat(data.feed_gas_ic4h10),
+        feed_gas_nc4h10: parseFloat(data.feed_gas_nc4h10),
+        feed_gas_ic5h12: parseFloat(data.feed_gas_ic5h12),
+        feed_gas_nc5h12: parseFloat(data.feed_gas_nc5h12),
+      };
+      break;
   }
 };

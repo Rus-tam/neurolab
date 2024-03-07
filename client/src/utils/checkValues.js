@@ -28,3 +28,12 @@ export const amineTreatmentCheck = (dataToAI) => {
     return new Error("initial data problem");
   }
 };
+
+export const lowTempDistCheck = (dataToAI) => {
+  // for (const value of Object.values(dataToAI)) {
+  //   if (value < 0) {
+  //     toast.error("Недопустимо использование отрицательных величин");
+  //     return new Error("Initial data problem");
+  //   }
+  // }
+};
