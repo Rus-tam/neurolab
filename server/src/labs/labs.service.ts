@@ -10,7 +10,7 @@ import { LabsError } from "@errors";
 @Injectable()
 export class LabsService {
   logger = new Logger();
-  constructor(private readonly httpService: HttpService) {}
+  constructor(private readonly httpService: HttpService) { }
 
   async getSimpleIsomerizationResults(dto: SimpleIsoDto): Promise<ISimpleIsoResult> {
     try {
