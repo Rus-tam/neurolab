@@ -13,7 +13,7 @@ import { AmineTreatmentEntity } from "@db/entities/amine-treatment-result.entity
 @Controller("labs")
 export class LabsController {
   logger = new Logger();
-  constructor(private readonly labService: LabsService, private readonly dbService: DbService) {}
+  constructor(private readonly labService: LabsService, private readonly dbService: DbService) { }
 
   @UseGuards(AuthGuard("jwt"))
   @Post("/simple-isomerization")
@@ -64,5 +64,11 @@ export class LabsController {
   @Get("/amine-treatment")
   async getAmineTreatmentResult(@CurrentUser() currentUser: UserEntity): Promise<IFetchAmineRes> {
     return this.dbService.fetchAmineTreatmentRes(currentUser.id);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post("low-temp-distillation")
+  async calculateLowTempDist(@Body() inputData: any, @CurrentUser() currentUser: UserEntity) {
+    console.log('YYYY', inputData);
   }
 }

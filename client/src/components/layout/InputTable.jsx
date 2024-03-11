@@ -3,7 +3,11 @@ import { ParentContext } from "../../utils/ParentContext.js";
 import { useDispatch, useSelector } from "react-redux";
 import { setSimpleIsoRes } from "../../store/slices/simpleIsoSlice.js";
 import { setAmineTreatmentResults } from "../../store/slices/amineTreatmentSlice.js";
-import { useSimpleIsoMutation, useAmineTreatmentMutation } from "../../store/apis/labsApiSlice.js";
+import {
+  useSimpleIsoMutation,
+  useAmineTreatmentMutation,
+  useLowTempDistillationMutation,
+} from "../../store/apis/labsApiSlice.js";
 import { simpleIsoCheck, amineTreatmentCheck, lowTempDistCheck } from "../../utils/checkValues.js";
 import SimpleIsoInitialDataTableFragment from "../fragments/SimpleIsoInitialDataTableFragment.jsx";
 import AmineTreatmentInitialDataTableFragment from "../fragments/AmineTreatmentInitialDataTableFragment.jsx";
@@ -19,6 +23,7 @@ const InputTable = ({ caption, initialValues }) => {
   const lowTempDistData = useSelector((state) => state.lowTempDist);
   const [getSimpleIsoRes, IsoResults] = useSimpleIsoMutation();
   const [getAmineTreatmentRes, AmineResults] = useAmineTreatmentMutation();
+  const [getLowTempDistRes, lowTempDistResults] = useLowTempDistillationMutation();
 
   let dataToAI = {};
   let tableFragment = <></>;
@@ -77,6 +82,7 @@ const InputTable = ({ caption, initialValues }) => {
           return null;
         } else {
           console.log("QQQQQ", dataToAI);
+          calculationRes = await getLowTempDistRes(dataToAI);
         }
     }
   };
