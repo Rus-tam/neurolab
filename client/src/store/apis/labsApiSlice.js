@@ -16,7 +16,15 @@ export const labsApiSlice = apiSlice.injectEndpoints({
         body: { ...dataToAI },
       }),
     }),
+    lowTempDistillation: builder.mutation({
+      query: (dataToAI) => ({
+        url: "/labs/low-temp-distillation",
+        method: "POST",
+        body: { ...dataToAI },
+      }),
+    }),
   }),
 });
 
-export const { useSimpleIsoMutation, useAmineTreatmentMutation } = labsApiSlice;
+export const { useSimpleIsoMutation, useAmineTreatmentMutation, useLowTempDistillationMutation } =
+  labsApiSlice;
