@@ -1,6 +1,6 @@
 import { Body, Controller, Get, InternalServerErrorException, Logger, Post, UseGuards } from "@nestjs/common";
 import { LabsService } from "@labs/labs.service";
-import { AmineTreatmentDTO, SimpleIsoDto } from "@labs/dto";
+import { AmineTreatmentDTO, LowTempDistillationDTO, SimpleIsoDto } from "@labs/dto";
 import { IFetchAmineRes, ISimpleIsoResult } from "@types";
 import { DbService } from "@db/db.service";
 import { CurrentUser } from "@decorators";
@@ -68,7 +68,14 @@ export class LabsController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post("low-temp-distillation")
-  async calculateLowTempDist(@Body() inputData: any, @CurrentUser() currentUser: UserEntity) {
-    console.log('YYYY', inputData);
+  async calculateLowTempDist(@Body() inputData: LowTempDistillationDTO, @CurrentUser() currentUser: UserEntity) {
+    try {
+      const results = await this.labService.getLowTempDistillationResults(inputData);
+
+      console.log('TTT', results);
+
+    } catch (err) {
+
+    }
   }
 }

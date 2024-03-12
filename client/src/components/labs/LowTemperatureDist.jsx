@@ -13,11 +13,11 @@ const LowTemperatureDist = () => {
   const { lowTempDistModalStatus } = useSelector((state) => state.lowTempDist);
 
   const feedGasData = [
-    { name: "Температура газа, град. Цельсия", value: "20" },
-    { name: "Массовый расход газа, кг/ч", value: "10000" },
-    { name: "Давление газа, МПа", value: "4.4" },
-    { name: "Давление газа после Д-1, МПа", value: "0.02" },
-    { name: "Тепловая нагрузка Т-1, МДж", value: "5.5" },
+    { name: "Температура газа, град. Цельсия", value: "-5" },
+    { name: "Массовый расход газа, кг/ч", value: "1000" },
+    { name: "Давление газа, Па", value: "4000" },
+    { name: "Давление газа после Д-1, Па", value: "2500" },
+    { name: "Тепловая нагрузка Т-1, Дж", value: "2000" },
   ];
 
   const handleOpenGasCompModal = () => {

@@ -1,5 +1,5 @@
 import { Injectable, Logger, NotFoundException } from "@nestjs/common";
-import { AmineTreatmentDTO, SimpleIsoDto } from "@labs/dto";
+import { AmineTreatmentDTO, SimpleIsoDto, LowTempDistillationDTO } from "@labs/dto";
 import { ISimpleIsoResult } from "@types";
 import { IAmineTreatmentResult } from "@types";
 import { HttpService } from "@nestjs/axios";
@@ -32,6 +32,17 @@ export class LabsService {
       return (await firstValueFrom(amineTreatmentResObserver)).data;
     } catch (err) {
       this.logger.error("Произошла ошибка вычисления в лабораторной работе - `Аминовая очистка`");
+      throw new NotFoundException(LabsError.CalculationError);
+    }
+  }
+
+  async getLowTempDistillationResults(dto: LowTempDistillationDTO) {
+    try {
+      const lowTempDistResObserver = this.httpService.post('/low-temp-distillation', dto);
+      console.log('TTTTT', dto);
+      return (await firstValueFrom(lowTempDistResObserver)).data;
+    } catch (err) {
+      this.logger.error('Произошла ошибка вычисления в лабораторной работе - `Низкотемпературная ректификация`');
       throw new NotFoundException(LabsError.CalculationError);
     }
   }
