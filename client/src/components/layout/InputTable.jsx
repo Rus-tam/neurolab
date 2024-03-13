@@ -13,6 +13,7 @@ import SimpleIsoInitialDataTableFragment from "../fragments/SimpleIsoInitialData
 import AmineTreatmentInitialDataTableFragment from "../fragments/AmineTreatmentInitialDataTableFragment.jsx";
 import LowTempDistDataTableFraction from "../fragments/LowTempDistDataTableFragment.jsx";
 import { prepareDataToAI } from "../../utils/prepareDataToAI.js";
+import { setLowTempDistResults } from "../../store/slices/lowTempDistSlice.js";
 
 const InputTable = ({ caption, initialValues }) => {
   const dispatch = useDispatch();
@@ -81,8 +82,8 @@ const InputTable = ({ caption, initialValues }) => {
         if (lowTempDistCheck(dataToAI) instanceof Error) {
           return null;
         } else {
-          console.log("QQQQQ", dataToAI);
           calculationRes = await getLowTempDistRes(dataToAI);
+          dispatch(setLowTempDistResults(calculationRes.data));
         }
     }
   };

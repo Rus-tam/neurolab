@@ -1,7 +1,7 @@
 import { Body, Controller, Get, InternalServerErrorException, Logger, Post, UseGuards } from "@nestjs/common";
 import { LabsService } from "@labs/labs.service";
 import { AmineTreatmentDTO, LowTempDistillationDTO, SimpleIsoDto } from "@labs/dto";
-import { IFetchAmineRes, ISimpleIsoResult } from "@types";
+import { IFetchAmineRes, ILowTempDistillationResult, ISimpleIsoResult } from "@types";
 import { DbService } from "@db/db.service";
 import { CurrentUser } from "@decorators";
 import { AuthGuard } from "@nestjs/passport";
@@ -68,11 +68,12 @@ export class LabsController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post("low-temp-distillation")
-  async calculateLowTempDist(@Body() inputData: LowTempDistillationDTO, @CurrentUser() currentUser: UserEntity) {
+  async calculateLowTempDist(@Body() inputData: LowTempDistillationDTO, @CurrentUser() currentUser: UserEntity): Promise<ILowTempDistillationResult> {
     try {
-      const results = await this.labService.getLowTempDistillationResults(inputData);
+      const results: ILowTempDistillationResult = await this.labService.getLowTempDistillationResults(inputData);
       const savedNote = await this.dbService.createLowTempDistNote(inputData, results, currentUser);
-
+      this.logger.log('Данные сохранены в бд');
+      return results;
     } catch (err) {
       this.logger.error(`Ошибка лабораторной работы "Низкотемпературная ректификация" - ${err.message}`);
       throw new InternalServerErrorException(LabsError.CalculationError);
