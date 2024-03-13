@@ -42,16 +42,18 @@ const LowTempDistModal = () => {
   const handleNormalize = () => {
     const normalizer = new Normalize(dataHandler.low_temp_dist_gas(storedData));
     const normalizedComp = normalizer.normalizeData();
+    console.log("UUUU", normalizedComp);
     dispatch(setGasComp(normalizedComp));
     setInitialTableData([
-      { name: "Массовая доля азота", value: normalizedComp.n2_mass_frac },
-      { name: "Массовая доля оксида углерода II", value: normalizedComp.co2_mass_frac },
-      { name: "Массовая доля метана", value: normalizedComp.ch4_mass_frac },
-      { name: "Массовая доля этана", value: normalizedComp.c2h6_mass_frac },
-      { name: "Массовая доля пропана", value: normalizedComp.c3h8_mass_frac },
-      { name: "Массовая доля и-бутана", value: normalizedComp.ic4h10_mass_frac },
-      { name: "Массовая доля н-бутана", value: normalizedComp.nc4h10_mass_frac },
-      { name: "Массовая доля пентана", value: normalizedComp.c5h12_mass_frac },
+      { name: "Массовая доля азота", value: normalizedComp.feed_gas_n2 },
+      { name: "Массовая доля оксида углерода II", value: normalizedComp.feed_gas_co2 },
+      { name: "Массовая доля метана", value: normalizedComp.feed_gas_ch4 },
+      { name: "Массовая доля этана", value: normalizedComp.feed_gas_c2h6 },
+      { name: "Массовая доля пропана", value: normalizedComp.feed_gas_c3h8 },
+      { name: "Массовая доля и-бутана", value: normalizedComp.feed_gas_ic4h10 },
+      { name: "Массовая доля н-бутана", value: normalizedComp.feed_gas_nc4h10 },
+      { name: "Массовая доля и-пентана", value: normalizedComp.feed_gas_ic5h12 },
+      { name: "Массовая доля н-пентана", value: normalizedComp.feed_gas_nc5h12 },
     ]);
     toast.info("Составы были нормализованы");
   };

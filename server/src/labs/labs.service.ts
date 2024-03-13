@@ -39,7 +39,6 @@ export class LabsService {
   async getLowTempDistillationResults(dto: LowTempDistillationDTO) {
     try {
       const lowTempDistResObserver = this.httpService.post('/low-temp-distillation', dto);
-      console.log('TTTTT', dto);
       return (await firstValueFrom(lowTempDistResObserver)).data;
     } catch (err) {
       this.logger.error('Произошла ошибка вычисления в лабораторной работе - `Низкотемпературная ректификация`');

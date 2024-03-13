@@ -55,7 +55,7 @@ export class LabsController {
       );
       return results;
     } catch (err) {
-      this.logger.error(`Ошибка лабораторной работы "Простая изомеризация" - ${err.message}`);
+      this.logger.error(`Ошибка лабораторной работы "Аминовая очистка" - ${err.message}`);
       throw new InternalServerErrorException(LabsError.CalculationError);
     }
   }
@@ -72,10 +72,9 @@ export class LabsController {
     try {
       const results = await this.labService.getLowTempDistillationResults(inputData);
 
-      console.log('TTT', results);
-
     } catch (err) {
-
+      this.logger.error(`Ошибка лабораторной работы "Низкотемпературная ректификация" - ${err.message}`);
+      throw new InternalServerErrorException(LabsError.CalculationError);
     }
   }
 }
