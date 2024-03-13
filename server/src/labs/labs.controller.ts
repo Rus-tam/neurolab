@@ -71,6 +71,7 @@ export class LabsController {
   async calculateLowTempDist(@Body() inputData: LowTempDistillationDTO, @CurrentUser() currentUser: UserEntity) {
     try {
       const results = await this.labService.getLowTempDistillationResults(inputData);
+      const savedNote = await this.dbService.createLowTempDistNote(inputData, results, currentUser);
 
     } catch (err) {
       this.logger.error(`Ошибка лабораторной работы "Низкотемпературная ректификация" - ${err.message}`);

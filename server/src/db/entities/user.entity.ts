@@ -2,6 +2,8 @@ import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from "t
 import { Roles } from "@types";
 import { TokenEntity } from "@db/entities/token.entity";
 import { SimpleIsoResultEntity } from "@db/entities/simple-iso-result.entity";
+import { AmineTreatmentEntity } from "./amine-treatment-result.entity";
+import { LowTempDistillationEntity } from "./low-temp-dist-result.entity";
 
 @Entity()
 export class UserEntity {
@@ -47,6 +49,26 @@ export class UserEntity {
   )
   @JoinColumn()
   simpleIsoRes: SimpleIsoResultEntity;
+
+  @OneToMany(
+    () => AmineTreatmentEntity,
+    (amineTreatmentRes: AmineTreatmentEntity) => amineTreatmentRes.user,
+    {
+      cascade: ["remove"],
+    },
+  )
+  @JoinColumn()
+  amineTreatmentRes: AmineTreatmentEntity;
+
+  @OneToMany(
+    () => LowTempDistillationEntity,
+    (lowTempDistRes: LowTempDistillationEntity) => lowTempDistRes.user,
+    {
+      cascade: ["remove"],
+    },
+  )
+  @JoinColumn()
+  lowTempDistRes: LowTempDistillationEntity;
 
   @Column({ type: "date" })
   createdAt: Date;

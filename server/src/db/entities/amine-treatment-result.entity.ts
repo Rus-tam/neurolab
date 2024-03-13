@@ -135,7 +135,7 @@ export class AmineTreatmentEntity {
   @Column({ type: "timestamptz" })
   createdTime: Date;
 
-  @ManyToOne(() => UserEntity, (user: UserEntity) => user.simpleIsoRes, {
+  @ManyToOne(() => UserEntity, (user: UserEntity) => user.amineTreatmentRes, {
     onDelete: "CASCADE",
     orphanedRowAction: "delete",
   })

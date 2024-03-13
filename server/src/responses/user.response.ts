@@ -3,6 +3,8 @@ import { Roles } from "@types";
 import { TokenEntity } from "@db/entities/token.entity";
 import { UserEntity } from "@db/entities/user.entity";
 import { SimpleIsoResultEntity } from "@db/entities/simple-iso-result.entity";
+import { AmineTreatmentEntity } from "@db/entities/amine-treatment-result.entity";
+import { LowTempDistillationEntity } from "@db/entities/low-temp-dist-result.entity";
 
 export class UserResponse implements UserEntity {
   id: string;
@@ -27,6 +29,12 @@ export class UserResponse implements UserEntity {
 
   @Exclude()
   simpleIsoRes: SimpleIsoResultEntity;
+
+  @Exclude()
+  amineTreatmentRes: AmineTreatmentEntity;
+
+  @Exclude()
+  lowTempDistRes: LowTempDistillationEntity;
 
   professorName: string;
 

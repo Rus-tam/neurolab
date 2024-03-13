@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { UserEntity } from "./user.entity";
 
 @Entity()
 export class LowTempDistillationEntity {
@@ -154,4 +155,13 @@ export class LowTempDistillationEntity {
 
     @Column({ type: "float" })
     col_bot_nc5h12: number;
+
+    @Column({ type: "timestamptz" })
+    createdTime: Date;
+
+    @ManyToOne(() => UserEntity, (user: UserEntity) => user.lowTempDistRes, {
+        onDelete: "CASCADE",
+        orphanedRowAction: "delete",
+    })
+    user: UserEntity;
 }

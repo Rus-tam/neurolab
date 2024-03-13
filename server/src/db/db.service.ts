@@ -11,6 +11,7 @@ import {
   IFetchAmineRes,
   IJWTPayload,
   ILeanAmineData,
+  ILowTempDistillationResult,
   IPredictData,
   ISimpleIsoResult,
   ISourGasData,
@@ -19,8 +20,9 @@ import {
 import { v4 } from "uuid";
 import { add } from "date-fns";
 import { SimpleIsoResultEntity } from "@db/entities/simple-iso-result.entity";
-import { AmineTreatmentDTO, SimpleIsoDto } from "@labs/dto";
+import { AmineTreatmentDTO, LowTempDistillationDTO, SimpleIsoDto } from "@labs/dto";
 import { AmineTreatmentEntity } from "./entities/amine-treatment-result.entity";
+import { LowTempDistillationEntity } from "./entities/low-temp-dist-result.entity";
 
 @Injectable()
 export class DbService {
@@ -34,7 +36,8 @@ export class DbService {
     private readonly simpleIsoResRepository: Repository<SimpleIsoResultEntity>,
     @InjectRepository(AmineTreatmentEntity)
     private readonly amineTreatmentResRepository: Repository<AmineTreatmentEntity>,
-  ) {}
+    @InjectRepository(LowTempDistillationEntity) private readonly lowTempDistillationRepository: Repository<LowTempDistillationEntity>,
+  ) { }
 
   async createUser(dto: UserDTO) {
     let Role: Roles;
@@ -247,9 +250,73 @@ export class DbService {
       ])
       .andWhere("table.user.id = :userId", { userId })
       .getRawMany();
-
-    console.log("QQQQQ", sourGasData);
-
     return { sourGas: sourGasData, leanAmine: leanAmineData, predictedData: predictedData };
   }
+
+  // LOW TEMPERATURE DISTILLATION
+  async createLowTempDistNote(inputData: LowTempDistillationDTO,
+    result: ILowTempDistillationResult,
+    user: UserEntity) {
+    const newEntry = this.lowTempDistillationRepository.create({
+      feed_gas_temperature: inputData['feed_gas_temperature'],
+      feed_gas_mass_flow: inputData['feed_gas_mass_flow'],
+      feed_gas_pressure: inputData['feed_gas_pressure'],
+      cooled_gas_pressure: inputData['cooled_gas_pressure'],
+      column_power: inputData['column_power'],
+      feed_gas_n2: inputData['feed_gas_n2'],
+      feed_gas_co2: inputData['feed_gas_co2'],
+      feed_gas_ch4: inputData['feed_gas_ch4'],
+      feed_gas_c2h6: inputData['feed_gas_c2h6'],
+      feed_gas_c3h8: inputData['feed_gas_c3h8'],
+      feed_gas_ic4h10: inputData['feed_gas_ic4h10'],
+      feed_gas_nc4h10: inputData['feed_gas_nc4h10'],
+      feed_gas_ic5h12: inputData['feed_gas_ic5h12'],
+      feed_gas_nc5h12: inputData['feed_gas_nc5h12'],
+      sep_vap_mass_flow: result['sep_vap_mass_flow'],
+      sep_liq_mass_flow: result['sep_liq_mass_flow'],
+      sep_vap_ch4: result['sep_vap_ch4'],
+      sep_vap_c2h6: result['sep_vap_c2h6'],
+      sep_vap_c3h8: result['sep_vap_c3h8'],
+      sep_vap_ic4h10: result['sep_vap_ic4h10'],
+      sep_vap_nc4h10: result['sep_vap_nc4h10'],
+      sep_vap_ic5h12: result['sep_vap_ic5h12'],
+      sep_vap_nc5h12: result['sep_vap_nc5h12'],
+      sep_liq_ch4: result['sep_liq_ch4'],
+      sep_liq_c2h6: result['sep_liq_c2h6'],
+      sep_liq_c3h8: result['sep_liq_c3h8'],
+      sep_liq_ic4h10: result['sep_liq_ic4h10'],
+      sep_liq_nc4h10: result['sep_liq_nc4h10'],
+      sep_liq_ic5h12: result['sep_liq_ic5h12'],
+      sep_liq_nc5h12: result['sep_liq_nc5h12'],
+      cooled_gas_temperature: result['cooled_gas_temperature'],
+      expander_power: result['expander_power'],
+      column_bot_prod_temp: result['column_bot_prod_temperature'],
+      column_top_prod_temp: result['column_top_prod_temperature'],
+      column_top_prod_mass_flow: result['column_top_prod_mass_flow'],
+      column_bot_prod_mass_flow: result['column_bot_prod_mass_flow'],
+      col_top_ch4: result['col_top_ch4'],
+      col_top_c2h6: result['col_top_c2h6'],
+      col_top_c3h8: result['col_top_c3h8'],
+      col_top_ic4h10: result['col_top_ic4h10'],
+      col_top_nc4h10: result['col_top_nc4h1o'],
+      col_top_ic5h12: result['col_top_ic5h12'],
+      col_top_nc5h12: result['col_top_nc5h12'],
+      col_bot_ch4: result['col_bot_ch4'],
+      col_bot_c2h6: result['col_bot_c2h6'],
+      col_bot_c3h8: result['col_bot_c3h8'],
+      col_bot_ic4h10: result['col_bot_ic4h10'],
+      col_bot_nc4h10: result['col_bot_nc4h10'],
+      col_bot_ic5h12: result['col_bot_ic5h12'],
+      col_bot_nc5h12: result['col_bot_nc5h12'],
+      createdTime: new Date(),
+      user,
+    });
+
+    await this.lowTempDistillationRepository.save(newEntry);
+
+    return newEntry;
+
+  }
 }
+
+
