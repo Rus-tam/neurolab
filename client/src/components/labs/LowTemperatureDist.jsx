@@ -13,8 +13,6 @@ const LowTemperatureDist = () => {
   const dispatch = useDispatch();
   const { lowTempDistModalStatus } = useSelector((state) => state.lowTempDist);
 
-  console.log("TTTT", calculationResults);
-
   const feedGasData = [
     { name: "Температура газа, град. Цельсия", value: "-5" },
     { name: "Массовый расход газа, кг/ч", value: "1000" },
