@@ -69,7 +69,7 @@ const ResultTable = ({ caption, results }) => {
       resultData = [
         {
           name: "Температура верха колонны, град. Цельсия",
-          value: -81,
+          value: -9,
         },
         {
           name: "Температура низа колонны, град. Цельсия",

@@ -9,8 +9,11 @@ import LowTempDistModal from "../fragments/LowTempDistModal.jsx";
 import ResultTable from "../layout/ResultTable.jsx";
 
 const LowTemperatureDist = () => {
+  const calculationResults = useSelector((state) => state.lowTempDist);
   const dispatch = useDispatch();
   const { lowTempDistModalStatus } = useSelector((state) => state.lowTempDist);
+
+  console.log("TTTT", calculationResults);
 
   const feedGasData = [
     { name: "Температура газа, град. Цельсия", value: "-5" },
@@ -44,7 +47,7 @@ const LowTemperatureDist = () => {
 
       <div className="result-table">
         <ParentContext.Provider value="low-temp-dist">
-          <ResultTable caption={"Результаты расчетов"} results={["tttttt"]} />
+          <ResultTable caption={"Результаты расчетов"} results={calculationResults} />
         </ParentContext.Provider>
       </div>
 

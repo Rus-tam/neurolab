@@ -97,7 +97,7 @@ def low_temp_distillation(dto: LowTempDistInitial):
     dto.column_top_prod_temp, dto.column_bot_prod_temp = column_prod_temp(dto)
 
     dto.column_top_prod_mass_flow = column_prod_mass_flow(dto)
-    dto.column_bot_prod_temp = dto.feed_gas_mass_flow - dto.column_top_prod_mass_flow
+    dto.column_bot_prod_mass_flow = dto.feed_gas_mass_flow - dto.column_top_prod_mass_flow
 
     dto.col_top_ch4, dto.col_top_c2h6, dto.col_top_c3h8, dto.col_top_ic4h10, dto.col_top_nc4h10, dto.col_top_ic5h12, dto.col_top_nc5h12 = column_top_prod_mass_frac(dto)
 
@@ -124,12 +124,12 @@ def low_temp_distillation(dto: LowTempDistInitial):
         "column_top_prod_temperature": round(dto.column_top_prod_temp, 5),
         "column_bot_prod_temperature": round(dto.column_bot_prod_temp, 5),
         "column_top_prod_mass_flow": round(dto.column_top_prod_mass_flow, 5),
-        "column_bot_prod_mass_flow": round(dto.column_bot_prod_temp, 5),
+        "column_bot_prod_mass_flow": round(dto.column_bot_prod_mass_flow, 5),
         "col_top_ch4": round(dto.col_top_ch4, 5),
         "col_top_c2h6": round(dto.col_top_c2h6, 5),
         "col_top_c3h8": round(dto.col_top_c3h8, 5),
         "col_top_ic4h10": round(dto.col_top_ic4h10, 5),
-        "col_top_nc4h1o": round(dto.col_top_nc4h10, 5),
+        "col_top_nc4h10": round(dto.col_top_nc4h10, 5),
         "col_top_ic5h12": round(dto.col_top_ic5h12, 5),
         "col_top_nc5h12": round(dto.col_top_nc5h12, 5),
         "col_bot_ch4": round(dto.col_bot_ch4, 5),

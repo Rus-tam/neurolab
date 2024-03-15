@@ -298,7 +298,7 @@ export class DbService {
       col_top_c2h6: result['col_top_c2h6'],
       col_top_c3h8: result['col_top_c3h8'],
       col_top_ic4h10: result['col_top_ic4h10'],
-      col_top_nc4h10: result['col_top_nc4h1o'],
+      col_top_nc4h10: result['col_top_nc4h10'],
       col_top_ic5h12: result['col_top_ic5h12'],
       col_top_nc5h12: result['col_top_nc5h12'],
       col_bot_ch4: result['col_bot_ch4'],

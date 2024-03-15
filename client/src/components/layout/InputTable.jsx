@@ -85,6 +85,7 @@ const InputTable = ({ caption, initialValues }) => {
           calculationRes = await getLowTempDistRes(dataToAI);
           dispatch(setLowTempDistResults(calculationRes.data));
         }
+        break;
     }
   };
 
