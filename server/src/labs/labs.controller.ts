@@ -83,6 +83,6 @@ export class LabsController {
   @UseGuards(AuthGuard('jwt'))
   @Get('/low-temp-distillation')
   async getLowTempDistillationResults(@CurrentUser() curentUser: UserEntity) {
-
+    const results = await this.dbService.fetchLowTempDistRes(curentUser.id);
   }
 }

@@ -15,6 +15,7 @@ import SimpleIsomerizationResults from "./components/results/SimpleIsomerization
 import AmineTreatment from "./components/labs/AmineTreatment.jsx";
 import LowTemperatureDist from "./components/labs/LowTemperatureDist.jsx";
 import AmineTreatmentResults from "./components/results/AmineTreatmentResults.jsx";
+import LowTempDistillationResult from "./components/results/LowTempDistillationResults.jsx";
 
 function App() {
   return (
@@ -38,6 +39,10 @@ function App() {
             <Route path="/labs/my-works" element={<MyWorks />}></Route>
             <Route path="/labs/simple-isomerization/results" element={<SimpleIsomerizationResults />}></Route>
             <Route path="/labs/amine-treatment/results" element={<AmineTreatmentResults />}></Route>
+            <Route
+              path="/labs/low-temperature-distillation/results"
+              element={<LowTempDistillationResult />}
+            ></Route>
 
             <Route path="/all-users" element={<UsersList />}></Route>
           </Route>

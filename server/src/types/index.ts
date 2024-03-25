@@ -5,3 +5,4 @@ export * from "./ISimpleIsoResult";
 export * from "./IAmineTreatmentResult";
 export * from "./IAmineTreatmentResData";
 export * from './ILowTempDistResult';
+export * from './ILowDistResData';

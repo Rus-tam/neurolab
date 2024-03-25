@@ -16,6 +16,10 @@ import {
   ISimpleIsoResult,
   ISourGasData,
   Roles,
+  ILowTempDistFeedGas,
+  ILowTempDistSepProd,
+  ILowTempDistColProd,
+  IFetchLowTempDistRes
 } from "@types";
 import { v4 } from "uuid";
 import { add } from "date-fns";
@@ -315,7 +319,66 @@ export class DbService {
     await this.lowTempDistillationRepository.save(newEntry);
 
     return newEntry;
+  }
 
+  async fetchLowTempDistRes(userId: string): Promise<IFetchLowTempDistRes> {
+    const feedGas: ILowTempDistFeedGas[] = await this.lowTempDistillationRepository.createQueryBuilder('table').select([
+      "table.id",
+      "table.feed_gas_temperature",
+      "table.feed_gas_pressure",
+      "table.feed_gas_n2",
+      "table.feed_gas_co2",
+      "table.feed_gas_ch4",
+      "table.feed_gas_c2h6",
+      "table.feed_gas_c3h8",
+      "table.feed_gas_ic4h10",
+      "table.feed_gas_nc4h10",
+      "table.feed_gas_ic5h12",
+      "table.feed_gas_nc5h12",
+      "table.column_power",
+      "table.cooled_gas_pressure"
+    ]).andWhere('table.user.id = :userId', { userId }).getRawMany();
+
+    const sepProducts: ILowTempDistSepProd[] = await this.lowTempDistillationRepository.createQueryBuilder('table').select([
+      'table.id',
+      'table.sep_vap_mass_flow',
+      'table.sep_vap_ch4',
+      'table.sep_vap_c2h6',
+      'table.sep_vap_c3h8',
+      'table.sep_vap_ic4h10',
+      'table.sep_vap_nc4h10',
+      'table.sep_vap_ic5h12',
+      'table.sep_vap_nc5h12',
+      'table.sep_liq_mass_flow',
+      'table.sep_liq_ch4',
+      'table.sep_liq_c2h6',
+      'table.sep_liq_c3h8',
+      'table.sep_liq_ic4h10',
+      'table.sep_liq_nc4h10',
+      'table.sep_liq_ic5h12',
+      'table.sep_liq_nc5h12'
+    ]).andWhere('table.user.id = :userId', { userId }).getRawMany();
+
+    const colProducts: ILowTempDistColProd[] = await this.lowTempDistillationRepository.createQueryBuilder('table').select([
+      'table.id',
+      'table.cooled_gas_temperature',
+      'table.expander_power',
+      'table.column_top_prod_temp',
+      'table.column_bot_prod_temp',
+      'table.column_top_prod_mass_flow',
+      'table.column_bot_prod_mass_flow',
+      'table.col_top_ch4',
+      'table.col_top_c2h6',
+      'table.col_bot_ch4',
+      'table.col_bot_c2h6',
+      'table.col_bot_c3h8',
+      'table.col_bot_ic4h10',
+      'table.col_bot_nc4h10',
+      'table.col_bot_ic5h12',
+      'table.col_bot_nc5h12'
+    ]).andWhere('table.user.id = :userId', { userId }).getRawMany();
+
+    return { FeedGas: feedGas, SepProd: sepProducts, ColProducts: colProducts }
   }
 }
 
