@@ -69,19 +69,19 @@ const ResultTable = ({ caption, results }) => {
       resultData = [
         {
           name: "Температура верха колонны, град. Цельсия",
-          value: results.column_top_prod_temp,
+          value: results.column_top_prod_temp.toFixed(2),
         },
         {
           name: "Температура низа колонны, град. Цельсия",
-          value: results.column_bot_prod_temp,
+          value: results.column_bot_prod_temp.toFixed(2),
         },
         {
           name: "Массовая доля метана в СОГ",
-          value: results.col_bot_ch4,
+          value: results.col_bot_ch4.toFixed(2),
         },
         {
           name: "Массовая доля этана в СОГ",
-          value: results.col_top_c2h6,
+          value: results.col_top_c2h6.toFixed(2),
         },
         {
           name: "Массовая доля метана в ШФЛУ",
@@ -105,11 +105,11 @@ const ResultTable = ({ caption, results }) => {
         },
         {
           name: "Температура газа после Д-1, град. Цельсия",
-          value: results.cooled_gas_temperature,
+          value: results.cooled_gas_temperature.toFixed(2),
         },
         {
-          name: "Мощность Д-1, МВт",
-          value: results.expander_power,
+          name: "Мощность Д-1, кВт",
+          value: results.expander_power.toFixed(2),
         },
       ];
       break;

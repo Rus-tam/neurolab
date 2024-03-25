@@ -10,7 +10,12 @@ export const labsResultsApiSlice = apiSlice.injectEndpoints({
       query: () => "/labs/amine-treatment",
       keepUnusedDataFor: 5,
     }),
+    fetchLowTempDistillation: builder.query({
+      query: () => "/labs/low-temp-distillation",
+      keepUnusedDataFor: 5,
+    }),
   }),
 });
 
-export const { useFetchSimpleIsoResQuery, useFetchAmineTreatmentResQuery } = labsResultsApiSlice;
+export const { useFetchSimpleIsoResQuery, useFetchAmineTreatmentResQuery, useFetchLowTempDistillationQuery } =
+  labsResultsApiSlice;

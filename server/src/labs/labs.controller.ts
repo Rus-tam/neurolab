@@ -79,4 +79,10 @@ export class LabsController {
       throw new InternalServerErrorException(LabsError.CalculationError);
     }
   }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/low-temp-distillation')
+  async getLowTempDistillationResults(@CurrentUser() curentUser: UserEntity) {
+
+  }
 }
