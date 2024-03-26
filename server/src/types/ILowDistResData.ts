@@ -55,7 +55,7 @@ export interface ILowTempDistColProd {
 }
 
 export interface IFetchLowTempDistRes {
-    FeedGas: ILowTempDistFeedGas[];
-    SepProd: ILowTempDistSepProd[];
-    ColProducts: ILowTempDistColProd[]
+    feedGas: ILowTempDistFeedGas[];
+    sepProd: ILowTempDistSepProd[];
+    colProducts: ILowTempDistColProd[]
 }

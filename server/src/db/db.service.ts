@@ -378,7 +378,7 @@ export class DbService {
       'table.col_bot_nc5h12'
     ]).andWhere('table.user.id = :userId', { userId }).getRawMany();
 
-    return { FeedGas: feedGas, SepProd: sepProducts, ColProducts: colProducts }
+    return { feedGas: feedGas, sepProd: sepProducts, colProducts: colProducts }
   }
 }
 
