@@ -8,8 +8,6 @@ const lowTempDistSlice = createSlice({
     feed_gas_pressure: 4000.0,
     cooled_gas_pressure: 2500.0,
     column_power: 2000.0,
-    feed_gas_n2: 0.0,
-    feed_gas_co2: 0.0,
     feed_gas_ch4: 0.679,
     feed_gas_c2h6: 0.1189,
     feed_gas_c3h8: 0.0669,
@@ -65,8 +63,6 @@ const lowTempDistSlice = createSlice({
       state.column_power = action.payload.column_power;
     },
     setGasComp: (state, action) => {
-      state.feed_gas_n2 = action.payload.feed_gas_n2;
-      state.feed_gas_co2 = action.payload.feed_gas_co2;
       state.feed_gas_ch4 = action.payload.feed_gas_ch4;
       state.feed_gas_c2h6 = action.payload.feed_gas_c2h6;
       state.feed_gas_c3h8 = action.payload.feed_gas_c3h8;

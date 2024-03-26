@@ -3,21 +3,28 @@ import { useFetchLowTempDistillationQuery } from "../../store/apis/labsResultsAp
 import Spinner from "../layout/Spinner";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import AmineTreatmentResultTable from "../fragments/AmineTreatmentResultTable";
+import {
+  prepareFeedGasData,
+  prepareSepProdData,
+  prepareColProdData,
+} from "../../utils/prepareLowTempDistResData";
 
 const LowTempDistillationResult = () => {
   const { data: results, isError, isLoading } = useFetchLowTempDistillationQuery();
   const [currentPage, setCurrentPage] = useState(0);
-  const [feedGas, setFeedGas] = useState({});
-  const [sepProd, setSepProd] = useState({});
-  const [colProd, setColProd] = useState({});
+  const [feedGasData, setFeedGasData] = useState({});
+  const [sepProdData, setSepProdData] = useState({});
+  const [colProdData, setColProdData] = useState({});
 
   const workingData = { ...results };
+  console.log("WORKING DATA", workingData);
 
   const updateDataToDisplay = () => {
-    if (!isError && !isLoading && workingData.feedGas && workingData.sepProd && workingData.colProd) {
-      setSourGasData(prepareSourGasResData(workingData.sourGas[currentPage]));
-      setLeanAmineData(prepareLeanAmineResData(workingData.leanAmine[currentPage]));
-      setPredictedData(preparePredictedData(workingData.predictedData[currentPage]));
+    if (!isError && !isLoading && workingData.feedGas && workingData.sepProd) {
+      setFeedGasData(prepareFeedGasData(workingData.feedGas[currentPage]));
+      setSepProdData(prepareSepProdData(workingData.sepProd[currentPage]));
+      setColProdData(prepareColProdData(workingData.colProducts[currentPage]));
+      console.log("HHHHH", feedGasData);
     }
   };
 
@@ -39,7 +46,9 @@ const LowTempDistillationResult = () => {
   const component = (
     <div className="low-temp-dist-res-container">
       <div className="low_temp_dist_res_tables">
-        <AmineTreatmentResultTable />
+        <AmineTreatmentResultTable data={feedGasData} />
+        <AmineTreatmentResultTable data={sepProdData} />
+        <AmineTreatmentResultTable data={colProdData} />
       </div>
 
       <div className="navigation-buttons">
