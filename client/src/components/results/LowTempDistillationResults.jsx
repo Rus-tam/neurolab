@@ -33,7 +33,7 @@ const LowTempDistillationResult = () => {
     }
   };
   const handleNextClick = () => {
-    if (currentPage <= results.sourGas.length) {
+    if (currentPage <= results.feedGas.length) {
       setCurrentPage(currentPage + 1);
     }
   };
