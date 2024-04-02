@@ -1,0 +1,23 @@
+.low-temp-dist-res-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* height: 50vh; */
+}
+
+.low_temp_dist_res_tables {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.navigation-buttons {
+  padding-top: 0.5rem;
+}
+
+.navigation-buttons button {
+  margin-right: 0.5rem;
+}

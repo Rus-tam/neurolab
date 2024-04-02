@@ -31,10 +31,12 @@ export const prepareSepProdData = (data) => {
       "Массовая доля метана в жидкости сепаратора С-1": data.table_sep_liq_ch4,
       "Массовая доля этана в жидкости сепаратора С-1": data.table_sep_liq_c2h6,
       "Массовая доля пропана в жидкости сепаратора С-1": data.table_sep_liq_c3h8,
-      "Массовая доля и-бутана в жидкости сепаратора С-1": data.table_sep_liq_ic4h10,
-      "Массовая доля н-бутана в жидкости сепаратора С-1": data.table_sep_liq_nc4h10,
-      "Массовая доля и-пентана в жидкости сепаратора С-1": data.table_sep_liq_ic5h12,
-      "Массовая доля н-пентана в жидкости сепаратора С-1": data.table_sep_liq_nc5h12,
+      "Массовая доля бутанов в жидкости сепаратора С-1": (
+        parseFloat(data.table_sep_liq_ic4h10) + parseFloat(data.table_sep_liq_nc4h10)
+      ).toFixed(5),
+      "Массовая доля пентанов в жидкости сепаратора С-1": (
+        parseFloat(data.table_sep_liq_ic5h12) + parseFloat(data.table_sep_liq_nc5h12)
+      ).toFixed(5),
     };
   }
 };

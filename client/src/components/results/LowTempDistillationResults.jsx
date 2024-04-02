@@ -8,6 +8,7 @@ import {
   prepareSepProdData,
   prepareColProdData,
 } from "../../utils/prepareLowTempDistResData";
+import "../styles/low-temp-distillation-res.css";
 
 const LowTempDistillationResult = () => {
   const { data: results, isError, isLoading } = useFetchLowTempDistillationQuery();
@@ -17,14 +18,12 @@ const LowTempDistillationResult = () => {
   const [colProdData, setColProdData] = useState({});
 
   const workingData = { ...results };
-  console.log("WORKING DATA", workingData);
 
   const updateDataToDisplay = () => {
     if (!isError && !isLoading && workingData.feedGas && workingData.sepProd) {
       setFeedGasData(prepareFeedGasData(workingData.feedGas[currentPage]));
       setSepProdData(prepareSepProdData(workingData.sepProd[currentPage]));
       setColProdData(prepareColProdData(workingData.colProducts[currentPage]));
-      console.log("HHHHH", feedGasData);
     }
   };
 
