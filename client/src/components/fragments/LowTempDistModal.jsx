@@ -32,8 +32,8 @@ const LowTempDistModal = () => {
       const updatedData = [...initialTableData];
       updatedData[index].value = value;
       setInitialTableData(updatedData);
-      const sourGasComp = dataHandler.dataToState("low-temp-dist", initialTableData);
-      dispatch(setGasComp(sourGasComp));
+      const gasComp = dataHandler.dataToState("low-temp-dist", initialTableData);
+      dispatch(setGasComp(gasComp));
     }
   };
 

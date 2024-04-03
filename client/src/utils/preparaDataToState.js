@@ -50,15 +50,13 @@ export class DataHandler {
 
       case "low-temp-dist":
         return {
-          feed_gas_n2: data[0].value,
-          feed_gas_co2: data[1].value,
-          feed_gas_ch4: data[2].value,
-          feed_gas_c2h6: data[3].value,
-          feed_gas_c3h8: data[4].value,
-          feed_gas_ic4h10: data[5].value,
-          feed_gas_nc4h10: data[6].value,
-          feed_gas_ic5h12: data[7].value,
-          feed_gas_nc5h12: data[8].value,
+          feed_gas_ch4: data[0].value,
+          feed_gas_c2h6: data[1].value,
+          feed_gas_c3h8: data[2].value,
+          feed_gas_ic4h10: data[3].value,
+          feed_gas_nc4h10: data[4].value,
+          feed_gas_ic5h12: data[5].value,
+          feed_gas_nc5h12: data[6].value,
         };
         break;
 
