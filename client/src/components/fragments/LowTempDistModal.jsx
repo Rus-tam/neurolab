@@ -14,8 +14,6 @@ const LowTempDistModal = () => {
   const storedData = useSelector((state) => state.lowTempDist);
 
   const [initialTableData, setInitialTableData] = useState([
-    { name: "Массовая доля азота", value: "0.0" },
-    { name: "Массовая доля оксида углерода II", value: "0.0" },
     { name: "Массовая доля метана", value: "0.679" },
     { name: "Массовая доля этана", value: "0.1189" },
     { name: "Массовая доля пропана", value: "0.0669" },
@@ -42,11 +40,8 @@ const LowTempDistModal = () => {
   const handleNormalize = () => {
     const normalizer = new Normalize(dataHandler.low_temp_dist_gas(storedData));
     const normalizedComp = normalizer.normalizeData();
-    console.log("UUUU", normalizedComp);
     dispatch(setGasComp(normalizedComp));
     setInitialTableData([
-      { name: "Массовая доля азота", value: normalizedComp.feed_gas_n2 },
-      { name: "Массовая доля оксида углерода II", value: normalizedComp.feed_gas_co2 },
       { name: "Массовая доля метана", value: normalizedComp.feed_gas_ch4 },
       { name: "Массовая доля этана", value: normalizedComp.feed_gas_c2h6 },
       { name: "Массовая доля пропана", value: normalizedComp.feed_gas_c3h8 },

@@ -93,8 +93,6 @@ export class DataHandler {
 
   low_temp_dist_gas(data) {
     return {
-      feed_gas_n2: data.feed_gas_n2,
-      feed_gas_co2: data.feed_gas_co2,
       feed_gas_ch4: data.feed_gas_ch4,
       feed_gas_c2h6: data.feed_gas_c2h6,
       feed_gas_c3h8: data.feed_gas_c3h8,

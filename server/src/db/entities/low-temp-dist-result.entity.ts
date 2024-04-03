@@ -22,16 +22,10 @@ export class LowTempDistillationEntity {
     feed_gas_c3h8: number;
 
     @Column({ type: "float" })
-    feed_gas_co2: number;
-
-    @Column({ type: "float" })
     feed_gas_ic4h10: number;
 
     @Column({ type: "float" })
     feed_gas_ic5h12: number;
-
-    @Column({ type: "float" })
-    feed_gas_n2: number;
 
     @Column({ type: "float" })
     feed_gas_nc4h10: number;
