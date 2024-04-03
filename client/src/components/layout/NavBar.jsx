@@ -26,6 +26,11 @@ const NavBar = () => {
             </Link>
           </li>
           <li className="navbar-item">
+            <Link className="navbar-link" to="/labs">
+              Список работ
+            </Link>
+          </li>
+          <li className="navbar-item">
             <Link className="navbar-link" to="/labs/my-works">
               Мои работы
             </Link>
