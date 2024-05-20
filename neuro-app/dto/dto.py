@@ -17,7 +17,7 @@ class LowTempDistInitial(BaseModel):
     feed_gas_mass_flow: float
     feed_gas_pressure: float
     cooled_gas_pressure: float
-    column_power: float
+    column_spec: float
     feed_gas_ch4: float
     feed_gas_c2h6: float
     feed_gas_c3h8: float
@@ -25,6 +25,8 @@ class LowTempDistInitial(BaseModel):
     feed_gas_nc4h10: float
     feed_gas_ic5h12: float
     feed_gas_nc5h12: float
+    gas_feed_actual_liquid_flow: float
+    gas_feed_actual_vapour_flow: float
     sep_vap_mass_flow: float
     sep_liq_mass_flow: float
     sep_vap_ch4: float

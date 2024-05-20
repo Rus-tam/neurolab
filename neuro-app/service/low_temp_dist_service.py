@@ -4,15 +4,16 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 from utils.initial_data_handler import prepare_low_temp_data, prepare_low_temp_column_data
 from dto.dto import LowTempDistInitial
-
+from data.low_temp_distillation.low_temp_dist import feed_prod_vol_flow_data
+from models.low_temp_dist.low_temp_dist import feed_prod_vol_flow_model
 
 
 
 column = [
     'gas_feed temperature, C', 'gas_feed pressure, kPa', 'gas_feed mass flow, kg/h', 'gas_feed Methane mass frac',
-    'gas_feed Ethane mass frac', 'gas_feed Propane mass frac', 'gas_feed i-Butane mass frac',
-    'gas_feed n-Butane mass frac',
-    'gas_feed i-Pentane mass frac', 'gas_feed n-Pentane mass frac',
+    'gas_feed Ethane mass frac',
+    'gas_feed Propane mass frac', 'gas_feed i-Butane mass frac', 'gas_feed n-Butane mass frac',
+    'gas_feed i-Pentane mass frac','gas_feed n-Pentane mass frac',
 ]
 
 columns_expander = [
@@ -31,6 +32,20 @@ def normalize_data(example_data, input_data, columns, labels):
     )
     ct.fit(x_train)
     return ct.transform(input_data)
+
+
+def feed_volume_flow(dto: LowTempDistInitial):
+    data = prepare_low_temp_data(dto)
+    initial_data = pd.DataFrame(data)
+    labels = ['gas_feed actual liquid flow, m3/h', 'gas_feed actual vapour flow, m3/h']
+    columns = column
+
+    norm_feed_volume_flow_data = normalize_data(feed_prod_vol_flow_data, initial_data, columns, labels)
+    feed_volume_flow_res = feed_prod_vol_flow_model(norm_feed_volume_flow_data).numpy().tolist()[0]
+
+    print(feed_volume_flow_res)
+
+
 
 
 # def separator_vapour_mass_flow(dto: LowTempDistInitial):

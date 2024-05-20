@@ -26,6 +26,7 @@ def prepare_low_temp_data(dto: LowTempDistInitial):
     'gas_feed Ethane mass frac': [dto.feed_gas_c2h6], 'gas_feed Propane mass frac': [dto.feed_gas_c3h8],
     'gas_feed i-Butane mass frac': [dto.feed_gas_ic4h10], 'gas_feed n-Butane mass frac': [dto.feed_gas_nc4h10],
     'gas_feed i-Pentane mass frac': [dto.feed_gas_ic5h12], 'gas_feed n-Pentane mass frac': [dto.feed_gas_nc5h12],
+    'Comp Fraction': [dto.column_spec]
     }
 
 
@@ -36,7 +37,7 @@ def prepare_low_temp_column_data(dto: LowTempDistInitial):
     '4 Ethane mass frac': [dto.sep_vap_c2h6], '4 Propane mass frac': [dto.sep_vap_c3h8],
     '4 i-Butane mass frac': [dto.sep_vap_ic4h10], '4 n-Butane mass frac': [dto.sep_vap_nc4h10],
     '4 i-Pentane mass frac': [dto.sep_vap_ic5h12], '4 n-Pentane mass frac': [dto.sep_vap_nc5h12],
-    'Q-104': [dto.column_power],
+    'Comp Fraction': [dto.column_spec],
     '5 temperature, C': [dto.feed_gas_temperature], '5 pressure, kPa': [dto.feed_gas_pressure],
     '5 mass flow, kg/h': [dto.sep_liq_mass_flow], '5 Methane mass frac': [dto.sep_liq_ch4],
     '5 Ethane mass frac': [dto.sep_liq_c2h6], '5 Propane mass frac': [dto.sep_liq_c3h8],
