@@ -4,8 +4,8 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 from utils.initial_data_handler import prepare_low_temp_data, prepare_low_temp_column_data
 from dto.dto import LowTempDistInitial
-from data.low_temp_distillation.low_temp_dist import feed_prod_vol_flow_data
-from models.low_temp_dist.low_temp_dist import feed_prod_vol_flow_model
+from data.low_temp_distillation.low_temp_dist import feed_prod_vol_flow_data, sep_prod_mass_flow_data
+from models.low_temp_dist.low_temp_dist import feed_prod_vol_flow_model, sep_prod_mass_flow_model
 
 
 
@@ -43,7 +43,27 @@ def feed_volume_flow(dto: LowTempDistInitial):
     norm_feed_volume_flow_data = normalize_data(feed_prod_vol_flow_data, initial_data, columns, labels)
     feed_volume_flow_res = feed_prod_vol_flow_model(norm_feed_volume_flow_data).numpy().tolist()[0]
 
-    print(feed_volume_flow_res)
+    return feed_volume_flow_res
+
+
+def separator_prod_mass_flow(dto: LowTempDistInitial):
+    data = prepare_low_temp_data(dto)
+    initial_data = pd.DataFrame({
+        **data,
+        'gas_feed actual liquid flow, m3/h': dto.feed_gas_actual_liquid_flow,
+        'gas_feed actual vapour flow, m3/h': dto.feed_gas_actual_vapour_flow
+    })
+    labels = ['1 mass flow, kg/h']
+    columns = [*column, 'gas_feed actual liquid flow, m3/h', 'gas_feed actual vapour flow, m3/h']
+    norm_sep_prod_data = normalize_data(sep_prod_mass_flow_data, initial_data, columns, labels)
+    sep_prod_mass_flow = sep_prod_mass_flow_model(norm_sep_prod_data).numpy().tolist()[0][0]
+
+    print(sep_prod_mass_flow)
+    print(' ')
+    print(' ')
+    print(dto)
+
+
 
 
 
