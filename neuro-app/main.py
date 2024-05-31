@@ -84,9 +84,7 @@ def low_temp_distillation(dto: LowTempDistInitial):
     [feed_gas_comp_mass_flow] = component_mass_flow(dto)
 
     [dto.feed_gas_actual_liquid_flow, dto.feed_gas_actual_vapour_flow] = feed_volume_flow(dto)
-    # separator_prod_mass_flow(dto)
-
-    print(feed_gas_comp_mass_flow)
+    separator_prod_mass_flow(dto, feed_gas_comp_mass_flow)
 
 
 
