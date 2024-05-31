@@ -11,6 +11,7 @@ from service.amine_treatment_service import sweet_gas_CO2_ppm
 from service.amine_treatment_service import rich_amine_sour_comp
 from service.amine_treatment_service import rich_amine_H2O_MDEA
 from service.low_temp_dist_service import feed_volume_flow, separator_prod_mass_flow
+from utils.comp_mass_flow import component_mass_flow
 
 app = FastAPI()
 
@@ -80,7 +81,15 @@ def amine_treatment(dto: AmineTreatmentInitial):
 
 @app.post('/low-temp-distillation')
 def low_temp_distillation(dto: LowTempDistInitial):
+    [feed_gas_comp_mass_flow] = component_mass_flow(dto)
+
     [dto.feed_gas_actual_liquid_flow, dto.feed_gas_actual_vapour_flow] = feed_volume_flow(dto)
-    separator_prod_mass_flow(dto)
+    # separator_prod_mass_flow(dto)
+
+    print(feed_gas_comp_mass_flow)
+
+
+
+
 
 
