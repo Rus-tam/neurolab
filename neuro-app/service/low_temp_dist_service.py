@@ -50,8 +50,6 @@ def separator_prod_mass_flow(dto: LowTempDistInitial, feed_gas_comp_mass_flow):
     data = prepare_low_temp_data(dto)
     initial_data = pd.DataFrame({
         **data,
-        'gas_feed actual liquid flow, m3/h': dto.feed_gas_actual_liquid_flow,
-        'gas_feed actual vapour flow, m3/h': dto.feed_gas_actual_vapour_flow,
         'gas_feed Methane mass flow, kg/h': feed_gas_comp_mass_flow['gas_feed Methane mass flow, kg/h'],
         'gas_feed Ethane mass flow, kg/h': feed_gas_comp_mass_flow['gas_feed Ethane mass flow, kg/h'],
         'gas_feed Propane mass flow, kg/h': feed_gas_comp_mass_flow['gas_feed Propane mass flow, kg/h'],
@@ -59,6 +57,8 @@ def separator_prod_mass_flow(dto: LowTempDistInitial, feed_gas_comp_mass_flow):
         'gas_feed n-Butane mass flow, kg/h': feed_gas_comp_mass_flow['gas_feed n-Butane mass flow, kg/h'],
         'gas_feed i-Pentane mass flow, kg/h': feed_gas_comp_mass_flow['gas_feed i-Pentane mass flow, kg/h'],
         'gas_feed n-Pentane mass flow, kg/h': feed_gas_comp_mass_flow['gas_feed n-Pentane mass flow, kg/h'],
+        'gas_feed actual liquid flow, m3/h': dto.feed_gas_actual_liquid_flow,
+        'gas_feed actual vapour flow, m3/h': dto.feed_gas_actual_vapour_flow,
     })
     labels = ['1 mass flow, kg/h']
     columns = [*column, 'gas_feed Methane mass flow, kg/h',
@@ -73,7 +73,6 @@ def separator_prod_mass_flow(dto: LowTempDistInitial, feed_gas_comp_mass_flow):
     print(sep_prod_mass_flow)
     print(' ')
     print(' ')
-    print(dto)
 
 
 
