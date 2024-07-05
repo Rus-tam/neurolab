@@ -9,9 +9,7 @@ from utils.LowTempDistClass import LowTempDist
 from models.low_temp_dist.low_temp_dist import gas_feed_dens_model
 
 
-def gas_feed_dens_prediction(dto: LowTempDistInitial):
-    input_data = LowTempDist.initial_calculation(dto)
-
+def gas_feed_dens_prediction(input_data):
     gas_feed_dens_data = input_data[[
     'gas_feed temperature, C', 'gas_feed pressure, kPa', 'gas_feed mass flow, kg/h', 'gas_feed molecular weight',
     'gas_feed molar flow, kgmole/h',
