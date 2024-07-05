@@ -27,7 +27,6 @@ class LowTempDistInitial(BaseModel):
     stream_3_pressure: float
 
 
-
 class AmineTreatmentInitial(BaseModel):
     sour_gas_temperature: float
     sour_gas_mass_flow: float
