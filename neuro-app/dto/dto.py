@@ -13,56 +13,18 @@ class SimpleIsoResponse(BaseModel):
 
 
 class LowTempDistInitial(BaseModel):
-    feed_gas_temperature: float
-    feed_gas_mass_flow: float
-    feed_gas_pressure: float
-    cooled_gas_pressure: float
-    column_spec: float
-    feed_gas_ch4: float
-    feed_gas_c2h6: float
-    feed_gas_c3h8: float
-    feed_gas_ic4h10: float
-    feed_gas_nc4h10: float
-    feed_gas_ic5h12: float
-    feed_gas_nc5h12: float
-    feed_gas_actual_liquid_flow: float
-    feed_gas_actual_vapour_flow: float
-    sep_vap_mass_flow: float
-    sep_liq_mass_flow: float
-    sep_vap_ch4: float
-    sep_vap_c2h6: float
-    sep_vap_c3h8: float
-    sep_vap_ic4h10: float
-    sep_vap_nc4h10: float
-    sep_vap_ic5h12: float
-    sep_vap_nc5h12: float
-    sep_liq_ch4: float
-    sep_liq_c2h6: float
-    sep_liq_c3h8: float
-    sep_liq_ic4h10: float
-    sep_liq_nc4h10: float
-    sep_liq_ic5h12: float
-    sep_liq_nc5h12: float
-    cooled_gas_temperature: float
-    expander_power: float
-    column_bot_prod_temp: float
-    column_top_prod_temp: float
-    column_top_prod_mass_flow: float
-    column_bot_prod_mass_flow: float
-    col_top_ch4: float
-    col_top_c2h6: float
-    col_top_c3h8: float
-    col_top_ic4h10: float
-    col_top_nc4h10: float
-    col_top_ic5h12: float
-    col_top_nc5h12: float
-    col_bot_ch4: float
-    col_bot_c2h6: float
-    col_bot_c3h8: float
-    col_bot_ic4h10: float
-    col_bot_nc4h10: float
-    col_bot_ic5h12: float
-    col_bot_nc5h12: float
+    gas_feed_temperature: float
+    gas_feed_pressure: float
+    gas_feed_mass_flow: float
+    gas_feed_ch4_mass_frac: float
+    gas_feed_c2h6_mass_frac: float
+    gas_feed_c3h8_mass_frac: float
+    gas_feed_ic4h10_mass_frac: float
+    gas_feed_nc4h10_mass_frac: float
+    gas_feed_ic5h12_mass_frac: float
+    gas_feed_nc5h12_mass_frac: float
+    comp_frac: float
+    stream_3_pressure: float
 
 
 
