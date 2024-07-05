@@ -44,3 +44,13 @@ class LowTempDist:
 
         return input_data
 
+
+    @staticmethod
+    def phase_molar_flow(input_data):
+        input_data['gas_feed vapour molar flow, kgmole/h'] = input_data['gas_feed vapour fraction'] * input_data[
+            'gas_feed molar flow, kgmole/h']
+        input_data['gas_feed liquid molar flow, kgmole/h'] = input_data['gas_feed molar flow, kgmole/h'] - input_data[
+            'gas_feed vapour molar flow, kgmole/h']
+
+        return input_data
+

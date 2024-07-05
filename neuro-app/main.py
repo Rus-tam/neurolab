@@ -11,7 +11,7 @@ from service.amine_treatment_service import sweet_gas_H2S_ppm
 from service.amine_treatment_service import sweet_gas_CO2_ppm
 from service.amine_treatment_service import rich_amine_sour_comp
 from service.amine_treatment_service import rich_amine_H2O_MDEA
-from service.low_temp_dist_service import gas_feed_dens_prediction
+from service.low_temp_dist_service import gas_feed_dens_prediction, gas_feed_vap_fr_prediction
 from utils.LowTempDistClass import LowTempDist
 
 app = FastAPI()
@@ -84,8 +84,11 @@ def amine_treatment(dto: AmineTreatmentInitial):
 def low_temp_distillation(dto: LowTempDistInitial):
     input_data = LowTempDist.initial_calculation(dto)
     input_data['gas_feed Mass density, kg/m3'] = gas_feed_dens_prediction(input_data)
+    input_data['gas_feed vapour fraction'] = gas_feed_vap_fr_prediction(input_data)
 
-    return input_data.to_dict(orient='series')
+    input_data = LowTempDist.phase_molar_flow(input_data)
+
+    return input_data.to_dict(orient='list')
 
 
 
