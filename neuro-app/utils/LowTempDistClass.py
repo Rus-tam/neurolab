@@ -5,7 +5,7 @@ from utils.initial_data_handler import prepare_low_temp_data
 
 
 class LowTempDist:
-    @staticmethod()
+    @staticmethod
     def initial_calculation(dto: LowTempDistInitial):
         input_data = pd.DataFrame(prepare_low_temp_data(dto))
 
