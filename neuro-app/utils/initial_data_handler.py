@@ -21,11 +21,14 @@ def prepare_initial_data(dto: AmineTreatmentInitial):
 
 def prepare_low_temp_data(dto: LowTempDistInitial):
     return {
-    'gas_feed temperature, C': [dto.feed_gas_temperature], 'gas_feed pressure, kPa': [dto.feed_gas_pressure],
-    'gas_feed mass flow, kg/h': [dto.feed_gas_mass_flow], 'gas_feed Methane mass frac': [dto.feed_gas_ch4],
-    'gas_feed Ethane mass frac': [dto.feed_gas_c2h6], 'gas_feed Propane mass frac': [dto.feed_gas_c3h8],
-    'gas_feed i-Butane mass frac': [dto.feed_gas_ic4h10], 'gas_feed n-Butane mass frac': [dto.feed_gas_nc4h10],
-    'gas_feed i-Pentane mass frac': [dto.feed_gas_ic5h12], 'gas_feed n-Pentane mass frac': [dto.feed_gas_nc5h12],
-    'Comp Fraction': [dto.column_spec],
-    '3 pressure, kPa': [dto.feed_gas_pressure],
+    'gas_feed temperature, C': [dto.gas_feed_temperature], 'gas_feed pressure, kPa': [dto.gas_feed_pressure],
+    'gas_feed mass flow, kg/h': [dto.gas_feed_mass_flow], 'gas_feed Methane mass frac': [dto.gas_feed_ch4_mass_frac],
+    'gas_feed Ethane mass frac': [dto.gas_feed_c2h6_mass_frac],
+    'gas_feed Propane mass frac': [dto.gas_feed_c3h8_mass_frac],
+    'gas_feed i-Butane mass frac': [dto.gas_feed_ic4h10_mass_frac],
+    'gas_feed n-Butane mass frac': [dto.gas_feed_nc4h10_mass_frac],
+    'gas_feed i-Pentane mass frac': [dto.gas_feed_ic5h12_mass_frac],
+    'gas_feed n-Pentane mass frac': [dto.gas_feed_nc5h12_mass_frac],
+    'Comp Fraction': [dto.comp_frac],
+    '3 pressure, kPa': [dto.stream_3_pressure],
     }
