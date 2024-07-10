@@ -106,6 +106,36 @@ def low_temp_distillation(dto: LowTempDistInitial):
     input_data['1 i-Pentane mass flow, kg/h'] = input_data['1 i-Pentane molar flow, kgmole/h'] * 72.15
     input_data['1 n-Pentane mass flow, kg/h'] = input_data['1 n-Pentane molar flow, kgmole/h'] * 72.15
 
+    input_data['2 Methane molar flow, kgmole/h'] = input_data['gas_feed Methane molar flow, kgmole/h'] - input_data[
+        '1 Methane molar flow, kgmole/h']
+    input_data['2 Ethane molar flow, kgmole/h'] = input_data['gas_feed Ethane molar flow, kgmole/h'] - input_data[
+        '1 Ethane molar flow, kgmole/h']
+    input_data['2 Propane molar flow, kgmole/h'] = input_data['gas_feed Propane molar flow, kgmole/h'] - input_data[
+        '1 Propane molar flow, kgmole/h']
+    input_data['2 i-Butane molar flow, kgmole/h'] = input_data['gas_feed i-Butane molar flow, kgmole/h'] - input_data[
+        '1 i-Butane molar flow, kgmole/h']
+    input_data['2 n-Butane molar flow, kgmole/h'] = input_data['gas_feed n-Butane molar flow, kgmole/h'] - input_data[
+        '1 n-Butane molar flow, kgmole/h']
+    input_data['2 i-Pentane molar flow, kgmole/h'] = input_data['gas_feed i-Pentane molar flow, kgmole/h'] - input_data[
+        '1 i-Pentane molar flow, kgmole/h']
+    input_data['2 n-Pentane molar flow, kgmole/h'] = input_data['gas_feed n-Pentane molar flow, kgmole/h'] - input_data[
+        '1 n-Pentane molar flow, kgmole/h']
+
+    input_data['2 Methane mass flow, kg/h'] = input_data['gas_feed Methane mass flow, kg/h'] - input_data[
+        '1 Methane mass flow, kg/h']
+    input_data['2 Ethane mass flow, kg/h'] = input_data['gas_feed Ethane mass flow, kg/h'] - input_data[
+        '1 Ethane mass flow, kg/h']
+    input_data['2 Propane mass flow, kg/h'] = input_data['gas_feed Propane mass flow, kg/h'] - input_data[
+        '1 Propane mass flow, kg/h']
+    input_data['2 i-Butane mass flow, kg/h'] = input_data['gas_feed i-Butane mass flow, kg/h'] - input_data[
+        '1 i-Butane mass flow, kg/h']
+    input_data['2 n-Butane mass flow, kg/h'] = input_data['gas_feed n-Butane mass flow, kg/h'] - input_data[
+        '1 n-Butane mass flow, kg/h']
+    input_data['2 i-Pentane mass flow, kg/h'] = input_data['gas_feed i-Pentane mass flow, kg/h'] - input_data[
+        '1 i-Pentane mass flow, kg/h']
+    input_data['2 n-Pentane mass flow, kg/h'] = input_data['gas_feed n-Pentane mass flow, kg/h'] - input_data[
+        '1 n-Pentane mass flow, kg/h']
+
     return input_data.to_dict(orient='list')
 
 
