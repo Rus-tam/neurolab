@@ -12,6 +12,7 @@ from service.amine_treatment_service import sweet_gas_CO2_ppm
 from service.amine_treatment_service import rich_amine_sour_comp
 from service.amine_treatment_service import rich_amine_H2O_MDEA
 from service.low_temp_dist_service import gas_feed_dens_prediction, gas_feed_vap_fr_prediction
+from service.low_temp_dist_service import sep_vap_comp_molar_flow_prediction
 from utils.LowTempDistClass import LowTempDist
 
 app = FastAPI()
@@ -87,6 +88,23 @@ def low_temp_distillation(dto: LowTempDistInitial):
     input_data['gas_feed vapour fraction'] = gas_feed_vap_fr_prediction(input_data)
 
     input_data = LowTempDist.phase_molar_flow(input_data)
+
+    sep_vap_comp_molar_flow = sep_vap_comp_molar_flow_prediction(input_data)
+    input_data['1 Methane molar flow, kgmole/h'] = sep_vap_comp_molar_flow[0][0]
+    input_data['1 Ethane molar flow, kgmole/h'] = sep_vap_comp_molar_flow[0][1]
+    input_data['1 Propane molar flow, kgmole/h'] = sep_vap_comp_molar_flow[0][2]
+    input_data['1 i-Butane molar flow, kgmole/h'] = sep_vap_comp_molar_flow[0][3]
+    input_data['1 n-Butane molar flow, kgmole/h'] = sep_vap_comp_molar_flow[0][4]
+    input_data['1 i-Pentane molar flow, kgmole/h'] = sep_vap_comp_molar_flow[0][5]
+    input_data['1 n-Pentane molar flow, kgmole/h'] = sep_vap_comp_molar_flow[0][6]
+
+    input_data['1 Methane mass flow, kg/h'] = input_data['1 Methane molar flow, kgmole/h'] * 16.04
+    input_data['1 Ethane mass flow, kg/h'] = input_data['1 Ethane molar flow, kgmole/h'] * 30
+    input_data['1 Propane mass flow, kg/h'] = input_data['1 Propane molar flow, kgmole/h'] * 44
+    input_data['1 i-Butane mass flow, kg/h'] = input_data['1 i-Butane molar flow, kgmole/h'] * 58.12
+    input_data['1 n-Butane mass flow, kg/h'] = input_data['1 n-Butane molar flow, kgmole/h'] * 58.12
+    input_data['1 i-Pentane mass flow, kg/h'] = input_data['1 i-Pentane molar flow, kgmole/h'] * 72.15
+    input_data['1 n-Pentane mass flow, kg/h'] = input_data['1 n-Pentane molar flow, kgmole/h'] * 72.15
 
     return input_data.to_dict(orient='list')
 
