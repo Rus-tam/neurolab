@@ -136,6 +136,23 @@ def low_temp_distillation(dto: LowTempDistInitial):
     input_data['2 n-Pentane mass flow, kg/h'] = input_data['gas_feed n-Pentane mass flow, kg/h'] - input_data[
         '1 n-Pentane mass flow, kg/h']
 
+    cols_1_mass_flow = [
+        '1 Methane mass flow, kg/h', '1 Ethane mass flow, kg/h', '1 Propane mass flow, kg/h',
+        '1 i-Butane mass flow, kg/h',
+        '1 n-Butane mass flow, kg/h', '1 i-Pentane mass flow, kg/h', '1 n-Pentane mass flow, kg/h'
+    ]
+    cols_1_molar_flow = [
+        '1 Methane molar flow, kgmole/h', '1 Ethane molar flow, kgmole/h', '1 Propane molar flow, kgmole/h',
+        '1 i-Butane molar flow, kgmole/h', '1 n-Butane molar flow, kgmole/h', '1 i-Pentane molar flow, kgmole/h',
+        '1 n-Pentane molar flow, kgmole/h'
+    ]
+
+    input_data['1 mass flow, kg/h'] = input_data[cols_1_mass_flow].sum(axis=1)
+    input_data['1 molar flow, kgmole/h'] = input_data[cols_1_molar_flow].sum(axis=1)
+    input_data['2 mass flow, kg/h'] = input_data['gas_feed mass flow, kg/h'] - input_data['1 mass flow, kg/h']
+    input_data['2 molar flow, kgmole/h'] = input_data['gas_feed molar flow, kgmole/h'] - input_data[
+        '1 molar flow, kgmole/h']
+
     return input_data.to_dict(orient='list')
 
 
