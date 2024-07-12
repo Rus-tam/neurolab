@@ -156,7 +156,6 @@ def low_temp_distillation(dto: LowTempDistInitial):
 
     input_data['3 temperature, C'] = expander_gas_temp_prediction(input_data)
     input_data['Q-100'] = expander_power_prediction(input_data)
-    expander_power_prediction(input_data)
 
     return input_data.to_dict(orient='list')
 
