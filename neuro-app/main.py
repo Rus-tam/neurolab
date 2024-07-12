@@ -13,7 +13,7 @@ from service.amine_treatment_service import rich_amine_sour_comp
 from service.amine_treatment_service import rich_amine_H2O_MDEA
 from service.low_temp_dist_service import gas_feed_dens_prediction, gas_feed_vap_fr_prediction
 from service.low_temp_dist_service import sep_vap_comp_molar_flow_prediction, expander_gas_temp_prediction
-from service.low_temp_dist_service import expander_power_prediction
+from service.low_temp_dist_service import expander_power_prediction, col_top_prod_comp_molar_flow_prediction
 from utils.LowTempDistClass import LowTempDist
 
 app = FastAPI()
@@ -156,6 +156,24 @@ def low_temp_distillation(dto: LowTempDistInitial):
 
     input_data['3 temperature, C'] = expander_gas_temp_prediction(input_data)
     input_data['Q-100'] = expander_power_prediction(input_data)
+
+    col_top_prod_comp_molar_flow = col_top_prod_comp_molar_flow_prediction(input_data)
+
+    input_data['16 Methane molar flow, kgmole/h'] = col_top_prod_comp_molar_flow[0][0]
+    input_data['16 Ethane molar flow, kgmole/h'] = col_top_prod_comp_molar_flow[0][1]
+    input_data['16 Propane molar flow, kgmole/h'] = col_top_prod_comp_molar_flow[0][2]
+    input_data['16 i-Butane molar flow, kgmole/h'] = col_top_prod_comp_molar_flow[0][3]
+    input_data['16 n-Butane molar flow, kgmole/h'] = col_top_prod_comp_molar_flow[0][4]
+    input_data['16 i-Pentane molar flow, kgmole/h'] = col_top_prod_comp_molar_flow[0][5]
+    input_data['16 n-Pentane molar flow, kgmole/h'] = col_top_prod_comp_molar_flow[0][6]
+
+    input_data['16 Methane mass flow, kg/h'] = input_data['16 Methane molar flow, kgmole/h'] * 16.04
+    input_data['16 Ethane mass flow, kg/h'] = input_data['16 Ethane molar flow, kgmole/h'] * 30
+    input_data['16 Propane mass flow, kg/h'] = input_data['16 Propane molar flow, kgmole/h'] * 44
+    input_data['16 i-Butane mass flow, kg/h'] = input_data['16 i-Butane molar flow, kgmole/h'] * 58.12
+    input_data['16 n-Butane mass flow, kg/h'] = input_data['16 n-Butane molar flow, kgmole/h'] * 58.12
+    input_data['16 i-Pentane mass flow, kg/h'] = input_data['16 i-Pentane molar flow, kgmole/h'] * 72.15
+    input_data['16 n-Pentane mass flow, kg/h'] = input_data['16 n-Pentane molar flow, kgmole/h'] * 72.15
 
     return input_data.to_dict(orient='list')
 
