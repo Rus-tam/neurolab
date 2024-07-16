@@ -76,12 +76,20 @@ const ResultTable = ({ caption, results }) => {
           value: results.column_bot_prod_temp.toFixed(2),
         },
         {
+          name: "Массовый расход СОГ",
+          value: "Внести данные",
+        },
+        {
           name: "Массовая доля метана в СОГ",
           value: results.col_bot_ch4.toFixed(2),
         },
         {
           name: "Массовая доля этана в СОГ",
           value: results.col_top_c2h6.toFixed(2),
+        },
+        {
+          name: "Массовый расход ШФЛУ",
+          value: "Внести данные",
         },
         {
           name: "Массовая доля метана в ШФЛУ",
