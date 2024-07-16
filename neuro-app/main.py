@@ -14,7 +14,7 @@ from service.amine_treatment_service import rich_amine_H2O_MDEA
 from service.low_temp_dist_service import gas_feed_dens_prediction, gas_feed_vap_fr_prediction
 from service.low_temp_dist_service import sep_vap_comp_molar_flow_prediction, expander_gas_temp_prediction
 from service.low_temp_dist_service import expander_power_prediction, col_top_prod_comp_molar_flow_prediction
-from service.low_temp_dist_service import col_top_temp_prediction
+from service.low_temp_dist_service import col_top_temp_prediction, col_bot_temperature_prediction
 from utils.LowTempDistClass import LowTempDist
 
 app = FastAPI()
@@ -217,6 +217,7 @@ def low_temp_distillation(dto: LowTempDistInitial):
         '16 molar flow, kgmole/h']
 
     input_data['16 temperature, C'] = col_top_temp_prediction(input_data)
+    input_data['17 temperature, C'] = col_bot_temperature_prediction(input_data)
 
     return input_data.to_dict(orient='list')
 
