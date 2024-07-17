@@ -25,20 +25,6 @@ class LowTempDistInitial(BaseModel):
     gas_feed_nc5h12_mass_frac: float
     comp_frac: float
     stream_3_pressure: float
-    gas_feed_ch4_mass_flow: float
-    gas_feed_c2h6_mass_flow: float
-    gas_feed_c3h8_mass_flow: float
-    gas_feed_ic4h10_mass_flow: float
-    gas_feed_nc4h10_mass_flow: float
-    gas_feed_ic5h12_mass_flow: float
-    gas_feed_nc5h12_mass_flow: float
-    gas_feed_ch4_molar_flow: float
-    gas_feed_c2h6_molar_flow: float
-    gas_feed_c3h8_molar_flow: float
-    gas_feed_ic4h10_molar_flow: float
-    gas_feed_nc4h10_molar_flow: float
-    gas_feed_ic5h12_molar_flow: float
-    gas_feed_nc5h12_molar_flow: float
 
 
 class AmineTreatmentInitial(BaseModel):

@@ -54,3 +54,9 @@ class LowTempDist:
 
         return input_data
 
+    @staticmethod
+    def prepare_results(input_data):
+        res_data_dict = input_data.to_dict(orient='list')
+        values = res_data_dict.values()
+        print(values)
+

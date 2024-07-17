@@ -16,7 +16,7 @@ const LowTempDistDataTableFraction = ({ caption, initialValues }) => {
         feed_gas_mass_flow: initialTableData[1].value,
         feed_gas_pressure: initialTableData[2].value,
         cooled_gas_pressure: initialTableData[3].value,
-        column_power: initialTableData[4].value,
+        column_fr: initialTableData[4].value,
       }),
     );
   };

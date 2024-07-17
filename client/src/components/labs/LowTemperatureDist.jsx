@@ -18,7 +18,7 @@ const LowTemperatureDist = () => {
     { name: "Массовый расход газа, кг/ч", value: "1000" },
     { name: "Давление газа, Па", value: "4000" },
     { name: "Давление газа после Д-1, Па", value: "2500" },
-    { name: "Тепловая нагрузка Т-1, кВт", value: "2000" },
+    { name: "Массовая доля метана и этана в ШФЛУ", value: "0.02" },
   ];
 
   const handleOpenGasCompModal = () => {
