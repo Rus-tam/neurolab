@@ -220,9 +220,9 @@ def low_temp_distillation(dto: LowTempDistInitial):
     input_data['16 temperature, C'] = col_top_temp_prediction(input_data)
     input_data['17 temperature, C'] = col_bot_temperature_prediction(input_data)
 
-    LowTempDist.prepare_results(input_data)
+    results = LowTempDist.prepare_results(input_data)
 
-    return input_data.to_dict(orient='list')
+    return results
 
 
 
