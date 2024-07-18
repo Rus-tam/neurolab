@@ -56,7 +56,16 @@ class LowTempDist:
 
     @staticmethod
     def prepare_results(input_data):
+        result_dict = {}
         res_data_dict = input_data.to_dict(orient='list')
-        values = res_data_dict.values()
-        print(values)
+        keys = list(res_data_dict.keys())
+
+        for key in keys:
+            result_dict[key] = round(res_data_dict[key][0], 3)
+
+        return result_dict
+
+
+
+
 
