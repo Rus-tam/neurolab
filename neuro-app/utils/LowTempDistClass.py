@@ -64,6 +64,7 @@ class LowTempDist:
             modified_key = key.replace(' ', '_')
             modified_key = modified_key.replace(',', '')
             modified_key = modified_key.replace('/', '_')
+            modified_key = modified_key.replace('-', '_')
             if "gas" not in modified_key:
                 modified_key = 'stream_' + modified_key
             result_dict[modified_key] = round(res_data_dict[key][0], 3)
