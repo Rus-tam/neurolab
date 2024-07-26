@@ -4,7 +4,7 @@ import numpy as np
 from models.low_temp_dist.low_temp_dist import gas_feed_dens_model, gas_feed_vap_fr_model
 from models.low_temp_dist.low_temp_dist import sep_vap_comp_molar_flow_model, expander_gas_temp_model_exp_model
 from models.low_temp_dist.low_temp_dist import expander_power_model, col_top_prod_comp_molar_flow_model
-from models.low_temp_dist.low_temp_dist import col_top_temp_model, col_bot_temp_model
+from models.low_temp_dist.low_temp_dist import col_top_temp_model, col_bot_temp_model, col_power_model
 
 
 def gas_feed_dens_prediction(input_data):
@@ -171,6 +171,27 @@ def col_bot_temperature_prediction(input_data):
     col_bot_temp = col_bot_temp_model(col_bot_temp_data_norm).numpy().tolist()
 
     return col_bot_temp[0]
+
+
+def column_power_prediction(input_data):
+    col_power_data = input_data[[
+    'gas_feed temperature, C', 'gas_feed pressure, kPa', 'gas_feed mass flow, kg/h', 'gas_feed molecular weight',
+    'gas_feed Mass density, kg/m3', 'gas_feed vapour fraction', 'gas_feed molar flow, kgmole/h',
+    'gas_feed vapour molar flow, kgmole/h', 'gas_feed liquid molar flow, kgmole/h',
+    'gas_feed Methane molar flow, kgmole/h', 'gas_feed Ethane molar flow, kgmole/h',
+    'gas_feed Propane molar flow, kgmole/h', 'gas_feed i-Butane molar flow, kgmole/h',
+    'gas_feed n-Butane molar flow, kgmole/h', 'gas_feed i-Pentane molar flow, kgmole/h',
+    'gas_feed n-Pentane molar flow, kgmole/h', 'Comp Fraction', '16 temperature, C', '17 temperature, C',
+    ]]
+
+    col_power_transformer = joblib.load('./transformers/low_temp_dist_transformers/col_power_transformer.pkl')
+    col_power_data_norm = col_power_transformer.transform(col_power_data)
+
+    col_power = col_power_model(col_power_data_norm).numpy().tolist()
+
+    return col_power[0]
+
+
 
 
 

@@ -57,19 +57,8 @@ class LowTempDist:
     @staticmethod
     def prepare_results(input_data):
         result_dict = {}
-        res_data_dict = input_data.to_dict(orient='list')
-        keys = list(res_data_dict.keys())
 
-        for key in keys:
-            modified_key = key.replace(' ', '_')
-            modified_key = modified_key.replace(',', '')
-            modified_key = modified_key.replace('/', '_')
-            modified_key = modified_key.replace('-', '_')
-            if "gas" not in modified_key:
-                modified_key = 'stream_' + modified_key
-            result_dict[modified_key] = round(res_data_dict[key][0], 3)
-
-        return result_dict
+        return input_data.to_dict(orient='list')
 
 
 

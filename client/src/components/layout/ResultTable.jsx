@@ -69,11 +69,11 @@ const ResultTable = ({ caption, results }) => {
       resultData = [
         {
           name: "Температура верха колонны, град. Цельсия",
-          value: results.column_top_prod_temp.toFixed(2),
+          value: results.column_top_prod_temp,
         },
         {
           name: "Температура низа колонны, град. Цельсия",
-          value: results.column_bot_prod_temp.toFixed(2),
+          value: results.column_bot_prod_temp,
         },
         {
           name: "Массовый расход СОГ",
@@ -81,11 +81,11 @@ const ResultTable = ({ caption, results }) => {
         },
         {
           name: "Массовая доля метана в СОГ",
-          value: results.col_bot_ch4.toFixed(2),
+          value: results.col_bot_ch4,
         },
         {
           name: "Массовая доля этана в СОГ",
-          value: results.col_top_c2h6.toFixed(2),
+          value: results.col_top_c2h6,
         },
         {
           name: "Массовый расход ШФЛУ",
@@ -105,19 +105,19 @@ const ResultTable = ({ caption, results }) => {
         },
         {
           name: "Массовая доля бутанов в ШФЛУ",
-          value: (results.col_bot_ic4h10 + results.col_bot_nc4h10).toFixed(4),
+          value: results.col_bot_ic4h10 + results.col_bot_nc4h10,
         },
         {
           name: "Массовая доля пентанов в ШФЛУ",
-          value: (results.col_bot_ic5h12 + results.col_bot_nc5h12).toFixed(4),
+          value: results.col_bot_ic5h12 + results.col_bot_nc5h12,
         },
         {
           name: "Температура газа после Д-1, град. Цельсия",
-          value: results.cooled_gas_temperature.toFixed(2),
+          value: results.cooled_gas_temperature,
         },
         {
           name: "Мощность Д-1, кВт",
-          value: results.expander_power.toFixed(2),
+          value: results.expander_power,
         },
       ];
       break;
