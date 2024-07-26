@@ -56,7 +56,30 @@ class LowTempDist:
 
     @staticmethod
     def prepare_results(input_data):
-        result_dict = {}
+
+        result_dict = {
+            "gas_feed_temperature": round(input_data["gas_feed temperature, C"][0], 3),
+            "gas_feed_pressure": round(input_data["gas_feed pressure, kPa"][0], 3),
+            "gas_feed_mass_flow": round(input_data["gas_feed mass flow, kg/h"][0], 3),
+            "gas_feed_methane_mass_fr": round(input_data["gas_feed Methane mass frac"][0], 3),
+            "gas_feed_ethane_mass_fr": round(input_data["gas_feed Ethane mass frac"][0], 3),
+            "gas_feed_propane_mass_fr": round(input_data["gas_feed Propane mass frac"][0], 3),
+            "gas_feed_i_butane_mass_fr": round(input_data["gas_feed i-Butane mass frac"][0], 3),
+            "gas_feed_n_butane_mass_fr": round(input_data["gas_feed n-Butane mass frac"][0], 3),
+            "gas_feed_i_pentane_mass_fr": round(input_data["gas_feed i-Pentane mass frac"][0], 3),
+            "gas_feed_n_pentane_mass_fr": round(input_data["gas_feed n-Pentane mass frac"][0], 3),
+            "comp_fraction": round(input_data["Comp Fraction"][0], 3),
+            "stream_3_pressure": round(input_data["3 pressure, kPa"][0], 3),
+            "stream_1_mass_flow": round(input_data["1 mass flow, kg/h"][0], 3),
+            "stream_2_mass_flow": round(input_data["2 mass flow, kg/h"][0], 3),
+
+        }
+
+        print(' ')
+        print("+++++++++++++++++")
+        print(result_dict)
+        print("+++++++++++++++++")
+
 
         return input_data.to_dict(orient='list')
 
