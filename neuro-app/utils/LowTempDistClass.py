@@ -1,5 +1,5 @@
 import pandas as pd
-
+import numpy as np
 from dto.dto import LowTempDistInitial
 from utils.initial_data_handler import prepare_low_temp_data
 
@@ -109,15 +109,10 @@ class LowTempDist:
             "column_power": round(input_data["Q-104"][0], 3)
         }
 
-        print(' ')
-        print("+++++++++++++++++")
-        print(result_dict)
-        print("+++++++++++++++++")
-        print('=================')
-        print(input_data['16 Methane mass fr'])
+        result_dict = {key: (float(value) if isinstance(value, (np.float32, np.float64)) else value) for key, value in
+                   result_dict.items()}
 
-
-        return input_data.to_dict(orient='list')
+        return result_dict
 
 
 
