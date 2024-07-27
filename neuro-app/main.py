@@ -233,6 +233,11 @@ def low_temp_distillation(dto: LowTempDistInitial):
     input_data['17 i-Pentane mass fr'] = input_data['17 i-Pentane mass flow, kg/h'] / input_data['17 mass flow, kg/h']
     input_data['17 n-Pentane mass fr'] = input_data['17 n-Pentane mass flow, kg/h'] / input_data['17 mass flow, kg/h']
 
+    input_data['16 temperature, C'] = col_top_temp_prediction(input_data)
+    input_data['17 temperature, C'] = col_bot_temperature_prediction(input_data)
+
+    input_data['Q-104'] = column_power_prediction(input_data)
+
     mass_fr = {
     '1 Methane mass fr': input_data['1 Methane mass flow, kg/h'] / input_data['1 mass flow, kg/h'],
     '1 Ethane mass fr': input_data['1 Ethane mass flow, kg/h'] / input_data['1 mass flow, kg/h'],
@@ -249,12 +254,27 @@ def low_temp_distillation(dto: LowTempDistInitial):
     '2 n-Butane mass fr': input_data['2 n-Butane mass flow, kg/h'] / input_data['2 mass flow, kg/h'],
     '2 i-Pentane mass fr': input_data['2 i-Pentane mass flow, kg/h'] / input_data['2 mass flow, kg/h'],
     '2 n-Pentane mass fr': input_data['2 n-Pentane mass flow, kg/h'] / input_data['2 mass flow, kg/h'],
+
+    '16 Methane mass fr': input_data['16 Methane mass flow, kg/h'] / input_data['16 mass flow, kg/h'],
+    '16 Ethane mass fr': input_data['16 Ethane mass flow, kg/h'] / input_data['16 mass flow, kg/h'],
+    '16 Propane mass fr': input_data['16 Propane mass flow, kg/h'] / input_data['16 mass flow, kg/h'],
+    '16 i-Butane mass fr': input_data['16 i-Butane mass flow, kg/h'] / input_data['16 mass flow, kg/h'],
+    '16 n-Butane mass fr': input_data['16 n-Butane mass flow, kg/h'] / input_data['16 mass flow, kg/h'],
+    '16 i-Pentane mass fr': input_data['16 i-Pentane mass flow, kg/h'] / input_data['16 mass flow, kg/h'],
+    '16 n-Pentane mass fr': input_data['16 n-Pentane mass flow, kg/h'] / input_data['16 mass flow, kg/h'],
+
+    '17 Methane mass fr': input_data['17 Methane mass flow, kg/h'] / input_data['17 mass flow, kg/h'],
+    '17 Ethane mass fr': input_data['17 Ethane mass flow, kg/h'] / input_data['17 mass flow, kg/h'],
+    '17 Propane mass fr': input_data['17 Propane mass flow, kg/h'] / input_data['17 mass flow, kg/h'],
+    '17 i-Butane mass fr': input_data['17 i-Butane mass flow, kg/h'] / input_data['17 mass flow, kg/h'],
+    '17 n-Butane mass fr': input_data['17 n-Butane mass flow, kg/h'] / input_data['17 mass flow, kg/h'],
+    '17 i-Pentane mass fr': input_data['17 i-Pentane mass flow, kg/h'] / input_data['17 mass flow, kg/h'],
+    '17 n-Pentane mass fr': input_data['17 n-Pentane mass flow, kg/h'] / input_data['17 mass flow, kg/h']
     }
 
-    input_data['16 temperature, C'] = col_top_temp_prediction(input_data)
-    input_data['17 temperature, C'] = col_bot_temperature_prediction(input_data)
+    mass_fr_df = pd.DataFrame(mass_fr)
 
-    input_data['Q-104'] = column_power_prediction(input_data)
+    input_data = pd.concat([input_data, mass_fr_df], axis=1)
 
     results = LowTempDist.prepare_results(input_data)
 
