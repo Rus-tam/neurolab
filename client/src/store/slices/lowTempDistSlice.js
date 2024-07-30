@@ -13,77 +13,46 @@ const lowTempDistSlice = createSlice({
     gas_feed_nc4h10_mass_frac: 0.0083,
     gas_feed_ic5h12_mass_frac: 0.009,
     gas_feed_nc5h12_mass_frac: 0.0085,
-    stream_Comp_Fraction: 0.02,
-    stream_3_pressure_kPa: 2072,
+    comp_fraction: 0.02,
+    stream_3_pressure: 2072,
 
-    stream_1_Methane_molar_flow_kgmole_h: 0.0,
-    stream_1_Ethane_molar_flow_kgmole_h: 0.0,
-    stream_1_Propane_molar_flow_kgmole_h: 0.0,
-    stream_1_i_Butane_molar_flow_kgmole_h: 0.0,
-    stream_1_n_Butane_molar_flow_kgmole_h: 0.0,
-    stream_1_i_Pentane_molar_flow_kgmole_h: 0.0,
-    stream_1_n_Pentane_molar_flow_kgmole_h: 0.0,
-    stream_1_Methane_mass_flow_kg_h: 0.0,
-    stream_1_Ethane_mass_flow_kg_h: 0.0,
-    stream_1_Propane_mass_flow_kg_h: 0.0,
-    stream_1_i_Butane_mass_flow_kg_h: 0.0,
-    stream_1_n_Butane_mass_flow_kg_h: 0.0,
-    stream_1_i_Pentane_mass_flow_kg_h: 0.0,
-    stream_1_n_Pentane_mass_flow_kg_h: 0.0,
-    stream_2_Methane_molar_flow_kgmole_h: 0.0,
-    stream_2_Ethane_molar_flow_kgmole_h: 0.0,
-    stream_2_Propane_molar_flow_kgmole_h: 0.0,
-    stream_2_i_Butane_molar_flow_kgmole_h: 0.0,
-    stream_2_n_Butane_molar_flow_kgmole_h: 0.0,
-    stream_2_i_Pentane_molar_flow_kgmole_h: 0.0,
-    stream_2_n_Pentane_molar_flow_kgmole_h: 0.0,
-    stream_2_Methane_mass_flow_kg_h: 0.0,
-    stream_2_Ethane_mass_flow_kg_h: 0.0,
-    stream_2_Propane_mass_flow_kg_h: 0.0,
-    stream_2_i_Butane_mass_flow_kg_h: 0.0,
-    stream_2_n_Butane_mass_flow_kg_h: 0.0,
-    stream_2_i_Pentane_mass_flow_kg_h: 0.0,
-    stream_2_n_Pentane_mass_flow_kg_h: 0.0,
-    stream_1_mass_flow_kg_h: 0.0,
-    stream_1_molar_flow_kgmole_h: 0.0,
-    stream_2_mass_flow_kg_h: 0.0,
-    stream_2_molar_flow_kgmole_h: 0.0,
-    stream_3_temperature_C: 0.0,
-    stream_Q_100: 0.0,
-    stream_16_Methane_molar_flow_kgmole_h: 0.0,
-    stream_16_Ethane_molar_flow_kgmole_h: 0.0,
-    stream_16_Propane_molar_flow_kgmole_h: 0.0,
-    stream_16_i_Butane_molar_flow_kgmole_h: 0.0,
-    stream_16_n_Butane_molar_flow_kgmole_h: 0.0,
-    stream_16_i_Pentane_molar_flow_kgmole_h: 0.0,
-    stream_16_n_Pentane_molar_flow_kgmole_h: 0.0,
-    stream_16_Methane_mass_flow_kg_h: 0.0,
-    stream_16_Ethane_mass_flow_kg_h: 0.0,
-    stream_16_Propane_mass_flow_kg_h: 0.0,
-    stream_16_i_Butane_mass_flow_kg_h: 0.0,
-    stream_16_n_Butane_mass_flow_kg_h: 0.0,
-    stream_16_i_Pentane_mass_flow_kg_h: 0.0,
-    stream_16_n_Pentane_mass_flow_kg_h: 0.0,
-    stream_17_Methane_molar_flow_kgmole_h: 0.0,
-    stream_17_Ethane_molar_flow_kgmole_h: 0.0,
-    stream_17_Propane_molar_flow_kgmole_h: 0.0,
-    stream_17_i_Butane_molar_flow_kgmole_h: 0.0,
-    stream_17_n_Butane_molar_flow_kgmole_h: 0.0,
-    stream_17_i_Pentane_molar_flow_kgmole_h: 0.0,
-    stream_17_n_Pentane_molar_flow_kgmole_h: 0.0,
-    stream_17_Methane_mass_flow_kg_h: 0.0,
-    stream_17_Ethane_mass_flow_kg_h: 0.0,
-    stream_17_Propane_mass_flow_kg_h: 0.0,
-    stream_17_i_Butane_mass_flow_kg_h: 0.0,
-    stream_17_n_Butane_mass_flow_kg_h: 0.0,
-    stream_17_i_Pentane_mass_flow_kg_h: 0.0,
-    stream_17_n_Pentane_mass_flow_kg_h: 0.0,
-    stream_16_mass_flow_kg_h: 0.0,
-    stream_16_molar_flow_kgmole_h: 0.0,
-    stream_17_mass_flow_kg_h: 0.0,
-    stream_17_molar_flow_kgmole_h: 0.0,
-    stream_16_temperature_C: 0.0,
-    stream_17_temperature_C: 0.0,
+    stream_1_mass_flow: 0.0,
+    stream_2_mass_flow: 0.0,
+    stream_1_methane_mass_fr: 0.0,
+    stream_1_ethane_mass_fr: 0.0,
+    stream_1_propane_mass_fr: 0.0,
+    stream_1_i_butane_mass_fr: 0.0,
+    stream_1_n_butane_mass_fr: 0.0,
+    stream_1_i_pentane_mass_fr: 0.0,
+    stream_1_n_pentane_mass_fr: 0.0,
+    stream_2_methane_mass_fr: 0.0,
+    stream_2_ethane_mass_fr: 0.0,
+    stream_2_propane_mass_fr: 0.0,
+    stream_2_i_butane_mass_fr: 0.0,
+    stream_2_n_butane_mass_fr: 0.0,
+    stream_2_i_pentane_mass_fr: 0.0,
+    stream_2_n_pentane_mass_fr: 0.0,
+    stream_3_temperature: 0.0,
+    expander_power: 0.0,
+    stream_16_temperature: 0.0,
+    stream_17_temperature: 0.0,
+    stream_16_mass_flow: 0.0,
+    stream_17_mass_flow: 0.0,
+    stream_16_methane_mass_fr: 0.0,
+    stream_16_ethane_mass_fr: 0.0,
+    stream_16_propane_mass_fr: 0.0,
+    stream_16_i_butane_mass_fr: 0.0,
+    stream_16_n_butane_mass_fr: 0.0,
+    stream_16_i_pentane_mass_fr: 0.0,
+    stream_16_n_pentane_mass_fr: 0.0,
+    stream_17_methane_mass_fr: 0.0,
+    stream_17_ethane_mass_fr: 0.0,
+    stream_17_propane_mass_fr: 0.0,
+    stream_17_i_butane_mass_fr: 0.0,
+    stream_17_n_butane_mass_fr: 0.0,
+    stream_17_i_pentane_mass_fr: 0.0,
+    stream_17_n_pentane_mass_fr: 0.0,
+    column_power: 0.0,
     lowTempDistModalStatus: false,
   },
 
@@ -92,7 +61,7 @@ const lowTempDistSlice = createSlice({
       state.gas_feed_temperature = action.payload.gas_feed_temperature;
       state.gas_feed_pressure = action.payload.gas_feed_pressure;
       state.gas_feed_mass_flow = action.payload.gas_feed_mass_flow;
-      state.stream_Comp_Fraction = action.payload.stream_Comp_Fraction;
+      state.comp_fraction = action.payload.comp_fraction;
       state.stream_3_pressure_kPa = action.payload.stream_3_pressure_kPa;
     },
     setGasComp: (state, action) => {
@@ -108,42 +77,42 @@ const lowTempDistSlice = createSlice({
       state.lowTempDistModalStatus = action.payload.lowTempDistModalStatus;
     },
     setLowTempDistResults: (state, action) => {
-      state.sep_vap_mass_flow = action.payload.sep_vap_mass_flow;
-      state.sep_liq_mass_flow = action.payload.sep_liq_mass_flow;
-      state.sep_vap_ch4 = action.payload.sep_vap_ch4;
-      state.sep_vap_c2h6 = action.payload.sep_vap_c2h6;
-      state.sep_vap_c3h8 = action.payload.sep_vap_c3h8;
-      state.sep_vap_ic4h10 = action.payload.sep_vap_ic4h10;
-      state.sep_vap_nc4h10 = action.payload.sep_vap_nc4h10;
-      state.sep_vap_ic5h12 = action.payload.sep_vap_ic5h12;
-      state.sep_vap_nc5h12 = action.payload.sep_vap_nc5h12;
-      state.sep_liq_ch4 = action.payload.sep_vap_ch4;
-      state.sep_liq_c2h6 = action.payload.sep_liq_c2h6;
-      state.sep_liq_c3h8 = action.payload.sep_liq_c3h8;
-      state.sep_liq_ic4h10 = action.payload.sep_liq_ic4h10;
-      state.sep_liq_nc4h10 = action.payload.sep_liq_nc4h10;
-      state.sep_liq_ic5h12 = action.payload.sep_liq_ic5h12;
-      state.sep_liq_nc5h12 = action.payload.sep_liq_nc5h12;
-      state.cooled_gas_temperature = action.payload.cooled_gas_temperature;
+      stream_1_mass_flow: 0.0, (state.stream_2_mass_flow = action.payload.stream_2_mass_flow);
+      state.stream_1_methane_mass_fr = action.payload.stream_1_methane_mass_fr;
+      state.stream_1_ethane_mass_fr = action.payload.stream_1_ethane_mass_fr;
+      state.stream_1_propane_mass_fr = action.payload.stream_1_propane_mass_fr;
+      state.stream_1_i_butane_mass_fr = action.payload.stream_1_i_butane_mass_fr;
+      state.stream_1_n_butane_mass_fr = action.payload.stream_1_n_butane_mass_fr;
+      state.stream_1_i_pentane_mass_fr = action.payload.stream_1_i_pentane_mass_fr;
+      state.stream_1_n_pentane_mass_fr = action.payload.stream_1_n_pentane_mass_fr;
+      state.stream_2_methane_mass_fr = action.payload.stream_2_methane_mass_fr;
+      state.stream_2_ethane_mass_fr = action.payload.stream_2_ethane_mass_fr;
+      state.stream_2_propane_mass_fr = action.payload.stream_2_propane_mass_fr;
+      state.stream_2_i_butane_mass_fr = action.payload.stream_2_i_butane_mass_fr;
+      state.stream_2_n_butane_mass_fr = action.payload.stream_2_n_butane_mass_fr;
+      state.stream_2_i_pentane_mass_fr = action.payload.stream_2_i_pentane_mass_fr;
+      state.stream_2_n_pentane_mass_fr = action.payload.stream_2_n_pentane_mass_fr;
+      state.stream_3_temperature = action.payload.stream_3_temperature;
       state.expander_power = action.payload.expander_power;
-      state.column_bot_prod_temp = action.payload.column_bot_prod_temperature;
-      state.column_top_prod_temp = action.payload.column_top_prod_temperature;
-      state.column_top_prod_mass_flow = action.payload.column_top_prod_mass_flow;
-      state.column_bot_prod_mass_flow = action.payload.column_bot_prod_mass_flow;
-      state.col_top_ch4 = action.payload.col_top_ch4;
-      state.col_top_c2h6 = action.payload.col_top_c2h6;
-      state.col_top_c3h8 = action.payload.col_top_c3h8;
-      state.col_top_ic4h10 = action.payload.col_top_ic4h10;
-      state.col_top_nc4h10 = action.payload.col_top_nc4h10;
-      state.col_top_ic5h12 = action.payload.col_top_ic5h12;
-      state.col_top_nc5h12 = action.payload.col_top_nc5h12;
-      state.col_bot_ch4 = action.payload.col_bot_ch4;
-      state.col_bot_c2h6 = action.payload.col_bot_c2h6;
-      state.col_bot_c3h8 = action.payload.col_bot_c3h8;
-      state.col_bot_ic4h10 = action.payload.col_bot_ic4h10;
-      state.col_bot_nc4h10 = action.payload.col_bot_nc4h10;
-      state.col_bot_ic5h12 = action.payload.col_bot_ic5h12;
-      state.col_bot_nc5h12 = action.payload.col_bot_nc5h12;
+      state.stream_16_temperature = action.payload.stream_16_temperature;
+      state.stream_17_temperature = action.payload.stream_17_temperature;
+      state.stream_16_mass_flow = action.payload.stream_16_mass_flow;
+      state.stream_17_mass_flow = action.payload.stream_17_mass_flow;
+      state.stream_16_methane_mass_fr = action.payload.stream_16_methane_mass_fr;
+      state.stream_16_ethane_mass_fr = action.payload.stream_16_ethane_mass_fr;
+      state.stream_16_propane_mass_fr = action.payload.stream_16_propane_mass_fr;
+      state.stream_16_i_butane_mass_fr = action.payload.stream_16_i_butane_mass_fr;
+      state.stream_16_n_butane_mass_fr = action.payload.stream_16_n_butane_mass_fr;
+      state.stream_16_i_pentane_mass_fr = action.payload.stream_16_i_pentane_mass_fr;
+      state.stream_16_n_pentane_mass_fr = action.payload.stream_16_n_pentane_mass_fr;
+      state.stream_17_methane_mass_fr = action.payload.stream_17_methane_mass_fr;
+      state.stream_17_ethane_mass_fr = action.payload.stream_17_ethane_mass_fr;
+      state.stream_17_propane_mass_fr = action.payload.stream_17_propane_mass_fr;
+      state.stream_17_i_butane_mass_fr = action.payload.stream_17_i_butane_mass_fr;
+      state.stream_17_n_butane_mass_fr = action.payload.stream_17_n_butane_mass_fr;
+      state.stream_17_i_pentane_mass_fr = action.payload.stream_17_i_pentane_mass_fr;
+      state.stream_17_n_pentane_mass_fr = action.payload.stream_17_n_pentane_mass_fr;
+      state.column_power = action.payload.column_power;
     },
   },
 });
