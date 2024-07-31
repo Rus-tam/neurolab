@@ -62,7 +62,7 @@ const lowTempDistSlice = createSlice({
       state.gas_feed_pressure = action.payload.gas_feed_pressure;
       state.gas_feed_mass_flow = action.payload.gas_feed_mass_flow;
       state.comp_fraction = action.payload.comp_fraction;
-      state.stream_3_pressure_kPa = action.payload.stream_3_pressure_kPa;
+      state.stream_3_pressure_kPa = action.payload.stream_3_pressure;
     },
     setGasComp: (state, action) => {
       state.gas_feed_ch4_mass_frac = action.payload.gas_feed_ch4_mass_frac;
