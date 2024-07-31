@@ -261,6 +261,7 @@ export class DbService {
   async createLowTempDistNote(inputData: LowTempDistillationDTO,
     result: ILowTempDistillationResult,
     user: UserEntity) {
+    console.log(inputData);
     const newEntry = this.lowTempDistillationRepository.create({
       feed_gas_temperature: inputData['feed_gas_temperature'],
       feed_gas_mass_flow: inputData['feed_gas_mass_flow'],
