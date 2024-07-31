@@ -12,11 +12,11 @@ const LowTempDistDataTableFraction = ({ caption, initialValues }) => {
     setInitialTableData(updatedData);
     dispatch(
       setProp({
-        feed_gas_temperature: initialTableData[0].value,
-        feed_gas_mass_flow: initialTableData[1].value,
-        feed_gas_pressure: initialTableData[2].value,
-        cooled_gas_pressure: initialTableData[3].value,
-        column_fr: initialTableData[4].value,
+        gas_feed_temperature: initialTableData[0].value,
+        gas_feed_mass_flow: initialTableData[1].value,
+        gas_feed_pressure: initialTableData[2].value,
+        stream_3_pressure: initialTableData[3].value,
+        comp_frac: initialTableData[4].value,
       }),
     );
   };

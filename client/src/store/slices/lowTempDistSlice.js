@@ -15,7 +15,6 @@ const lowTempDistSlice = createSlice({
     gas_feed_nc5h12_mass_frac: 0.0085,
     comp_frac: 0.02,
     stream_3_pressure: 2072,
-
     stream_1_mass_flow: 0.0,
     stream_2_mass_flow: 0.0,
     stream_1_methane_mass_fr: 0.0,
@@ -77,7 +76,7 @@ const lowTempDistSlice = createSlice({
       state.lowTempDistModalStatus = action.payload.lowTempDistModalStatus;
     },
     setLowTempDistResults: (state, action) => {
-      stream_1_mass_flow: 0.0, (state.stream_2_mass_flow = action.payload.stream_2_mass_flow);
+      state.stream_2_mass_flow = action.payload.stream_2_mass_flow;
       state.stream_1_methane_mass_fr = action.payload.stream_1_methane_mass_fr;
       state.stream_1_ethane_mass_fr = action.payload.stream_1_ethane_mass_fr;
       state.stream_1_propane_mass_fr = action.payload.stream_1_propane_mass_fr;
