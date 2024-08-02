@@ -66,54 +66,55 @@ const ResultTable = ({ caption, results }) => {
       break;
 
     case "low-temp-dist":
+      console.log(resultData);
       resultData = [
         {
           name: "Температура верха колонны, град. Цельсия",
-          value: results.column_top_prod_temp,
+          value: results.stream_16_temperature,
         },
         {
           name: "Температура низа колонны, град. Цельсия",
-          value: results.column_bot_prod_temp,
+          value: results.stream_17_temperature,
         },
         {
           name: "Массовый расход СОГ",
-          value: "Внести данные",
+          value: results.stream_16_mass_flow,
         },
         {
           name: "Массовая доля метана в СОГ",
-          value: results.col_bot_ch4,
+          value: results.stream_16_methane_mass_fr,
         },
         {
           name: "Массовая доля этана в СОГ",
-          value: results.col_top_c2h6,
+          value: results.stream_16_ethane_mass_fr,
         },
         {
           name: "Массовый расход ШФЛУ",
-          value: "Внести данные",
+          value: results.stream_17_mass_flow,
         },
         {
           name: "Массовая доля метана в ШФЛУ",
-          value: results.col_bot_ch4,
+          value: results.stream_17_methane_mass_fr,
         },
         {
           name: "Массовая доля этана в ШФЛУ",
-          value: results.col_bot_c2h6,
+          value: results.stream_17_ethane_mass_fr,
         },
         {
           name: "Массовая доля пропана в ШФЛУ",
-          value: results.col_bot_c3h8,
+          value: results.stream_17_propane_mass_fr,
         },
         {
           name: "Массовая доля бутанов в ШФЛУ",
-          value: results.col_bot_ic4h10 + results.col_bot_nc4h10,
+          value: results.stream_17_n_butane_mass_fr + results.stream_17_i_butane_mass_fr,
         },
         {
           name: "Массовая доля пентанов в ШФЛУ",
-          value: results.col_bot_ic5h12 + results.col_bot_nc5h12,
+          value: results.stream_17_n_pentane_mass_fr + results.stream_17_i_pentane_mass_fr,
         },
         {
           name: "Температура газа после Д-1, град. Цельсия",
-          value: results.cooled_gas_temperature,
+          value: results.stream_3_temperature,
         },
         {
           name: "Мощность Д-1, кВт",
