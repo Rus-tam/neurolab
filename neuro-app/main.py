@@ -262,6 +262,12 @@ def low_temp_distillation(dto: LowTempDistInitial):
 
     results = LowTempDist.prepare_results(input_data)
 
+    print("++++++++++++++")
+    print(" ")
+    print(results)
+    print(" ")
+    print("++++++++++++++")
+
     return results
 
 

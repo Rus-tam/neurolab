@@ -79,7 +79,6 @@ const InputTable = ({ caption, initialValues }) => {
 
       case "low-temp-dist":
         dataToAI = prepareDataToAI(lowTempDistData, "low-temp-dist");
-        console.log("GGG", dataToAI);
         if (lowTempDistCheck(dataToAI) instanceof Error) {
           return null;
         } else {

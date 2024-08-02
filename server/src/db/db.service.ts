@@ -262,9 +262,9 @@ export class DbService {
     result: ILowTempDistillationResult,
     user: UserEntity) {
     const newEntry = this.lowTempDistillationRepository.create({
-      gas_feed_temperature: inputData['feed_gas_temperature'],
-      gas_feed_mass_flow: inputData['feed_gas_mass_flow'],
-      gas_feed_pressure: inputData['feed_gas_pressure'],
+      gas_feed_temperature: inputData['gas_feed_temperature'],
+      gas_feed_mass_flow: inputData['gas_feed_mass_flow'],
+      gas_feed_pressure: inputData['gas_feed_pressure'],
       gas_feed_ch4_mass_frac: inputData['gas_feed_ch4_mass_frac'],
       gas_feed_c2h6_mass_frac: inputData['gas_feed_c2h6_mass_frac'],
       gas_feed_c3h8_mass_frac: inputData['gas_feed_c3h8_mass_frac'],
@@ -274,6 +274,8 @@ export class DbService {
       gas_feed_nc5h12_mass_frac: inputData['gas_feed_nc5h12_mass_frac'],
       comp_frac: inputData['comp_frac'],
       stream_3_pressure: inputData['stream_3_pressure'],
+      stream_1_mass_flow: result['stream_1_mass_flow'],
+      stream_2_mass_flow: result['stream_2_mass_flow'],
       stream_1_methane_mass_fr: result['stream_1_methane_mass_fr'],
       stream_1_ethane_mass_fr: result['stream_1_ethane_mass_fr'],
       stream_1_propane_mass_fr: result['stream_1_propane_mass_fr'],

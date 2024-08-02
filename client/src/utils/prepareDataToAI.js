@@ -57,7 +57,6 @@ export const prepareDataToAI = (data, mode) => {
       break;
 
     case "low-temp-dist":
-      console.log(data);
       return {
         gas_feed_temperature: parseFloat(data.gas_feed_temperature),
         gas_feed_pressure: parseFloat(data.gas_feed_pressure),
