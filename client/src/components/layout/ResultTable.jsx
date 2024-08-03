@@ -70,55 +70,55 @@ const ResultTable = ({ caption, results }) => {
       resultData = [
         {
           name: "Температура верха колонны, град. Цельсия",
-          value: results.stream_16_temperature,
+          value: results.stream_16_temperature.toFixed(3),
         },
         {
           name: "Температура низа колонны, град. Цельсия",
-          value: results.stream_17_temperature,
+          value: results.stream_17_temperature.toFixed(3),
         },
         {
           name: "Массовый расход СОГ",
-          value: results.stream_16_mass_flow,
+          value: results.stream_16_mass_flow.toFixed(3),
         },
         {
           name: "Массовая доля метана в СОГ",
-          value: results.stream_16_methane_mass_fr,
+          value: results.stream_16_methane_mass_fr.toFixed(3),
         },
         {
           name: "Массовая доля этана в СОГ",
-          value: results.stream_16_ethane_mass_fr,
+          value: results.stream_16_ethane_mass_fr.toFixed(3),
         },
         {
           name: "Массовый расход ШФЛУ",
-          value: results.stream_17_mass_flow,
+          value: results.stream_17_mass_flow.toFixed(3),
         },
         {
           name: "Массовая доля метана в ШФЛУ",
-          value: results.stream_17_methane_mass_fr,
+          value: results.stream_17_methane_mass_fr.toFixed(3),
         },
         {
           name: "Массовая доля этана в ШФЛУ",
-          value: results.stream_17_ethane_mass_fr,
+          value: results.stream_17_ethane_mass_fr.toFixed(3),
         },
         {
           name: "Массовая доля пропана в ШФЛУ",
-          value: results.stream_17_propane_mass_fr,
+          value: results.stream_17_propane_mass_fr.toFixed(3),
         },
         {
           name: "Массовая доля бутанов в ШФЛУ",
-          value: results.stream_17_n_butane_mass_fr + results.stream_17_i_butane_mass_fr,
+          value: (results.stream_17_n_butane_mass_fr + results.stream_17_i_butane_mass_fr).toFixed(3),
         },
         {
           name: "Массовая доля пентанов в ШФЛУ",
-          value: results.stream_17_n_pentane_mass_fr + results.stream_17_i_pentane_mass_fr,
+          value: (results.stream_17_n_pentane_mass_fr + results.stream_17_i_pentane_mass_fr).toFixed(3),
         },
         {
           name: "Температура газа после Д-1, град. Цельсия",
-          value: results.stream_3_temperature,
+          value: results.stream_3_temperature.toFixed(3),
         },
         {
           name: "Мощность Д-1, кВт",
-          value: results.expander_power,
+          value: results.expander_power.toFixed(3),
         },
       ];
       break;
