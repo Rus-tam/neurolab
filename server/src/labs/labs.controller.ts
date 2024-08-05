@@ -70,6 +70,7 @@ export class LabsController {
   @Post("low-temp-distillation")
   async calculateLowTempDist(@Body() inputData: LowTempDistillationDTO, @CurrentUser() currentUser: UserEntity): Promise<ILowTempDistillationResult> {
     try {
+      console.log(inputData);
       const results: ILowTempDistillationResult = await this.labService.getLowTempDistillationResults(inputData);
       const savedNote = await this.dbService.createLowTempDistNote(inputData, results, currentUser);
       this.logger.log('Данные сохранены в бд');
