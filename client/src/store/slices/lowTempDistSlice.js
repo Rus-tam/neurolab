@@ -5,7 +5,7 @@ const lowTempDistSlice = createSlice({
   initialState: {
     gas_feed_temperature: -5.0,
     gas_feed_pressure: 4000.0,
-    gas_feed_mass_flow: 1000.0,
+    gas_feed_mass_flow: 10000.0,
     gas_feed_ch4_mass_frac: 0.679,
     gas_feed_c2h6_mass_frac: 0.1189,
     gas_feed_c3h8_mass_frac: 0.0669,
