@@ -139,7 +139,7 @@ def col_top_temp_prediction(input_data):
     '16 i-Pentane molar flow, kgmole/h', '16 n-Pentane molar flow, kgmole/h',
     ]]
 
-    col_top_temp_transformer = joblib.load('./transformers/low_temp_dist_transformers/col_top_temp_transformer.pkl')
+    col_top_temp_transformer = joblib.load('./transformers/low_temp_dist_transformers/column_top_temp_transformer_additional.pkl')
     col_top_temp_data_norm = col_top_temp_transformer.transform(col_top_temp_data)
 
     col_top_temp = col_top_temp_model(col_top_temp_data_norm).numpy().tolist()

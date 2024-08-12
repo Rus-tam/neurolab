@@ -7,7 +7,7 @@ sep_vap_comp_molar_flow_model_path = os.path.abspath('./models/low_temp_dist/sep
 expander_gas_temp_model_exp_model_path = os.path.abspath('./models/low_temp_dist/expander_gas_temp_model_exp.h5')
 expander_power_model_path = os.path.abspath('./models/low_temp_dist/expander_power_model.h5')
 col_top_prod_comp_molar_flow_model_path = os.path.abspath('./models/low_temp_dist/col_top_prod_comp_molar_flow_model.h5')
-col_top_temp_model_path = os.path.abspath('./models/low_temp_dist/col_top_temp_model.h5')
+col_top_temp_model_path = os.path.abspath('./models/low_temp_dist/column_top_temp_model_additional.h5')
 col_bot_temp_model_path = os.path.abspath('./models/low_temp_dist/col_bot_temp_model.h5')
 col_power_model_path = os.path.abspath('./models/low_temp_dist/col_power_model.h5')
 

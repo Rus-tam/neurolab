@@ -13,8 +13,6 @@ const LowTempDistModal = () => {
 
   const storedData = useSelector((state) => state.lowTempDist);
 
-  console.log("PPPPP", storedData);
-
   const [initialTableData, setInitialTableData] = useState([
     { name: "Массовая доля метана", value: storedData.gas_feed_ch4_mass_frac },
     { name: "Массовая доля этана", value: storedData.gas_feed_c2h6_mass_frac },
