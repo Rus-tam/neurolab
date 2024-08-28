@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setSourGasTempPress, setAmineTempPress } from "../../store/slices/amineTreatmentSlice.js";
+import { Tooltip } from "react-tooltip";
 import "../styles/amine-treatment.css";
 
 const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
@@ -36,49 +37,73 @@ const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
     <div className="amine-treatment-table">
       <div className="regen-amine">
         <table className="table">
-          <caption>Раствор амина</caption>
           <tbody>
-            {amineTableData.map((row, index) => (
-              <tr key={index}>
-                <td>{row.name}</td>
-                <td>
-                  <input
-                    type="number"
-                    maxLength={6}
-                    value={row.value}
-                    required
-                    onChange={(e) => handleAmineCellValueChange(index, e.target.value)}
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="sour-gas">
-        <table className="table">
-          <caption>Кислый газ</caption>
-          <tbody>
-            {sourGasTableData.map((row, index) => (
-              <tr key={index}>
-                <td>{row.name}</td>
-                <td>
-                  <input
-                    // type="number"
-                    maxLength={6}
-                    value={row.value}
-                    required
-                    onChange={(e) => handleGasCellValueChange(index, e.target.value)}
-                  />
-                </td>
-              </tr>
-            ))}
+            <tr>
+              <td>{amineTableData[0].name}</td>
+              <td>
+                <input
+                  id="amine_temp"
+                  type="number"
+                  maxLength={6}
+                  value={amineTableData[0].value}
+                  required
+                  onChange={(e) => handleAmineCellValueChange(0, e.target.value)}
+                />
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
   );
+
+  // return (
+  //   <div className="amine-treatment-table">
+  //     <div className="regen-amine">
+  //       <table className="table">
+  //         <caption>Раствор амина</caption>
+  //         <tbody>
+  //           {amineTableData.map((row, index) => (
+  //             <tr key={index}>
+  //               <td>{row.name}</td>
+  //               <td>
+  //                 <input
+  //                   type="number"
+  //                   maxLength={6}
+  //                   value={row.value}
+  //                   required
+  //                   onChange={(e) => handleAmineCellValueChange(index, e.target.value)}
+  //                 />
+  //               </td>
+  //             </tr>
+  //           ))}
+  //         </tbody>
+  //       </table>
+  //     </div>
+
+  //     <div className="sour-gas">
+  //       <table className="table">
+  //         <caption>Кислый газ</caption>
+  //         <tbody>
+  //           {sourGasTableData.map((row, index) => (
+  //             <tr key={index}>
+  //               <td>{row.name}</td>
+  //               <td>
+  //                 <input
+  //                   // type="number"
+  //                   maxLength={6}
+  //                   value={row.value}
+  //                   required
+  //                   onChange={(e) => handleGasCellValueChange(index, e.target.value)}
+  //                 />
+  //               </td>
+  //             </tr>
+  //           ))}
+  //         </tbody>
+  //       </table>
+  //     </div>
+  //   </div>
+  // );
 };
 
 export default AmineTreatmentInitialDataTableFragment;

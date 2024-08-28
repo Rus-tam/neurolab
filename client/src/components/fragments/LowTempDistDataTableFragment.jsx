@@ -101,28 +101,6 @@ const LowTempDistDataTableFraction = ({ caption, initialValues }) => {
       <Tooltip anchorSelect="#c1_c2_mass_fr" content="от 0.01 до 0.15" />
     </div>
   );
-
-  // return (
-  //   <table className="table">
-  //     <caption>{caption}</caption>
-  //     <tbody>
-  //       {initialTableData.map((row, index) => (
-  //         <tr key={index}>
-  //           <td>{row.name}</td>
-  //           <td>
-  //             <input
-  //               type="number"
-  //               maxLength={6}
-  //               value={row.value}
-  //               required
-  //               onChange={(e) => handleCellValueChange(index, e.target.value)}
-  //             />
-  //           </td>
-  //         </tr>
-  //       ))}
-  //     </tbody>
-  //   </table>
-  // );
 };
 
 export default LowTempDistDataTableFraction;
