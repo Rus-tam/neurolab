@@ -1,6 +1,6 @@
 import joblib
 from models.amine_treatment.amine_treatment import feed_gas_mol_weight_model, lean_amine_mol_weight_model
-from models.amine_treatment.amine_treatment import feed_gas_dens_model
+from models.amine_treatment.amine_treatment import feed_gas_dens_model, lean_amine_dens_model
 
 
 def feed_gas_mol_weight_prediction(initial_data):
@@ -64,6 +64,29 @@ def feed_gas_dens_prediction(initial_data):
     feed_gas_dens = feed_gas_dens_model(feed_gas_dens_norm_data).numpy().tolist()
 
     return feed_gas_dens[0]
+
+
+def lean_amine_dens_prediction(initial_data):
+    lean_amine_dens_data = initial_data[[
+    'lean_amine temperature, C', 'lean_amine mass flow, kg/h', 'lean_amine CO2 mol frac', 'lean_amine Methane mol frac',
+    'lean_amine Ethane mol frac', 'lean_amine Propane mol frac', 'lean_amine i-Butane mol frac',
+    'lean_amine n-Butane mol frac',
+    'lean_amine i-Pentane mol frac', 'lean_amine n-Pentane mol frac', 'lean_amine H2S mol frac', 'lean_amine H2O mol frac',
+    'lean_amine MDEAmine mol frac',
+    'lean_amine molar flow, kgmol/h', 'lean_amine H2S molar flow, kgmol/h', 'lean_amine CO2 molar flow, kgmol/h',
+    'lean_amine Methane molar flow, kgmol/h', 'lean_amine Ethane molar flow, kgmol/h',
+    'lean_amine Propane molar flow, kgmol/h',
+    'lean_amine i-Butane molar flow, kgmol/h', 'lean_amine n-Butane molar flow, kgmol/h',
+    'lean_amine i-Pentane molar flow, kgmol/h', 'lean_amine n-Pentane molar flow, kgmol/h',
+    'lean_amine H2O molar flow, kgmol/h',
+    'lean_amine MDEAmine molar flow, kgmol/h', 'lean_amine molecular weight',
+    ]]
+
+    lean_amine_dens_transformer = joblib.load('./transformers/amine_treatment/lean_amine_dens_transformer.pkl')
+    lean_amine_dens_norm_data = lean_amine_dens_transformer.transform(lean_amine_dens_data)
+    lean_amine_dens = lean_amine_dens_model(lean_amine_dens_norm_data).numpy().tolist()
+
+    return lean_amine_dens[0]
 
 
 
