@@ -22,4 +22,17 @@ class AmineTreatment:
         initial_data['feed_gas H2O molar flow, kgmol/h'] = initial_data['feed_gas molar flow, kgmol/h'] * initial_data['feed_gas H2O mol frac']
         initial_data['feed_gas MDEAmine molar flow, kgmol/h'] = initial_data['feed_gas molar flow, kgmol/h'] * initial_data['feed_gas MDEAmine mol frac']
 
+        initial_data['lean_amine molar flow, kgmol/h'] = initial_data['lean_amine mass flow, kg/h'] / (initial_data['lean_amine H2S mol frac'] * 34 + initial_data['lean_amine CO2 mol frac'] * 44.01 + initial_data['lean_amine Methane mol frac'] * 16.04 + initial_data['lean_amine Ethane mol frac'] * 30.07 + initial_data['lean_amine Propane mol frac'] * 44.097 + initial_data['lean_amine i-Butane mol frac'] * 58.12 + initial_data['lean_amine n-Butane mol frac'] * 58.12 + initial_data['lean_amine i-Pentane mol frac'] * 72.15 + initial_data['lean_amine n-Pentane mol frac'] * 72.15 + initial_data['lean_amine H2O mol frac'] * 18 + initial_data['lean_amine MDEAmine mol frac'] * 119.16)
+        initial_data['lean_amine H2S molar flow, kgmol/h'] = initial_data['lean_amine molar flow, kgmol/h'] * initial_data['lean_amine H2S mol frac']
+        initial_data['lean_amine CO2 molar flow, kgmol/h'] = initial_data['lean_amine molar flow, kgmol/h'] * initial_data['lean_amine CO2 mol frac']
+        initial_data['lean_amine Methane molar flow, kgmol/h'] = initial_data['lean_amine molar flow, kgmol/h'] * initial_data['lean_amine Methane mol frac']
+        initial_data['lean_amine Ethane molar flow, kgmol/h'] = initial_data['lean_amine molar flow, kgmol/h'] * initial_data['lean_amine Ethane mol frac']
+        initial_data['lean_amine Propane molar flow, kgmol/h'] = initial_data['lean_amine molar flow, kgmol/h'] * initial_data['lean_amine Propane mol frac']
+        initial_data['lean_amine i-Butane molar flow, kgmol/h'] = initial_data['lean_amine molar flow, kgmol/h'] * initial_data['lean_amine i-Butane mol frac']
+        initial_data['lean_amine n-Butane molar flow, kgmol/h'] = initial_data['lean_amine molar flow, kgmol/h'] * initial_data['lean_amine n-Butane mol frac']
+        initial_data['lean_amine i-Pentane molar flow, kgmol/h'] = initial_data['lean_amine molar flow, kgmol/h'] * initial_data['lean_amine i-Pentane mol frac']
+        initial_data['lean_amine n-Pentane molar flow, kgmol/h'] = initial_data['lean_amine molar flow, kgmol/h'] * initial_data['lean_amine n-Pentane mol frac']
+        initial_data['lean_amine H2O molar flow, kgmol/h'] = initial_data['lean_amine molar flow, kgmol/h'] * initial_data['lean_amine H2O mol frac']
+        initial_data['lean_amine MDEAmine molar flow, kgmol/h'] = initial_data['lean_amine molar flow, kgmol/h'] * initial_data['lean_amine MDEAmine mol frac']
+
         return initial_data
