@@ -11,7 +11,7 @@ from service.low_temp_dist_service import col_top_temp_prediction, col_bot_tempe
 from service.amine_treatment_service import feed_gas_mol_weight_prediction, lean_amine_mol_weight_prediction
 from service.amine_treatment_service import feed_gas_dens_prediction, lean_amine_dens_prediction
 from service.amine_treatment_service import sweet_gas_temp_prediction, sweet_gas_molar_flow_prediction
-from service.amine_treatment_service import rich_amine_temp_prediction
+from service.amine_treatment_service import rich_amine_temp_prediction, rich_amine_H2S_molar_flow_prediction
 from utils.AmineTreatmentClass import AmineTreatment
 from utils.LowTempDistClass import LowTempDist
 
@@ -45,6 +45,7 @@ def amine_treatment(dto: AmineTreatmentInitial):
     initial_data['rich_amine molar flow, kgmol/h'] = (initial_data['feed_gas molar flow, kgmol/h'] + initial_data['lean_amine molar flow, kgmol/h']) - initial_data['sweet_gas molar flow, kgmol/h']
 
     initial_data['rich_amine temperature, C'] = rich_amine_temp_prediction(initial_data)
+    initial_data['rich_amine H2S molar flow, kgmol/h'] = rich_amine_H2S_molar_flow_prediction(initial_data)
 
     print('+++++++++++++++++++++++')
     print(initial_data['feed_gas molecular weight'])
@@ -55,6 +56,7 @@ def amine_treatment(dto: AmineTreatmentInitial):
     print(initial_data['sweet_gas molar flow, kgmol/h'])
     print(initial_data['rich_amine molar flow, kgmol/h'])
     print(initial_data['rich_amine temperature, C'])
+    print(initial_data['rich_amine H2S molar flow, kgmol/h'])
     print('+++++++++++++++++++++++')
     print('=================')
 
