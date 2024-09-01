@@ -40,7 +40,9 @@ def amine_treatment(dto: AmineTreatmentInitial):
     initial_data['lean_amine Mass density, kg/m3'] = lean_amine_dens_prediction(initial_data)
     initial_data['sweet_gas temperature, C'] = sweet_gas_temp_prediction(initial_data)
     initial_data['sweet_gas molar flow, kgmol/h'] = sweet_gas_molar_flow_prediction(initial_data)
-    
+
+    initial_data['rich_amine molar flow, kgmol/h'] = (initial_data['feed_gas molar flow, kgmol/h'] + initial_data['lean_amine molar flow, kgmol/h']) - initial_data['sweet_gas molar flow, kgmol/h']
+
 
     print('+++++++++++++++++++++++')
     print(initial_data['feed_gas molecular weight'])
@@ -49,6 +51,7 @@ def amine_treatment(dto: AmineTreatmentInitial):
     print(initial_data['lean_amine Mass density, kg/m3'])
     print(initial_data['sweet_gas temperature, C'])
     print(initial_data['sweet_gas molar flow, kgmol/h'])
+    print(initial_data['rich_amine molar flow, kgmol/h'])
     print('+++++++++++++++++++++++')
     print('=================')
 
