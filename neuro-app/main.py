@@ -10,6 +10,7 @@ from service.low_temp_dist_service import expander_power_prediction, col_top_pro
 from service.low_temp_dist_service import col_top_temp_prediction, col_bot_temperature_prediction, column_power_prediction
 from service.amine_treatment_service import feed_gas_mol_weight_prediction, lean_amine_mol_weight_prediction
 from service.amine_treatment_service import feed_gas_dens_prediction, lean_amine_dens_prediction
+from service.amine_treatment_service import sweet_gas_temp_prediction
 from utils.AmineTreatmentClass import AmineTreatment
 from utils.LowTempDistClass import LowTempDist
 
@@ -37,57 +38,17 @@ def amine_treatment(dto: AmineTreatmentInitial):
     initial_data['lean_amine molecular weight'] = lean_amine_mol_weight_prediction(initial_data)
     initial_data['feed_gas Mass density, kg/m3'] = feed_gas_dens_prediction(initial_data)
     initial_data['lean_amine Mass density, kg/m3'] = lean_amine_dens_prediction(initial_data)
+    initial_data['sweet_gas temperature, C'] = sweet_gas_temp_prediction(initial_data)
 
     print('+++++++++++++++++++++++')
     print(initial_data['feed_gas molecular weight'])
     print(initial_data['lean_amine molecular weight'])
     print(initial_data['feed_gas Mass density, kg/m3'])
     print(initial_data['lean_amine Mass density, kg/m3'])
+    print(initial_data['sweet_gas temperature, C'])
     print('+++++++++++++++++++++++')
+    print('=================')
 
-    # dto.sweet_gas_temperature = round(prod_temp[0][0], 4)
-    # dto.rich_amine_temperature = round(prod_temp[0][1], 4)
-    #
-    # dto.rich_amine_mass_flow = amine_treatment_rich_amine_mass_flow(dto)[0][0]
-    # dto.sour_gas_mass_flow = (dto.sour_gas_mass_flow + dto.amine_mass_flow) - dto.rich_amine_mass_flow
-    #
-    # dto.feed_gas_mol_weight, dto.lean_amine_mol_weight, dto.rich_amine_mol_weight, dto.sweet_gas_mol_weight = amine_treatment_stream_mol_weight(dto)[0]
-    #
-    # dto.feed_gas_mol_flow = dto.sour_gas_mass_flow / dto.feed_gas_mol_weight
-    # dto.feed_gas_H2S_mol_flow = dto.feed_gas_mol_flow * dto.sour_gas_h2s
-    # dto.feed_gas_CO2_mol_flow = dto.feed_gas_mol_flow * dto.sour_gas_co2
-    # dto.lean_amine_mol_flow = dto.amine_mass_flow / dto.lean_amine_mol_weight
-    # dto.lean_amine_H2S_mol_flow = dto.lean_amine_mol_flow * dto.amine_h2s
-    # dto.lean_amine_CO2_mol_flow = dto.lean_amine_mol_flow * dto.amine_co2
-    # dto.rich_amine_mol_flow = dto.rich_amine_mass_flow / dto.rich_amine_mol_weight
-    # dto.sweet_gas_mol_flow = dto.sweet_gas_mass_flow / dto.sweet_gas_mol_weight
-    #
-    # sweet_gas_H2S_ppm_rate = sweet_gas_H2S_ppm(dto)[0][0]
-    # sweet_gas_CO2_ppm_rate = sweet_gas_CO2_ppm(dto)[0][0]
-    #
-    # rich_amine_H2S_mol_frac, rich_amine_CO2_mol_frac = rich_amine_sour_comp(dto)[0]
-    #
-    # rich_amine_H2O_mol_frac, rich_amine_MDEA_mol_frac = rich_amine_H2O_MDEA(dto)[0]
-    #
-    # if (rich_amine_H2O_mol_frac + rich_amine_MDEA_mol_frac) >= 1:
-    #     rich_amine_H2O_mol_frac = 1 - (rich_amine_MDEA_mol_frac + rich_amine_H2S_mol_frac + rich_amine_CO2_mol_frac)
-    #
-    # return {
-    #     "sweet_gas_temperature": round(prod_temp[0][0], 4),
-    #     "rich_amine_temperature": round(prod_temp[0][1], 4),
-    #     "rich_amine_mass_flow": round(dto.rich_amine_mass_flow, 4),
-    #     "sweet_gas_mass_flow": round(dto.sour_gas_mass_flow, 4),
-    #     "feed_gas_mol_weight": round(dto.feed_gas_mol_weight, 4),
-    #     "lean_amine_mol_weight": round(dto.lean_amine_mol_weight, 4),
-    #     "rich_amine_mol_weight": round(dto.rich_amine_mol_weight, 4),
-    #     "sweet_gas_mol_weight": round(dto.sweet_gas_mol_weight, 4),
-    #     "sweet_gas_h2s_ppm": round(sweet_gas_H2S_ppm_rate, 4),
-    #     "sweet_gas_co2_ppm": round(sweet_gas_CO2_ppm_rate, 4),
-    #     "rich_amine_h2s": round(rich_amine_H2S_mol_frac, 5),
-    #     "rich_amine_co2": round(rich_amine_CO2_mol_frac, 5),
-    #     "rich_amine_h2o": round(rich_amine_H2O_mol_frac, 5),
-    #     "rich_amine_MDEA": round(rich_amine_MDEA_mol_frac, 5)
-    # }
 
 
 @app.post("/low-temp-distillation")
