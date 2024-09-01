@@ -1,48 +1,26 @@
-from dto.dto import AmineTreatmentInitial
-from models.amine_treatment.amine_treatment import amine_treatment_prod_temp_model
-from models.amine_treatment.amine_treatment import amine_treatment_rich_amine_mass_flow_model
-from models.amine_treatment.amine_treatment import amine_treatment_stream_mol_weight_model
-from models.amine_treatment.amine_treatment import amine_treatment_sweet_gas_H2S_ppm_model
-from models.amine_treatment.amine_treatment import amine_treatment_sweet_gas_CO2_ppm_model
-from models.amine_treatment.amine_treatment import amine_treatment_rich_amine_sour_comp_model
-from models.amine_treatment.amine_treatment import amine_treatment_rich_amine_H2O_MDEA_model
-import pandas as pd
-from sklearn.compose import make_column_transformer
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.model_selection import train_test_split
-from data.amine_treatment.amine_treatment import amine_treatment_temp_data
-from data.amine_treatment.amine_treatment import amine_treatment_rich_amine_mass_flow_data
-from data.amine_treatment.amine_treatment import amine_treatment_stream_molar_weight_data
-from data.amine_treatment.amine_treatment import amine_treatment_sweet_gas_H2S_ppm_data
-from data.amine_treatment.amine_treatment import amine_treatment_sweet_gas_CO2_ppm_data
-from data.amine_treatment.amine_treatment import amine_treatment_rich_amine_sour_comp_data
-from data.amine_treatment.amine_treatment import amine_treatment_rich_amine_H2O_MDEA_data
-from utils.initial_data_handler import prepare_initial_data
+import joblib
+from models.amine_treatment.amine_treatment import feed_gas_mol_weight_model
 
 
-column = [
-    'feed_gas temperature, C', 'feed_gas mass flow, kg/h', 'feed_gas CO2 mol frac',
-    'feed_gas Methane mol frac', 'feed_gas Ethane mol frac', 'feed_gas Propane mol frac',
-    'feed_gas i-Butane mol frac', 'feed_gas n-Butane mol frac', 'feed_gas i-Pentane mol frac',
-    'feed_gas n-Pentane mol frac', 'feed_gas H2S mol frac', 'feed_gas H2O mol frac',
+def feed_gas_mol_weight_prediction(initial_data):
+    feed_gas_mol_weight_data = initial_data[[
+    'feed_gas temperature, C', 'feed_gas mass flow, kg/h', 'feed_gas CO2 mol frac', 'feed_gas Methane mol frac',
+    'feed_gas Ethane mol frac', 'feed_gas Propane mol frac', 'feed_gas i-Butane mol frac', 'feed_gas n-Butane mol frac',
+    'feed_gas i-Pentane mol frac', 'feed_gas n-Pentane mol frac', 'feed_gas H2S mol frac', 'feed_gas H2O mol frac',
     'feed_gas MDEAmine mol frac',
-    'lean_amine temperature, C', 'lean_amine mass flow, kg/h', 'lean_amine CO2 mol frac',
-    'lean_amine Methane mol frac', 'lean_amine Ethane mol frac', 'lean_amine Propane mol frac',
-    'lean_amine i-Butane mol frac', 'lean_amine n-Butane mol frac', 'lean_amine i-Pentane mol frac',
-    'lean_amine n-Pentane mol frac', 'lean_amine H2S mol frac', 'lean_amine H2O mol frac',
-    'lean_amine MDEAmine mol frac'
-]
+    'feed_gas molar flow, kgmol/h', 'feed_gas H2S molar flow, kgmol/h', 'feed_gas CO2 molar flow, kgmol/h',
+    'feed_gas Methane molar flow, kgmol/h', 'feed_gas Ethane molar flow, kgmol/h', 'feed_gas Propane molar flow, kgmol/h',
+    'feed_gas i-Butane molar flow, kgmol/h', 'feed_gas n-Butane molar flow, kgmol/h',
+    'feed_gas i-Pentane molar flow, kgmol/h', 'feed_gas n-Pentane molar flow, kgmol/h', 'feed_gas H2O molar flow, kgmol/h',
+    'feed_gas MDEAmine molar flow, kgmol/h',
+    ]]
 
+    feed_gas_mol_weight_transformer = joblib.load('./transformers/amine_treatment/feed_gas_mol_weight_transformer.pkl')
+    feed_gas_mol_weight_norm_data = feed_gas_mol_weight_transformer.transform(feed_gas_mol_weight_data)
+    feed_gas_mol_weight = feed_gas_mol_weight_model(feed_gas_mol_weight_norm_data).numpy().tolist()
 
-def normalize_data(example_data, input_data, columns, labels):
-    x = example_data[columns]
-    y = example_data[labels]
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
-    ct = make_column_transformer(
-        (MinMaxScaler(), columns)
-    )
-    ct.fit(x_train)
-    return ct.transform(input_data)
+    return feed_gas_mol_weight[0]
+
 
 
 # def amine_treatment_prod_temp(dto: AmineTreatmentInitial):

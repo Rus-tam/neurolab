@@ -8,7 +8,8 @@ from service.low_temp_dist_service import gas_feed_dens_prediction, gas_feed_vap
 from service.low_temp_dist_service import sep_vap_comp_molar_flow_prediction, expander_gas_temp_prediction
 from service.low_temp_dist_service import expander_power_prediction, col_top_prod_comp_molar_flow_prediction
 from service.low_temp_dist_service import col_top_temp_prediction, col_bot_temperature_prediction, column_power_prediction
-from utils import LowTempDistClass
+from service.amine_treatment_service import feed_gas_mol_weight_prediction
+from utils.AmineTreatmentClass import AmineTreatment
 from utils.LowTempDistClass import LowTempDist
 
 app = FastAPI()
@@ -30,7 +31,12 @@ def simple_isomerization(dto: SimpleIsoInitial):
 
 @app.post("/amine_treatment")
 def amine_treatment(dto: AmineTreatmentInitial):
-    prod_temp = amine_treatment_prod_temp(dto)
+    initial_data = AmineTreatment.initial_calculations(dto)
+    initial_data['feed_gas molecular weight'] = feed_gas_mol_weight_prediction(initial_data)
+
+    print('+++++++++++++++++++++++')
+    print(initial_data['feed_gas molecular weight'])
+    print('+++++++++++++++++++++++')
 
     # dto.sweet_gas_temperature = round(prod_temp[0][0], 4)
     # dto.rich_amine_temperature = round(prod_temp[0][1], 4)
