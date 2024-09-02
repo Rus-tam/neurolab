@@ -9,6 +9,7 @@ sweet_gas_temp_model_path = os.path.abspath('./models/amine_treatment/sweet_gas_
 sweet_gas_molar_flow_path = os.path.abspath('./models/amine_treatment/sweet_gas_molar_flow_model.h5')
 rich_amine_temp_model_path = os.path.abspath('./models/amine_treatment/rich_amine_temp_model.h5')
 rich_amine_H2S_molar_flow_model_path = os.path.abspath('./models/amine_treatment/rich_amine_H2S_molar_flow_model.h5')
+rich_amine_CO2_molar_flow_model_path = os.path.abspath('./models/amine_treatment/rich_amine_CO2_molar_flow_model.h5')
 
 
 feed_gas_mol_weight_model = tf.keras.models.load_model(feed_gas_mol_weight_model_path)
@@ -19,3 +20,4 @@ sweet_gas_temp_model = tf.keras.models.load_model(sweet_gas_temp_model_path)
 sweet_gas_molar_flow_model = tf.keras.models.load_model(sweet_gas_molar_flow_path)
 rich_amine_temp_model = tf.keras.models.load_model(rich_amine_temp_model_path)
 rich_amine_H2S_molar_flow_model = tf.keras.models.load_model(rich_amine_H2S_molar_flow_model_path)
+rich_amine_CO2_molar_flow_model = tf.keras.models.load_model(rich_amine_CO2_molar_flow_model_path)
