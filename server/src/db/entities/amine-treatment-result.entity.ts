@@ -91,46 +91,46 @@ export class AmineTreatmentEntity {
   amine_MDEA: number;
 
   @Column({ type: "float" })
+  feed_gas_molecular_weight: number;
+
+  @Column({ type: "float" })
+  lean_amine_molecular_weight: number;
+
+  @Column({ type: "float" })
+  feed_gas_mass_density: number;
+
+  @Column({ type: "float" })
+  lean_amine_mass_density: number;
+
+  @Column({ type: "float" })
   sweet_gas_temperature: number;
+
+  @Column({ type: "float" })
+  sweet_gas_molar_flow: number;
+
+  @Column({ type: "float" })
+  rich_amine_molar_flow: number;
 
   @Column({ type: "float" })
   rich_amine_temperature: number;
 
   @Column({ type: "float" })
-  rich_amine_mass_flow: number;
+  rich_amine_h2s_molar_flow: number;
 
   @Column({ type: "float" })
-  sweet_gas_mass_flow: number;
+  sweet_gas_h2s_molar_flow: number;
 
   @Column({ type: "float" })
-  feed_gas_mol_weight: number;
+  rich_amine_co2_molar_flow: number;
 
   @Column({ type: "float" })
-  lean_amine_mol_weight: number;
+  sweet_gas_co2_molar_flow: number;
 
   @Column({ type: "float" })
-  rich_amine_mol_weight: number;
+  sweet_gas_molar_weight: number;
 
   @Column({ type: "float" })
-  sweet_gas_mol_weight: number;
-
-  @Column({ type: "float" })
-  sweet_gas_H2S_ppm: number;
-
-  @Column({ type: "float" })
-  sweet_gas_CO2_ppm: number;
-
-  @Column({ type: "float" })
-  rich_amine_h2s: number;
-
-  @Column({ type: "float" })
-  rich_amine_co2: number;
-
-  @Column({ type: "float" })
-  rich_amine_h2o: number;
-
-  @Column({ type: "float" })
-  rich_amine_MDEA: number;
+  rich_amine_molar_weight: number;
 
   @Column({ type: "timestamptz" })
   createdTime: Date;
