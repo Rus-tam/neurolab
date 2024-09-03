@@ -60,23 +60,22 @@ def amine_treatment(dto: AmineTreatmentInitial):
     initial_data['sweet_gas molecular weight'] = sweet_gas_mol_weight_prediction(initial_data)
     initial_data['rich_amine molecular weight'] = rich_amine_mol_weight_prediction(initial_data)
 
-    print('+++++++++++++++++++++++')
-    print(initial_data['feed_gas molecular weight'])
-    print(initial_data['lean_amine molecular weight'])
-    print(initial_data['feed_gas Mass density, kg/m3'])
-    print(initial_data['lean_amine Mass density, kg/m3'])
-    print(initial_data['sweet_gas temperature, C'])
-    print(initial_data['sweet_gas molar flow, kgmol/h'])
-    print(initial_data['rich_amine molar flow, kgmol/h'])
-    print(initial_data['rich_amine temperature, C'])
-    print(initial_data['rich_amine H2S molar flow, kgmol/h'])
-    print(initial_data['sweet_gas H2S molar flow, kgmol/h'])
-    print(initial_data['rich_amine CO2 molar flow, kgmol/h'])
-    print(initial_data['sweet_gas CO2 molar flow, kgmol/h'])
-    print(initial_data['sweet_gas molecular weight'])
-    print(initial_data['rich_amine molecular weight'])
-    print('+++++++++++++++++++++++')
-    print('==================')
+    return {
+    'feed_gas molecular weight': round(initial_data['feed_gas molecular weight'][0], 4),
+    'lean_amine molecular weight': round(initial_data['lean_amine molecular weight'][0], 4),
+    'feed_gas Mass density, kg/m3': round(initial_data['feed_gas Mass density, kg/m3'][0], 4),
+    'lean_amine Mass density, kg/m3': round(initial_data['lean_amine Mass density, kg/m3'][0], 4),
+    'sweet_gas temperature, C': round(initial_data['sweet_gas temperature, C'][0], 4),
+    'sweet_gas molar flow, kgmole/h': round(initial_data['sweet_gas molar flow, kgmol/h'][0], 4),
+    'rich_amine molar flow, kgmole/h': round(initial_data['rich_amine molar flow, kgmol/h'][0], 4),
+    'rich_amine temperature, C': round(initial_data['rich_amine temperature, C'][0], 4),
+    'rich_amine H2S molar flow, kgmole/h': round(initial_data['rich_amine H2S molar flow, kgmol/h'][0], 4),
+    'sweet_gas H2S molar flow, kgmole/h': round(initial_data['sweet_gas H2S molar flow, kgmol/h'][0], 4),
+    'rich_amine CO2 molar flow, kgmole/h': round(initial_data['rich_amine CO2 molar flow, kgmol/h'][0], 4),
+    'sweet_gas CO2 molar flow, kgmole/h': round(initial_data['sweet_gas CO2 molar flow, kgmol/h'][0], 4),
+    'sweet_gas molecular weight': round(initial_data['sweet_gas molecular weight'][0], 4),
+    'rich_amine molecular weight': round(initial_data['rich_amine molecular weight'][0], 4)
+    }
 
 
 
