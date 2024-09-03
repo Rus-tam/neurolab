@@ -15,10 +15,10 @@ const AmineTreatment = () => {
   const { modalSGWindowStatus, modalAmineWindowStatus } = useSelector((state) => state.amineTreatment);
 
   const feedGasAmineData = [
-    { name: "Температура кислого газа, град. Цельсия", value: "20" },
-    { name: "Массовый расход кислого газа, кг/ч", value: "10000" },
-    { name: "Температура раствора амина, град. Цельсия", value: "20" },
-    { name: "Массовый расход раствора амина, кг/ч", value: "10000" },
+    { name: "Температура кислого газа, град. Цельсия", value: calculationResults.sour_gas_temperature },
+    { name: "Массовый расход кислого газа, кг/ч", value: calculationResults.sour_gas_mass_flow },
+    { name: "Температура раствора амина, град. Цельсия", value: calculationResults.amine_temperature },
+    { name: "Массовый расход раствора амина, кг/ч", value: calculationResults.amine_mass_flow },
   ];
 
   const handleOpenSGCompModal = () => {
