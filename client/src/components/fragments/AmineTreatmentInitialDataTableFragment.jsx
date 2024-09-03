@@ -35,7 +35,7 @@ const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
 
   return (
     <div className="amine-treatment-table">
-      <div className="regen-amine">
+      <div className="initial_data">
         <table className="table">
           <tbody>
             <tr>
@@ -92,57 +92,13 @@ const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
             </tr>
           </tbody>
         </table>
+        <Tooltip anchorSelect="#amine_temp" content="от +10 до +60 град. Цельсия" />
+        <Tooltip anchorSelect="#amine_mass_flow" content="от 15 020 до 700 000 кг/ч" />
+        <Tooltip anchorSelect="#sour_gas_temp" content="от +10 до +60 град. Цельсия" />
+        <Tooltip anchorSelect="#sour_gas_mass_flow" content="от 15 020 до 700 000 кг/ч" />
       </div>
     </div>
   );
-
-  // return (
-  //   <div className="amine-treatment-table">
-  //     <div className="regen-amine">
-  //       <table className="table">
-  //         <caption>Раствор амина</caption>
-  //         <tbody>
-  //           {amineTableData.map((row, index) => (
-  //             <tr key={index}>
-  //               <td>{row.name}</td>
-  //               <td>
-  //                 <input
-  //                   type="number"
-  //                   maxLength={6}
-  //                   value={row.value}
-  //                   required
-  //                   onChange={(e) => handleAmineCellValueChange(index, e.target.value)}
-  //                 />
-  //               </td>
-  //             </tr>
-  //           ))}
-  //         </tbody>
-  //       </table>
-  //     </div>
-
-  //     <div className="sour-gas">
-  //       <table className="table">
-  //         <caption>Кислый газ</caption>
-  //         <tbody>
-  //           {sourGasTableData.map((row, index) => (
-  //             <tr key={index}>
-  //               <td>{row.name}</td>
-  //               <td>
-  //                 <input
-  //                   // type="number"
-  //                   maxLength={6}
-  //                   value={row.value}
-  //                   required
-  //                   onChange={(e) => handleGasCellValueChange(index, e.target.value)}
-  //                 />
-  //               </td>
-  //             </tr>
-  //           ))}
-  //         </tbody>
-  //       </table>
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default AmineTreatmentInitialDataTableFragment;
