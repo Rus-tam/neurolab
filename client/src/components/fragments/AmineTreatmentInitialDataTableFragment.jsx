@@ -51,6 +51,45 @@ const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
                 />
               </td>
             </tr>
+            <tr>
+              <td>{amineTableData[1].name}</td>
+              <td>
+                <input
+                  id="amine_mass_flow"
+                  type="number"
+                  maxLength={6}
+                  value={amineTableData[1].value}
+                  required
+                  onChange={(e) => handleAmineCellValueChange(0, e.target.value)}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>{sourGasTableData[0].name}</td>
+              <td>
+                <input
+                  id="sour_gas_temp"
+                  type="number"
+                  maxLength={6}
+                  value={sourGasTableData[0].value}
+                  required
+                  onChange={(e) => handleGasCellValueChange(0, e.target.value)}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>{sourGasTableData[1].name}</td>
+              <td>
+                <input
+                  id="sour_gas_mass_flow"
+                  type="number"
+                  maxLength={6}
+                  value={sourGasTableData[1].value}
+                  required
+                  onChange={(e) => handleGasCellValueChange(0, e.target.value)}
+                />
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
