@@ -16,21 +16,36 @@ const amineTreatmentSlice = createSlice({
     sour_gas_nc5h12: 0.01,
     sour_gas_h2s: 0.02,
     sour_gas_h2o: 0.0,
-    sour_gas_MDEA: 0,
+    sour_gas_MDEA: 0.0,
     amine_temperature: 25,
     amine_mass_flow: 10000,
     amine_pressure: 6701.325,
     amine_co2: 0.0025,
-    amine_ch4: 0,
-    amine_c2h8: 0,
-    amine_c3h8: 0,
-    amine_ic4h10: 0,
-    amine_nch4h10: 0,
-    amine_ic5h12: 0,
-    amine_nc5h12: 0,
+    amine_ch4: 0.0,
+    amine_c2h8: 0.0,
+    amine_c3h8: 0.0,
+    amine_ic4h10: 0.0,
+    amine_nch4h10: 0.0,
+    amine_ic5h12: 0.0,
+    amine_nc5h12: 0.0,
     amine_h2s: 0.0002,
     amine_h2o: 0.8563,
     amine_MDEA: 0.141,
+
+    feed_gas_mol_weight: 0.0,
+    lean_amine_mol_weight: 0.0,
+    feed_gas_mass_density: 0.0,
+    lean_amine_mass_density: 0.0,
+    sweet_gas_temperature: 0.0,
+    sweet_gas_mol_flow: 0.0,
+    rich_amine_mol_flow: 0.0,
+    rich_amine_temperature: 0.0,
+    rich_amine_h2s_mol_flow: 0.0,
+    sweet_gas_h2s_mol_flow: 0.0,
+    rich_amine_co2_mol_flow: 0.0,
+    sweet_gas_co2_mol_flow: 0.0,
+    sweet_gas_mol_weight: 0.0,
+    rich_amine_mol_weight: 0.0,
 
     modalSGWindowStatus: false,
     modalAmineWindowStatus: false,
@@ -69,7 +84,20 @@ const amineTreatmentSlice = createSlice({
       state.modalAmineWindowStatus = action.payload.modalAmineWindowStatus;
     },
     setAmineTreatmentResults(state, action) {
+      state.feed_gas_mol_weight = action.payload.feed_gas_mol_weight;
+      state.lean_amine_mol_weight = action.payload.lean_amine_mol_weight;
+      state.feed_gas_mass_density = action.payload.feed_gas_mass_density;
+      state.lean_amine_mass_density = action.payload.lean_amine_mass_density;
       state.sweet_gas_temperature = action.payload.sweet_gas_temperature;
+      state.sweet_gas_mol_flow = action.payload.sweet_gas_mol_flow;
+      state.rich_amine_mol_flow = action.payload.rich_amine_mol_flow;
+      state.rich_amine_temperature = action.payload.rich_amine_temperature;
+      state.rich_amine_h2s_mol_flow = action.payload.rich_amine_h2s_mol_flow;
+      state.sweet_gas_h2s_mol_flow = action.payload.sweet_gas_h2s_mol_flow;
+      state.rich_amine_co2_mol_flow = action.payload.rich_amine_co2_mol_flow;
+      state.sweet_gas_co2_mol_flow = action.payload.sweet_gas_co2_mol_flow;
+      state.sweet_gas_mol_weight = action.payload.sweet_gas_mol_weight;
+      state.rich_amine_mol_weight = action.payload.rich_amine_mol_weight;
     },
   },
 });
