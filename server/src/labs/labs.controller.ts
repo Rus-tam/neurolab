@@ -49,6 +49,7 @@ export class LabsController {
   ) {
     try {
       const results = await this.labService.getAmineTreatmentResults(inputData);
+      console.log('YYYY', results);
       const savedNote = await this.dbService.createAmineTreatmentNote(inputData, results, currentUser);
       this.logger.log(
         `Лабораторная работа: Аминовая очистка. Пользователь: ${currentUser.student1} и др. Группа: ${currentUser.group}. Результат: sweet_gas_temp: ${results["sweet_gas temperature, C"]}, rich_amine_temp: ${results["rich_amine temperature, C"]} и др. записаны в бд`,
