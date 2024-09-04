@@ -21,7 +21,6 @@ const ResultTable = ({ caption, results }) => {
       break;
 
     case "amine-treatment":
-      console.log("TTTT", results);
       resultData = [
         {
           name: "Температура очищенного газа, град. Цельсия",

@@ -51,11 +51,19 @@ def amine_treatment(dto: AmineTreatmentInitial):
 
     initial_data['sweet_gas H2S molar flow, kgmol/h'] = (initial_data['lean_amine H2S molar flow, kgmol/h'] + initial_data['feed_gas H2S molar flow, kgmol/h']) - initial_data['rich_amine H2S molar flow, kgmol/h']
 
+    if initial_data['sweet_gas H2S molar flow, kgmol/h'][0] <= 0:
+        initial_data['rich_amine H2S molar flow, kgmol/h'] = initial_data['lean_amine H2S molar flow, kgmol/h'] + initial_data['feed_gas H2S molar flow, kgmol/h']
+        initial_data['sweet_gas H2S molar flow, kgmol/h'] = 0.0
+
     initial_data['rich_amine CO2 molar flow, kgmol/h'] = rich_amine_CO2_molar_flow_prediction(initial_data)
 
     initial_data['sweet_gas CO2 molar flow, kgmol/h'] = (initial_data['lean_amine CO2 molar flow, kgmol/h'] +
                                                          initial_data['feed_gas CO2 molar flow, kgmol/h']) - \
                                                         initial_data['rich_amine CO2 molar flow, kgmol/h']
+
+    if initial_data['sweet_gas CO2 molar flow, kgmol/h'][0] <= 0:
+        initial_data['rich_amine CO2 molar flow, kgmol/h'] = initial_data['lean_amine CO2 molar flow, kgmol/h'] + initial_data['feed_gas CO2 molar flow, kgmol/h']
+        initial_data['sweet_gas CO2 molar flow, kgmol/h'] = 0.0
 
     initial_data['sweet_gas molecular weight'] = sweet_gas_mol_weight_prediction(initial_data)
     initial_data['rich_amine molecular weight'] = rich_amine_mol_weight_prediction(initial_data)
