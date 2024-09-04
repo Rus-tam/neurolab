@@ -73,7 +73,6 @@ const InputTable = ({ caption, initialValues }) => {
           return null;
         } else {
           calculationRes = await getAmineTreatmentRes(dataToAI);
-          console.log("MMMMMMMMM", calculationRes);
           dispatch(setAmineTreatmentResults(calculationRes.data));
         }
         break;

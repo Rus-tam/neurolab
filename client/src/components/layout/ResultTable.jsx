@@ -21,46 +21,47 @@ const ResultTable = ({ caption, results }) => {
       break;
 
     case "amine-treatment":
+      console.log("TTTT", results);
       resultData = [
         {
           name: "Температура очищенного газа, град. Цельсия",
           value: results.sweet_gas_temperature,
         },
         {
-          name: "Массовый расход очищенного газа, кг/ч",
-          value: results.sweet_gas_mass_flow,
+          name: "Молярный расход очищенного газа, кгмоль/ч",
+          value: results.sweet_gas_mol_flow,
         },
         {
-          name: "Концентрация H2S в очищенном газе, ppm",
-          value: results.sweet_gas_h2s_ppm,
+          name: "Молярный расход H2S в очищенном газе, кгмоль/ч",
+          value: results.sweet_gas_h2s_mol_flow,
         },
         {
-          name: "Концентрация CO2 в очищенном газе, ppm",
-          value: results.sweet_gas_co2_ppm,
+          name: "Молярный расход CO2 в очищенном газе, кгмоль/ч",
+          value: results.sweet_gas_co2_mol_flow,
+        },
+        {
+          name: "Молярный вес очищенного газа",
+          value: results.sweet_gas_mol_weight,
         },
         {
           name: "Температура насыщенного амина, град. Цельсия",
           value: results.rich_amine_temperature,
         },
         {
-          name: "Массовый расход насыщенного амина, кг/ч",
-          value: results.rich_amine_mass_flow,
+          name: "Молярный расход насыщенного амина, кгмоль/x",
+          value: results.rich_amine_mol_flow,
         },
         {
-          name: "Мольная доля H2S в насыщенном амине",
-          value: results.rich_amine_h2s,
+          name: "Молярный расход H2S в насыщенном амине, кгмоль/ч",
+          value: results.rich_amine_h2s_mol_flow,
         },
         {
-          name: "Мольная доля CO2 в насыщенном амине",
-          value: results.rich_amine_co2,
+          name: "Молярный расход CO2 в насыщенном амине, кгмоль/ч",
+          value: results.rich_amine_co2_mol_flow,
         },
         {
-          name: "Мольная доля H2O в насыщенном амине",
-          value: results.rich_amine_h2o,
-        },
-        {
-          name: "Мольная доля MDEA в насыщенном амине",
-          value: results.rich_amine_MDEA,
+          name: "Молярный вес насыщенного амина",
+          value: results.rich_amine_mol_weight,
         },
       ];
       break;

@@ -60,7 +60,7 @@ const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
                   maxLength={6}
                   value={amineTableData[1].value}
                   required
-                  onChange={(e) => handleAmineCellValueChange(0, e.target.value)}
+                  onChange={(e) => handleAmineCellValueChange(1, e.target.value)}
                 />
               </td>
             </tr>
@@ -86,7 +86,7 @@ const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
                   maxLength={6}
                   value={sourGasTableData[1].value}
                   required
-                  onChange={(e) => handleGasCellValueChange(0, e.target.value)}
+                  onChange={(e) => handleGasCellValueChange(1, e.target.value)}
                 />
               </td>
             </tr>
