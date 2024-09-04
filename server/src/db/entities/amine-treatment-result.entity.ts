@@ -91,10 +91,10 @@ export class AmineTreatmentEntity {
   amine_MDEA: number;
 
   @Column({ type: "float" })
-  feed_gas_molecular_weight: number;
+  feed_gas_mol_weight: number;
 
   @Column({ type: "float" })
-  lean_amine_molecular_weight: number;
+  lean_amine_mol_weight: number;
 
   @Column({ type: "float" })
   feed_gas_mass_density: number;
@@ -106,31 +106,31 @@ export class AmineTreatmentEntity {
   sweet_gas_temperature: number;
 
   @Column({ type: "float" })
-  sweet_gas_molar_flow: number;
+  sweet_gas_mol_flow: number;
 
   @Column({ type: "float" })
-  rich_amine_molar_flow: number;
+  rich_amine_mol_flow: number;
 
   @Column({ type: "float" })
   rich_amine_temperature: number;
 
   @Column({ type: "float" })
-  rich_amine_h2s_molar_flow: number;
+  rich_amine_h2s_mol_flow: number;
 
   @Column({ type: "float" })
-  sweet_gas_h2s_molar_flow: number;
+  sweet_gas_h2s_mol_flow: number;
 
   @Column({ type: "float" })
-  rich_amine_co2_molar_flow: number;
+  rich_amine_co2_mol_flow: number;
 
   @Column({ type: "float" })
-  sweet_gas_co2_molar_flow: number;
+  sweet_gas_co2_mol_flow: number;
 
   @Column({ type: "float" })
-  sweet_gas_molar_weight: number;
+  sweet_gas_mol_weight: number;
 
   @Column({ type: "float" })
-  rich_amine_molar_weight: number;
+  rich_amine_mol_weight: number;
 
   @Column({ type: "timestamptz" })
   createdTime: Date;
