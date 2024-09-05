@@ -23,8 +23,15 @@ export const amineTreatmentCheck = (dataToAI) => {
   if (dataToAI.sour_gas_temperature <= 10 || dataToAI.amine_temperature <= 10) {
     toast.error("Температура сырьевых потоков вне допустимого интервала");
     return new Error("initial data problem");
-  } else if (dataToAI.sour_gas_temperature >= 50 || dataToAI.amine_temperature >= 50) {
+  } else if (dataToAI.sour_gas_temperature >= 61 || dataToAI.amine_temperature >= 61) {
     toast.error("Температура сырьевых потоков вне допустимого интервала");
+    return new Error("initial data problem");
+  }
+  if (dataToAI.sour_gas_mass_flow < 15000 || dataToAI.sour_gas_mass_flow > 700000) {
+    toast.error("Массовый расход одного из сырьевых потоков вне допустимого интервала");
+    return new Error("initial data problem");
+  } else if (dataToAI.amine_mass_flow < 1500 || dataToAI.amine_mass_flow > 700000) {
+    toast.error("Массовый расход одного из сырьевых потоков вне допустимого интервала");
     return new Error("initial data problem");
   }
 };

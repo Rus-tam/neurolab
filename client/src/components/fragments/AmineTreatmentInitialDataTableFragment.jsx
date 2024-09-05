@@ -93,9 +93,9 @@ const AmineTreatmentInitialDataTableFragment = ({ initialValues }) => {
           </tbody>
         </table>
         <Tooltip anchorSelect="#amine_temp" content="от +10 до +60 град. Цельсия" />
-        <Tooltip anchorSelect="#amine_mass_flow" content="от 15 020 до 700 000 кг/ч" />
+        <Tooltip anchorSelect="#amine_mass_flow" content="от 15 000 до 700 000 кг/ч" />
         <Tooltip anchorSelect="#sour_gas_temp" content="от +10 до +60 град. Цельсия" />
-        <Tooltip anchorSelect="#sour_gas_mass_flow" content="от 15 020 до 700 000 кг/ч" />
+        <Tooltip anchorSelect="#sour_gas_mass_flow" content="от 15 000 до 700 000 кг/ч" />
       </div>
     </div>
   );

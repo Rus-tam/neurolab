@@ -4,7 +4,7 @@ const amineTreatmentSlice = createSlice({
   name: "amineTreatment",
   initialState: {
     sour_gas_temperature: 20,
-    sour_gas_mass_flow: 10000,
+    sour_gas_mass_flow: 15000,
     sour_gas_pressure: 6701.325,
     sour_gas_co2: 0.04,
     sour_gas_ch4: 0.68,
@@ -18,7 +18,7 @@ const amineTreatmentSlice = createSlice({
     sour_gas_h2o: 0.0,
     sour_gas_MDEA: 0.0,
     amine_temperature: 25,
-    amine_mass_flow: 10000,
+    amine_mass_flow: 15000,
     amine_pressure: 6701.325,
     amine_co2: 0.0025,
     amine_ch4: 0.0,
