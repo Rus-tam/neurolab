@@ -15,7 +15,10 @@ import {
   ILowTempDistFeedGas,
   ILowTempDistSepProd,
   ILowTempDistColProd,
-  IFetchLowTempDistRes
+  IFetchLowTempDistRes,
+  ISourGasInitialData,
+  IAmineInitialData,
+  IAmineTreatmentRes
 } from "@types";
 import { v4 } from "uuid";
 import { add } from "date-fns";
@@ -190,7 +193,51 @@ export class DbService {
     return newEntry;
   }
 
-  async fetchAmineTreatmentRes(userId: string): Promise<IAmineTreatmentResult[]> {
+  async fetchAmineTreatmentRes(userId: string): Promise<IAmineTreatmentRes> {
+    const sourGasInitialData: ISourGasInitialData[] = await this.amineTreatmentResRepository
+      .createQueryBuilder("table")
+      .select([
+        "table.id",
+        "table.sour_gas_temperature",
+        "table.sour_gas_mass_flow",
+        "table.sour_gas_pressure",
+        "table.sour_gas_co2",
+        "table.sour_gas_ch4",
+        "table.sour_gas_c2h8",
+        "table.sour_gas_c3h8",
+        "table.sour_gas_ic4h10",
+        "table.sour_gas_nc4h10",
+        "table.sour_gas_ic5h12",
+        "table.sour_gas_nc5h12",
+        "table.sour_gas_h2s",
+        "table.sour_gas_h2o",
+        "table.sour_gas_MDEA",
+      ])
+      .andWhere("table.user.id = :userId", { userId })
+      .getRawMany();
+
+    const amineInitialData: IAmineInitialData[] = await this.amineTreatmentResRepository
+      .createQueryBuilder("table")
+      .select([
+        "table.id",
+        "table.amine_temperature",
+        "table.amine_mass_flow",
+        "table.amine_pressure",
+        "table.amine_co2",
+        "table.amine_ch4",
+        "table.amine_c2h8",
+        "table.amine_c3h8",
+        "table.amine_ic4h10",
+        "table.amine_nch4h10",
+        "table.amine_ic5h12",
+        "table.amine_nc5h12",
+        "table.amine_h2s",
+        "table.amine_h2o",
+        "table.amine_MDEA",
+      ])
+      .andWhere("table.user.id = :userId", { userId })
+      .getRawMany();
+
     const amineTreatmentResult: IAmineTreatmentResult[] = await this.amineTreatmentResRepository
       .createQueryBuilder("table")
       .select([
@@ -213,9 +260,11 @@ export class DbService {
       .andWhere("table.user.id = :userId", { userId })
       .getRawMany();
 
-    console.log(amineTreatmentResult);
-
-    return amineTreatmentResult;
+    return {
+      "sourGasInitialData": sourGasInitialData,
+      "amineInitialData": amineInitialData,
+      "amineTreatmentResult": amineTreatmentResult
+    }
   }
 
   // LOW TEMPERATURE DISTILLATION
