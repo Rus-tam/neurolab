@@ -21,10 +21,12 @@ const AmineTreatmentResults = () => {
   const workingData = { ...results };
 
   const updateDataToDisplay = () => {
-    if (!isError && !isLoading && workingData.sourGas && workingData.leanAmine) {
-      setSourGasData(prepareSourGasResData(workingData.sourGas[currentPage]));
-      setLeanAmineData(prepareLeanAmineResData(workingData.leanAmine[currentPage]));
-      setPredictedData(preparePredictedData(workingData.predictedData[currentPage]));
+    if (!isError && !isLoading && workingData.sourGasInitialData && workingData.amineInitialData) {
+      console.log("YYYY", workingData.amineTreatmentResult[0]);
+      console.log("OOOO", currentPage);
+      setSourGasData(prepareSourGasResData(workingData.sourGasInitialData[currentPage]));
+      setLeanAmineData(prepareLeanAmineResData(workingData.amineInitialData[currentPage]));
+      setPredictedData(preparePredictedData(workingData.amineTreatmentResult[currentPage]));
     }
   };
 
@@ -34,7 +36,7 @@ const AmineTreatmentResults = () => {
     }
   };
   const handleNextClick = () => {
-    if (currentPage <= results.sourGas.length) {
+    if (currentPage <= results.sourGasInitialData.length) {
       setCurrentPage(currentPage + 1);
     }
   };
