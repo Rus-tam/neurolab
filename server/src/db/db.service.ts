@@ -8,13 +8,9 @@ import { DbErrors } from "@errors";
 import * as bcrypt from "bcrypt";
 import {
   IAmineTreatmentResult,
-  IFetchAmineRes,
   IJWTPayload,
-  ILeanAmineData,
   ILowTempDistillationResult,
-  IPredictData,
   ISimpleIsoResult,
-  ISourGasData,
   Roles,
   ILowTempDistFeedGas,
   ILowTempDistSepProd,
@@ -194,68 +190,32 @@ export class DbService {
     return newEntry;
   }
 
-  async fetchAmineTreatmentRes(userId: string): Promise<IFetchAmineRes> {
-    const sourGasData: ISourGasData[] = await this.amineTreatmentResRepository
+  async fetchAmineTreatmentRes(userId: string): Promise<IAmineTreatmentResult[]> {
+    const amineTreatmentResult: IAmineTreatmentResult[] = await this.amineTreatmentResRepository
       .createQueryBuilder("table")
       .select([
         "table.id",
+        "table.feed_gas_mol_weight",
+        "table.lean_amine_mol_weight",
+        "table.feed_gas_mass_density",
+        "table.lean_amine_mass_density",
         "table.sweet_gas_temperature",
-        "table.sour_gas_temperature",
-        "table.sour_gas_mass_flow",
-        "table.sour_gas_co2",
-        "table.sour_gas_ch4",
-        "table.sour_gas_c2h8",
-        "table.sour_gas_c3h8",
-        "table.sour_gas_ic4h10",
-        "table.sour_gas_nc4h10",
-        "table.sour_gas_ic5h12",
-        "table.sour_gas_nc5h12",
-        "table.sour_gas_h2s",
-        "table.sour_gas_h2o",
-        "table.sour_gas_MDEA",
-      ])
-      .andWhere("table.user.id = :userId", { userId })
-      .getRawMany();
-
-    const leanAmineData: ILeanAmineData[] = await this.amineTreatmentResRepository
-      .createQueryBuilder("table")
-      .select([
-        "table.id",
-        "table.amine_temperature",
-        "table.amine_mass_flow",
-        "table.amine_co2",
-        "table.amine_ch4",
-        "table.amine_c2h8",
-        "table.amine_c3h8",
-        "table.amine_ic4h10",
-        "table.amine_nch4h10",
-        "table.amine_ic5h12",
-        "table.amine_nc5h12",
-        "table.amine_h2s",
-        "table.amine_h2o",
-        "table.amine_MDEA",
-      ])
-      .andWhere("table.user.id = :userId", { userId })
-      .getRawMany();
-
-    const predictedData: IPredictData[] = await this.amineTreatmentResRepository
-      .createQueryBuilder("table")
-      .select([
-        "table.id",
-        "table.sweet_gas_temperature",
-        "table.sweet_gas_mass_flow",
-        "table.sweet_gas_H2S_ppm",
-        "table.sweet_gas_CO2_ppm",
+        "table.sweet_gas_mol_flow",
+        "table.rich_amine_mol_flow",
         "table.rich_amine_temperature",
-        "table.rich_amine_mass_flow",
-        "table.rich_amine_h2s",
-        "table.rich_amine_co2",
-        "table.rich_amine_h2o",
-        "table.rich_amine_MDEA",
+        "table.rich_amine_h2s_mol_flow",
+        "table.sweet_gas_h2s_mol_flow",
+        "table.rich_amine_co2_mol_flow",
+        "table.sweet_gas_co2_mol_flow",
+        "table.sweet_gas_mol_weight",
+        "table.rich_amine_mol_weight"
       ])
       .andWhere("table.user.id = :userId", { userId })
       .getRawMany();
-    return { sourGas: sourGasData, leanAmine: leanAmineData, predictedData: predictedData };
+
+    console.log(amineTreatmentResult);
+
+    return amineTreatmentResult;
   }
 
   // LOW TEMPERATURE DISTILLATION

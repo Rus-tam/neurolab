@@ -1,7 +1,7 @@
 import { Body, Controller, Get, InternalServerErrorException, Logger, Post, UseGuards } from "@nestjs/common";
 import { LabsService } from "@labs/labs.service";
 import { AmineTreatmentDTO, LowTempDistillationDTO, SimpleIsoDto } from "@labs/dto";
-import { IFetchAmineRes, ILowTempDistillationResult, ISimpleIsoResult } from "@types";
+import { IAmineTreatmentResult, ILowTempDistillationResult, ISimpleIsoResult } from "@types";
 import { DbService } from "@db/db.service";
 import { CurrentUser } from "@decorators";
 import { AuthGuard } from "@nestjs/passport";
@@ -50,8 +50,9 @@ export class LabsController {
     try {
       const results = await this.labService.getAmineTreatmentResults(inputData);
       const savedNote = await this.dbService.createAmineTreatmentNote(inputData, results, currentUser);
+      console.log(results);
       this.logger.log(
-        `Лабораторная работа: Аминовая очистка. Пользователь: ${currentUser.student1} и др. Группа: ${currentUser.group}. Результат: sweet_gas_temp: ${results["sweet_gas temperature, C"]}, rich_amine_temp: ${results["rich_amine temperature, C"]} и др. записаны в бд`,
+        `Лабораторная работа: Аминовая очистка. Пользователь: ${currentUser.student1} и др. Группа: ${currentUser.group}. Результаты записаны в бд`,
       );
       return results;
     } catch (err) {
@@ -62,7 +63,7 @@ export class LabsController {
 
   @UseGuards(AuthGuard("jwt"))
   @Get("/amine-treatment")
-  async getAmineTreatmentResult(@CurrentUser() currentUser: UserEntity): Promise<IFetchAmineRes> {
+  async getAmineTreatmentResult(@CurrentUser() currentUser: UserEntity): Promise<IAmineTreatmentResult[]> {
     return this.dbService.fetchAmineTreatmentRes(currentUser.id);
   }
 

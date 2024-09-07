@@ -37,22 +37,6 @@ export const prepareDataToAI = (data, mode) => {
         amine_h2s: parseFloat(data.amine_h2s),
         amine_h2o: parseFloat(data.amine_h2o),
         amine_MDEA: parseFloat(data.amine_MDEA),
-        // sweet_gas_temperature: parseFloat(data.sweet_gas_temperature),
-        // rich_amine_temperature: parseFloat(data.rich_amine_temperature),
-        // sweet_gas_mass_flow: parseFloat(data.sweet_gas_mass_flow),
-        // rich_amine_mass_flow: parseFloat(data.rich_amine_mass_flow),
-        // feed_gas_mol_weight: parseFloat(data.feed_gas_mol_weight),
-        // lean_amine_mol_weight: parseFloat(data.lean_amine_mol_weight),
-        // rich_amine_mol_weight: parseFloat(data.rich_amine_mol_weight),
-        // sweet_gas_mol_weight: parseFloat(data.sweet_gas_mol_weight),
-        // feed_gas_mol_flow: parseFloat(data.feed_gas_mol_weight),
-        // feed_gas_H2S_mol_flow: parseFloat(data.feed_gas_H2S_mol_flow),
-        // feed_gas_CO2_mol_flow: parseFloat(data.feed_gas_CO2_mol_flow),
-        // lean_amine_mol_flow: parseFloat(data.lean_amine_mol_flow),
-        // lean_amine_H2S_mol_flow: parseFloat(data.lean_amine_H2S_mol_flow),
-        // lean_amine_CO2_mol_flow: parseFloat(data.lean_amine_CO2_mol_flow),
-        // rich_amine_mol_flow: parseFloat(data.rich_amine_mol_flow),
-        // sweet_gas_mol_flow: parseFloat(data.sweet_gas_mol_flow),
       };
       break;
 
