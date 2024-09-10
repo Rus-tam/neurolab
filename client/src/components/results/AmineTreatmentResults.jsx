@@ -22,8 +22,6 @@ const AmineTreatmentResults = () => {
 
   const updateDataToDisplay = () => {
     if (!isError && !isLoading && workingData.sourGasInitialData && workingData.amineInitialData) {
-      console.log("YYYY", workingData.amineTreatmentResult[0]);
-      console.log("OOOO", currentPage);
       setSourGasData(prepareSourGasResData(workingData.sourGasInitialData[currentPage]));
       setLeanAmineData(prepareLeanAmineResData(workingData.amineInitialData[currentPage]));
       setPredictedData(preparePredictedData(workingData.amineTreatmentResult[currentPage]));

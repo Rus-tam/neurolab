@@ -28,6 +28,8 @@ def read_root():
 @app.post("/simple_isomerization", response_model=SimpleIsoResponse)
 def simple_isomerization(dto: SimpleIsoInitial):
     prediction = simple_isomerization_service(dto)[0]
+    if prediction[0] > 1:
+        prediction[0] = 1
     return {
         "product_concentration": round(prediction[0], 3),
         "product_temperature": round(prediction[1], 3)
