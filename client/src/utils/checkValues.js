@@ -37,10 +37,20 @@ export const amineTreatmentCheck = (dataToAI) => {
 };
 
 export const lowTempDistCheck = (dataToAI) => {
-  // for (const value of Object.values(dataToAI)) {
-  //   if (value < 0) {
-  //     toast.error("Недопустимо использование отрицательных величин");
-  //     return new Error("Initial data problem");
-  //   }
-  // }
+  if (dataToAI.gas_feed_temperature < -25 || dataToAI.gas_feed_temperature > 10) {
+    toast.error("Температура сырьевого газа вне допустимого интервала");
+    return new Error("initial data problem");
+  } else if (dataToAI.gas_feed_mass_flow < 5000 || dataToAI.gas_feed_mass_flow > 30000) {
+    toast.error("Массовый расход сырьевого газа вне допустимого интервала");
+    return new Error("initial data problem");
+  } else if (dataToAI.gas_feed_pressure < 3500 || dataToAI.gas_feed_pressure > 4900) {
+    toast.error("Давление сырьевого газа вне допустимого интервала");
+    return new Error("initial data problem");
+  } else if (dataToAI.stream_3_pressure < 2000 || dataToAI.stream_3_pressure > 2600) {
+    toast.error("Давление газа после детандера вне допустимого интервала");
+    return new Error("initial data problem");
+  } else if (dataToAI.comp_frac < 0.01 || dataToAI.comp_frac > 0.15) {
+    toast.error("Массовая доля метана и этана в ШФЛУ вне допустимого предела");
+    return new Error("initial data problem");
+  }
 };
