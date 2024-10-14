@@ -7,6 +7,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { AuthModule } from "./auth/auth.module";
 import { LabsModule } from "./labs/labs.module";
 import { AxiosModule } from "./axios/axios.module";
+import { dataSourceOptions } from "@db/data-source";
 
 @Module({
   imports: [
@@ -17,15 +18,7 @@ import { AxiosModule } from "./axios/axios.module";
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
         return {
-          type: "postgres",
-          host: config.get<string>("POSTGRES_HOST"),
-          port: config.get<number>("POSTGRES_PORT"),
-          username: config.get<string>("POSTGRES_USER"),
-          password: config.get<string>("POSTGRES_PASSWORD"),
-          database: config.get<string>("POSTGRES_DATABASE"),
-          autoLoadEntities: true,
-          synchronize: true,
-          logging: false,
+          ...dataSourceOptions
         };
       },
     }),
@@ -37,4 +30,4 @@ import { AxiosModule } from "./axios/axios.module";
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
