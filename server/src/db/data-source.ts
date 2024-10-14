@@ -14,8 +14,8 @@ export const dataSourceOptions: DataSourceOptions = {
     username: configService.getOrThrow('TYPEORM_USER'),
     password: configService.getOrThrow('TYPEORM_PASSWORD'),
     entities: ['dist/**/*.entity.js'],
-    migrations: ['dist/src/db/migrations/*.js'],
-    synchronize: false
+    migrations: ['dist/db/migrations/*.js'],
+    synchronize: true
 }
 
 const dataSource = new DataSource(dataSourceOptions);

@@ -1,0 +1,59 @@
+version: "3.8"
+services:
+  # База данных: PostgreSQL
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${TYPEORM_USER}
+      POSTGRES_PASSWORD: ${TYPEORM_PASSWORD}
+      POSTGRES_DB: ${TYPEORM_DATABASE}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Модуль 1: ReactJS (клиент)
+  client:
+    build:
+      context: ./client # путь к папке с клиентским приложением (ReactJS)
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80" # порт для доступа к клиентскому приложению
+    depends_on:
+      - api
+
+  # Модуль 2: NestJS (серверная часть)
+  api:
+    build:
+      context: ./server # путь к папке с серверным приложением (NestJS)
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000" # порт для доступа к серверу
+    depends_on:
+      - db
+    environment:
+      # DATABASE_URL: postgres://admin:root@db:5432/project_db
+      FASTAPI_URL: http://fastapi:8000
+
+  # Модуль 3: FastAPI
+  fastapi:
+    build:
+      context: ./neuro-app # путь к папке с FastAPI приложением
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000" # порт для доступа к FastAPI
+    depends_on:
+      - api
+
+  pgadmin:
+    container_name: pgadmin4_container_migration
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+
+volumes:
+  postgres_data:
